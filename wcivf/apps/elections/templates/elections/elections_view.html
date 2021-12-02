@@ -4,25 +4,26 @@
 {% block og_title %}{% trans "UK Elections" %}{% endblock og_title %}
 {% block og_description %}{% trans "All Elections in the UK" %}{% endblock og_description %}
 
+
 {% block content %}
 
     {% include 'elections/includes/_elections_breadcrumbs.html' %}
-
+    {% comment %} {% if javascript_enabled %}   {% endcomment %}
     <aside class="ds-filter" aria-labelledby="filter-label">
-        <div class="ds-filter-cluster">
+        <div class="ds-filter-cluster" id="election-filters">
             <ul aria-labelledby="adv-filter-label-3">
                 <li id="adv-filter-label-3" class="ds-filter-label" aria-hidden="true">Election type:</li>
-                <li><a href="?all" aria-current="true">All</a></li>
-                <li><a href="?gla">Greater London Assembly</a></li>
-                <li><a href="?local">Local</a></li>
-                <li><a href="?mayoral">Mayoral</a></li>
-                <li id="?parl"><a id="?parl" href="?parl">UK Parliament</a></li>
-                <li><a href="?pcc">Police &amp; Crime Commissioner</a></li>
-                <li><a href="?scottish">Scottish parliament</a></li>
-                <li><a href="?senedd">Senedd Cymru</a></li>
+                <li id="all" class="btn"><a href="?all" aria-current="true">All</a></li>
+                <li id="gla" class="btn"><a class="gla" href="?gla">Greater London Assembly</a></li>
+                <li id="local" class="btn"><a href="?local" >Local</a></li>
+                <li id="parl" class="btn"><a href="?parl" href="?parl" >UK Parliament</a></li>
+                <li id="pcc" class="btn"><a href="?pcc" >Police &amp; Crime Commissioner</a></li>
+                <li id="scottish" class="btn"><a href="?scottish" >Scottish parliament</a></li>
+                <li id="senedd" class="btn"><a href="?senedd" >Senedd Cymru</a></li>
             </ul>
         </div>
     </aside>
+    {% comment %} {% endif %} {% endcomment %}
 
     <div class="ds-stack-smaller">
         <div class="ds-card">
@@ -42,5 +43,122 @@
 
         {% include "feedback/feedback_form.html" %}
     </div>
+
+    <script type="text/javascript">
+        var all = document.querySelectorAll('#election-urls ul li a');
+        var gla = [];
+        var local = [];
+        var parl = [];
+        var pcc = [];
+        var scottish = [];
+        var senedd = [];
+        var date_grouper = document.querySelectorAll('.grouper-date')
+
+        document.getElementById("all").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                all[i].style.display = "block";
+            }
+        });
+
+        document.getElementById("gla").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('gla.')) {
+                    all[i].style.display = "block";
+                    gla.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+        document.getElementById("local").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('local.')) {
+                    all[i].style.display = "block";
+                    local.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+        document.getElementById("parl").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('parl.')) {
+                    all[i].style.display = "block";
+                    parl.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+        document.getElementById("pcc").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('pcc.')) {
+                    all[i].style.display = "block";
+                    pcc.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+        document.getElementById("scottish").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('sp.')) {
+                    all[i].style.display = "block";
+                    scottish.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+        document.getElementById("senedd").addEventListener("click", function(e){
+            e.preventDefault();
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].href.includes('senedd.')) {
+                    all[i].style.display = "block";
+                    senedd.push(all[i]);
+                } else {
+                    all[i].style.display = "none";
+                }
+            }
+            checkHideDate()
+        });
+
+
+        function checkHideDate() {
+            for (var i = 0; i < date_grouper.length; i++) {
+                var hidden_urls = [];
+                var visible_urls = [];
+                var date_grouper_children_urls = date_grouper[i].nextElementSibling.querySelectorAll('a');
+                for (var j = 0; j < date_grouper_children_urls.length; j++) {
+                    if (date_grouper_children_urls[j].style.display == "none") {
+                        date_grouper[i].style.display = "none";
+                        hidden_urls.push(date_grouper_children_urls[j]);
+                    } else {
+                        date_grouper[i].style.display = "block";
+                        visible_urls.push(date_grouper_children_urls[j]);
+                    }
+                }
+                if (visible_urls.length) {
+                    date_grouper[i].style.display = "block";
+                }
+            }
+        }
+    </script>
 
 {% endblock content %}
