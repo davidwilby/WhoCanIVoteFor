@@ -35,6 +35,7 @@ class PersonPostQuerySet(models.QuerySet):
                 "post_id",
                 "election__slug",
                 "election__name",
+                "election__election_date",
                 "post_election__cancelled",
             )
             .annotate(num_candidates=Count("person"))

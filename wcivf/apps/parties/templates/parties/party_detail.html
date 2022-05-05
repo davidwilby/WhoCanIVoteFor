@@ -59,24 +59,20 @@
                 {% endif %}
 
                 {% regroup object.personpost_set.all.counts_by_post by election__name as people_by_election %}
+                {% for election_group in people_by_election %}
+                    <div>
+                        {% for election in election_group.list %}
+                            <p><a href="{{ CANONICAL_URL }}/elections/{{ election.election__slug }}">{{ election_group.grouper }}</a></p>
+                            <p>Election date: {{ election.election__election_date|date:"F j, Y" }}</p>
+                        {% endfor %}
 
-                {% for election in people_by_election %}
-                    <div class="ds-table">
-                        <table>
-                            <caption>{{ election.grouper }}</caption>
-                            <tr>
-                                <th>Post</th>
-                                <th>Number of candidates</th>
-                            </tr>
-                            {% for post in election.list %}
-                                <tr>
-                                    <td>{{ post.post__label }}</td>
-                                    <td>{% blocktrans with num_candidates=post.num_candidates pluralize_candidates=post.num_candidates|pluralize %}{{ num_candidates }} candidate{{ pluralize_candidates }}{% endblocktrans %}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
+                        {% for post in election_group.list %}
+                            <p>Ward: {{ post.post__label }}</p>
+                            <p>{% blocktrans with num_candidates=post.num_candidates party_name=object.party_name pluralize_candidates=post.num_candidates|pluralize %}There is {{ num_candidates }} {{ party_name }} candidate{{ pluralize_candidates }} standing in this election{% endblocktrans %}</p>
+                        {% endfor %}
                     </div>
                 {% endfor %}
+
             </div>
         </div>
     </div>
