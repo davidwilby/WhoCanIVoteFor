@@ -29,12 +29,8 @@
         <div class="ds-card">
             <div class="ds-card-body">
                 <h1>{% trans "All Elections" %}</h1>
-                <h2>{% trans "Current Elections" %}</h2>
                 <p>{% trans "This is a list of upcoming elections, and all elections Democracy Club has covered since 2010. The local election database was founded in 2016." %}</p>
                 {% include "elections/includes/_election_list.html" with elections=current_or_future_elections %}
-
-
-                <h2>{% trans "Past Elections" %}</h2>
                 {% include "elections/includes/_election_list.html" with elections=past_elections %}
             </div>
         </div>
