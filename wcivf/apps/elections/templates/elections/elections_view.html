@@ -8,13 +8,12 @@
 {% block content %}
 
     {% include 'elections/includes/_elections_breadcrumbs.html' %}
-    {% comment %} {% if javascript_enabled %}   {% endcomment %}
     <aside class="ds-filter" aria-labelledby="filter-label">
         <div class="ds-filter-cluster" id="election-filters">
             <ul aria-labelledby="adv-filter-label-3">
                 <li id="adv-filter-label-3" class="ds-filter-label" aria-hidden="true">Election type:</li>
                 <li id="all" class="btn"><a href="?all" aria-current="true">All</a></li>
-                <li id="gla" class="btn"><a class="gla" href="?gla">Greater London Assembly</a></li>
+                <li id="gla" class="btn"><a href="?gla">Greater London Assembly</a></li>
                 <li id="local" class="btn"><a href="?local" >Local</a></li>
                 <li id="parl" class="btn"><a href="?parl" href="?parl" >UK Parliament</a></li>
                 <li id="pcc" class="btn"><a href="?pcc" >Police &amp; Crime Commissioner</a></li>
@@ -23,7 +22,6 @@
             </ul>
         </div>
     </aside>
-    {% comment %} {% endif %} {% endcomment %}
 
     <div class="ds-stack-smaller">
         <div class="ds-card">
@@ -41,6 +39,7 @@
     </div>
 
     <script type="text/javascript">
+        var all_filter = document.getElementById('all').firstChild;
         var all = document.querySelectorAll('#election-urls ul li a');
         var gla = [];
         var local = [];
@@ -55,10 +54,19 @@
             for (var i = 0; i < all.length; i++) {
                 all[i].style.display = "block";
             }
+            date_grouper.forEach(function(date){
+                date.style.display = "block";
+            });
+            setAriaAttribute(e);
         });
 
         document.getElementById("gla").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+            var gla_filter = document.getElementById("gla").firstChild;
+            all_filter.removeAttribute("aria-current");
+            gla_filter.setAttribute("aria-current", "true");
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('gla.')) {
                     all[i].style.display = "block";
@@ -72,6 +80,12 @@
 
         document.getElementById("local").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+
+            var local_filter = document.getElementById("local").firstChild;
+            all_filter.removeAttribute("aria-current");
+            local_filter.setAttribute("aria-current", "true");
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('local.')) {
                     all[i].style.display = "block";
@@ -85,6 +99,12 @@
 
         document.getElementById("parl").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+
+            var parl_filter = document.getElementById("parl").firstChild;
+            all_filter.removeAttribute("aria-current");
+            parl_filter.setAttribute("aria-current", "true");
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('parl.')) {
                     all[i].style.display = "block";
@@ -98,6 +118,12 @@
 
         document.getElementById("pcc").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+
+            var pcc_filter = document.getElementById("pcc").firstChild;
+            all_filter.removeAttribute("aria-current");
+            pcc_filter.setAttribute("aria-current", "true");
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('pcc.')) {
                     all[i].style.display = "block";
@@ -111,6 +137,12 @@
 
         document.getElementById("scottish").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+
+            var scottish_filter = document.getElementById("scottish").firstChild;
+            all_filter.removeAttribute("aria-current");
+            scottish_filter.setAttribute("aria-current", "true");
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('sp.')) {
                     all[i].style.display = "block";
@@ -124,6 +156,8 @@
 
         document.getElementById("senedd").addEventListener("click", function(e){
             e.preventDefault();
+            setAriaAttribute(e);
+
             for (var i = 0; i < all.length; i++) {
                 if (all[i].href.includes('senedd.')) {
                     all[i].style.display = "block";
@@ -135,6 +169,17 @@
             checkHideDate()
         });
 
+        function setAriaAttribute(e) {
+            var election_filters = document.querySelectorAll('#election-filters ul li a');
+            var current_filter = e.target;
+            var other_election_filters = [];
+            current_filter.setAttribute("aria-current", "true");
+            election_filters.forEach(function(filter){
+                if (filter !== current_filter) {
+                    filter.removeAttribute("aria-current");
+                }
+            });
+        }
 
         function checkHideDate() {
             for (var i = 0; i < date_grouper.length; i++) {
