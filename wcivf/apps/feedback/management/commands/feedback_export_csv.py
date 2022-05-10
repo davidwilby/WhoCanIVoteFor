@@ -27,7 +27,13 @@ class Command(BaseCommand):
             date = timezone.make_aware(date, timezone.get_current_timezone())
             feedback_to_export = feedback_to_export.filter(created__gte=date)
 
-        fieldnames = ["created", "found_useful", "comments", "source_url"]
+        fieldnames = [
+            "created",
+            "found_useful",
+            "sources",
+            "comments",
+            "source_url",
+        ]
         out = csv.DictWriter(self.stdout, fieldnames=fieldnames)
         out.writeheader()
         for feedback in feedback_to_export:
