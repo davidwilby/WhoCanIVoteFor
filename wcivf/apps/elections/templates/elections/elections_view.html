@@ -43,21 +43,11 @@
     </div>
 
     <script type="text/javascript">
-        var all_filter = document.getElementById('all').firstChild;
+        var all_filter = document.getElementById('all');
         var all = document.querySelectorAll('#election-urls ul li a');
-        var gla = [];
-        var local = [];
-        var parl = [];
-        var pcc = [];
-        var scottish = [];
-        var senedd = [];
-        var ref = [];
-        var mayor = [];
-        var europarl = [];
-        var nia = [];
         var date_grouper = document.querySelectorAll('.grouper-date')
 
-        document.getElementById("all").addEventListener("click", function(e){
+        all_filter.addEventListener("click", function(e){
             e.preventDefault();
             for (var i = 0; i < all.length; i++) {
                 all[i].style.display = "block";
@@ -68,179 +58,21 @@
             setAriaAttribute(e);
         });
 
-        document.getElementById("gla").addEventListener("click", function(e){
+        document.body.addEventListener("click", function (e) {
             e.preventDefault();
-            setAriaAttribute(e);
-            var gla_filter = document.getElementById("gla").firstChild;
-            all_filter.removeAttribute("aria-current");
-            gla_filter.setAttribute("aria-current", "true");
+            var clickedId = e.target.id;
+            var election_type = "/" + clickedId + ".";
 
             for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('gla.')) {
+                if (all[i].href.includes(election_type)) {
                     all[i].style.display = "block";
-                    gla.push(all[i]);
                 } else {
                     all[i].style.display = "none";
                 }
             }
-            checkHideDate()
-        });
-
-        document.getElementById("local").addEventListener("click", function(e){
-            e.preventDefault();
             setAriaAttribute(e);
-
-            var local_filter = document.getElementById("local").firstChild;
-            all_filter.removeAttribute("aria-current");
-            local_filter.setAttribute("aria-current", "true");
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('local.')) {
-                    all[i].style.display = "block";
-                    local.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
             checkHideDate()
         });
-
-        document.getElementById("parl").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            var parl_filter = document.getElementById("parl").firstChild;
-            all_filter.removeAttribute("aria-current");
-            parl_filter.setAttribute("aria-current", "true");
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('/parl.')) {
-                    all[i].style.display = "block";
-                    parl.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("pcc").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            var pcc_filter = document.getElementById("pcc").firstChild;
-            all_filter.removeAttribute("aria-current");
-            pcc_filter.setAttribute("aria-current", "true");
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('pcc.')) {
-                    all[i].style.display = "block";
-                    pcc.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("scottish").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            var scottish_filter = document.getElementById("scottish").firstChild;
-            all_filter.removeAttribute("aria-current");
-            scottish_filter.setAttribute("aria-current", "true");
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('sp.')) {
-                    all[i].style.display = "block";
-                    scottish.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("senedd").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('senedd.')) {
-                    all[i].style.display = "block";
-                    senedd.push(all[i]);
-                } else if (all[i].href.includes('naw.')) {
-                    all[i].style.display = "block";
-                    senedd.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("ref").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('ref.')) {
-                    all[i].style.display = "block";
-                    ref.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("mayor").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('mayor.')) {
-                    all[i].style.display = "block";
-                    mayor.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("europarl").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('europarl.')) {
-                    all[i].style.display = "block";
-                    europarl.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-        document.getElementById("nia").addEventListener("click", function(e){
-            e.preventDefault();
-            setAriaAttribute(e);
-
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes('nia.')) {
-                    all[i].style.display = "block";
-                    nia.push(all[i]);
-                } else {
-                    all[i].style.display = "none";
-                }
-            }
-            checkHideDate()
-        });
-
-
 
         function setAriaAttribute(e) {
             var election_filters = document.querySelectorAll('#election-filters ul li a');
