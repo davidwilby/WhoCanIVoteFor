@@ -9,25 +9,8 @@
 
     {% include 'elections/includes/_elections_breadcrumbs.html' %}
     <noscript>Enable javascript to use election filtering funcationality.</noscript>
-    <aside class="ds-filter" aria-labelledby="filter-label">
-        <div class="ds-filter-cluster" id="election-filters">
-            <ul aria-labelledby="adv-filter-label-3">
-                <li id="adv-filter-label-3" class="ds-filter-label" aria-hidden="true">Election type:</li>
-                <li class="btn"><a id="all" href="?election_type=all" aria-current="true">All</a></li>
-                <li class="btn"><a id="europarl" href="?election_type=europarl">European Parliament</a></li>
-                <li class="btn"><a id="local" href="??election_type=local">Local</a></li>
-                <li class="btn"><a id="gla" href="?election_type=gla">London Assembly</a></li>
-                <li class="btn"><a id="mayor" href="??election_type=mayor">Mayoral</a></li>
-                <li class="btn"><a id="nia" href="?election_type=nia">Northern Irish Assembly</a></li>
-                <li class="btn"><a id="pcc" href="?election_type=pcc">Police &amp; Crime Commissioner</a></li>
-                <li class="btn"><a id="sp" href="?election_type=sp">Scottish Parliament</a></li>
-                <li class="btn"><a id="senedd" href="?election_type=senedd">Senedd Cymru</a></li>
-                <li class="btn"><a id="parl" href="?election_type=parl" href="?parl">UK Parliament</a></li>
-                <li class="btn"><a id="ref" href="?election_type=ref">Referendum</a></li>
-            </ul>
-        </div>
-    </aside>
-
+    <div id="elections-filter-container">
+    </div>
     <div class="ds-stack-smaller">
         <div class="ds-card">
             <div class="ds-card-body">
@@ -44,6 +27,9 @@
     </div>
 
     <script type="text/javascript">
+        var elections_filters_html = '<aside class="ds-filter" aria-labelledby="filter-label"><div class="ds-filter-cluster" id="election-filters"><ul aria-labelledby="adv-filter-label-3"><li id="adv-filter-label-3" class="ds-filter-label" aria-hidden="true">Election type:</li><li class="btn"><a id="all" href="?election_type=all" aria-current="true">All</a></li><li class="btn"><a id="europarl" href="?election_type=europarl">European Parliament</a></li><li class="btn"><a id="local" href="??election_type=local">Local</a></li><li class="btn"><a id="gla" href="?election_type=gla">London Assembly</a></li><li class="btn"><a id="mayor" href="??election_type=mayor">Mayoral</a></li><li class="btn"><a id="nia" href="?election_type=nia">Northern Irish Assembly</a></li><li class="btn"><a id="pcc" href="?election_type=pcc">Police &amp; Crime Commissioner</a></li><li class="btn"><a id="sp" href="?election_type=sp">Scottish Parliament</a></li><li class="btn"><a id="senedd" href="?election_type=senedd">Senedd Cymru</a></li><li class="btn"><a id="parl" href="?election_type=parl" href="?parl">UK Parliament</a></li><li class="btn"><a id="ref" href="?election_type=ref">Referendum</a></li></ul></div></aside>';
+        document.getElementById("elections-filter-container").innerHTML = elections_filters_html;
+
         var filter_box = document.getElementById('election-filters');
         var all_filter = document.getElementById('all');
         var all = document.querySelectorAll('#election-urls ul li a');
