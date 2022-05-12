@@ -49,25 +49,15 @@
         var all = document.querySelectorAll('#election-urls ul li a');
         var date_grouper = document.querySelectorAll('.grouper-date')
 
-        all_filter.addEventListener("click", function(e){
-            e.preventDefault();
-            for (var i = 0; i < all.length; i++) {
-                all[i].style.display = "block";
-            }
-            date_grouper.forEach(function(date){
-                date.style.display = "block";
-            });
-            setAriaAttribute(e);
-        });
-
-
         filter_box.addEventListener("click", function (e) {
             e.preventDefault();
             var clickedId = e.target.id;
             var election_type = "/" + clickedId + ".";
 
             for (var i = 0; i < all.length; i++) {
-                if (clickedId == "senedd" && all[i].href.includes("/naw.")) {
+                if (clickedId == "all") {
+                    all[i].style.display = "block";
+                } else if (clickedId == "senedd" && all[i].href.includes("/naw.")) {
                     all[i].style.display = "block";
                 } else if (all[i].href.includes(election_type)) {
                     all[i].style.display = "block";
