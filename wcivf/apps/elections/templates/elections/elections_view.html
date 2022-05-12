@@ -8,21 +8,22 @@
 {% block content %}
 
     {% include 'elections/includes/_elections_breadcrumbs.html' %}
+    <noscript>Enable javascript to use election filtering funcationality.</noscript>
     <aside class="ds-filter" aria-labelledby="filter-label">
         <div class="ds-filter-cluster" id="election-filters">
             <ul aria-labelledby="adv-filter-label-3">
                 <li id="adv-filter-label-3" class="ds-filter-label" aria-hidden="true">Election type:</li>
-                <li id="all" class="btn"><a href="?all" aria-current="true">All</a></li>
-                <li id="europarl" class="btn"><a href="?europarl">European Parliament</a></li>
-                <li id="local" class="btn"><a href="?local">Local</a></li>
-                <li id="gla" class="btn"><a href="?gla">London Assembly</a></li>
-                <li id="mayor" class="btn"><a href="?mayor">Mayoral</a></li>
-                <li id="nia" class="btn"><a href="?nia">Northern Irish Assembly</a></li>
-                <li id="pcc" class="btn"><a href="?pcc">Police &amp; Crime Commissioner</a></li>
-                <li id="scottish" class="btn"><a href="?scottish">Scottish Parliament</a></li>
-                <li id="senedd" class="btn"><a href="?senedd">Senedd Cymru</a></li>
-                <li id="parl" class="btn"><a href="?parl" href="?parl">UK Parliament</a></li>
-                <li id="ref" class="btn"><a href="?ref">Referendum</a></li>
+                <li class="btn"><a id="all" href="?election_type=all" aria-current="true">All</a></li>
+                <li class="btn"><a id="europarl" href="?election_type=europarl">European Parliament</a></li>
+                <li class="btn"><a id="local" href="??election_type=local">Local</a></li>
+                <li class="btn"><a id="gla" href="?election_type=gla">London Assembly</a></li>
+                <li class="btn"><a id="mayor" href="??election_type=mayor">Mayoral</a></li>
+                <li class="btn"><a id="nia" href="?election_type=nia">Northern Irish Assembly</a></li>
+                <li class="btn"><a id="pcc" href="?election_type=pcc">Police &amp; Crime Commissioner</a></li>
+                <li class="btn"><a id="sp" href="?election_type=sp">Scottish Parliament</a></li>
+                <li class="btn"><a id="senedd" href="?election_type=senedd">Senedd Cymru</a></li>
+                <li class="btn"><a id="parl" href="?election_type=parl" href="?parl">UK Parliament</a></li>
+                <li class="btn"><a id="ref" href="?election_type=ref">Referendum</a></li>
             </ul>
         </div>
     </aside>
@@ -43,6 +44,7 @@
     </div>
 
     <script type="text/javascript">
+        var filter_box = document.getElementById('election-filters');
         var all_filter = document.getElementById('all');
         var all = document.querySelectorAll('#election-urls ul li a');
         var date_grouper = document.querySelectorAll('.grouper-date')
@@ -58,13 +60,16 @@
             setAriaAttribute(e);
         });
 
-        document.body.addEventListener("click", function (e) {
+
+        filter_box.addEventListener("click", function (e) {
             e.preventDefault();
             var clickedId = e.target.id;
             var election_type = "/" + clickedId + ".";
 
             for (var i = 0; i < all.length; i++) {
-                if (all[i].href.includes(election_type)) {
+                if (clickedId == "senedd" && all[i].href.includes("/naw.")) {
+                    all[i].style.display = "block";
+                } else if (all[i].href.includes(election_type)) {
                     all[i].style.display = "block";
                 } else {
                     all[i].style.display = "none";
@@ -77,7 +82,6 @@
         function setAriaAttribute(e) {
             var election_filters = document.querySelectorAll('#election-filters ul li a');
             var current_filter = e.target;
-            var other_election_filters = [];
             current_filter.setAttribute("aria-current", "true");
             election_filters.forEach(function(filter){
                 if (filter !== current_filter) {
