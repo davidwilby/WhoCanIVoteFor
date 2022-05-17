@@ -5,6 +5,13 @@ from django.db import connection
 
 
 class Command(BaseCommand):
+    """
+    Runs SQL query to truncate tables that are populated with data
+    after initial migrate. This is used before database replication
+    is setup to avoid tablesync errors caused by trying to sync tables
+    that already contain data e.g. the initial Site object.
+    """
+
     def handle(self, **options):
         with connection.cursor() as cursor:
             cursor.execute(
