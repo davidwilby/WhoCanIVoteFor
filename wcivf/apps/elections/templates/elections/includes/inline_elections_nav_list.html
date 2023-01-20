@@ -25,7 +25,7 @@
                         {{ election_group.grouper|naturalday:"l j F Y"|title }}
                     </h3>
                     <p>
-                        {% blocktrans trimmed with num_ballots=num_ballots|apnumber ballots_pluralised=num_ballots|pluralize %}
+                        {% blocktrans trimmed with num_ballots=election_group.list|length|apnumber ballots_pluralised=election_group.list|pluralize %}
                             You will have {{ num_ballots }} ballot paper{{ ballots_pluralised }} to fill out.
                         {% endblocktrans %}
                     </p>
