@@ -8,3 +8,6 @@ updates:
   ignore:
     - dependency-name: django
       versions: [">=3.0", "<4.2"]
+    # ignore all boto3 patch updates
+    - dependency-name: boto3
+      update-types: ["version-update:semver-patch"]
