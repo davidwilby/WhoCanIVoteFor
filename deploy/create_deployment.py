@@ -10,9 +10,24 @@ def create_deployment():
     Create a new deployment and return deploy ID
     """
     client = session.client("codedeploy")
+    other_deploys = None
+    while other_deploys is not False:
+        active_deployments = client.list_deployments(
+            includeOnlyStatuses=["Created", "Queued", "InProgress"],
+            applicationName="WCIVFCodeDeploy",
+            deploymentGroupName="WCIVFDefaultDeploymentGroup",
+        )["deployments"]
+        other_deploys = bool(active_deployments)
+        if other_deploys:
+            WAIT_SECONDS = 30
+            print(
+                f"Another deploy ({active_deployments}) is blocking this one, waiting {WAIT_SECONDS} seconds"
+            )
+            time.sleep(WAIT_SECONDS)
     deployment = client.create_deployment(
         applicationName="WCIVFCodeDeploy",
         deploymentGroupName="WCIVFDefaultDeploymentGroup",
+        ignoreApplicationStopFailures=True,
         revision={
             "revisionType": "GitHub",
             "gitHubLocation": {
@@ -50,6 +65,7 @@ def check_deployment(deployment_id):
 
     if deployment["status"] in ["Failed", "Stopped"]:
         print("FAIL")
+        print(deployment["errorInformation"])
         # delete the ASG that was created during the failed deployment
         delete_asg(
             asg_name=deployment["targetInstances"]["autoScalingGroups"][0]

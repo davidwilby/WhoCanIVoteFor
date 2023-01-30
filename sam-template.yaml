@@ -352,6 +352,10 @@ Resources:
       GroupDescription: 'Allow HTTP and HTTPS access for an instance from the ALB security group'
       GroupName: 'InstanceHTTPSecurityGroup'
       SecurityGroupIngress:
+        - FromPort: 8000
+          IpProtocol: tcp
+          SourceSecurityGroupId: !Ref ElbHTTPSecurityGroup
+          ToPort: 8000
         - FromPort: 80
           IpProtocol: tcp
           SourceSecurityGroupId: !Ref ElbHTTPSecurityGroup
@@ -374,12 +378,14 @@ Resources:
     Properties:
       HealthCheckIntervalSeconds: 30
       HealthCheckPath: "/_status_check/"
-      Port: 80
+      Port: 8000
       Protocol: "HTTP"
       HealthCheckPort: "traffic-port"
       HealthCheckProtocol: "HTTP"
       HealthCheckTimeoutSeconds: 5
       UnhealthyThresholdCount: 5
+      TargetGroupAttributes:
+        "deregistration_delay.timeout_seconds": 30
       TargetType: "instance"
       Matcher:
         HttpCode: "200"
@@ -413,21 +419,6 @@ Resources:
         - Key: CreatedVia
           Value: CloudFormation
 
-
-  HTTPSListener:
-    Type: "AWS::ElasticLoadBalancingV2::Listener"
-    Properties:
-      LoadBalancerArn: !Ref ApplicationLoadBalancer
-      Port: 443
-      Protocol: "HTTPS"
-      SslPolicy: "ELBSecurityPolicy-2016-08"
-      Certificates:
-        - CertificateArn: !Ref SSLCertificateArn
-      DefaultActions:
-        - Order: 1
-          TargetGroupArn: !Ref WCIVFTargetGroup
-          Type: "forward"
-
   HTTPListener:
     Type: "AWS::ElasticLoadBalancingV2::Listener"
     Properties:
@@ -436,56 +427,9 @@ Resources:
       Protocol: "HTTP"
       DefaultActions:
         - Order: 1
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: "#{host}"
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-          Type: "redirect"
+          TargetGroupArn: !Ref WCIVFTargetGroup
+          Type: "forward"
 
-  HTTPWWWredirect:
-    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
-    Properties:
-      Conditions:
-        - Field: "host-header"
-          HostHeaderConfig:
-            Values:
-              - !Sub "www.${Domain}"
-      Actions:
-        - Type: "redirect"
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: !Ref Domain
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-
-      ListenerArn: !Ref HTTPListener
-      Priority: 1
-
-  HTTPSWWWredirect:
-    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
-    Properties:
-      Conditions:
-        - Field: "host-header"
-          HostHeaderConfig:
-            Values:
-              - !Sub "www.${Domain}"
-      Actions:
-        - Type: "redirect"
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: !Ref Domain
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-
-      ListenerArn: !Ref HTTPSListener
-      Priority: 2
 
   WCIVFLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
@@ -507,7 +451,7 @@ Resources:
         # TODO create new role without packer permissions
         IamInstanceProfile:
           Name: 'CodeDeploy-EC2-Instance-Profile'
-        ImageId: 'ami-02d399a60f8851acb' # AMI number
+        ImageId: 'ami-0534ad401ad2fb31b' # AMI number
         InstanceType: !Ref InstanceType
       TagSpecifications:
         - ResourceType: launch-template
@@ -518,6 +462,84 @@ Resources:
               Value: wcivf
             - Key: CreatedVia
               Value: CloudFormation
+
+  CloudFrontDistribution:
+    Type: 'AWS::CloudFront::Distribution'
+    Properties:
+      DistributionConfig:
+        Comment: 'Cloudfront Distribution pointing to the ALB origin'
+        Origins:
+          - Id: Static
+            DomainName: !GetAtt ApplicationLoadBalancer.DNSName
+            CustomOriginConfig:
+              OriginProtocolPolicy: "http-only"
+            OriginCustomHeaders:
+              - HeaderName: X-Forwarded-Host
+                HeaderValue: !Ref Domain
+              - HeaderName: X-Forwarded-Proto
+                HeaderValue: https
+            OriginShield:
+              Enabled: true
+              OriginShieldRegion: eu-west-2
+
+          - Id: Dynamic
+            DomainName: !GetAtt ApplicationLoadBalancer.DNSName
+            CustomOriginConfig:
+              OriginProtocolPolicy: "http-only"
+            OriginCustomHeaders:
+              - HeaderName: X-Forwarded-Host
+                HeaderValue: !Ref Domain
+              - HeaderName: X-Forwarded-Proto
+                HeaderValue: https
+
+        Enabled: true
+        HttpVersion: 'http2'
+        Aliases:
+          - !Ref Domain
+        PriceClass: "PriceClass_100"
+        ViewerCertificate:
+          AcmCertificateArn: !Ref SSLCertificateArn
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+
+        DefaultCacheBehavior:
+          AllowedMethods: [ GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE ]
+          TargetOriginId: Dynamic
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: "all"
+            Headers:
+              - Authorization
+              - Origin
+              - Referer
+          ViewerProtocolPolicy: "redirect-to-https"
+
+        CacheBehaviors:
+          - AllowedMethods: [ GET, HEAD, OPTIONS ]
+            PathPattern: static/*
+            TargetOriginId: Static
+            Compress: true
+            ForwardedValues:
+              QueryString: true
+              Cookies:
+                Forward: none
+              Headers:
+                - Authorization
+                - Origin
+            ViewerProtocolPolicy: "redirect-to-https"
+            MinTTL: '50'
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2 # this is an AWS-owned, global singleton required for Aliases to CloudFront
+      HostedZoneName: !Sub "${Domain}."
+      Name: !Sub "${Domain}."
+      Type: A
+
 
 Outputs:
   WCIVFControllerFunctionArn:

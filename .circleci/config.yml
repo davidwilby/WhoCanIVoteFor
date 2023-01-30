@@ -231,12 +231,12 @@ jobs:
           name: ensure the deployment group ready
           command: |
             . .venv/bin/activate
-            python deployscripts/create_deployment_group.py
+            python deploy/create_deployment_group.py
       - run:
           name: create deployment with codedeploy
           command: |
             . .venv/bin/activate
-            COMMIT_SHA=$CIRCLE_SHA1 python deployscripts/create_deployment.py
+            COMMIT_SHA=$CIRCLE_SHA1 python deploy/create_deployment.py
       - run:
           name: Update auto scaling group
           command: |
@@ -244,7 +244,7 @@ jobs:
             MIN_SIZE=<<parameters.min-size>> \
             MAX_SIZE=<<parameters.max-size>> \
             DESIRED_CAPACITY=<<parameters.desired-capacity>> \
-            python deployscripts/update_auto_scaling_group.py
+            python deploy/update_auto_scaling_group.py
           no_output_timeout: 15m # TODO reduce/discuss what is suitable?
 
 
@@ -264,7 +264,7 @@ workflows:
           dc-environment: development
           vpc-id: vpc-fa2e0792
           subnet-ids: "subnet-890877f3,subnet-be093ad7,subnet-3524a679"
-          ssl-certificate-arn: arn:aws:acm:eu-west-2:061126312678:certificate/3ac6d121-aed6-48a7-af80-6a021e05167c
+          ssl-certificate-arn: arn:aws:acm:us-east-1:061126312678:certificate/7caca800-3171-4565-9e6c-1d0f1c035831
           instance-type: t3a.small
           domain: "dev.wcivf.club"
           requires:
