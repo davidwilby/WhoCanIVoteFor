@@ -507,35 +507,8 @@ Resources:
         # TODO create new role without packer permissions
         IamInstanceProfile:
           Name: 'CodeDeploy-EC2-Instance-Profile'
-        ImageId: 'ami-068ea887051e30881' # AMI number
+        ImageId: 'ami-02d399a60f8851acb' # AMI number
         InstanceType: !Ref InstanceType
-        UserData: |
-          I2Nsb3VkLWNvbmZpZwp1c2VyczoKICAtIG5hbWU6IGFzaAogICAgc3VkbzogQUxMPShBTEwpIE5P
-          UEFTU1dEOkFMTAogICAgc2hlbGw6IC9iaW4vYmFzaAogICAgc3NoLWF1dGhvcml6ZWQta2V5czoK
-          ICAgICAgLSAic3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUdXL25hUk1zSUEy
-          RWxwQW5TSHhUeXZvMFBlc2tjbWt0Y0wwVTFzMkNSa0ogYXNoQGRlbW9jbHViLWp1bmUyMDE2Igog
-          IC0gbmFtZTogc3ltCiAgICBzdWRvOiBBTEw9KEFMTCkgTk9QQVNTV0Q6QUxMCiAgICBzaGVsbDog
-          L2Jpbi9iYXNoCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtICJzc2gtcnNhIEFBQUFC
-          M056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUUM4QkxNOUxKVkFkR0ZRWVVlTXZaNTZMbDNzV1VvUHAz
-          cCsxenZJYXFnNzN0bjQ3MGZUZ2lRNk1PUy9jS2piWnFjTjI0MkgxSWgrb1VEQWtiTWt5MmtzLzlI
-          YXhBZ3hIc1lvUkJjU21lYWZxNngwSkxob203Mmo1TEMyekNoTWV5R0xwdC82T2ZhY1BQTDhQZFpz
-          VzlWL3NDelNRVUQ3QUljKy9iZ3FwVEluL1hmcFRUTU5VWmk4cWtvRE1yNTNUZ1pocTcwcDVaWnAy
-          ejBJVVNna1o1TEVMeGxPa2hUUndBNlNoWWQxRVdGc3ZMZGR6ZTJ2UVVDWmZTV2VjVm9WZWpCUko2
-          amFPVGVjUDg2NlhTY2lRdTZwb2FiMGJyRkNtM2swMzc3VU1salhZV0NxczY1M3hnSzF4eXJPMmV6
-          aGljeUt4c3poNzdxZklyVE1RZEdMK3dZeiBzeW1yb2VAU3ltcy1NYWNCb29rLVByby5sb2NhbCIK
-          ICAtIG5hbWU6IGNocmlzCiAgICBzdWRvOiBBTEw9KEFMTCkgTk9QQVNTV0Q6QUxMCiAgICBzaGVs
-          bDogL2Jpbi9iYXNoCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtICJzc2gtcnNhIEFB
-          QUFCM056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUURQNzAwVmpiblRJd1JuT2VtdGNKSkdQcjBQZ3E4
-          Z093aFI0U1ZCUi81MFJWR2RkWDdKdzlYcVc4d01ObUk5M3haUFY1WVI1SmZNbG52YU1mQWdIRDF6
-          ZFNCUHMxbGJ4OE1aYWhiVmdCUVRpckxhSG9yamdselVYVEJ6TG5ub3BDOERWdDRJd0Z1aDN2Ujcx
-          K3JWbjN2dW04L2ZKQUk3SVNkQmRrY0R4SGt2NHpJYTNJK3NRMjJZbWZsbnpwSkEvbDFBN1dKWVRR
-          VWpMaURFbGlqV0hId01Rdjg2U0JweHNITjN1M25FeWF5bHJJTkRJM0w0RlRUbkJXWCtmRi9IeGFv
-          Ym45OHhpQ2FzOEhvOEVjbXZ5L1piUCtHUzdmSmVLWm1RQ20wUk9TQ0oxTGRBQXlkcHJBZll3TUc4
-          dlBudXQzZk83LzhNeHlUMFBiWWlpRzRJOXo3UCBjaHJpc0BsZW9uYXJkIgogIC0gbmFtZTogbWlj
-          aGFlbAogICAgc3VkbzogQUxMPShBTEwpIE5PUEFTU1dEOkFMTAogICAgc2hlbGw6IC9iaW4vYmFz
-          aAogICAgc3NoLWF1dGhvcml6ZWQta2V5czoKICAgICAgLSAic3NoLWVkMjU1MTkgQUFBQUMzTnph
-          QzFsWkRJMU5URTVBQUFBSUxHenpBM1hIK1JNcUVlOGpEbnovVHZmRGRpY2QxdDJvQmVSUDBDQWV1
-          Q1kgbWljaGFlbEBtYWNib29rcHJvMjAyMSIK
       TagSpecifications:
         - ResourceType: launch-template
           Tags:
