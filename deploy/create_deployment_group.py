@@ -5,6 +5,8 @@ import time
 
 session = boto3.Session()
 
+TARGET_GROUP_NAME = "wcivf-alb-tg"
+
 
 def check_deployment_group():
     """
@@ -28,7 +30,9 @@ def check_deployment_group():
     asg_info = autoscale_client.describe_auto_scaling_groups(
         AutoScalingGroupNames=[asg_name]
     )["AutoScalingGroups"][0]
-    instance_count = len(asg_info["Instances"])
+    instance_count = len(
+        [i for i in asg_info["Instances"] if i["LifecycleState"] == "InService"]
+    )
 
     if not instance_count:
         # There's no instances in this ASG, so we need to start one
@@ -42,7 +46,13 @@ def check_deployment_group():
             asg_info = autoscale_client.describe_auto_scaling_groups(
                 AutoScalingGroupNames=[asg_name]
             )["AutoScalingGroups"][0]
-            instance_count = len(asg_info["Instances"])
+            instance_count = len(
+                [
+                    i
+                    for i in asg_info["Instances"]
+                    if i["LifecycleState"] == "InService"
+                ]
+            )
 
     print("ASG now has an instance running. Continuing with deploy")
 
@@ -72,6 +82,12 @@ def create_default_asg():
     client = session.client("autoscaling")
     subnet_ids = get_subnet_ids()
     target_group_arn = get_target_group_arn()
+    existing_asgs = [
+        asg["AutoScalingGroupName"]
+        for asg in client.describe_auto_scaling_groups()["AutoScalingGroups"]
+    ]
+    if "default" in existing_asgs:
+        return
 
     response = client.create_auto_scaling_group(
         AutoScalingGroupName="default",
@@ -119,36 +135,44 @@ def create_deployment_group():
     """
     client = session.client("codedeploy")
     service_role = get_service_role()
-    return client.create_deployment_group(
-        applicationName="WCIVFCodeDeploy",
-        deploymentGroupName="WCIVFDefaultDeploymentGroup",
-        autoScalingGroups=[
-            "default",
-        ],
-        deploymentConfigName="CodeDeployDefault.AllAtOnce",
-        serviceRoleArn=service_role["Arn"],
-        deploymentStyle={
-            "deploymentType": "BLUE_GREEN",
-            "deploymentOption": "WITH_TRAFFIC_CONTROL",
-        },
-        blueGreenDeploymentConfiguration={
-            "terminateBlueInstancesOnDeploymentSuccess": {
-                "action": "TERMINATE",
-                "terminationWaitTimeInMinutes": 0,
+    app_name = "WCIVFCodeDeploy"
+    deployment_group_name = "WCIVFDefaultDeploymentGroup"
+    try:
+        return client.get_deployment_group(
+            applicationName=app_name,
+            deploymentGroupName=deployment_group_name,
+        )
+    except client.exceptions.DeploymentGroupDoesNotExistException:
+
+        return client.create_deployment_group(
+            applicationName=app_name,
+            deploymentGroupName=deployment_group_name,
+            autoScalingGroups=[
+                "default",
+            ],
+            deploymentConfigName="CodeDeployDefault.AllAtOnce",
+            serviceRoleArn=service_role["Arn"],
+            deploymentStyle={
+                "deploymentType": "BLUE_GREEN",
+                "deploymentOption": "WITH_TRAFFIC_CONTROL",
             },
-            "deploymentReadyOption": {
-                "actionOnTimeout": "CONTINUE_DEPLOYMENT",
-                # 'waitTimeInMinutes': 0
+            blueGreenDeploymentConfiguration={
+                "terminateBlueInstancesOnDeploymentSuccess": {
+                    "action": "TERMINATE",
+                    "terminationWaitTimeInMinutes": 0,
+                },
+                "deploymentReadyOption": {
+                    "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+                    # 'waitTimeInMinutes': 0
+                },
+                "greenFleetProvisioningOption": {
+                    "action": "COPY_AUTO_SCALING_GROUP"
+                },
             },
-            "greenFleetProvisioningOption": {
-                "action": "COPY_AUTO_SCALING_GROUP"
+            loadBalancerInfo={
+                "targetGroupInfoList": [{"name": TARGET_GROUP_NAME}],
             },
-        },
-        # hardcoded to name in the sam-template.yaml
-        loadBalancerInfo={
-            "targetGroupInfoList": [{"name": "wcivf-alb-tg"}],
-        },
-    )
+        )
 
 
 def main():

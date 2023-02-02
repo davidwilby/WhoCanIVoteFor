@@ -11,9 +11,9 @@ We use CodeDeploy to automate deployments. In its current configuration, it will
 ## Initial setup
 Our CodeDeploy Application `WCIVFCodeDeployApp` is defined in [`sam-template.yaml`](/sam-template.yaml). This is essentially just a container, that everything else in code deploy hangs off, and will be created by CloudFormation as part of the `sam_deploy` jobs in [`.circleci/config.yml`](/.circleci/config.yml).
 
-There is a python script to [create a deployment group](/deployscripts/create_deployment_group.py) on the initial deploy. On subsequent deploys this will check the deployment group still exists but otherwise do nothing, as we only require one persistent deployment group.
+There is a python script to [create a deployment group](/deploy/create_deployment_group.py) on the initial deploy. On subsequent deploys this will check the deployment group still exists but otherwise do nothing, as we only require one persistent deployment group.
 
-There is also a python script to [create a new deployment](/deployscripts/create_deployment.py), which creates a new CodeDeploy deployment with a unique ID for each deploy job triggered by our [CircleCI `code_deploy` jobs](/.circleci/config.yml). Both these scripts use `boto3` and should not need amending currently, but take a look at the scripts to familiarize yourself with the steps taken.
+There is also a python script to [create a new deployment](/deploy/create_deployment.py), which creates a new CodeDeploy deployment with a unique ID for each deploy job triggered by our [CircleCI `code_deploy` jobs](/.circleci/config.yml). Both these scripts use `boto3` and should not need amending currently, but take a look at the scripts to familiarize yourself with the steps taken.
 
 However, before the first deploy you must connect CodeDeploy with the github repository, which is done via the AWS console. [See the AWS documentation for full steps to take](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-create-cli-github.html). This is already configured for each WCIVF environment but would need setting up if initialising a new environment or project.
 

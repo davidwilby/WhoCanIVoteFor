@@ -4,6 +4,8 @@ import sys
 
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
+from dc_utils.settings.whitenoise import whitenoise_add_middleware
+
 from dc_logging_client import DCWidePostcodeLoggingClient
 
 
@@ -30,6 +32,9 @@ DEBUG = False
 
 # add to param store?
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{os.environ.get('FQDN')}",
+]
 
 SITE_ID = 1
 
@@ -82,6 +87,8 @@ MIDDLEWARE = (
     "django.middleware.security.SecurityMiddleware",
     "core.middleware.UTMTrackerMiddleware",
 )
+
+MIDDLEWARE = whitenoise_add_middleware(MIDDLEWARE)
 
 # When defining a model, if no field in a model is defined with primary_key=True
 # an implicit primary key is added. The type of this implicit primary key can

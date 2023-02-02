@@ -1,0 +1,7 @@
+{
+  "PROJECT_NAME": "wcivf",
+  "APP_NAME": "wcivf",
+  "PROJECT_ROOT": "/var/www/wcivf",
+  "ENV_FILE_PATH": "/var/www/wcivf/code/.env",
+  "CRON_EMAIL": "developers@democracyclub.org.uk"
+}

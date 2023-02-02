@@ -352,6 +352,10 @@ Resources:
       GroupDescription: 'Allow HTTP and HTTPS access for an instance from the ALB security group'
       GroupName: 'InstanceHTTPSecurityGroup'
       SecurityGroupIngress:
+        - FromPort: 8000
+          IpProtocol: tcp
+          SourceSecurityGroupId: !Ref ElbHTTPSecurityGroup
+          ToPort: 8000
         - FromPort: 80
           IpProtocol: tcp
           SourceSecurityGroupId: !Ref ElbHTTPSecurityGroup
@@ -374,12 +378,14 @@ Resources:
     Properties:
       HealthCheckIntervalSeconds: 30
       HealthCheckPath: "/_status_check/"
-      Port: 80
+      Port: 8000
       Protocol: "HTTP"
       HealthCheckPort: "traffic-port"
       HealthCheckProtocol: "HTTP"
       HealthCheckTimeoutSeconds: 5
       UnhealthyThresholdCount: 5
+      TargetGroupAttributes:
+        "deregistration_delay.timeout_seconds": 30
       TargetType: "instance"
       Matcher:
         HttpCode: "200"
@@ -413,21 +419,6 @@ Resources:
         - Key: CreatedVia
           Value: CloudFormation
 
-
-  HTTPSListener:
-    Type: "AWS::ElasticLoadBalancingV2::Listener"
-    Properties:
-      LoadBalancerArn: !Ref ApplicationLoadBalancer
-      Port: 443
-      Protocol: "HTTPS"
-      SslPolicy: "ELBSecurityPolicy-2016-08"
-      Certificates:
-        - CertificateArn: !Ref SSLCertificateArn
-      DefaultActions:
-        - Order: 1
-          TargetGroupArn: !Ref WCIVFTargetGroup
-          Type: "forward"
-
   HTTPListener:
     Type: "AWS::ElasticLoadBalancingV2::Listener"
     Properties:
@@ -436,56 +427,9 @@ Resources:
       Protocol: "HTTP"
       DefaultActions:
         - Order: 1
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: "#{host}"
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-          Type: "redirect"
+          TargetGroupArn: !Ref WCIVFTargetGroup
+          Type: "forward"
 
-  HTTPWWWredirect:
-    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
-    Properties:
-      Conditions:
-        - Field: "host-header"
-          HostHeaderConfig:
-            Values:
-              - !Sub "www.${Domain}"
-      Actions:
-        - Type: "redirect"
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: !Ref Domain
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-
-      ListenerArn: !Ref HTTPListener
-      Priority: 1
-
-  HTTPSWWWredirect:
-    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
-    Properties:
-      Conditions:
-        - Field: "host-header"
-          HostHeaderConfig:
-            Values:
-              - !Sub "www.${Domain}"
-      Actions:
-        - Type: "redirect"
-          RedirectConfig:
-            Protocol: "HTTPS"
-            Port: "443"
-            Host: !Ref Domain
-            Path: "/#{path}"
-            Query: "#{query}"
-            StatusCode: "HTTP_301"
-
-      ListenerArn: !Ref HTTPSListener
-      Priority: 2
 
   WCIVFLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
@@ -507,35 +451,8 @@ Resources:
         # TODO create new role without packer permissions
         IamInstanceProfile:
           Name: 'CodeDeploy-EC2-Instance-Profile'
-        ImageId: 'ami-068ea887051e30881' # AMI number
+        ImageId: 'ami-0534ad401ad2fb31b' # AMI number
         InstanceType: !Ref InstanceType
-        UserData: |
-          I2Nsb3VkLWNvbmZpZwp1c2VyczoKICAtIG5hbWU6IGFzaAogICAgc3VkbzogQUxMPShBTEwpIE5P
-          UEFTU1dEOkFMTAogICAgc2hlbGw6IC9iaW4vYmFzaAogICAgc3NoLWF1dGhvcml6ZWQta2V5czoK
-          ICAgICAgLSAic3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUdXL25hUk1zSUEy
-          RWxwQW5TSHhUeXZvMFBlc2tjbWt0Y0wwVTFzMkNSa0ogYXNoQGRlbW9jbHViLWp1bmUyMDE2Igog
-          IC0gbmFtZTogc3ltCiAgICBzdWRvOiBBTEw9KEFMTCkgTk9QQVNTV0Q6QUxMCiAgICBzaGVsbDog
-          L2Jpbi9iYXNoCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtICJzc2gtcnNhIEFBQUFC
-          M056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUUM4QkxNOUxKVkFkR0ZRWVVlTXZaNTZMbDNzV1VvUHAz
-          cCsxenZJYXFnNzN0bjQ3MGZUZ2lRNk1PUy9jS2piWnFjTjI0MkgxSWgrb1VEQWtiTWt5MmtzLzlI
-          YXhBZ3hIc1lvUkJjU21lYWZxNngwSkxob203Mmo1TEMyekNoTWV5R0xwdC82T2ZhY1BQTDhQZFpz
-          VzlWL3NDelNRVUQ3QUljKy9iZ3FwVEluL1hmcFRUTU5VWmk4cWtvRE1yNTNUZ1pocTcwcDVaWnAy
-          ejBJVVNna1o1TEVMeGxPa2hUUndBNlNoWWQxRVdGc3ZMZGR6ZTJ2UVVDWmZTV2VjVm9WZWpCUko2
-          amFPVGVjUDg2NlhTY2lRdTZwb2FiMGJyRkNtM2swMzc3VU1salhZV0NxczY1M3hnSzF4eXJPMmV6
-          aGljeUt4c3poNzdxZklyVE1RZEdMK3dZeiBzeW1yb2VAU3ltcy1NYWNCb29rLVByby5sb2NhbCIK
-          ICAtIG5hbWU6IGNocmlzCiAgICBzdWRvOiBBTEw9KEFMTCkgTk9QQVNTV0Q6QUxMCiAgICBzaGVs
-          bDogL2Jpbi9iYXNoCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtICJzc2gtcnNhIEFB
-          QUFCM056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUURQNzAwVmpiblRJd1JuT2VtdGNKSkdQcjBQZ3E4
-          Z093aFI0U1ZCUi81MFJWR2RkWDdKdzlYcVc4d01ObUk5M3haUFY1WVI1SmZNbG52YU1mQWdIRDF6
-          ZFNCUHMxbGJ4OE1aYWhiVmdCUVRpckxhSG9yamdselVYVEJ6TG5ub3BDOERWdDRJd0Z1aDN2Ujcx
-          K3JWbjN2dW04L2ZKQUk3SVNkQmRrY0R4SGt2NHpJYTNJK3NRMjJZbWZsbnpwSkEvbDFBN1dKWVRR
-          VWpMaURFbGlqV0hId01Rdjg2U0JweHNITjN1M25FeWF5bHJJTkRJM0w0RlRUbkJXWCtmRi9IeGFv
-          Ym45OHhpQ2FzOEhvOEVjbXZ5L1piUCtHUzdmSmVLWm1RQ20wUk9TQ0oxTGRBQXlkcHJBZll3TUc4
-          dlBudXQzZk83LzhNeHlUMFBiWWlpRzRJOXo3UCBjaHJpc0BsZW9uYXJkIgogIC0gbmFtZTogbWlj
-          aGFlbAogICAgc3VkbzogQUxMPShBTEwpIE5PUEFTU1dEOkFMTAogICAgc2hlbGw6IC9iaW4vYmFz
-          aAogICAgc3NoLWF1dGhvcml6ZWQta2V5czoKICAgICAgLSAic3NoLWVkMjU1MTkgQUFBQUMzTnph
-          QzFsWkRJMU5URTVBQUFBSUxHenpBM1hIK1JNcUVlOGpEbnovVHZmRGRpY2QxdDJvQmVSUDBDQWV1
-          Q1kgbWljaGFlbEBtYWNib29rcHJvMjAyMSIK
       TagSpecifications:
         - ResourceType: launch-template
           Tags:
@@ -545,6 +462,84 @@ Resources:
               Value: wcivf
             - Key: CreatedVia
               Value: CloudFormation
+
+  CloudFrontDistribution:
+    Type: 'AWS::CloudFront::Distribution'
+    Properties:
+      DistributionConfig:
+        Comment: 'Cloudfront Distribution pointing to the ALB origin'
+        Origins:
+          - Id: Static
+            DomainName: !GetAtt ApplicationLoadBalancer.DNSName
+            CustomOriginConfig:
+              OriginProtocolPolicy: "http-only"
+            OriginCustomHeaders:
+              - HeaderName: X-Forwarded-Host
+                HeaderValue: !Ref Domain
+              - HeaderName: X-Forwarded-Proto
+                HeaderValue: https
+            OriginShield:
+              Enabled: true
+              OriginShieldRegion: eu-west-2
+
+          - Id: Dynamic
+            DomainName: !GetAtt ApplicationLoadBalancer.DNSName
+            CustomOriginConfig:
+              OriginProtocolPolicy: "http-only"
+            OriginCustomHeaders:
+              - HeaderName: X-Forwarded-Host
+                HeaderValue: !Ref Domain
+              - HeaderName: X-Forwarded-Proto
+                HeaderValue: https
+
+        Enabled: true
+        HttpVersion: 'http2'
+        Aliases:
+          - !Ref Domain
+        PriceClass: "PriceClass_100"
+        ViewerCertificate:
+          AcmCertificateArn: !Ref SSLCertificateArn
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+
+        DefaultCacheBehavior:
+          AllowedMethods: [ GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE ]
+          TargetOriginId: Dynamic
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: "all"
+            Headers:
+              - Authorization
+              - Origin
+              - Referer
+          ViewerProtocolPolicy: "redirect-to-https"
+
+        CacheBehaviors:
+          - AllowedMethods: [ GET, HEAD, OPTIONS ]
+            PathPattern: static/*
+            TargetOriginId: Static
+            Compress: true
+            ForwardedValues:
+              QueryString: true
+              Cookies:
+                Forward: none
+              Headers:
+                - Authorization
+                - Origin
+            ViewerProtocolPolicy: "redirect-to-https"
+            MinTTL: '50'
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2 # this is an AWS-owned, global singleton required for Aliases to CloudFront
+      HostedZoneName: !Sub "${Domain}."
+      Name: !Sub "${Domain}."
+      Type: A
+
 
 Outputs:
   WCIVFControllerFunctionArn:
