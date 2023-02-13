@@ -403,11 +403,6 @@ msgid "and"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:74
-#, fuzzy
-#| msgid "You don't need to take your poll card with you"
-msgid "You don't need to take your poll card or any identification with you."
-msgstr "Nid oes angen i chi ddod â'ch cerdyn pleidleisio gyda chi"
-
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:76
 #, fuzzy
 #| msgid "You don't need to take your poll card with you"

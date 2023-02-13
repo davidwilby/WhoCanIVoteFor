@@ -351,9 +351,6 @@ msgid "and"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:74
-msgid "You don't need to take your poll card or any identification with you."
-msgstr ""
-
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:76
 msgid "You don't need to take your poll card with you."
 msgstr ""
