@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2.1
+orbs:
+  slack: circleci/slack@4.1
 
 executors:
   py38:
@@ -202,6 +204,11 @@ jobs:
           command: |
             . .venv/bin/activate
             make lambda-migrate
+      # In the event the deployment has failed, alert the dev team
+      - slack/notify:
+            event: fail
+            template: basic_fail_1
+            channel: $SLACK_DEFAULT_CHANNEL
 
   code_deploy:
     docker:
@@ -246,9 +253,15 @@ jobs:
             DESIRED_CAPACITY=<<parameters.desired-capacity>> \
             python deploy/update_auto_scaling_group.py
           no_output_timeout: 15m # TODO reduce/discuss what is suitable?
-
-
+      # In the event the deployment has failed, alert the dev team
+      - slack/notify:
+            event: fail
+            template: basic_fail_1
+            channel: $SLACK_DEFAULT_CHANNEL
+            
+      
 workflows:
+
   main:
     jobs:
       - build_and_test:
@@ -272,7 +285,7 @@ workflows:
           - sam_build
           context: [ deployment-development-wcivf ]
           filters: { branches: { only: [ main, master, staging ] } }
-
+          
       - code_deploy:
           name: code_deploy_development
           dc-environment: development
@@ -298,7 +311,7 @@ workflows:
           - build_and_test
           # NB should this be dependent on successful sam_deploy_development job?
           - sam_build
-          context: [ deployment-staging-wcivf ]
+          context: [ deployment-staging-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master, staging ] } }
 
       - code_deploy:
@@ -310,9 +323,9 @@ workflows:
           requires:
           - build_and_test
           - sam_deploy_staging
-          context: [ deployment-staging-wcivf ]
+          context: [ deployment-staging-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master, staging ] } }
-
+        
       - sam_deploy:
           name: sam_deploy_production
           dc-environment: production
@@ -326,9 +339,9 @@ workflows:
           # NB should this be dependent on successful sam_deploy_development job?
           - sam_build
           - code_deploy_staging
-          context: [ deployment-production-wcivf ]
+          context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
-
+          
       - code_deploy:
           name: code_deploy_production
           dc-environment: production
@@ -339,7 +352,5 @@ workflows:
           - build_and_test
           - sam_deploy_staging
           - sam_deploy_production
-          context: [ deployment-production-wcivf ]
+          context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
-
-# VS Code Extension Version: 1.5.1
