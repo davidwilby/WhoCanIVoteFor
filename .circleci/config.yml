@@ -206,10 +206,9 @@ jobs:
             make lambda-migrate
       # In the event the deployment has failed, alert the dev team
       - slack/notify:
-            event: fail
-            template: basic_fail_1
-            channel: $SLACK_DEFAULT_CHANNEL
-
+          event: fail
+          channel: $SLACK_DEFAULT_CHANNEL
+          template: basic_fail_1
   code_deploy:
     docker:
       - image: cimg/python:3.10.4
@@ -255,13 +254,12 @@ jobs:
           no_output_timeout: 15m # TODO reduce/discuss what is suitable?
       # In the event the deployment has failed, alert the dev team
       - slack/notify:
-            event: fail
-            template: basic_fail_1
-            channel: $SLACK_DEFAULT_CHANNEL
+          event: fail
+          template: basic_fail_1
+          channel: $SLACK_DEFAULT_CHANNEL
             
       
 workflows:
-
   main:
     jobs:
       - build_and_test:
