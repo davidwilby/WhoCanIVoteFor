@@ -13,7 +13,6 @@ from django.urls import reverse
 from core.models import log_postcode
 from core.utils import LastWord
 from leaflets.models import Leaflet
-from people.models import PersonPost
 from elections.constants import UPDATED_SLUGS
 
 from elections.constants import (

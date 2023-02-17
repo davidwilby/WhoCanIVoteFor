@@ -63,7 +63,9 @@ class BaseCandidatesAndElectionsViewSet(
         results = []
 
         postelections = self.get_ballots(request)
-        postelections = postelections.select_related("voting_system")
+        postelections = postelections.select_related(
+            "voting_system"
+        ).prefetch_related("personpost_set")
         for postelection in postelections:
             candidates = []
             personposts = self.people_for_ballot(postelection, compact=True)
