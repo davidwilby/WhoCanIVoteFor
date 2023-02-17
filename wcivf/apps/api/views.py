@@ -129,20 +129,33 @@ class CandidatesAndElectionsForPostcodeViewSet(
 class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
     def get_ballots(self, request):
         ballot_ids_str = request.GET.get("ballot_ids", None)
-        if not ballot_ids_str:
+        modified_gt = request.GET.get("modified_gt", None)
+        if not any((ballot_ids_str, modified_gt)):
             raise BallotIdsNotProvided
-        if "," in ballot_ids_str:
-            ballot_ids_lst = ballot_ids_str.split(",")
-            ballot_ids_lst = [b.strip() for b in ballot_ids_lst]
-        else:
-            ballot_ids_lst = [ballot_ids_str]
 
-        pes = PostElection.objects.filter(ballot_paper_id__in=ballot_ids_lst)
-        pes = pes.select_related("post", "election", "election__voting_system")
-        pes = pes.order_by(
-            "election__election_date", "election__election_weight"
+        pes = PostElection.objects.all().select_related(
+            "post",
+            "election",
+            "election__voting_system",
         )
-        return pes
+        pes = pes.prefetch_related("husting_set")
+        if ballot_ids_str:
+            if "," in ballot_ids_str:
+                ballot_ids_lst = ballot_ids_str.split(",")
+                ballot_ids_lst = [b.strip() for b in ballot_ids_lst]
+            else:
+                ballot_ids_lst = [ballot_ids_str]
+
+            pes = pes.filter(ballot_paper_id__in=ballot_ids_lst)
+
+        ordering = ["election__election_date", "election__election_weight"]
+
+        if modified_gt:
+            pes = pes.filter(modified__gt=modified_gt)
+            ordering = ["modified"]
+
+        pes = pes.order_by(*ordering)
+        return pes[:100]
 
 
 class LastUpdatedView(APIView):

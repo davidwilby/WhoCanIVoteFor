@@ -109,6 +109,20 @@ class TestAPISearchViews(APITestCase):
         assert req.status_code == 200
         assert req.json() == self.expected_response
 
+    def test_candidates_for_ballots_modified_gt(self):
+        url = reverse("api:candidates-for-ballots-list")
+        with self.assertNumQueries(6):
+            req = self.client.get("{}?modified_gt=1832-06-07".format(url))
+        assert req.status_code == 200
+        assert req.json() == self.expected_response
+
+    def test_candidates_for_ballots_modified_gt_future_date_no_respnse(self):
+        url = reverse("api:candidates-for-ballots-list")
+        with self.assertNumQueries(1):
+            req = self.client.get("{}?modified_gt=2232-06-07".format(url))
+        assert req.status_code == 200
+        assert req.json() == []
+
     @vcr.use_cassette("fixtures/vcr_cassettes/test_postcode_view.yaml")
     def test_lock_status(self):
         self.post_election.locked = True

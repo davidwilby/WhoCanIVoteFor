@@ -94,8 +94,7 @@ class PostelectionsToPeopleMixin(object):
         people_for_post = cache.get(key)
         if people_for_post:
             return people_for_post
-
-        people_for_post = PersonPost.objects.filter(post_election=postelection)
+        people_for_post = postelection.personpost_set.all()
         people_for_post = people_for_post.annotate(
             last_name=LastWord("person__name")
         )
