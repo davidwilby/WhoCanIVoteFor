@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from django.utils.text import slugify
+from model_utils.models import TimeStampedModel
 
 from elections.models import Election
 
@@ -58,7 +59,7 @@ class Party(models.Model):
         return self.party_id.startswith("joint-party:")
 
 
-class LocalParty(models.Model):
+class LocalParty(TimeStampedModel):
     parent = models.ForeignKey(
         Party, related_name="local_parties", on_delete=models.CASCADE
     )
