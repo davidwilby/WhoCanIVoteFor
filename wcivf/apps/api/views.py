@@ -63,9 +63,8 @@ class BaseCandidatesAndElectionsViewSet(
         results = []
 
         postelections = self.get_ballots(request)
-        postelections = postelections.select_related(
-            "voting_system"
-        ).prefetch_related("personpost_set")
+        postelections = postelections.select_related("voting_system")
+
         for postelection in postelections:
             candidates = []
             personposts = self.people_for_ballot(postelection, compact=True)
@@ -102,6 +101,9 @@ class BaseCandidatesAndElectionsViewSet(
                 "seats_contested": postelection.winner_count,
                 "organisation_type": postelection.post.organization_type,
                 "hustings": self.add_hustings(postelection),
+                "last_updated": getattr(
+                    postelection, "last_updated", postelection.modified
+                ),
             }
             if postelection.replaced_by:
                 election[
@@ -153,11 +155,11 @@ class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
         ordering = ["election__election_date", "election__election_weight"]
 
         if modified_gt:
-            pes = pes.filter(modified__gt=modified_gt)
-            ordering = ["modified"]
-
-        pes = pes.order_by(*ordering)
-        return pes[:100]
+            pes = pes.modified_gt_with_related(date=modified_gt)
+        else:
+            pes = pes.order_by(*ordering)
+        ret = pes[:100]
+        return ret
 
 
 class LastUpdatedView(APIView):
