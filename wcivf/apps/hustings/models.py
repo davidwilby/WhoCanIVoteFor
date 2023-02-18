@@ -5,6 +5,7 @@ from django.utils import timezone
 import hashlib
 
 from django.db import models
+from model_utils.models import TimeStampedModel
 
 from elections.models import PostElection
 
@@ -26,7 +27,7 @@ class HustingQueryset(models.QuerySet):
         )
 
 
-class Husting(models.Model):
+class Husting(TimeStampedModel):
     """
     A Husting.
     """
