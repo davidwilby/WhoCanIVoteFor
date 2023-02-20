@@ -60,8 +60,12 @@ Parameters:
     Description: "The domain to be used"
     Type: String
 
-  AppSlackFeedbackWebhookUrl:
-    Description: "Webhook url used to send feeback entries to Slack"
+  AppSlackAccessToken:
+    Description: "The slack access token used to send messages to slack"
+    Type: String
+
+  AppSlackDefaultChannel:
+    Description: "Default channel to send Slack messages to"
     Type: String
 
   AppLoggerDbPassword:
@@ -91,6 +95,7 @@ Resources:
           SECRET_KEY: !Ref AppSecretKey
           DC_ENVIRONMENT: !Ref AppDcEnvironment
           SLACK_FEEDBACK_WEBHOOK_URL: !Ref AppSlackFeedbackWebhookUrl
+          SLACK_ACCESS_TOKEN: !Ref AppSlackAccessToken
           LOGGER_DB_PASSWORD: !Ref AppLoggerDbPassword
           LOGGER_DB_HOST: !Ref AppLoggerDbHost
       Tags:

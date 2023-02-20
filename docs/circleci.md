@@ -17,7 +17,7 @@ You will need to create a new CircleCI deployment "Context". This is done in the
 
 A good initial topology is one Context per AWS account. The suggested naming convention for this project is `deployment-ENVIRONMENT-PROJECTNAME` e.g. `deployment-production-wcivf`.
 
-You will need to set a number of variables in the context so that these are used in the lambda function deploymenet. The variables to set are:
+You will need to set a number of variables in the context so that these are used in the lambda function deployment. The variables to set are:
 
 - `AWS_ACCESS_KEY_ID` - this the access key for the CircleCI user
 - `AWS_SECRET_ACCESS_KEY` - the secret accrss key of the CircleCI user

@@ -185,6 +185,8 @@ jobs:
                    AppSentryDsn='$SENTRY_DSN' \
                    AppSecretKey='$SECRET_KEY' \
                    AppSlackFeedbackWebhookUrl='$SLACK_FEEDBACK_WEBHOOK_URL' \
+                   AppSlackAccessToken = '$SLACK_ACCESS_TOKEN' \
+                   AppSlackDefaultChannel = '$SLACK_DEFAULT_CHANNEL' \
                    AppDcEnvironment='$DC_ENVIRONMENT' \
                    AppLoggerDbPassword='$LOGGER_DB_PASSWORD' \
                    AppLoggerDbHost='$LOGGER_DB_HOST' \
