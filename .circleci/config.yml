@@ -52,7 +52,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v5-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
+          - v6-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
       - run:
           name: install dependencies
           command: |
@@ -66,7 +66,7 @@ jobs:
       - save_cache:
           paths:
             - ./.venv
-          key: v5-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
+          key: v6-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
 
       - run:
           name: Install HTML Tidy
@@ -157,7 +157,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v5-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
+          - v6-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
       - attach_workspace:
           at: ~/repo/
       - run: echo <<parameters.instance-type>>
@@ -229,7 +229,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v5-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
+          - v6-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
       - attach_workspace:
           at: ~/repo/
       - run: printenv DC_ENVIRONMENT
