@@ -269,7 +269,6 @@ workflows:
       - sam_build:
           requires:
           - build_and_test
-          context: [slack-secrets]
 
       - sam_deploy:
           name: sam_deploy_development
@@ -282,7 +281,7 @@ workflows:
           requires:
           - build_and_test
           - sam_build
-          context: [ deployment-development-wcivf]
+          context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
           
       - code_deploy:
@@ -295,7 +294,7 @@ workflows:
           - build_and_test
           - sam_build
           - sam_deploy_development
-          context: [ deployment-development-wcivf]
+          context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
 
       - sam_deploy:
@@ -322,7 +321,7 @@ workflows:
           requires:
           - build_and_test
           - sam_deploy_staging
-          context: [ deployment-staging-wcivf, slack-secrets  ]
+          context: [ deployment-staging-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
         
       - sam_deploy:
