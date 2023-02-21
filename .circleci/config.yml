@@ -207,7 +207,6 @@ jobs:
       # In the event the deployment has failed, alert the dev team
       - slack/notify:
           event: fail
-          channel: $SLACK_DEFAULT_CHANNEL
           template: basic_fail_1
   code_deploy:
     docker:
