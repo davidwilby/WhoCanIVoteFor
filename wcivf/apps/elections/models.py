@@ -481,6 +481,8 @@ class PostElection(TimeStampedModel):
         return self.post.full_label
 
     def get_absolute_url(self):
+        if self.ballot_paper_id.startswith("tmp_"):
+            return reverse("home_view")
         return reverse(
             "election_view",
             args=[str(self.ballot_paper_id), slugify(self.post.label)],
