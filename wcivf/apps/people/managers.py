@@ -134,6 +134,12 @@ class PersonManager(models.Manager):
         person_obj, _ = self.update_or_create(
             ynr_id=person_id, defaults=defaults
         )
+
+        # Update any related ballots modified field
+        # to indicate that the ballot has changes
+        for candidacy in person_obj.personpost_set.all():
+            candidacy.post_election.modified = last_updated
+
         return person_obj
 
     def get_by_pk_or_redirect_from_ynr(self, pk):
