@@ -13,7 +13,6 @@ from django.urls import reverse
 from core.models import log_postcode
 from core.utils import LastWord
 from leaflets.models import Leaflet
-from people.models import PersonPost
 from elections.constants import UPDATED_SLUGS
 
 from elections.constants import (
@@ -94,8 +93,7 @@ class PostelectionsToPeopleMixin(object):
         people_for_post = cache.get(key)
         if people_for_post:
             return people_for_post
-
-        people_for_post = PersonPost.objects.filter(post_election=postelection)
+        people_for_post = postelection.personpost_set.all()
         people_for_post = people_for_post.annotate(
             last_name=LastWord("person__name")
         )

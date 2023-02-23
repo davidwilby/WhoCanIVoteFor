@@ -66,9 +66,11 @@ class PersonPostSerializer(serializers.HyperlinkedModelSerializer):
 
         """
 
-        if self.context.get(
-            "postelection", obj.post_election
-        ).display_as_party_list:
+        if pe := self.context.get("postelection"):
+            post_election = pe
+        else:
+            post_election = obj.post_election
+        if post_election.display_as_party_list:
             return obj.list_position
         return None
 

@@ -64,6 +64,7 @@ class BaseCandidatesAndElectionsViewSet(
 
         postelections = self.get_ballots(request)
         postelections = postelections.select_related("voting_system")
+
         for postelection in postelections:
             candidates = []
             personposts = self.people_for_ballot(postelection, compact=True)
@@ -100,6 +101,9 @@ class BaseCandidatesAndElectionsViewSet(
                 "seats_contested": postelection.winner_count,
                 "organisation_type": postelection.post.organization_type,
                 "hustings": self.add_hustings(postelection),
+                "last_updated": getattr(
+                    postelection, "last_updated", postelection.modified
+                ),
             }
             if postelection.replaced_by:
                 election[
@@ -129,20 +133,33 @@ class CandidatesAndElectionsForPostcodeViewSet(
 class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
     def get_ballots(self, request):
         ballot_ids_str = request.GET.get("ballot_ids", None)
-        if not ballot_ids_str:
+        modified_gt = request.GET.get("modified_gt", None)
+        if not any((ballot_ids_str, modified_gt)):
             raise BallotIdsNotProvided
-        if "," in ballot_ids_str:
-            ballot_ids_lst = ballot_ids_str.split(",")
-            ballot_ids_lst = [b.strip() for b in ballot_ids_lst]
-        else:
-            ballot_ids_lst = [ballot_ids_str]
 
-        pes = PostElection.objects.filter(ballot_paper_id__in=ballot_ids_lst)
-        pes = pes.select_related("post", "election", "election__voting_system")
-        pes = pes.order_by(
-            "election__election_date", "election__election_weight"
+        pes = PostElection.objects.all().select_related(
+            "post",
+            "election",
+            "election__voting_system",
         )
-        return pes
+        pes = pes.prefetch_related("husting_set")
+        if ballot_ids_str:
+            if "," in ballot_ids_str:
+                ballot_ids_lst = ballot_ids_str.split(",")
+                ballot_ids_lst = [b.strip() for b in ballot_ids_lst]
+            else:
+                ballot_ids_lst = [ballot_ids_str]
+
+            pes = pes.filter(ballot_paper_id__in=ballot_ids_lst)
+
+        ordering = ["election__election_date", "election__election_weight"]
+
+        if modified_gt:
+            pes = pes.modified_gt_with_related(date=modified_gt)
+        else:
+            pes = pes.order_by(*ordering)
+        ret = pes[:100]
+        return ret
 
 
 class LastUpdatedView(APIView):

@@ -1,11 +1,13 @@
 import datetime
 import re
+
+from django.db.models.functions import Greatest
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 import pytz
 from django.conf import settings
-from django.db.models import JSONField
+from django.db.models import JSONField, DateTimeField
 from django.db import models
 from django.template.defaultfilters import pluralize
 from django.contrib.humanize.templatetags.humanize import apnumber
@@ -341,6 +343,24 @@ class PostElectionQuerySet(models.QuerySet):
         """
         return self.filter(ynr_modified__isnull=False).latest("ynr_modified")
 
+    def modified_gt_with_related(self, date):
+        """
+        Finds related models that have been updated
+        since a given date and returns a queryset of PostElections
+        """
+        return (
+            self.annotate(
+                last_updated=Greatest(
+                    "modified",
+                    "husting__modified",
+                    "localparty__modified",
+                    output_field=DateTimeField(),
+                ),
+            )
+            .filter(last_updated__gt=date)
+            .order_by("last_updated")
+        )
+
 
 class PostElection(TimeStampedModel):
     ballot_paper_id = models.CharField(blank=True, max_length=800, unique=True)
@@ -461,6 +481,8 @@ class PostElection(TimeStampedModel):
         return self.post.full_label
 
     def get_absolute_url(self):
+        if self.ballot_paper_id.startswith("tmp_"):
+            return reverse("home_view")
         return reverse(
             "election_view",
             args=[str(self.ballot_paper_id), slugify(self.post.label)],

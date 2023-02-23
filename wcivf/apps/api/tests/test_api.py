@@ -41,6 +41,8 @@ class TestAPISearchViews(APITestCase):
             post=self.post,
             election=self.election,
         )
+        self.post_election.modified = "2023-01-01T00:00:00Z"
+        self.post_election.save(update_modified=False)
         PersonFactory.reset_sequence()
         person = PersonFactory()
         pe = PostElectionFactory(election=self.election, post=self.post)
@@ -69,6 +71,7 @@ class TestAPISearchViews(APITestCase):
                 "voting_system": {"name": "", "slug": ""},
                 "ballot_locked": False,
                 "hustings": None,
+                "last_updated": "2023-01-01T00:00:00Z",
                 "candidates": [
                     {
                         "list_position": None,
@@ -93,14 +96,14 @@ class TestAPISearchViews(APITestCase):
     @vcr.use_cassette("fixtures/vcr_cassettes/test_postcode_view.yaml")
     def test_candidates_for_postcode_view(self):
         url = reverse("api:candidates-for-postcode-list")
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(5):
             req = self.client.get("{}?postcode=EC1A4EU".format(url))
         assert req.status_code == 200
         assert req.json() == self.expected_response
 
     def test_candidates_for_ballots(self):
         url = reverse("api:candidates-for-ballots-list")
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(5):
             req = self.client.get(
                 "{}?ballot_ids=parl.cities-of-london-and-westminster.2017-06-08".format(
                     url
@@ -108,6 +111,20 @@ class TestAPISearchViews(APITestCase):
             )
         assert req.status_code == 200
         assert req.json() == self.expected_response
+
+    def test_candidates_for_ballots_modified_gt(self):
+        url = reverse("api:candidates-for-ballots-list")
+        with self.assertNumQueries(5):
+            req = self.client.get("{}?modified_gt=1832-06-07".format(url))
+        assert req.status_code == 200
+        assert req.json() == self.expected_response
+
+    def test_candidates_for_ballots_modified_gt_future_date_no_respnse(self):
+        url = reverse("api:candidates-for-ballots-list")
+        with self.assertNumQueries(1):
+            req = self.client.get("{}?modified_gt=2232-06-07".format(url))
+        assert req.status_code == 200
+        assert req.json() == []
 
     @vcr.use_cassette("fixtures/vcr_cassettes/test_postcode_view.yaml")
     def test_lock_status(self):
