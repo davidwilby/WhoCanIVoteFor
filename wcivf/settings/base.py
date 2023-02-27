@@ -212,6 +212,7 @@ WDIV_API = "/api/beta"
 
 CANONICAL_URL = "https://whocanivotefor.co.uk"
 ROBOTS_USE_HOST = False
+USE_X_FORWARDED_HOST = True
 
 EMAIL_SIGNUP_ENDPOINT = (
     "https://democracyclub.org.uk/mailing_list/api_signup/v1/"
