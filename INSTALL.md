@@ -176,16 +176,6 @@ Complete the feedback form on localhost, then run the management command `manage
 
 Feedback should appear in your Slack channel.
 
-
-# Deploy to dev.wcivf.club to test/view edits
-
-Once you have pushed your latest changes to your branch: 
-
-    `git fetch origin` to get access to the development branch
-    `git checkout development` 
-    `git merge [YOUR BRANCH NAME]`
-    `git push origin development`
-
 # Update Welsh Translations
 
 After adding new translation tags to a template, run `django-admin makemessages -l cy --ignore='env*'` then `django-admin compilemessages --ignore='env'` to generate matching translation strings to be translated.
