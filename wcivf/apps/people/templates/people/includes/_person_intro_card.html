@@ -1,5 +1,5 @@
 {% load humanize %}
-{% load i18n %}
+{% load i18n static %}
 
 <section class="ds-candidate">
     <div class="ds-candidate-body ds-stack-smaller">
@@ -46,9 +46,11 @@
         {% endif %}
     </div>
 
-    {% if object.photo_url %}
-        <div class="ds-candidate-image">
+    <div class="ds-candidate-image">
+        {% if object.photo_url %}
             <img src="{{ object.photo_url }}" alt="{% blocktrans trimmed with person=object.name %}profile photo of {{ person }}{% endblocktrans %}">
-        </div>
-    {% endif %}
+        {% else %}
+            <img src="{% static '/people/images/blank-avatar.png' %}" alt="Blank Head icons created by Freepik - Flaticon" style="background-color: #ddd;">
+        {% endif %}
+    </div>
 </section>
