@@ -274,7 +274,7 @@ workflows:
           dc-environment: development
           vpc-id: vpc-fa2e0792
           subnet-ids: "subnet-890877f3,subnet-be093ad7,subnet-3524a679"
-          ssl-certificate-arn: arn:aws:acm:us-east-1:061126312678:certificate/7caca800-3171-4565-9e6c-1d0f1c035831
+          ssl-certificate-arn: arn:aws:acm:us-east-1:061126312678:certificate/ece58cd4-6192-474a-a8ed-84e3635d9180
           instance-type: t3a.small
           domain: "dev.wcivf.club"
           requires:
