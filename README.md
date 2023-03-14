@@ -101,8 +101,24 @@ Will try to render `foo_cy.html` first and if that doesn't exist it will
 render `foo.html`
 
 
+## Pre-Election Tasks
+
+# New WCIVF Google Sheets imports (Hustings, local parties)
+
+Peter will have set up some Google sheets in a known format. The CSV version of these sheets are imported in to WCIVF from time to time.
+
+Each election, we create a new set of sheets. These need to be added to the import jobs.
+
+Get the Sheet CSV URL (file -> share -> public to the web -> select sheet / csv > publish > copy URL)
+For local parties, edit https://github.com/DemocracyClub/WhoCanIVoteFor/blob/master/wcivf/apps/parties/management/commands/import_local_parties.py#L23-L34
+For hustings edit https://github.com/DemocracyClub/WhoCanIVoteFor/blob/master/wcivf/apps/hustings/management/commands/import_hustings.py#L60
+
+Commit, PR, merge, deploy.
+
 ## Deployments
 
 Deployments are triggered by Circle CI. Take a look at `.circleci/config.yml` to see details of the deployment workflow.
 
 To increase the number of EC2 instances for an environment (e.g. during busy times around elections) increase the `min-size`, `max-size` and `desired-capacity` variables found in the `code_deploy` jobs in the `config.yml` file. For further details, see notes about scaling [scaling](/docs/troubleshooting.md#scaling).
+
+
