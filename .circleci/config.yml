@@ -295,33 +295,6 @@ workflows:
           - sam_deploy_development
           context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
-
-      - sam_deploy:
-          name: sam_deploy_staging
-          dc-environment: staging
-          vpc-id: vpc-69cef901
-          subnet-ids: "subnet-e2b4f198,subnet-5a911a16,subnet-818bb2e8"
-          ssl-certificate-arn: arn:aws:acm:us-east-1:897471774344:certificate/507f9d28-0c00-4886-8446-3ae3e6276e2a
-          instance-type: t3a.medium
-          domain: "wcivf.club"
-          requires:
-          - build_and_test
-          # NB should this be dependent on successful sam_deploy_development job?
-          - sam_build
-          context: [ deployment-staging-wcivf, slack-secrets  ]
-          filters: { branches: { only: [ main, master, staging ] } }
-
-      - code_deploy:
-          name: code_deploy_staging
-          dc-environment: staging
-          min-size: 1
-          max-size: 1
-          desired-capacity: 1
-          requires:
-          - build_and_test
-          - sam_deploy_staging
-          context: [ deployment-staging-wcivf, slack-secrets ]
-          filters: { branches: { only: [ main, master, staging ] } }
         
       - sam_deploy:
           name: sam_deploy_production
@@ -335,7 +308,6 @@ workflows:
           - build_and_test
           # NB should this be dependent on successful sam_deploy_development job?
           - sam_build
-          - code_deploy_staging
           context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
           
@@ -347,7 +319,6 @@ workflows:
           desired-capacity: 1
           requires:
           - build_and_test
-          - sam_deploy_staging
           - sam_deploy_production
           context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
