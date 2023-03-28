@@ -127,6 +127,11 @@ class YNRElectionImporter:
                 election.description = description
                 updated = True
 
+            requires_voter_id = ee_data["requires_voter_id"]
+            if requires_voter_id:
+                election.requires_voter_id = requires_voter_id
+                updated = True
+
             voting_system = ee_data["voting_system"]
             if voting_system:
                 election.voting_system = VotingSystem.objects.update_or_create(
@@ -426,6 +431,7 @@ class YNRBallotImporter:
         self.set_territory(ballot)
         self.set_voting_system(ballot)
         self.set_metadata(ballot)
+        self.set_requires_voter_id(ballot)
         self.set_organisation_type(ballot)
         self.set_division_type(ballot)
         ballot.save()
@@ -465,6 +471,14 @@ class YNRBallotImporter:
         ee_data = self.ee_helper.get_data(ballot.ballot_paper_id)
         if ee_data:
             ballot.metadata = ee_data["metadata"]
+
+    def set_requires_voter_id(self, ballot):
+        if ballot.requires_voter_id and not self.force_update:
+            return
+        ee_data = self.ee_helper.get_data(ballot.ballot_paper_id)
+        if ee_data:
+            ballot.requires_voter_id = ee_data["requires_voter_id"]
+            ballot.save()
 
     def set_organisation_type(self, ballot):
         if ballot.post.organization_type and not self.force_update:

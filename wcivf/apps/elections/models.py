@@ -388,6 +388,7 @@ class PostElection(TimeStampedModel):
         null=True,
         help_text="Timestamp of when this ballot was updated in the YNR",
     )
+    requires_voter_id = models.CharField(blank=True, null=True, max_length=50)
 
     objects = PostElectionQuerySet.as_manager()
 

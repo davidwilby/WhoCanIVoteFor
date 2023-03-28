@@ -75,7 +75,7 @@ See [INSTALL.md](INSTALL.md) for setup instructions.
 
 # Translations
 
-This application can be translated in to differnet languages.
+This application can be translated in to different languages.
 
 This is done using [Django's standard translation system](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/).
 
