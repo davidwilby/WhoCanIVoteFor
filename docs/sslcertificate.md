@@ -3,6 +3,7 @@
 You will need to use the AWS Console to provision an SSL certificate to be used in the deployment. Follow the steps below to create the SSL certificate.
 
 - In the AWS console, go to Certificate Manager
+- Change the region to US East (N. Virginia) (us-east-1)
 - Choose "Request a Certificate" and select public certificate
 - Add the domain and optionally a wildcard for the sub domain e.g. ‘wcivf.club’ and ‘* wcivf.club’
 - Choose DNS validation, add any tags, and confirm
