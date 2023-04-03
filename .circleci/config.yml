@@ -301,7 +301,7 @@ workflows:
           dc-environment: staging
           vpc-id: vpc-69cef901
           subnet-ids: "subnet-e2b4f198,subnet-5a911a16,subnet-818bb2e8"
-          ssl-certificate-arn: arn:aws:acm:us-east-1:897471774344:certificate/507f9d28-0c00-4886-8446-3ae3e6276e2a
+          ssl-certificate-arn: arn:aws:acm:us-east-1:897471774344:certificate/b7580cc7-4e31-49ad-a08c-3bf9ae43e328
           instance-type: t3a.medium
           domain: "wcivf.club"
           requires:
