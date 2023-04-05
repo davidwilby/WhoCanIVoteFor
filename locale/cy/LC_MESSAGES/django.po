@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-13 11:12+0000\n"
+"POT-Creation-Date: 2023-03-23 14:28+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -29,21 +29,21 @@ msgstr ""
 msgid "Enter your postcode"
 msgstr "Rhowch eich cod post"
 
-#: wcivf/apps/elections/models.py:615
+#: wcivf/apps/elections/models.py:638
 msgid "First-past-the-post"
 msgstr "Y Cyntaf i’r Felin"
 
-#: wcivf/apps/elections/models.py:617
+#: wcivf/apps/elections/models.py:640
 #, fuzzy
 #| msgid "The Additional Member System"
 msgid "Additional Member System"
 msgstr "Y System Aelodau Ychwanegol"
 
-#: wcivf/apps/elections/models.py:619
+#: wcivf/apps/elections/models.py:642
 msgid "Supplementary Vote"
 msgstr "Pleidlais Atodol"
 
-#: wcivf/apps/elections/models.py:621
+#: wcivf/apps/elections/models.py:644
 msgid "Single Transferable Vote"
 msgstr "Pleidlais Sengl Drosglwyddadwy"
 
@@ -143,8 +143,8 @@ msgid ""
 msgstr ""
 "Ni chafwyd cystadleuaeth yn yr etholiad hwn, oherwydd roedd nifer yr "
 "ymgeiswyr a'r seddi ar gael yn gyfartal. Roedd %(is_or_are)s "
-"%(winner_count)s sedd%(pluralise_seat)s yn %(post)s, a dim "
-"ond%(num_people)s ymgeisydd%(pluralise_candidates)s."
+"%(winner_count)s sedd%(pluralise_seat)s yn %(post)s, a dim ond%(num_people)s "
+"ymgeisydd%(pluralise_candidates)s."
 
 #: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:19
 #, python-format
@@ -316,11 +316,11 @@ msgstr "Etholwyd:"
 msgid "Photo of %(pp.person.name)s"
 msgstr "Llun o %(pp.person.name)s"
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:39
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:34
 msgid "Party emblem"
 msgstr "Symbol y blaid"
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:47
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:42
 #, python-format
 msgid "Show %(num_candidates)s candidates"
 msgstr "Dangos %(num_candidates)s ymgeiswyr"
@@ -793,6 +793,15 @@ msgstr "Wikipedia"
 msgid "Read more on Wikipedia"
 msgstr "Darllenwch fwy ar Wikipedia"
 
+#: wcivf/apps/elections/templates/elections/includes/_voter_id.html:10
+msgid ""
+"You will need to take photo ID to vote at a polling station in this election"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_voter_id.html:13
+msgid "You must vote at your assigned polling station."
+msgstr ""
+
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:7
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:15
 msgid "European Parliament election results"
@@ -924,16 +933,16 @@ msgstr "heddiw"
 msgid "due to take place on"
 msgstr "Mae disgwyl iddo gael ei gynnal ar"
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:52
+#: wcivf/apps/elections/templates/elections/postcode_view.html:58
 #, python-format
 msgid "Add future elections in %(postcode)s to your calendar"
 msgstr "Ychwanegwch etholiadau'r dyfodol yn %(postcode)s at eich calendr"
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:55
+#: wcivf/apps/elections/templates/elections/postcode_view.html:61
 msgid "Subscribe to the iCal feed"
 msgstr "Tanysgrifiwch i ffrwd iCal"
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:56
+#: wcivf/apps/elections/templates/elections/postcode_view.html:62
 msgid ""
 "Or manually subscribe by following these simple steps for your chosen "
 "calendar tool:"
@@ -941,21 +950,21 @@ msgstr ""
 "Neu tanysgrifiwch â llaw drwy ddilyn y camau syml hyn ar gyfer eich offeryn "
 "calendr dewisol:"
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:59
+#: wcivf/apps/elections/templates/elections/postcode_view.html:65
 msgid ""
 "In your calendar app settings, choose the option for adding a new calendar."
 msgstr ""
 "Yng ngosodiadau eich ap calendr, dewiswch yr opsiwn ar gyfer ychwanegu "
 "calendr newydd."
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:62
+#: wcivf/apps/elections/templates/elections/postcode_view.html:68
 msgid ""
 "If presented with the option to choose a calendar type, choose web calendar."
 msgstr ""
 "Os cewch eich cyflwyno â'r opsiwn i ddewis math o galendr, dewiswch galendr "
 "y we."
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:65
+#: wcivf/apps/elections/templates/elections/postcode_view.html:71
 msgid "Enter this URL and save"
 msgstr "Rhowch yr URL hwn a'i arbed"
 
@@ -1997,6 +2006,43 @@ msgstr ""
 "arall y gallwch chi ei ddefnyddio?"
 
 #: wcivf/templates/home.html:32
+#, fuzzy
+#| msgid "You will need photographic identification."
+msgid "Photographic identification"
+msgstr "Bydd angen dull adnabod ffotograffig arnoch."
+
+#: wcivf/templates/home.html:34
+msgid ""
+"Photographic identification will be required to vote in English local "
+"elections, and parliamentary elections across the UK, on and after 4 May "
+"2023."
+msgstr ""
+
+#: wcivf/templates/home.html:35
+msgid ""
+"Learn more about photographic identification for voters on the website of "
+"the Electoral Commission."
+msgstr ""
+
+#: wcivf/templates/home.html:35
+msgid "Learn more on the website of the Electoral Commission."
+msgstr ""
+
+#: wcivf/templates/home.html:37
+msgid ""
+"You can apply for a free 'Voter Authority Certificate' if you do not already "
+"possess a valid ID."
+msgstr ""
+
+#: wcivf/templates/home.html:38
+msgid "Apply for free voter ID."
+msgstr ""
+
+#: wcivf/templates/home.html:39
+msgid "You do not need photo ID to vote by post."
+msgstr ""
+
+#: wcivf/templates/home.html:45
 msgid "Upcoming Elections"
 msgstr "Etholiadau i ddod"
 

@@ -274,7 +274,7 @@ workflows:
           dc-environment: development
           vpc-id: vpc-fa2e0792
           subnet-ids: "subnet-890877f3,subnet-be093ad7,subnet-3524a679"
-          ssl-certificate-arn: arn:aws:acm:us-east-1:061126312678:certificate/7caca800-3171-4565-9e6c-1d0f1c035831
+          ssl-certificate-arn: arn:aws:acm:us-east-1:061126312678:certificate/ece58cd4-6192-474a-a8ed-84e3635d9180
           instance-type: t3a.small
           domain: "dev.wcivf.club"
           requires:
@@ -282,7 +282,7 @@ workflows:
           - sam_build
           context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
-          
+
       - code_deploy:
           name: code_deploy_development
           dc-environment: development
@@ -301,7 +301,7 @@ workflows:
           dc-environment: staging
           vpc-id: vpc-69cef901
           subnet-ids: "subnet-e2b4f198,subnet-5a911a16,subnet-818bb2e8"
-          ssl-certificate-arn: arn:aws:acm:us-east-1:897471774344:certificate/507f9d28-0c00-4886-8446-3ae3e6276e2a
+          ssl-certificate-arn: arn:aws:acm:us-east-1:897471774344:certificate/b7580cc7-4e31-49ad-a08c-3bf9ae43e328
           instance-type: t3a.medium
           domain: "wcivf.club"
           requires:
@@ -329,7 +329,7 @@ workflows:
           vpc-id: vpc-0d23d243e8bff4415
           subnet-ids: "subnet-04caf1309c0ab8f94,subnet-06475e48c36b4aece,subnet-0895b7d4795fbb1f4"
           ssl-certificate-arn:  arn:aws:acm:us-east-1:705594574410:certificate/31f3f746-fd90-4c69-964d-091e8fa0cbfe
-          instance-type: t3a.medium
+          instance-type: t3a.large
           domain: "whocanivotefor.co.uk"
           requires:
           - build_and_test
@@ -338,12 +338,12 @@ workflows:
           - code_deploy_staging
           context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
-          
+
       - code_deploy:
           name: code_deploy_production
           dc-environment: production
           min-size: 1
-          max-size: 2
+          max-size: 20
           desired-capacity: 1
           requires:
           - build_and_test

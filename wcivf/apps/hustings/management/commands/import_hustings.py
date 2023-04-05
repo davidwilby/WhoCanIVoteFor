@@ -59,11 +59,11 @@ class Command(BaseCommand):
 
     URLS = [
         # NI
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=372490874&single=true&output=csv",
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=1940364340&single=true&output=csv",
         # ENG MAYORS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=1086162179&single=true&output=csv",
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=1517245531&single=true&output=csv",
         # ENG LOCALS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=1180606386&single=true&output=csv",
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=0&single=true&output=csv",
         # SCOT LOCALS
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=976193034&single=true&output=csv",
         # WALES LOCALS

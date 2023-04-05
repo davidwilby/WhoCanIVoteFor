@@ -482,6 +482,25 @@ class TestPostcodeViewMethods:
         assert result == parish_council_election
         assert view_obj.parish_council_election == parish_council_election
 
+    @pytest.mark.django_db
+    def test_get_voter_id_status_id_required(self, view_obj, mocker):
+        post_election_requires_id = mocker.MagicMock(
+            spec=PostElection, requires_voter_id="EA-2022", cancelled=False
+        )
+        post_election_no_id = mocker.MagicMock(
+            spec=PostElection, requires_voter_id=None, cancelled=False
+        )
+        view_obj.ballots = [post_election_requires_id, post_election_no_id]
+        assert view_obj.get_voter_id_status() == "EA-2022"
+
+    @pytest.mark.django_db
+    def test_get_voter_id_status_id_not_required(self, view_obj, mocker):
+        post_election_no_id = mocker.MagicMock(
+            spec=PostElection, requires_voter_id=None, cancelled=False
+        )
+        view_obj.ballots = [post_election_no_id, post_election_no_id]
+        assert view_obj.get_voter_id_status() is None
+
 
 class TestPostcodeiCalView:
     def test_invalid_postcode_redirects(self, mocker, client):

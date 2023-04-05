@@ -24,33 +24,36 @@
                         <img src="{{ pp.person.photo_url }}" alt="{% blocktrans trimmed %}Photo of {{ pp.person.name }}{% endblocktrans %}">
                     {% else %}
                         <img src="{% static '/people/images/blank-avatar.png' %}" alt="Blank Head icons created by Freepik - Flaticon" style="background-color: #ddd;">
-                    {% endfor %}
-        {% else %}
-            <div>
-                <div class="ds-with-sidebar">
-                    <div>
-                        <div class="ds-sidebar" style="flex-basis: 5rem">
-                            {% if person_post.list.0.party.emblem_url %}
-                                <img src="{{ person_post.list.0.party.emblem_url }}" alt="{% trans "Party emblem" %}">
-                            {% endif %}
-                        </div>
-                        <div class="ds-not-sidebar">
-                            <h4><a href="{% url "party_list_view" election=person_post.list.0.post_election.ballot_paper_id party_id=person_post.list.0.party_id %}">{{ person_post.grouper }}</a></h4>
-                            <ul class="ds-details" style="border-style:none;">
-                                <li style="list-style-type: none;">
-                                    <details style="border-style:none;">
-                                        <summary>{% blocktrans trimmed with num_candidates=person_post.list|length %}Show {{ num_candidates  }} candidates{% endblocktrans %}</summary>
-                                        <ul class="ds-grid" style="--gridCellMin: 25ch">
-                                            {% for person in person_post.list %}
-                                                {% include "elections/includes/_person_card.html" with person_post=person lists=True %}
-                                            {% endfor %}
-                                        </ul>
-                                    </details>
-                                </li>
-                            </ul>
-                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            <div class="ds-with-sidebar">
+                <div>
+                    <div class="ds-sidebar" style="flex-basis: 5rem">
+                        {% if person_post.list.0.party.emblem_url %}
+                            <img src="{{ person_post.list.0.party.emblem_url }}" alt="{% trans "Party emblem" %}">
+                        {% endif %}
+                    </div>
+                    <div class="ds-not-sidebar">
+                        <h4><a href="{% url "party_list_view" election=person_post.list.0.post_election.ballot_paper_id party_id=person_post.list.0.party_id %}">{{ person_post.grouper }}</a></h4>
+                        <ul class="ds-details" style="border-style:none;">
+                            <li style="list-style-type: none;">
+                                <details style="border-style:none;">
+                                    <summary>{% blocktrans trimmed with num_candidates=person_post.list|length %}Show {{ num_candidates  }} candidates{% endblocktrans %}</summary>
+                                    <ul class="ds-grid" style="--gridCellMin: 25ch">
+                                        {% for person in person_post.list %}
+                                            {% include "elections/includes/_person_card.html" with person_post=person lists=True %}
+                                        {% endfor %}
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        {% endif %}
-    {% endfor %}
+        </div>
+    {% endif %}
+{% endfor %}

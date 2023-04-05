@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, View
+from typing import Optional
 
 from core.helpers import clean_postcode
 from elections.dummy_models import DummyPostElection
@@ -90,6 +91,7 @@ class PostcodeView(
         context["referendums"] = list(self.get_referendums())
         context["parish_council_election"] = self.get_parish_council_election()
         context["num_ballots"] = self.num_ballots()
+        context["requires_voter_id"] = self.get_voter_id_status()
 
         return context
 
@@ -178,6 +180,17 @@ class PostcodeView(
             num_ballots += 1
 
         return num_ballots
+
+    def get_voter_id_status(self) -> Optional[str]:
+        """
+        For a given election, determine whether any ballots require photo ID
+        If yes, return the stub value (e.g. EA-2022)
+        If no, return None
+        """
+        for ballot in self.ballots:
+            if not ballot.cancelled and (voter_id := ballot.requires_voter_id):
+                return voter_id
+        return None
 
 
 class PostcodeiCalView(
