@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.9.1]
     method: GET
-    uri: https://elections.democracyclub.org.uk/api/elections?postcode=E3%202NX&current=1
+    uri: https://developers.democracyclub.org.uk/api/v1/postcode/E3%202NX/
   response:
     body: {string: ''}
     headers:
@@ -15,7 +15,7 @@ interactions:
       Content-Length: ['0']
       Content-Type: [text/html; charset=utf-8]
       Date: ['Tue, 17 Apr 2018 11:59:21 GMT']
-      Location: ['/api/elections/?postcode=E3%202NX&current=1']
+      Location: ['/api/v1/postcode/E3%202NX/']
       Server: [nginx]
       X-Frame-Options: [SAMEORIGIN]
     status: {code: 301, message: Moved Permanently}
@@ -27,7 +27,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.9.1]
     method: GET
-    uri: https://elections.democracyclub.org.uk/api/elections/?postcode=E3%202NX&current=1
+    uri: https://developers.democracyclub.org.uk/api/v1/postcode/E3%202NX/
   response:
     body: {string: '{"count":3,"next":null,"previous":null,"results":[{"election_id":"local.tower-hamlets.2018-05-03","tmp_election_id":null,"election_title":"Tower
         Hamlets local election","poll_open_date":"2018-05-03","election_type":{"name":"Local

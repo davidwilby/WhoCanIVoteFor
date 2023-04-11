@@ -43,6 +43,11 @@ urlpatterns = [
         name="dummy_postcode_view",
     ),
     re_path(
+        r"^(?P<postcode>[^/]+)/(?P<uprn>[^/]+)/$",
+        PostcodeView.as_view(),
+        name="uprn_view",
+    ),
+    re_path(
         r"^(?P<postcode>[^/]+)/$", PostcodeView.as_view(), name="postcode_view"
     ),
     re_path(

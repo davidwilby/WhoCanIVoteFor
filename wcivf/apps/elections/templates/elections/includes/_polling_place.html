@@ -48,7 +48,7 @@
                 <hr>
                 <h3>{% trans "Vote on polling day" %}</h3>
             {% endif %}
-            {% blocktrans trimmed with polling_station_address=polling_station.polling_station.properties.address|linebreaksbr %}
+            {% blocktrans trimmed with polling_station_address=polling_station.station.properties.address|linebreaksbr %}
                 <p>
                     Your polling station is:
                 </p>

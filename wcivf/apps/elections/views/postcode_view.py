@@ -37,48 +37,56 @@ class PostcodeView(
 
     template_name = "elections/postcode_view.html"
     pk_url_kwarg = "postcode"
-    ballots = None
+    ballot_dict = None
     postcode = None
+    uprn = None
     parish_council_election = None
 
-    def get_ballots(self):
+    def get_ballot_dict(self):
         """
         Returns a QuerySet of PostElection objects. Calls postcode_to_ballots
-        and updates the self.ballots attribute the first time it is called.
+        and updates the self.ballot_dict attribute the first time it is called.
         """
-        if self.ballots is None:
-            self.ballots = self.postcode_to_ballots(postcode=self.postcode)
+        if self.ballot_dict is None:
+            self.ballot_dict = self.postcode_to_ballots(
+                postcode=self.postcode, uprn=self.uprn
+            )
 
-        return self.ballots
+        return self.ballot_dict
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         self.postcode = clean_postcode(kwargs["postcode"])
+        self.uprn = self.kwargs.get("uprn")
         self.log_postcode(self.postcode)
 
         context["postcode"] = self.postcode
 
         try:
-            context["postelections"] = self.get_ballots()
-            entry = settings.POSTCODE_LOGGER.entry_class(
-                postcode=self.postcode,
-                dc_product=settings.POSTCODE_LOGGER.dc_product.wcivf,
-                **self.request.session.get("utm_data"),
-            )
-            settings.POSTCODE_LOGGER.log(entry)
+            ballot_dict = self.get_ballot_dict()
+            context["address_picker"] = ballot_dict.get("address_picker")
+            context["addresses"] = ballot_dict.get("addresses")
         except InvalidPostcodeError as exception:
             raise exception
 
+        entry = settings.POSTCODE_LOGGER.entry_class(
+            postcode=self.postcode,
+            dc_product=settings.POSTCODE_LOGGER.dc_product.wcivf,
+            **self.request.session.get("utm_data"),
+        )
+        settings.POSTCODE_LOGGER.log(entry)
+
+        if context["address_picker"]:
+            return context
+
+        context["postelections"] = ballot_dict.get("ballots")
         context["show_polling_card"] = self.show_polling_card(
             context["postelections"]
         )
         context["people_for_post"] = {}
         for postelection in context["postelections"]:
             postelection.people = self.people_for_ballot(postelection)
-
-        context["polling_station"] = self.get_polling_station_info(
-            context["postcode"]
-        )
+        context["polling_station"] = self.ballot_dict.get("polling_station")
 
         context[
             "advance_voting_station"
@@ -100,7 +108,9 @@ class PostcodeView(
         Return a list of ballots filtered by whether they are today
         """
         return [
-            ballot for ballot in self.ballots if ballot.election.is_election_day
+            ballot
+            for ballot in self.ballot_dict.get("ballots")
+            if ballot.election.is_election_day
         ]
 
     def get_referendums(self):
@@ -115,7 +125,7 @@ class PostcodeView(
         ):
             return []
 
-        for ballot in self.ballots:
+        for ballot in self.ballot_dict:
             yield from ballot.referendums.all()
 
     def multiple_city_of_london_elections_today(self):
@@ -142,32 +152,40 @@ class PostcodeView(
 
     def get_parish_council_election(self):
         """
-        Check if we have any ballots with a parish council, if not return an
+        Check if we have any ballot_dict with a parish council, if not return an
         empty QuerySet. If we do, return the first object we find. This may seem
         arbritary to only use the first object we find but in practice we only
         assign a single parish council for to a single english local election
         ballot. So in practice we should only ever find one object.
         """
+        if not self.ballot_dict.get("ballots"):
+            return None
         if self.parish_council_election is not None:
             return self.parish_council_election
 
-        ballots_with_parishes = self.ballots.filter(num_parish_councils__gt=0)
+        ballots_with_parishes = self.ballot_dict.get("ballots").filter(
+            num_parish_councils__gt=0
+        )
         if not ballots_with_parishes:
             return None
 
         self.parish_council_election = ParishCouncilElection.objects.filter(
-            ballots__in=self.ballots
+            ballots__in=self.ballot_dict
         ).first()
         return self.parish_council_election
 
     def num_ballots(self):
         """
-        Calculate the number of ballots there will be to fill in, accounting for
-        the any parish council ballots if a contested parish council election is
+        Calculate the number of ballot_dict there will be to fill in, accounting for
+        the any parish council ballot_dict if a contested parish council election is
         taking place in the future
         """
         num_ballots = len(
-            [ballot for ballot in self.ballots if not ballot.past_date]
+            [
+                ballot
+                for ballot in self.ballot_dict.get("ballots")
+                if not ballot.past_date
+            ]
         )
 
         if not self.parish_council_election:
@@ -183,11 +201,11 @@ class PostcodeView(
 
     def get_voter_id_status(self) -> Optional[str]:
         """
-        For a given election, determine whether any ballots require photo ID
+        For a given election, determine whether any ballot_dict require photo ID
         If yes, return the stub value (e.g. EA-2022)
         If no, return None
         """
-        for ballot in self.ballots:
+        for ballot in self.ballot_dict.get("ballots"):
             if not ballot.cancelled and (voter_id := ballot.requires_voter_id):
                 return voter_id
         return None
@@ -280,12 +298,12 @@ class DummyPostcodeView(PostcodeView):
         context = kwargs
         self.postcode = clean_postcode(kwargs["postcode"])
         context["postcode"] = self.postcode
-        context["postelections"] = self.get_ballots()
+        context["postelections"] = self.get_ballot_dict()
         context["show_polling_card"] = True
         context["polling_station"] = {}
         context["num_ballots"] = 1
 
         return context
 
-    def get_ballots(self):
+    def get_ballot_dict(self):
         return [DummyPostElection()]

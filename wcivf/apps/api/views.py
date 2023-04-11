@@ -62,8 +62,8 @@ class BaseCandidatesAndElectionsViewSet(
     def list(self, request, *args, **kwargs):
         results = []
 
-        postelections = self.get_ballots(request)
-        postelections = postelections.select_related("voting_system")
+        ballots = self.get_ballots(request)
+        postelections = ballots["ballots"].select_related("voting_system")
 
         for postelection in postelections:
             candidates = []

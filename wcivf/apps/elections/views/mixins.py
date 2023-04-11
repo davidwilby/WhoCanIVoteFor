@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from typing import Optional
 
 import requests
 from django.db.models import F, Prefetch
@@ -12,6 +13,7 @@ from django.urls import reverse
 
 from core.models import log_postcode
 from core.utils import LastWord
+from elections.devs_dc_client import DevsDCClient
 from leaflets.models import Leaflet
 from elections.constants import UPDATED_SLUGS
 
@@ -20,6 +22,9 @@ from elections.constants import (
     PEOPLE_FOR_BALLOT_KEY_FMT,
     POLLING_STATIONS_KEY_FMT,
 )
+from wcivf.settings import DEVS_DC_BASE
+
+DEVS_DC_CLIENT = DevsDCClient()
 
 
 class PostcodeToPostsMixin(object):
@@ -34,28 +39,25 @@ class PostcodeToPostsMixin(object):
             )
         return self.render_to_response(context)
 
-    def postcode_to_ballots(self, postcode, compact=False):
-        key = POSTCODE_TO_BALLOT_KEY_FMT.format(postcode.replace(" ", ""))
-        results_json = cache.get(key)
-        if not results_json:
-            url = "{0}/api/elections?postcode={1}&current=1".format(
-                settings.EE_BASE, postcode
-            )
-            req = requests.get(url, timeout=30.0)
-
-            # Don't cache bad postcodes
-            from ..models import InvalidPostcodeError
-
-            if req.status_code != 200:
-                raise InvalidPostcodeError(postcode)
-
-            results_json = req.json()["results"]
-            cache.set(key, results_json)
+    def postcode_to_ballots(self, postcode, uprn=None, compact=False):
+        kwargs = {"postcode": postcode}
+        if uprn:
+            kwargs["uprn"] = uprn
+        results_json = DEVS_DC_CLIENT.make_request(**kwargs)
 
         all_ballots = []
-        for election in results_json:
-            ballot_paper_id = election["election_id"]
-            all_ballots.append(ballot_paper_id)
+        ret = {"address_picker": results_json["address_picker"]}
+        if ret["address_picker"]:
+            ret["addresses"] = results_json["addresses"]
+            return ret
+
+        for election_date in results_json.get("dates"):
+            for ballot in election_date.get("ballots", []):
+                all_ballots.append(ballot["ballot_paper_id"])
+            if election_date["polling_station"]["polling_station_known"]:
+                print("ASDASD")
+                ret["polling_station_known"] = True
+                ret["polling_station"] = election_date["polling_station"]
 
         from ..models import PostElection
 
@@ -81,8 +83,8 @@ class PostcodeToPostsMixin(object):
         pes = pes.order_by(
             "past_date", "election__election_date", "-election__election_weight"
         )
-
-        return pes
+        ret["ballots"] = pes
+        return ret
 
 
 class PostelectionsToPeopleMixin(object):
@@ -135,39 +137,16 @@ class PostelectionsToPeopleMixin(object):
 
 
 class PollingStationInfoMixin(object):
-    def get_polling_station_info(self, postcode):
-        key = POLLING_STATIONS_KEY_FMT.format(postcode.replace(" ", ""))
-        info = cache.get(key)
-        if info:
-            return info
-
-        info = {}
-        base_url = settings.WDIV_BASE + settings.WDIV_API
-        url = "{}/postcode/{}.json".format(
-            base_url,
-            postcode,
-        )
-        token = getattr(settings, "WDIV_API_KEY", "DCINTERNAL-WHO")
-        if token:
-            url = f"{url}?auth_token={token}"
-        try:
-            req = requests.get(url, timeout=30.0)
-        except:
-            return info
-        if req.status_code != 200:
-            return info
-        info.update(req.json())
-        cache.set(key, info)
-        return info
-
     def show_polling_card(self, post_elections):
         for p in post_elections:
             if p.contested and not p.cancelled:
                 return True
         return False
 
-    def get_advance_voting_station_info(self, polling_station: dict):
-        if not polling_station.get("advance_voting_station"):
+    def get_advance_voting_station_info(self, polling_station: Optional[dict]):
+        if not polling_station or not polling_station.get(
+            "advance_voting_station"
+        ):
             return None
         advance_voting_station = polling_station["advance_voting_station"]
 
