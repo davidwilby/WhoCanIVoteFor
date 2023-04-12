@@ -134,6 +134,7 @@ class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
     def get_ballots(self, request):
         ballot_ids_str = request.GET.get("ballot_ids", None)
         modified_gt = request.GET.get("modified_gt", None)
+        current = request.GET.get("current", None)
         if not any((ballot_ids_str, modified_gt)):
             raise BallotIdsNotProvided
 
@@ -151,7 +152,8 @@ class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
                 ballot_ids_lst = [ballot_ids_str]
 
             pes = pes.filter(ballot_paper_id__in=ballot_ids_lst)
-
+        if current:
+            pes = pes.filter(election__current=True)
         ordering = ["election__election_date", "election__election_weight"]
 
         if modified_gt:
