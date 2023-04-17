@@ -136,6 +136,20 @@ class PartyDescription(TimeStampedModel):
         )
 
 
+class PartyEmblem(TimeStampedModel):
+    party = models.ForeignKey(
+        Party, on_delete=models.CASCADE, related_name="emblems"
+    )
+    ec_emblem_id = models.PositiveIntegerField(primary_key=True)
+    emblem_url = models.TextField(null=True)
+    description = models.CharField(max_length=255)
+    date_approved = models.DateField(null=True)
+    default = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ("-default", "ec_emblem_id")
+
+
 class LocalParty(TimeStampedModel):
     parent = models.ForeignKey(
         Party, related_name="local_parties", on_delete=models.CASCADE

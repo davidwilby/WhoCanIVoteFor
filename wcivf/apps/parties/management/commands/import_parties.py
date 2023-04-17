@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from django.db import IntegrityError
 
 import requests
 
@@ -29,6 +28,19 @@ class Command(BaseCommand):
                 },
             )
 
+    def add_party_emblems(self, party_obj, emblems):
+        for emblem in emblems:
+            party_obj.emblems.update_or_create(
+                party=party_obj,
+                ec_emblem_id=emblem["ec_emblem_id"],
+                defaults={
+                    "emblem_url": emblem["image"],
+                    "description": emblem["description"],
+                    "date_approved": emblem["date_approved"],
+                    "default": emblem["default"],
+                },
+            )
+
     def add_parties(self, results):
         for party in results["results"]:
             party_obj, created = Party.objects.update_or_create_from_ynr(party)
@@ -36,3 +48,4 @@ class Command(BaseCommand):
                 print("Added new party: {0}".format(party["name"]))
 
             self.add_party_descriptions(party_obj, party["descriptions"])
+            self.add_party_emblems(party_obj, party["emblems"])
