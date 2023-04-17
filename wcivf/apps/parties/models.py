@@ -114,6 +114,28 @@ class Party(models.Model):
         return name
 
 
+class PartyDescription(TimeStampedModel):
+    """
+    A party can register one or more descriptions with The Electoral Commission.
+
+    Each description can be used by a candidate on a ballot paper, along side
+    their name and chosen emblem.
+    """
+
+    party = models.ForeignKey(
+        Party, on_delete=models.CASCADE, related_name="party_descriptions"
+    )
+
+    description = models.CharField(max_length=800)
+    date_description_approved = models.DateField(null=True)
+
+    class Meta:
+        unique_together = (
+            "party",
+            "description",
+        )
+
+
 class LocalParty(TimeStampedModel):
     parent = models.ForeignKey(
         Party, related_name="local_parties", on_delete=models.CASCADE
