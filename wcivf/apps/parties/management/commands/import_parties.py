@@ -13,10 +13,10 @@ class Command(BaseCommand):
         while next_page:
             req = requests.get(next_page)
             results = req.json()
-            self.add_people(results)
+            self.add_parties(results)
             next_page = results.get("next")
 
-    def add_people(self, results):
+    def add_parties(self, results):
         for party in results["results"]:
             party_obj, created = Party.objects.update_or_create_from_ynr(party)
             if created:

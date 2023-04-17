@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 from model_utils.models import TimeStampedModel
 
@@ -8,7 +9,14 @@ from elections.models import Election
 
 class PartyManager(models.Manager):
     def update_or_create_from_ynr(self, party):
-        defaults = {"party_name": party["name"]}
+        defaults = {
+            "party_name": party["name"],
+            "ec_id": party["ec_id"],
+            "register": party["register"],
+            "status": party["status"],
+            "date_registered": party["date_registered"],
+            "date_deregistered": party["date_deregistered"],
+        }
 
         if party["default_emblem"]:
             defaults["emblem_url"] = party["default_emblem"]["image"]
@@ -30,6 +38,40 @@ class Party(models.Model):
     emblem_url = models.URLField(blank=True, null=True)
     wikipedia_url = models.URLField(blank=True)
     description = models.TextField(blank=True)
+    ec_id = models.CharField(
+        db_index=True,
+        max_length=25,
+        unique=True,
+        null=True,
+        verbose_name="Electoral Commission Idenfitier",
+        help_text="""
+            An ID issued by The Electoral Commission in their party register,
+            with the exception of Democracy Club psuedo IDs for special parties
+        """,
+    )
+    register = models.CharField(
+        max_length=2,
+        db_index=True,
+        null=True,
+        verbose_name="Party register",
+        help_text="""
+                Normally either `GB` or `NI` depending on the
+                country the party is registered in. Pseudo-parties don't have a
+                register, so this field is nullable.
+            """,
+    )
+    status = models.CharField(
+        db_index=True,
+        max_length=255,
+        verbose_name="Party registration status",
+        choices=[
+            ("Registered", "Registered"),
+            ("Deregistered", "Deregistered"),
+        ],
+        default="Registered",
+    )
+    date_registered = models.DateField(null=True)
+    date_deregistered = models.DateField(null=True)
 
     class Meta:
         verbose_name_plural = "Parties"
@@ -57,6 +99,19 @@ class Party(models.Model):
     @property
     def is_joint_party(self):
         return self.party_id.startswith("joint-party:")
+
+    @property
+    def is_deregistered(self):
+        if not self.date_deregistered:
+            return False
+        return self.date_deregistered > timezone.now().date()
+
+    @property
+    def format_name(self):
+        name = self.name
+        if self.is_deregistered:
+            name = "{} (Deregistered {})".format(name, self.date_deregistered)
+        return name
 
 
 class LocalParty(TimeStampedModel):
