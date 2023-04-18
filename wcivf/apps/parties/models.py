@@ -101,16 +101,44 @@ class Party(models.Model):
         return self.party_id.startswith("joint-party:")
 
     @property
+    def is_speaker(self):
+        """
+        Returns a boolean for whether the party has the internal ID that we use
+        to identify Speaker Seeking Re-election.
+        """
+        return self.party_id == "ynmp-party:12522"
+
+    @property
+    def get_joint_party_ec_ids(self):
+        """
+        A joint party in our system has an id of "joint-party:{party_id}-{party_id}".
+        This function looks up a joint party's individual party records and returns
+        the ec_id for both of these as a dict keyed on party name.
+        """
+        if self.is_joint_party:
+            ec_ids = []
+            party_ids = self.party_id.rsplit(":")[1].split("-")
+            for party_id in party_ids:
+                party = Party.objects.filter(party_id=f"party:{party_id}")[0]
+                party_details = {
+                    "ec_id": party.ec_id,
+                    "party_name": party.party_name
+                }
+                ec_ids.append(party_details)
+            return ec_ids
+
+
+    @property
     def is_deregistered(self):
         if not self.date_deregistered:
             return False
-        return self.date_deregistered > timezone.now().date()
+        return self.date_deregistered < timezone.now().date()
 
     @property
     def format_name(self):
-        name = self.name
+        name = self.party_name
         if self.is_deregistered:
-            name = "{} (Deregistered {})".format(name, self.date_deregistered)
+            name = f"{name} (Deregistered)"
         return name
 
 
