@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 18:38+0100\n"
+"POT-Creation-Date: 2023-04-20 15:11+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -1147,13 +1147,22 @@ msgid ""
 "field candidates. "
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:66
+#: wcivf/apps/parties/templates/parties/party_detail.html:62
+#, python-format
+msgid ""
+"\n"
+"                <p>This party is on the <strong>%(register)s</strong> "
+"register.</p>\n"
+"            "
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:73
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Joint description"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:69
+#: wcivf/apps/parties/templates/parties/party_detail.html:76
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -1167,14 +1176,25 @@ msgstr ""
 "\n"
 "                                        %(num_votes)s pleidlais (etholwyd)\n"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:79
+#: wcivf/apps/parties/templates/parties/party_detail.html:85
 #, python-format
 msgid ""
 "View the entry for the %(party_name)s in the register of political parties."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:91
+#: wcivf/apps/parties/templates/parties/party_detail.html:95
 msgid "View this party's entry in the register of political parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:102
+#, fuzzy
+#| msgid " %(description)s "
+msgid "Ballot descriptions"
+msgstr " %(description)s "
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:103
+msgid ""
+"This party may appear on the ballot paper under any of the following names:"
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_list.html:4
