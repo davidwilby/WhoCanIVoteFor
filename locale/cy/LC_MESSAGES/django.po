@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 14:28+0000\n"
+"POT-Creation-Date: 2023-04-19 18:38+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -316,11 +316,11 @@ msgstr "Etholwyd:"
 msgid "Photo of %(pp.person.name)s"
 msgstr "Llun o %(pp.person.name)s"
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:34
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:37
 msgid "Party emblem"
 msgstr "Symbol y blaid"
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:42
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:45
 #, python-format
 msgid "Show %(num_candidates)s candidates"
 msgstr "Dangos %(num_candidates)s ymgeiswyr"
@@ -1128,27 +1128,54 @@ msgstr "Pleidiau"
 msgid "Current: %(party_name)s"
 msgstr "Ar hyn o bryd: %(party_name)s"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:36
-#: wcivf/apps/parties/templates/parties/party_detail.html:50
-#: wcivf/apps/parties/templates/parties/party_detail.html:74
-#, python-format
-msgid "%(num_candidates)s candidate%(pluralize_candidates)s"
+#: wcivf/apps/parties/templates/parties/party_detail.html:35
+#: wcivf/apps/parties/templates/parties/party_detail.html:48
+#, fuzzy, python-format
+#| msgid "%(num_candidates)s candidate%(pluralize_candidates)s"
+msgid "%(num_candidates)s candidate%(pluralize_candidates)s in our database."
 msgstr "%(num_candidates)s ymgeisydd%(pluralize_candidates)s"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:41
-#: wcivf/apps/parties/templates/parties/party_detail.html:55
+#: wcivf/apps/parties/templates/parties/party_detail.html:40
+#: wcivf/apps/parties/templates/parties/party_detail.html:53
 msgid "Read more on wikipedia"
 msgstr "Darllenwch fwy ar wikipedia"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:68
-msgid "Post"
+#: wcivf/apps/parties/templates/parties/party_detail.html:56
+#, python-format
+msgid ""
+"This political party was deregistered on %(dereg_date)s, and can no longer "
+"field candidates. "
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:69
+#: wcivf/apps/parties/templates/parties/party_detail.html:66
 #, fuzzy
-#| msgid "Find your candidates"
-msgid "Number of candidates"
-msgstr "Dod o hyd i'ch ymgeiswyr"
+#| msgid " %(description)s "
+msgid "Joint description"
+msgstr " %(description)s "
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:69
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                                        %(num_votes)s votes (elected)\n"
+msgid ""
+"\n"
+"                                \"%(joint_name)s\" is a joint description of "
+"the %(first_name)s and the %(second_name)s.\n"
+"                            "
+msgstr ""
+"\n"
+"                                        %(num_votes)s pleidlais (etholwyd)\n"
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:79
+#, python-format
+msgid ""
+"View the entry for the %(party_name)s in the register of political parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:91
+msgid "View this party's entry in the register of political parties."
+msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_list.html:4
 #: wcivf/apps/parties/templates/parties/party_list.html:5
@@ -2050,22 +2077,14 @@ msgstr "Etholiadau i ddod"
 msgid "Join our mailing list"
 msgstr "Ymunwch â'n rhestr bostio"
 
+#, fuzzy
+#~| msgid "Find your candidates"
+#~ msgid "Number of candidates"
+#~ msgstr "Dod o hyd i'ch ymgeiswyr"
+
 #, python-format
 #~ msgid "%(num_candidates)s candidate%(pluralize_candidates)s</p>"
 #~ msgstr "%(num_candidates)s ymgeisydd%(pluralize_candidates)s</p>"
-
-#, fuzzy, python-format
-#~| msgid ""
-#~| "\n"
-#~| "                                        %(num_votes)s votes (elected)\n"
-#~ msgid ""
-#~ "\n"
-#~ "                                        %(num_votes)s votes (elected)\n"
-#~ "                                    "
-#~ msgstr ""
-#~ "\n"
-#~ "                                        %(num_votes)s pleidlais "
-#~ "(etholwyd)\n"
 
 #, fuzzy, python-format
 #~| msgid ""

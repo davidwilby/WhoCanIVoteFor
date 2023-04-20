@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import get_language
 from model_utils.models import TimeStampedModel
 
 from elections.models import Election
@@ -101,17 +102,57 @@ class Party(models.Model):
         return self.party_id.startswith("joint-party:")
 
     @property
+    def is_speaker(self):
+        """
+        Returns a boolean for whether the party has the internal ID that we use
+        to identify Speaker Seeking Re-election.
+        """
+        return self.party_id == "ynmp-party:12522"
+
+    @property
+    def get_joint_party_sub_parties(self):
+        """
+        A joint party in our system has an id of "joint-party:{party_id}-{party_id}".
+        This function looks up a joint party's individual party records and returns
+        a queryset containing the sub-parties
+        """
+        if self.is_joint_party:
+            sub_party_numeric_ids = self.party_id.rsplit(":")[1].split("-")
+
+            sub_parties = Party.objects.filter(
+                party_id__in=[
+                    f"party:{party_id}" for party_id in sub_party_numeric_ids
+                ]
+            )
+            return sub_parties
+
+        return None
+
+    @property
     def is_deregistered(self):
         if not self.date_deregistered:
             return False
-        return self.date_deregistered > timezone.now().date()
+        return self.date_deregistered < timezone.now().date()
 
     @property
     def format_name(self):
-        name = self.name
+        name = self.party_name
         if self.is_deregistered:
-            name = "{} (Deregistered {})".format(name, self.date_deregistered)
+            name = f"{name} (Deregistered)"
         return name
+
+    @property
+    def get_party_register_url(self):
+        if self.ec_id == self.party_id or not self.ec_id:
+            # If an EC ID matches a party ID, that EC ID is in legacy slug
+            # format and cannot be used to generate a party register URL.
+            # This applies to indies, joint parties and the speaker.
+            return None
+
+        url_language = "English"
+        if get_language() == "cy":
+            url_language = "Cymraeg"
+        return f"https://search.electoralcommission.org.uk/{url_language}/Registrations/{self.ec_id}"
 
 
 class PartyDescription(TimeStampedModel):
