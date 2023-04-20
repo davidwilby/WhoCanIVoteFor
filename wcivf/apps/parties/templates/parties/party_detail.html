@@ -57,6 +57,13 @@
                 {% endif %}
             </div>
         {% endif %}
+
+        {% if object.register %}
+            {% blocktrans trimmed with register=object.format_register %}
+                <p>This party is on the <strong>{{ register }}</strong> register.</p>
+            {% endblocktrans %}
+        {% endif %}
+
         {% if object.is_joint_party %}
             {% with sub_parties=object.get_joint_party_sub_parties %}
                 <div class="ds-card">
@@ -90,6 +97,7 @@
                 </ul>
             {% endif %}
         {% endif %}
+
         {% if object.party_descriptions.all %}
             <h3>{% trans "Ballot descriptions" %}</h3>
             <p>{% trans "This party may appear on the ballot paper under any of the following names:" %}</p>
