@@ -90,10 +90,18 @@
                 </ul>
             {% endif %}
         {% endif %}
-
-
-
+        {% if object.party_descriptions.all %}
+            <h3>{% trans "Ballot descriptions" %}</h3>
+            <p>{% trans "This party may appear on the ballot paper under any of the following names:" %}</p>
+            <ul>
+                {% for description in object.party_descriptions.all %}
+                    <li>{{ description.description }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
+
+
 
 
 {% endblock content %}

@@ -176,6 +176,8 @@ class PartyDescription(TimeStampedModel):
             "description",
         )
 
+        ordering = ["date_description_approved"]
+
 
 class PartyEmblem(TimeStampedModel):
     party = models.ForeignKey(
