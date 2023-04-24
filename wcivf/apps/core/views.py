@@ -86,7 +86,7 @@ class HomePageView(PostcodeFormView):
             .select_related("election", "post")
             .order_by("election__election_date")
         )
-
+        context["upcoming_elections"] = None
         polls_open = timezone.make_aware(
             datetime.datetime.strptime("2019-12-12 7", "%Y-%m-%d %H")
         )
