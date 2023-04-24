@@ -154,6 +154,19 @@ class Party(models.Model):
             url_language = "Cymraeg"
         return f"https://search.electoralcommission.org.uk/{url_language}/Registrations/{self.ec_id}"
 
+    @property
+    def format_register(self):
+        """
+        Returns a nice name for the register code
+        """
+        if self.register == "GB":
+            return "Great Britain"
+
+        if self.register == "NI":
+            return "Northern Ireland"
+
+        return None
+
 
 class PartyDescription(TimeStampedModel):
     """
@@ -175,6 +188,8 @@ class PartyDescription(TimeStampedModel):
             "party",
             "description",
         )
+
+        ordering = ["date_description_approved"]
 
 
 class PartyEmblem(TimeStampedModel):

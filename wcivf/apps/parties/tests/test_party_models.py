@@ -74,3 +74,13 @@ class TestParty(TestCase):
             party.get_party_register_url
             == "https://search.electoralcommission.org.uk/Cymraeg/Registrations/PP53"
         )
+
+    def test_format_register(self):
+        gb_party = Party(register="GB")
+        assert gb_party.format_register == "Great Britain"
+
+        ni_party = Party(register="NI")
+        assert ni_party.format_register == "Northern Ireland"
+
+        no_register_party = Party()
+        assert no_register_party.format_register is None
