@@ -107,6 +107,17 @@
                 {% endfor %}
             </ul>
         {% endif %}
+
+        {% if object.emblems.all %}
+            <h3>{% trans "Emblems" %}</h3>
+            <ul class="ds-grid" style="--gridCellMin: 5em;">
+                {% for emblem in object.emblems.all %}
+                    <li>
+                        <img src="{{ emblem.emblem_url }}" alt="{{ emblem.description }}">
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 
 
