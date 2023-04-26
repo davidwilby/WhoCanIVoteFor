@@ -31,13 +31,16 @@
                         <img src="{{ party.emblem_url }}" alt="{{ party_name }} emblem">
                     </div>
                     <div class="ds-not-sidebar">
-                        <h2>{{ party.party_name }}</h2>
+                        <h2>{{ object.format_name }}</h2>
                         <p>{% blocktrans with num_candidates=object.personpost_set.all.count|intcomma pluralize_candidates=object.personpost_set.all.count|pluralize %}{{ num_candidates }} candidate{{ pluralize_candidates }} in our database.{% endblocktrans %}</p>
                         {% if object.description %}
                             {{ object.description|markdown }}
                         {% endif %}
                         {% if object.wikipedia_url %}
                             <p><a href="{{ object.wikipedia_url }}">{% trans "Read more on wikipedia" %}</a></p>
+                        {% endif %}
+                        {% if object.is_deregistered %}
+                            <p>{% blocktrans with dereg_date=object.date_deregistered %}This political party was deregistered on {{ dereg_date }}, and can no longer field candidates. {% endblocktrans %}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -59,8 +62,8 @@
         {% endif %}
 
         {% if object.register %}
-            {% blocktrans trimmed with register=object.format_register %}
-                <p>This party is on the <strong>{{ register }}</strong> register.</p>
+            {% blocktrans trimmed with register=object.format_register was_is=object.is_deregistered|yesno:"was,is" %}
+                <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register.</p>
             {% endblocktrans %}
         {% endif %}
 
@@ -100,7 +103,7 @@
 
         {% if object.party_descriptions.all %}
             <h3>{% trans "Ballot descriptions" %}</h3>
-            <p>{% trans "This party may appear on the ballot paper under any of the following names:" %}</p>
+            <p>{% blocktrans trimmed with ballot_name=object.party_name %} This party may appear on the ballot paper as "{{ ballot_name }}", or any of the following names:{% endblocktrans %}</p>
             <ul>
                 {% for description in object.party_descriptions.all %}
                     <li>{{ description.description }}</li>
