@@ -131,7 +131,7 @@ class TestPostcodeViewPolls:
         individual tests can then add json data to
         """
         response = mocker.MagicMock(status_code=200)
-        response.json.return_value = {"results": []}
+        response.json.return_value = {"address_picker": False, "dates": []}
         mocker.patch(
             "requests.get",
             return_value=response,
@@ -145,8 +145,13 @@ class TestPostcodeViewPolls:
             election__slug="local.city-of-london.2021-05-06",
             election__election_date="2021-05-06",
         )
-        mock_response.json.return_value["results"].append(
-            {"election_id": post_election.ballot_paper_id}
+
+        mock_response.json.return_value["dates"].append(
+            {
+                "date": post_election.election.election_date,
+                "polling_station": {"polling_station_known": False},
+                "ballots": [{"ballot_paper_id": post_election.ballot_paper_id}],
+            }
         )
 
         response = client.get(
@@ -162,8 +167,13 @@ class TestPostcodeViewPolls:
             election__slug="local.sheffield.2021-05-06",
             election__election_date="2021-05-06",
         )
-        mock_response.json.return_value["results"].append(
-            {"election_id": post_election.ballot_paper_id}
+
+        mock_response.json.return_value["dates"].append(
+            {
+                "date": post_election.election.election_date,
+                "polling_station": {"polling_station_known": False},
+                "ballots": [{"ballot_paper_id": post_election.ballot_paper_id}],
+            }
         )
 
         response = client.get(
@@ -178,8 +188,13 @@ class TestPostcodeViewPolls:
         post_election = PostElectionFactory(
             election__election_date="2021-05-07",
         )
-        mock_response.json.return_value["results"].append(
-            {"election_id": post_election.ballot_paper_id}
+
+        mock_response.json.return_value["dates"].append(
+            {
+                "date": post_election.election.election_date,
+                "polling_station": {"polling_station_known": False},
+                "ballots": [{"ballot_paper_id": post_election.ballot_paper_id}],
+            }
         )
 
         response = client.get(
@@ -203,10 +218,25 @@ class TestPostcodeViewPolls:
             election__slug="parl.2021-05-06",
             election__election_date="2021-05-06",
         )
-        mock_response.json.return_value["results"] = [
-            {"election_id": local_london.ballot_paper_id},
-            {"election_id": parl_london.ballot_paper_id},
-        ]
+
+        mock_response.json.return_value["dates"].extend(
+            [
+                {
+                    "date": local_london.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [
+                        {"ballot_paper_id": local_london.ballot_paper_id}
+                    ],
+                },
+                {
+                    "date": parl_london.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [
+                        {"ballot_paper_id": parl_london.ballot_paper_id}
+                    ],
+                },
+            ]
+        )
 
         response = client.get(
             reverse("postcode_view", kwargs={"postcode": "TE11ST"}), follow=True
@@ -229,10 +259,21 @@ class TestPostcodeViewPolls:
             election__slug="pcc.south-yorkshire.2021-05-06",
             election__election_date="2021-05-06",
         )
-        mock_response.json.return_value["results"] = [
-            {"election_id": local.ballot_paper_id},
-            {"election_id": pcc.ballot_paper_id},
-        ]
+
+        mock_response.json.return_value["dates"].extend(
+            [
+                {
+                    "date": local.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [{"ballot_paper_id": local.ballot_paper_id}],
+                },
+                {
+                    "date": pcc.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [{"ballot_paper_id": pcc.ballot_paper_id}],
+                },
+            ]
+        )
 
         response = client.get(
             reverse("postcode_view", kwargs={"postcode": "TE11ST"}), follow=True
