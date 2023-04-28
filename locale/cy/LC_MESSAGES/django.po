@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 15:09+0100\n"
+"POT-Creation-Date: 2023-04-26 14:23+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -221,7 +221,9 @@ msgstr "Rydych chi yma"
 
 #: wcivf/apps/elections/templates/elections/includes/_elections_breadcrumbs.html:6
 #: wcivf/apps/elections/templates/elections/includes/_postcode_breadcrumbs.html:5
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:17
 #: wcivf/apps/parties/templates/parties/party_detail.html:17
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:17
 #: wcivf/apps/people/templates/people/person_detail.html:27
 #: wcivf/templates/base.html:100
 msgid "Home"
@@ -1110,47 +1112,66 @@ msgstr "Gweld y rhestr swyddogol o ymgeiswyr (PDF)."
 msgid "See who was elected"
 msgstr "Gweld pwy gafodd eu hethol"
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:20
 #: wcivf/apps/parties/templates/parties/party_detail.html:20
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:20
 msgid "Parties"
 msgstr "Pleidiau"
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:22
 #: wcivf/apps/parties/templates/parties/party_detail.html:22
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:22
 #, python-format
 msgid "Current: %(party_name)s"
 msgstr "Ar hyn o bryd: %(party_name)s"
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:30
 #: wcivf/apps/parties/templates/parties/party_detail.html:35
-#: wcivf/apps/parties/templates/parties/party_detail.html:48
+#: wcivf/apps/parties/templates/parties/party_detail.html:51
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:30
 #, fuzzy, python-format
 #| msgid "%(num_candidates)s candidate%(pluralize_candidates)s"
 msgid "%(num_candidates)s candidate%(pluralize_candidates)s in our database."
 msgstr "%(num_candidates)s ymgeisydd%(pluralize_candidates)s"
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:36
+msgid "Independent candidates are unaffiliated with any political party."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:37
+#, python-format
+msgid ""
+"An independent candidate may appear on the ballot paper as "
+"\"%(ballot_name)s\", or with no description at all."
+msgstr ""
+
 #: wcivf/apps/parties/templates/parties/party_detail.html:40
-#: wcivf/apps/parties/templates/parties/party_detail.html:53
+#: wcivf/apps/parties/templates/parties/party_detail.html:56
 msgid "Read more on wikipedia"
 msgstr "Darllenwch fwy ar wikipedia"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:56
+#: wcivf/apps/parties/templates/parties/party_detail.html:43
+#: wcivf/apps/parties/templates/parties/party_detail.html:59
 #, python-format
 msgid ""
 "This political party was deregistered on %(dereg_date)s, and can no longer "
 "field candidates. "
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:62
+#: wcivf/apps/parties/templates/parties/party_detail.html:65
 #, fuzzy, python-format
 #| msgid "This election was held <strong>%(election_date)s</strong>."
-msgid "<p>This party is on the <strong>%(register)s</strong> register.</p>"
+msgid ""
+"<p>This party %(was_is)s on the <strong>%(register)s</strong> register.</p>"
 msgstr "Cynhaliwyd yr etholiad hwn <strong>%(election_date)s</strong>"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:73
+#: wcivf/apps/parties/templates/parties/party_detail.html:76
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Joint description"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:76
+#: wcivf/apps/parties/templates/parties/party_detail.html:79
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -1164,28 +1185,30 @@ msgstr ""
 "\n"
 "                                        %(num_votes)s pleidlais (etholwyd)\n"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:85
+#: wcivf/apps/parties/templates/parties/party_detail.html:88
 #, python-format
 msgid ""
 "View the entry for the %(party_name)s in the register of political parties."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:95
+#: wcivf/apps/parties/templates/parties/party_detail.html:98
 msgid "View this party's entry in the register of political parties."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:102
+#: wcivf/apps/parties/templates/parties/party_detail.html:105
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Ballot descriptions"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:103
+#: wcivf/apps/parties/templates/parties/party_detail.html:106
+#, python-format
 msgid ""
-"This party may appear on the ballot paper under any of the following names:"
+"This party may appear on the ballot paper as \"%(ballot_name)s\", or any of "
+"the following names:"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:112
+#: wcivf/apps/parties/templates/parties/party_detail.html:115
 #, fuzzy
 #| msgid "emblem"
 msgid "Emblems"
@@ -1242,6 +1265,31 @@ msgstr "Fersiwn PDF"
 #: wcivf/apps/parties/templates/parties/single_manifesto.html:21
 msgid "Easy Read version"
 msgstr "Fersiwn Hawdd ei Darllen"
+
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:36
+msgid ""
+"The Speaker of the House of Commons stands in general elections under the "
+"banner"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:37
+msgid ""
+"They are not affiliated with any political party, nor do they campaign on "
+"any political issues."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:38
+msgid "The Speaker generally runs unopposed by the major parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:39
+msgid ""
+"Find out more about <a href=\"https://www.parliament.uk/mps-lords-and-"
+"offices/offices/commons/speakers-office/\">The Speaker</a> and <a "
+"href=\"https://www.parliament.uk/about/living-heritage/evolutionofparliament/"
+"parliamentwork/offices-and-ceremonies/overview/the-speaker/elections/"
+"\">their role in elections</a> on the parliament.uk website."
+msgstr ""
 
 #: wcivf/apps/people/models.py:75
 msgid "Elected unopposed"
