@@ -125,7 +125,7 @@ class PostcodeView(
         ):
             return []
 
-        for ballot in self.ballot_dict:
+        for ballot in self.ballot_dict.get("ballots", []):
             yield from ballot.referendums.all()
 
     def multiple_city_of_london_elections_today(self):
