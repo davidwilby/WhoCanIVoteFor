@@ -319,7 +319,7 @@ class TestPostcodeViewMethods:
         assert today in ballots
         assert tomorrow not in ballots
 
-    def test_get_ballots(self, view_obj, mocker):
+    def test_get_ballot_dict(self, view_obj, mocker):
         view_obj.postcode = "E12AX"
         mocker.patch.object(
             view_obj,
@@ -327,16 +327,16 @@ class TestPostcodeViewMethods:
             return_value="ballots",
         )
 
-        result = view_obj.get_ballots()
-        view_obj.postcode_to_ballots.assert_called_once_with(postcode="E12AX")
+        result = view_obj.get_ballot_dict()
+        view_obj.postcode_to_ballots.assert_called_once_with(postcode="E12AX", uprn=None)
         assert result == "ballots"
 
-    def test_get_ballots_when_already_set(self, view_obj, mocker):
+    def test_get_ballot_dict_when_already_set(self, view_obj, mocker):
         view_obj.postcode = "E12AX"
-        view_obj.ballots = "ballots"
+        view_obj.ballot_dict = "ballots"
         mocker.patch.object(view_obj, "postcode_to_ballots")
 
-        result = view_obj.get_ballots()
+        result = view_obj.get_ballot_dict()
         view_obj.postcode_to_ballots.assert_not_called()
         assert result == "ballots"
 
