@@ -61,7 +61,7 @@ class TestHtml:
             reverse("elections_view"),
             ElectionFactory().get_absolute_url(),
             PostElectionFactory().get_absolute_url(),
-            reverse("postcode_view", kwargs={"postcode": "EC1A4EU"}),
+            reverse("postcode_view", kwargs={"postcode": "E3 2NX"}),
             reverse("api:api-root"),
             reverse("dc_signup_form:mailing_list_signup_view"),
             reverse("feedback_form_view"),

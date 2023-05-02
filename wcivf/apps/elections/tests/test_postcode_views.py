@@ -76,10 +76,11 @@ class PostcodeViewTests(TestCase):
         self.assertEqual(response.context["postelections"].count(), 1)
         self.assertContains(response, "Tower Hamlets")
 
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_mayor_elections.yaml")
     def test_dc_logging_postcode_valid(self):
         with self.assertLogs(level="DEBUG") as captured:
             self.client.get(
-                "/elections/DD11DD/",
+                "/elections/e32nx/",
                 {
                     "foo": "bar",
                     "utm_source": "test",
@@ -93,7 +94,7 @@ class PostcodeViewTests(TestCase):
             if record.message.startswith("dc-postcode-searches"):
                 logging_message = record
         assert logging_message
-        assert '"postcode": "DD1 1DD"' in logging_message.message
+        assert '"postcode": "E3 2NX"' in logging_message.message
         assert '"dc_product": "WCIVF"' in logging_message.message
         assert '"utm_source": "test"' in logging_message.message
         assert '"utm_campaign": "better_tracking"' in logging_message.message
