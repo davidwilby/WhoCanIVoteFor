@@ -9,26 +9,6 @@ interactions:
     method: GET
     uri: https://developers.democracyclub.org.uk/api/v1/postcode/E3%202NX/
   response:
-    body: {string: ''}
-    headers:
-      Connection: [keep-alive]
-      Content-Length: ['0']
-      Content-Type: [text/html; charset=utf-8]
-      Date: ['Tue, 17 Apr 2018 11:59:21 GMT']
-      Location: ['/api/v1/postcode/E3%202NX/']
-      Server: [nginx]
-      X-Frame-Options: [SAMEORIGIN]
-    status: {code: 301, message: Moved Permanently}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.9.1]
-    method: GET
-    uri: https://developers.democracyclub.org.uk/api/v1/postcode/E3%202NX/
-  response:
     body: { string: '{
       "address_picker": false,
       "addresses": [],
