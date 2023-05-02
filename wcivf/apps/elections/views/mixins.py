@@ -13,7 +13,7 @@ from django.urls import reverse
 
 from core.models import log_postcode
 from core.utils import LastWord
-from elections.devs_dc_client import DevsDCClient
+from elections.devs_dc_client import DevsDCClient, DevsDCAPIException
 from leaflets.models import Leaflet
 from elections.constants import UPDATED_SLUGS
 
@@ -33,7 +33,7 @@ class PostcodeToPostsMixin(object):
 
         try:
             context = self.get_context_data(**kwargs)
-        except InvalidPostcodeError:
+        except (InvalidPostcodeError, DevsDCAPIException):
             return HttpResponseRedirect(
                 "/?invalid_postcode=1&postcode={}".format(self.postcode)
             )

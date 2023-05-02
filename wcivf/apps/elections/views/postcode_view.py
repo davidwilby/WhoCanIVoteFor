@@ -16,6 +16,7 @@ from .mixins import (
     NewSlugsRedirectMixin,
 )
 from elections.models import InvalidPostcodeError
+from ..devs_dc_client import DevsDCAPIException
 
 
 class PostcodeView(
@@ -66,7 +67,7 @@ class PostcodeView(
             ballot_dict = self.get_ballot_dict()
             context["address_picker"] = ballot_dict.get("address_picker")
             context["addresses"] = ballot_dict.get("addresses")
-        except InvalidPostcodeError as exception:
+        except (InvalidPostcodeError, DevsDCAPIException) as exception:
             raise exception
 
         entry = settings.POSTCODE_LOGGER.entry_class(
@@ -221,7 +222,7 @@ class PostcodeiCalView(
         postcode = kwargs["postcode"]
         try:
             ballots = self.postcode_to_ballots(postcode=postcode)
-        except InvalidPostcodeError:
+        except (InvalidPostcodeError, DevsDCAPIException):
             return HttpResponseRedirect(
                 f"/?invalid_postcode=1&postcode={postcode}"
             )
