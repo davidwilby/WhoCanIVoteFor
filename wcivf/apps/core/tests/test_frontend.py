@@ -8,7 +8,7 @@ shown before and after template changes.
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
-from dc_utils.tests.helpers import validate_html
+from dc_utils.tests.helpers import validate_html_str
 from people.tests.factories import (
     PersonFactory,
     PersonPostWithPartyFactory,
@@ -71,13 +71,14 @@ class TestHtml:
             reverse("stv_voting_system_view"),
         ]
 
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_mayor_elections.yaml")
     @pytest.mark.django_db
     def test_html_valid(self, client, subtests, urls):
         for url in urls:
             with subtests.test(msg=url):
-                assert client.get(url).status_code == 200
-                _, errors = validate_html(client, url)
-                print(url, errors)
+                resp = client.get(url)
+                assert resp.status_code == 200
+                _, errors = validate_html_str(resp.content)
                 assert errors == ""
 
 
