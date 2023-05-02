@@ -43,19 +43,6 @@ urlpatterns = [
         name="dummy_postcode_view",
     ),
     re_path(
-        r"^(?P<postcode>[^/]+)/(?P<uprn>[^/]+)/$",
-        PostcodeView.as_view(),
-        name="uprn_view",
-    ),
-    re_path(
-        r"^(?P<postcode>[^/]+)/$", PostcodeView.as_view(), name="postcode_view"
-    ),
-    re_path(
-        r"^(?P<postcode>[^/]+).ics$",
-        PostcodeiCalView.as_view(),
-        name="postcode_ical_view",
-    ),
-    re_path(
         r"^voting_system/fptp/",
         TranslatedTemplateView.as_view(
             template_name="elections/fptp.html",
@@ -86,5 +73,18 @@ urlpatterns = [
             extra_context={"voting_sytem": "Single Transferable Vote"},
         ),
         name="stv_voting_system_view",
+    ),
+    re_path(
+        r"^(?P<postcode>[^/]+)/(?P<uprn>[^/]+)/$",
+        PostcodeView.as_view(),
+        name="uprn_view",
+    ),
+    re_path(
+        r"^(?P<postcode>[^/]+).ics$",
+        PostcodeiCalView.as_view(),
+        name="postcode_ical_view",
+    ),
+    re_path(
+        r"^(?P<postcode>[^/]+)/$", PostcodeView.as_view(), name="postcode_view"
     ),
 ]
