@@ -328,7 +328,9 @@ class TestPostcodeViewMethods:
         )
 
         result = view_obj.get_ballot_dict()
-        view_obj.postcode_to_ballots.assert_called_once_with(postcode="E12AX", uprn=None)
+        view_obj.postcode_to_ballots.assert_called_once_with(
+            postcode="E12AX", uprn=None
+        )
         assert result == "ballots"
 
     def test_get_ballot_dict_when_already_set(self, view_obj, mocker):
