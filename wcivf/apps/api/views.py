@@ -160,7 +160,7 @@ class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
             pes = pes.modified_gt_with_related(date=modified_gt)
         else:
             pes = pes.order_by(*ordering)
-        ret = pes[:100]
+        ret = {"ballots": pes[:100]}
         return ret
 
 

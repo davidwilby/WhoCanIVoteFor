@@ -312,7 +312,7 @@ class TestPostcodeViewMethods:
             election__slug="election.tomorrow",
             election__election_date="2021-05-07",
         )
-        view_obj.ballots = PostElection.objects.all()
+        view_obj.ballot_dict = {"ballots": PostElection.objects.all()}
         ballots = view_obj.get_todays_ballots()
 
         assert len(ballots) == 1
@@ -424,7 +424,9 @@ class TestPostcodeViewMethods:
     def test_num_ballots_no_parish_election(self, view_obj, mocker):
         future_post_election = mocker.MagicMock(spec=PostElection, past_date=0)
         past_post_election = mocker.MagicMock(spec=PostElection, past_date=1)
-        view_obj.ballots = [future_post_election, past_post_election]
+        view_obj.ballot_dict = {
+            "ballots": [future_post_election, past_post_election]
+        }
         assert view_obj.num_ballots() == 1
 
     def test_num_ballots_with_contested_parish_election(self, view_obj, mocker):
@@ -435,7 +437,9 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=True,
         )
-        view_obj.ballots = [future_post_election, past_post_election]
+        view_obj.ballot_dict = {
+            "ballots": [future_post_election, past_post_election]
+        }
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 2
 
@@ -449,7 +453,9 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=False,
         )
-        view_obj.ballots = [future_post_election, past_post_election]
+        view_obj.ballot_dict = {
+            "ballots": [future_post_election, past_post_election]
+        }
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
@@ -463,7 +469,9 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=None,
         )
-        view_obj.ballots = [future_post_election, past_post_election]
+        view_obj.ballot_dict = {
+            "ballots": [future_post_election, past_post_election]
+        }
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
@@ -475,7 +483,9 @@ class TestPostcodeViewMethods:
             in_past=True,
             is_contested=True,
         )
-        view_obj.ballots = [future_post_election, past_post_election]
+        view_obj.ballot_dict = {
+            "ballots": [future_post_election, past_post_election]
+        }
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
@@ -499,9 +509,11 @@ class TestPostcodeViewMethods:
         """
         post_election = PostElectionFactory()
         post_election.num_parish_councils = 0
-        view_obj.ballots = PostElection.objects.annotate(
-            num_parish_councils=Count("parish_councils")
-        )
+        view_obj.ballot_dict = {
+            "ballots": PostElection.objects.annotate(
+                num_parish_councils=Count("parish_councils")
+            )
+        }
 
         result = view_obj.get_parish_council_election()
         assert result is None
@@ -517,9 +529,11 @@ class TestPostcodeViewMethods:
         post_election.num_parish_councils = 0
         parish_council_election = ParishCouncilElection.objects.create()
         parish_council_election.ballots.add(post_election)
-        view_obj.ballots = PostElection.objects.annotate(
-            num_parish_councils=Count("parish_councils")
-        )
+        view_obj.ballot_dict = {
+            "ballots": PostElection.objects.annotate(
+                num_parish_councils=Count("parish_councils")
+            )
+        }
 
         result = view_obj.get_parish_council_election()
         assert result == parish_council_election
@@ -533,7 +547,9 @@ class TestPostcodeViewMethods:
         post_election_no_id = mocker.MagicMock(
             spec=PostElection, requires_voter_id=None, cancelled=False
         )
-        view_obj.ballots = [post_election_requires_id, post_election_no_id]
+        view_obj.ballot_dict = {
+            "ballots": [post_election_requires_id, post_election_no_id]
+        }
         assert view_obj.get_voter_id_status() == "EA-2022"
 
     @pytest.mark.django_db
@@ -541,7 +557,9 @@ class TestPostcodeViewMethods:
         post_election_no_id = mocker.MagicMock(
             spec=PostElection, requires_voter_id=None, cancelled=False
         )
-        view_obj.ballots = [post_election_no_id, post_election_no_id]
+        view_obj.ballot_dict = {
+            "ballots": [post_election_no_id, post_election_no_id]
+        }
         assert view_obj.get_voter_id_status() is None
 
 

@@ -158,10 +158,10 @@ class PostcodeView(
         assign a single parish council for to a single english local election
         ballot. So in practice we should only ever find one object.
         """
-        if not self.ballot_dict.get("ballots"):
-            return None
         if self.parish_council_election is not None:
             return self.parish_council_election
+        if not self.ballot_dict.get("ballots"):
+            return None
 
         ballots_with_parishes = self.ballot_dict.get("ballots").filter(
             num_parish_councils__gt=0
@@ -170,7 +170,7 @@ class PostcodeView(
             return None
 
         self.parish_council_election = ParishCouncilElection.objects.filter(
-            ballots__in=self.ballot_dict
+            ballots__in=self.ballot_dict["ballots"]
         ).first()
         return self.parish_council_election
 
