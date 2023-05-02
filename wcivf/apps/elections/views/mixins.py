@@ -55,7 +55,6 @@ class PostcodeToPostsMixin(object):
             for ballot in election_date.get("ballots", []):
                 all_ballots.append(ballot["ballot_paper_id"])
             if election_date["polling_station"]["polling_station_known"]:
-                print("ASDASD")
                 ret["polling_station_known"] = True
                 ret["polling_station"] = election_date["polling_station"]
 
