@@ -85,6 +85,11 @@ urlpatterns = [
         name="postcode_ical_view",
     ),
     re_path(
+        r"^(?P<postcode>[^/]+)/(?P<uprn>[^/]+).ics$",
+        PostcodeiCalView.as_view(),
+        name="uprn_ical_view",
+    ),
+    re_path(
         r"^(?P<postcode>[^/]+)/$", PostcodeView.as_view(), name="postcode_view"
     ),
 ]

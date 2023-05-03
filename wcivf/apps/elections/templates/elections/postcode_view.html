@@ -60,8 +60,7 @@
                             {% blocktrans trimmed %}Add future elections in {{ postcode }} to your calendar{% endblocktrans %}
                         </h4>
                         <p>
-                            <a href="https://calendar.google.com/calendar/u/0/embed?src=tm55j9m2lict2h021b3479gpntshunvd@import.calendar.google.com&ctz=Europe/London">{% trans "Subscribe to the iCal feed" %}</a>
-                            <p>{% trans "Or manually subscribe by following these simple steps for your chosen calendar tool:" %}</p>
+                            <p>{% trans "Manually subscribe by following these simple steps for your chosen calendar tool:" %}</p>
                             <ol>
                                 <li>
                                     {% trans "In your calendar app settings, choose the option for adding a new calendar." %}
@@ -70,7 +69,11 @@
                                     {% trans "If presented with the option to choose a calendar type, choose web calendar." %}
                                 </li>
                                 <li>
-                                    {% trans 'Enter this URL and save' %}: webcal://whocanivotefor.co.uk{% url 'postcode_ical_view' postcode %}
+                                    {% if uprn %}
+                                        {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'uprn_ical_view' postcode uprn %}</code>
+                                    {% else %}
+                                        {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'postcode_ical_view' postcode %}</code>
+                                    {% endif %}
                                 </li>
                             </ol>
                         </p>

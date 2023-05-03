@@ -220,8 +220,11 @@ class PostcodeiCalView(
 
     def get(self, request, *args, **kwargs):
         postcode = kwargs["postcode"]
+        uprn = kwargs.get("uprn")
         try:
-            self.ballot_dict = self.postcode_to_ballots(postcode=postcode)
+            self.ballot_dict = self.postcode_to_ballots(
+                postcode=postcode, uprn=uprn
+            )
         except (InvalidPostcodeError, DevsDCAPIException):
             return HttpResponseRedirect(
                 f"/?invalid_postcode=1&postcode={postcode}"
@@ -280,12 +283,12 @@ class PostcodeiCalView(
                 ),
             )
             if polling_station.get("polling_station_known"):
-                geometry = polling_station["polling_station"]["geometry"]
+                geometry = polling_station["station"]["geometry"]
                 if geometry:
                     event["geo"] = "{};{}".format(
                         geometry["coordinates"][0], geometry["coordinates"][1]
                     )
-                properties = polling_station["polling_station"]["properties"]
+                properties = polling_station["station"]["properties"]
                 event["location"] = vText(
                     "{}, {}".format(
                         properties["address"].replace("\n", ", "),
