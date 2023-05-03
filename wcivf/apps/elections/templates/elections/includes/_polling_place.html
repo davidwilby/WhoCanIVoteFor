@@ -143,8 +143,14 @@
 
         {% if polling_station.polling_station_known and polling_station.station.geometry %}
             <p>
-                <a href="https://wheredoivote.co.uk/postcode/{{ postcode }}">
-                    {% trans "Get walking directions from" %} {{ postcode }}</a>.
+                {% if uprn %}
+                    <a href="https://wheredoivote.co.uk/address/{{ uprn }}">
+                        {% trans "Get directions" %}</a>.
+
+                {% else %}
+                    <a href="https://wheredoivote.co.uk/postcode/{{ postcode }}">
+                        {% trans "Get directions from" %} {{ postcode }}</a>.
+                {% endif %}
             </p>
         {% endif %}
 
