@@ -1,9 +1,7 @@
 from datetime import date, datetime
 from typing import Optional
 
-import requests
 from django.db.models import F, Prefetch
-from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.core.cache import cache
 from django.db.models import IntegerField
@@ -18,11 +16,8 @@ from leaflets.models import Leaflet
 from elections.constants import UPDATED_SLUGS
 
 from elections.constants import (
-    POSTCODE_TO_BALLOT_KEY_FMT,
     PEOPLE_FOR_BALLOT_KEY_FMT,
-    POLLING_STATIONS_KEY_FMT,
 )
-from wcivf.settings import DEVS_DC_BASE
 
 DEVS_DC_CLIENT = DevsDCClient()
 

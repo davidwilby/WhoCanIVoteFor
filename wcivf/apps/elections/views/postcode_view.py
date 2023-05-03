@@ -247,7 +247,7 @@ class PostcodeiCalView(
         if self.ballot_dict.get("address_picker", False):
             event = Event()
             event["uid"] = f"{postcode}-address-picker"
-            event["summary"] = f"You may have upcoming elections"
+            event["summary"] = "You may have upcoming elections"
             event.add("dtstamp", timezone.now())
             event.add("dtstart", timezone.now().date())
             event.add("dtend", timezone.now().date())
