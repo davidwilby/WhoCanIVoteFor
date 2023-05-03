@@ -7,7 +7,7 @@
         {% else %}
             {% regroup postelections by election.election_date as header_elections_by_date %}
             {% if address_picker %}
-                <h2>Enter your address</h2>
+                <h2>Select your address</h2>
             {% else %}
                 <h2>{% trans "Elections in your area" %}</h2>
             {% endif %}
