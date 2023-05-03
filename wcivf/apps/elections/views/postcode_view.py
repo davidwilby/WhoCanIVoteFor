@@ -221,13 +221,13 @@ class PostcodeiCalView(
     def get(self, request, *args, **kwargs):
         postcode = kwargs["postcode"]
         try:
-            ballots = self.postcode_to_ballots(postcode=postcode)
+            self.ballot_dict = self.postcode_to_ballots(postcode=postcode)
         except (InvalidPostcodeError, DevsDCAPIException):
             return HttpResponseRedirect(
                 f"/?invalid_postcode=1&postcode={postcode}"
             )
 
-        polling_station = self.get_polling_station_info(postcode)
+        polling_station = self.ballot_dict.get("polling_station")
 
         cal = Calendar()
         cal["summary"] = "Elections in {}".format(postcode)
@@ -237,7 +237,30 @@ class PostcodeiCalView(
         cal.add("version", "2.0")
         cal.add("prodid", "-//Elections in {}//mxm.dk//".format(postcode))
 
-        for post_election in ballots:
+        # If we need the user to enter an address then we
+        # need to add an event asking them to do this.
+        # This is a bit of a hack, but there's no real other
+        # way to tell the user about address pickers
+        if self.ballot_dict.get("address_picker", False):
+            event = Event()
+            event["uid"] = f"{postcode}-address-picker"
+            event["summary"] = f"You may have upcoming elections"
+            event.add("dtstamp", timezone.now())
+            event.add("dtstart", timezone.now().date())
+            event.add("dtend", timezone.now().date())
+            event.add(
+                "DESCRIPTION",
+                (
+                    f"In order to tell you about upcoming elections you need to"
+                    f"pick your address from a list and update your calender feed URL"
+                    f"Please visit https://whocanivotefor.co.uk/elections/{postcode}/, pick your"
+                    f"address and then use the calendar URL on that page."
+                ),
+            )
+            cal.add_component(event)
+            return HttpResponse(cal.to_ical(), content_type="text/calendar")
+
+        for post_election in self.ballot_dict["ballots"]:
             if post_election.cancelled:
                 continue
             event = Event()

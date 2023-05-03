@@ -61,6 +61,12 @@ class PostcodeViewTests(TestCase):
         response = self.client.get("/elections/CB13HU.ics", follow=True)
         self.assertEqual(response.status_code, 200)
 
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_ical_view.yaml")
+    def test_ical_view_address_picker(self):
+        response = self.client.get("/elections/AA13AA.ics", follow=True)
+        self.assertEqual(response.status_code, 200)
+        assert "You may have upcoming elections" in response.content.decode()
+
     @vcr.use_cassette("fixtures/vcr_cassettes/test_mayor_elections.yaml")
     def test_mayor_election_postcode_lookup(self):
         election = ElectionFactory(slug="mayor.tower-hamlets.2018-05-03")
