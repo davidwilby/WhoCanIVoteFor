@@ -122,7 +122,7 @@
                 </p>
             {% endif %}
 
-            {% if postelection.people and not postelection.cancelled %}
+            {% if postelection.people and postelection.should_show_candidates %}
                 {% if postelection.display_as_party_list %}
                     {% include "elections/includes/_people_list_with_lists.html" with people=postelection.people %}
                 {% else %}
@@ -130,7 +130,7 @@
                 {% endif %}
             {% endif %}
 
-            {% if postelection.should_display_sopn_info and not postelection.cancelled %}
+            {% if postelection.should_display_sopn_info and not postelection.should_show_candidates %}
                 <p>
                     {% if postelection.locked %}
                         {% blocktrans trimmed with sopn_url=postelection.ynr_sopn_link %}

@@ -605,6 +605,23 @@ class PostElection(TimeStampedModel):
         """
         return self.expected_sopn_date <= timezone.now().date()
 
+    @property
+    def should_show_candidates(self):
+        if not self.cancelled:
+            return True
+        if not self.metadata:
+            return True
+        if reason := self.metadata.get("cancelled_election", {}).get(
+            "cancellation_reason", ""
+        ):
+            if reason == "CANDIDATE_DEATH":
+                return False
+            if reason == "EQUAL_CANDIDATES":
+                return True
+            if reason == "UNDER_CONTESTED":
+                return True
+        return True
+
 
 class VotingSystem(models.Model):
     slug = models.SlugField(primary_key=True)
