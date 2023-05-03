@@ -34,10 +34,3 @@ class DevsDCClient:
         if req.status_code >= 400:
             raise DevsDCAPIException(response=req)
         return req.json()
-
-    def get_postcode(self, postcode):
-        # TODO: Logging
-        return self.make_request(postcode=postcode)
-
-    def get_uprn(self, postcode, uprn):
-        return self.make_request(postcode=postcode, uprn=uprn)
