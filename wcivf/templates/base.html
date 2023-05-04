@@ -82,7 +82,13 @@
             </ul>
         </aside>
     {% endif %}
+    <aside class="ds-status" aria-label="Status">
+        <ul class="ds-stack">
+            <li class="ds-status-message">We're collecting results as they are published by councils. Please check back later.</li>
+        </ul>
+    </aside>
 {% endblock messages %}
+
 
 {% block content %}
     {% block page_content %}
@@ -107,7 +113,6 @@
                     <li><a href="https://democracyclub.org.uk/contact/">{% trans "Contact Us" %}</a></li>
                     <li><a href="https://democracyclub.org.uk/blog/">{% trans "Blog" %}</a></li>
                     <li><a href="https://twitter.com/democlub">{% trans "Twitter" %}</a></li>
-                    <li><a href="https://facebook.com/DemocracyClub">{% trans "Facebook" %}</a></li>
                     <li><a href="https://github.com/DemocracyClub">{% trans "GitHub" %}</a></li>
                 </ul>
             </div>
