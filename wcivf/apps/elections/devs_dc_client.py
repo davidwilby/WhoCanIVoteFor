@@ -30,7 +30,9 @@ class DevsDCClient:
         if uprn:
             path = f"/api/v1/address/{uprn}/"
         url = urljoin(self.API_BASE, path)
-        req = requests.get(url, params={"auth_token": self.API_KEY})
+        req = requests.get(
+            url, params={"auth_token": self.API_KEY, "include_current": 1}
+        )
         if req.status_code >= 400:
             raise DevsDCAPIException(response=req)
         return req.json()

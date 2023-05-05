@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.9.1]
     method: GET
-    uri: https://developers.democracyclub.org.uk/api/v1/postcode/EC1A%204EU/
+    uri: https://developers.democracyclub.org.uk/api/v1/postcode/EC1A%204EU/?include_current=1
   response:
     body: {string: '{
   "address_picker": false,
@@ -80,7 +80,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.9.1]
     method: GET
-    uri: https://wheredoivote.co.uk/api/beta/postcode/EC1A%204EU.json?auth_token=DCINTERNAL-WHO-SYM-LOCAL
+    uri: https://wheredoivote.co.uk/api/beta/postcode/EC1A%204EU.json?auth_token=DCINTERNAL-WHO-SYM-LOCAL&include_current=1
   response:
     body: {string: '{"polling_station_known":false,"postcode_location":{"geometry":{"point":{"type":"Point","coordinates":[-0.0969942,51.5169862]}},"type":"Feature"},"custom_finder":null,"council":{"url":"https://wheredoivote.co.uk/api/beta/councils/E09000001/","council_id":"E09000001","council_type":"LBO","name":"City
         of London Corporation","email":"electoralservices@cityoflondon.gov.uk","phone":"0800
