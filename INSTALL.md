@@ -99,6 +99,10 @@ Create a Postgres database as detailed [below](#setting-up-postgresql-and-postgi
     python manage.py import_ballots
     python manage.py import_people
 
+If you want election results, you'll also need to import them:
+
+    python manage.py import_ballots --current
+
 If you don't want to install Redis for some reason (like e.g. laziness) you can override
 the cache backend with a file at `./wcivf/settings/local.py` with the following:
 
