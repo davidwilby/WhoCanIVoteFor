@@ -106,6 +106,9 @@ class PostelectionsToPeopleMixin(object):
         people_for_post = people_for_post.order_by(
             F("elected").desc(nulls_last=True), *order_by
         )
+        people_for_post = people_for_post.order_by(
+            F("votes_cast").desc(nulls_last=True), *order_by
+        )
         people_for_post = people_for_post.select_related(
             "post",
             "election",
