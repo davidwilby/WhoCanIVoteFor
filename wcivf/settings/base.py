@@ -173,6 +173,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Homepage feature switches
+SHOW_GB_ID_MESSAGING = True
+SHOW_RESULTS_CHART = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
