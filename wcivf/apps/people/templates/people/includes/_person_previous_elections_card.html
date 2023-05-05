@@ -16,6 +16,7 @@
                     {% if object.previous_party_count %}
                         <th>{% trans "Other party affiliations in the past 12 months" %}</th>
                     {% endif %}
+                    <th>{% trans "Position" %}</th>
                 </tr>
 
                 {% for person_post in object.personpost_set.all %}
@@ -33,6 +34,13 @@
                                 {% endfor %}
                             </td>
                         {% endif %}
+                        <td>
+                            {% if person_post.votes_cast %}
+                                {{ person_post.get_results_rank }}
+                            {% else %}
+                                Position not available
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>

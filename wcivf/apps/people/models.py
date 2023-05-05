@@ -39,6 +39,7 @@ class PersonPost(models.Model):
     previous_party_affiliations = models.ManyToManyField(
         Party, related_name="affiliated_memberships", blank=True
     )
+    rank = models.PositiveIntegerField(null=True)
 
     objects = PersonPostManager()
 
@@ -109,6 +110,34 @@ class PersonPost(models.Model):
                 "num_votes": num_votes
             }
         return _("Not elected (vote count not available)")
+
+    @property
+    def get_results_rank(self):
+        """Get the rank of the person in the election"""
+
+        candidate_count = len(self.post_election.personpost_set.all())
+        list_of_candidates_sorted_by_votes_cast = (
+            self.post_election.personpost_set.order_by("-votes_cast")
+        )
+        for index, candidate in enumerate(
+            list_of_candidates_sorted_by_votes_cast
+        ):
+            # If we find the candidate in the sorted list, assign their rank based on their index
+            # in the list. Otherwise, loop through the list until we find the candidate.
+            if self.person == candidate.person:
+                candidate.rank = index + 1
+                candidate.save()
+                # If the candidate has the same number of votes as the next candidate,
+                # there is a tie and assign a joint rank
+                if index != candidate_count - 1 and (
+                    candidate.votes_cast
+                    == list_of_candidates_sorted_by_votes_cast[
+                        index + 1
+                    ].votes_cast
+                ):
+                    return f"Joint {ordinal(candidate.rank)} / {candidate_count} candidates"
+                else:
+                    return f"{ordinal(candidate.rank)} / {candidate_count} candidates"
 
     class Meta:
         ordering = ("-election__election_date",)
