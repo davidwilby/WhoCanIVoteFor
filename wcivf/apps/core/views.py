@@ -99,6 +99,12 @@ class HomePageView(PostcodeFormView):
         context["poll_date"] = "on Thursday 12 December"
         if polls_open < now and polls_close > now:
             context["poll_date"] = "today"
+        context["show_gb_id_messaging"] = getattr(
+            settings, "SHOW_GB_ID_MESSAGING", False
+        )
+        context["show_results_chart"] = getattr(
+            settings, "SHOW_RESULTS_CHART", False
+        )
 
         return context
 

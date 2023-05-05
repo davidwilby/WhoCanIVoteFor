@@ -115,10 +115,15 @@ For hustings edit https://github.com/DemocracyClub/WhoCanIVoteFor/blob/master/wc
 
 Commit, PR, merge, deploy.
 
+If you want to show the GB voter ID messaging, set `SHOW_GB_ID_MESSAGING = True` in `settings/base.py`
+
+## Post-Election Tasks
+
+When we've got some results to show, you'll want to update `SHOW_RESULTS_CHART = True` in `settings/base.py`.
+You'll also need to grab the Flourish chart info and replace it in `/templates/home.html`. It should live inside the `{% if show_results_chart %}` block.
+
 ## Deployments
 
 Deployments are triggered by Circle CI. Take a look at `.circleci/config.yml` to see details of the deployment workflow.
 
 To increase the number of EC2 instances for an environment (e.g. during busy times around elections) increase the `min-size`, `max-size` and `desired-capacity` variables found in the `code_deploy` jobs in the `config.yml` file. For further details, see notes about scaling [scaling](/docs/troubleshooting.md#scaling).
-
-
