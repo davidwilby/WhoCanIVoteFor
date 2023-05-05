@@ -2,6 +2,9 @@ from people.tests.helpers import create_person
 from people.tests.factories import PersonFactory
 from django.test import TestCase
 
+from wcivf.apps.elections.tests.factories import ElectionFactory
+from wcivf.apps.people.tests.factories import PersonPostFactory
+
 
 class TestPersonModel(TestCase):
     def setUp(self):
@@ -134,3 +137,39 @@ class TestPersonModel(TestCase):
             expected = candidacy[1]
             with self.subTest(msg=candidacy[1]):
                 self.assertEqual(person.intro_template, expected)
+
+    def test_get_results_rank(self):
+        """Test that the get_results_rank method returns the correct rank
+        given vote count is available."""
+
+        election = ElectionFactory()
+        candidate1 = PersonPostFactory(election=election)
+        candidate2 = PersonPostFactory(election=election)
+        candidate3 = PersonPostFactory(election=election)
+        candidate1.votes_cast = 100
+        candidate2.votes_cast = 200
+        candidate3.votes_cast = 300
+        results_rank_str = candidate3.get_results_rank
+        candidate3.refresh_from_db()
+        self.assertTrue(results_rank_str, "1st / 3 candidates")
+
+    def test_get_results_rank_tied_candidates(self):
+        """Test that the get_results_rank method returns the correct rank
+        given vote count is available and there is a tie for a non-elected
+        candidate."""
+
+        election = ElectionFactory()
+        candidate1 = PersonPostFactory(election=election)
+        candidate2 = PersonPostFactory(election=election)
+        candidate3 = PersonPostFactory(election=election)
+        candidate4 = PersonPostFactory(election=election)
+        candidate1.votes_cast = 100
+        candidate2.votes_cast = 200
+        candidate3.votes_cast = 200
+        candidate4.votes_cast = 300
+        results_rank_str_2 = candidate2.get_results_rank
+        results_rank_str_3 = candidate3.get_results_rank
+        candidate2.refresh_from_db()
+        candidate3.refresh_from_db()
+        self.assertTrue(results_rank_str_2, "Joint 2nd / 4 candidates")
+        self.assertTrue(results_rank_str_3, "Joint 2nd / 4 candidates")
