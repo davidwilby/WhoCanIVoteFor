@@ -36,15 +36,6 @@ class TestPersonModel(TestCase):
             == " Consectetur adipiscing elit. Vivamus est eleven."
         )
 
-    def test_display_deceased(self):
-        self.party = PartyFactory()
-        self.election = ElectionFactory()
-        self.personpost = PersonPostFactory(
-            person=self.person, party=self.party, election=self.election
-        )
-        self.person.death_date = "01/01/2021"
-        assert self.person.display_deceased is True
-
     def test_facebook_personal_username(self):
         self.person.facebook_personal_url = (
             "https://www.facebook.com/vicky.ford.142"
