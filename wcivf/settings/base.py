@@ -175,7 +175,7 @@ USE_TZ = True
 
 # Homepage feature switches
 SHOW_GB_ID_MESSAGING = False
-SHOW_RESULTS_CHART = True
+SHOW_RESULTS_CHART = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
