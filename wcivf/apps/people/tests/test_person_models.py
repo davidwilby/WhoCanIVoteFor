@@ -1,9 +1,5 @@
-from elections.tests.factories import (
-    ElectionFactory,
-)
-from parties.tests.factories import PartyFactory
 from people.tests.helpers import create_person
-from people.tests.factories import PersonFactory, PersonPostFactory
+from people.tests.factories import PersonFactory
 from django.test import TestCase
 
 
