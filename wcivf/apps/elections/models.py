@@ -404,6 +404,7 @@ class PostElection(TimeStampedModel):
             return get_election_timetable(
                 self.ballot_paper_id, self.post.territory
             ).sopn_publish_date
+
         except AttributeError:
             return None
 
@@ -604,7 +605,7 @@ class PostElection(TimeStampedModel):
     @property
     def past_expected_sopn_day(self):
         """
-        Return boolean for if the date we expected the sopn date
+        Return boolean for the date we expected the sopn date
         """
         return self.expected_sopn_date <= timezone.now().date()
 
