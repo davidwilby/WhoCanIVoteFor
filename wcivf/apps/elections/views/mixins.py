@@ -40,7 +40,10 @@ class PostcodeToPostsMixin(object):
             kwargs["uprn"] = uprn
         results_json = DEVS_DC_CLIENT.make_request(**kwargs)
         all_ballots = []
-        ret = {"address_picker": results_json["address_picker"]}
+        ret = {
+            "address_picker": results_json["address_picker"],
+            "polling_station": {},
+        }
         if ret["address_picker"]:
             ret["addresses"] = results_json["addresses"]
             return ret
