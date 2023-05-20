@@ -282,6 +282,7 @@ class PostcodeiCalView(
                     settings.CANONICAL_URL, postcode.replace(" ", "")
                 ),
             )
+
             if polling_station.get("polling_station_known"):
                 geometry = polling_station["station"]["geometry"]
                 if geometry:

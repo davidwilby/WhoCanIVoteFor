@@ -62,6 +62,19 @@ class PostcodeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     @vcr.use_cassette("fixtures/vcr_cassettes/test_ical_view.yaml")
+    def test_ical_view_no_polling_station(self):
+        election = ElectionFactory(slug="local.westminster.2018-11-22")
+        post = PostFactory(ynr_id="lancaster-gate.by", label="Romsey")
+
+        PostElectionFactory(
+            post=post,
+            election=election,
+            ballot_paper_id="local.westminster.lancaster-gate.by.2018-11-22",
+        )
+        response = self.client.get("/elections/CB14HU.ics", follow=True)
+        self.assertEqual(response.status_code, 200)
+
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_ical_view.yaml")
     def test_ical_view_address_picker(self):
         response = self.client.get("/elections/AA13AA.ics", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -572,6 +585,18 @@ class TestPostcodeViewMethods:
 
 class TestPostcodeiCalView:
     def test_invalid_postcode_redirects(self, mocker, client):
+        mocker.patch.object(
+            PostcodeToPostsMixin,
+            "postcode_to_ballots",
+            side_effect=InvalidPostcodeError,
+        )
+        url = reverse("postcode_ical_view", kwargs={"postcode": "TE1 1ST"})
+        response = client.get(url)
+
+        assert response.status_code == 302
+        assert response.url == "/?invalid_postcode=1&postcode=TE1%201ST"
+
+    def test_ical_with_no_polling_station(self, mocker, client):
         mocker.patch.object(
             PostcodeToPostsMixin,
             "postcode_to_ballots",
