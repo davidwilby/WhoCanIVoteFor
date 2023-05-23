@@ -98,42 +98,42 @@ Resources:
         dc-environment: !Ref AppDcEnvironment
         dc-product: wcivf
         CreatedVia: CloudFormation
-#      Events:
-#        ImportPeopleRecentlyUpdated:
-#          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
-#          Properties:
-#            Schedule: cron(*/5 * ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
-#            Name: import-people-recently-updated
-#            Description: Update all people updated in YNR recently
-#            Input: '{"command": "import_people", "args": ["--recently-updated"]}'
-#        DeleteDeletedPeople:
-#          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
-#          Properties:
-#            Schedule: rate(1 hour)
-#            Name: delete-deleted-people
-#            Description: Deletes people deleted in YNR in the last hour
-#            Input: '{"command": "delete_deleted_people"}'
-#        ImportBallotsRecentlyUpdated:
-#          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
-#          Properties:
-#            Schedule: cron(2-57/5 * ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
-#            Name: import-ballots-recently-updated
-#            Description: Update all ballots updated in YNR recently
-#            Input: '{"command": "import_ballots", "args": ["--recently-updated"]}'
-#        ImportParties:
-#          Type: Schedule
-#          Properties:
-#            Schedule: rate(1 day)
-#            Name: import-parties
-#            Description: Import parties
-#            Input: '{"command": "import_parties"}'
-#        BatchFeedbackToSlack:
-#          Type: Schedule
-#          Properties:
-#            Schedule: cron(0 * ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
-#            Name: batch-feedback-to-slack
-#            Description: Send feedback entries for the last week to slack
-#            Input: '{"command": "batch_feedback_to_slack", "args": ["--hours=1"]}'
+      Events:
+        ImportPeopleRecentlyUpdated:
+          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
+          Properties:
+            Schedule: cron(*/5 * ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
+            Name: import-people-recently-updated
+            Description: Update all people updated in YNR recently
+            Input: '{"command": "import_people", "args": ["--recently-updated"]}'
+        DeleteDeletedPeople:
+          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
+          Properties:
+            Schedule: rate(1 hour)
+            Name: delete-deleted-people
+            Description: Deletes people deleted in YNR in the last hour
+            Input: '{"command": "delete_deleted_people"}'
+        ImportBallotsRecentlyUpdated:
+          Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
+          Properties:
+            Schedule: cron(2-57/5 * ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
+            Name: import-ballots-recently-updated
+            Description: Update all ballots updated in YNR recently
+            Input: '{"command": "import_ballots", "args": ["--recently-updated"]}'
+        ImportParties:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 day)
+            Name: import-parties
+            Description: Import parties
+            Input: '{"command": "import_parties"}'
+        BatchFeedbackToSlack:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 9 ? * * *) # using the ? as you cannot use * wildcard for both day-of-month and day-of-week field. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
+            Name: batch-feedback-to-slack
+            Description: Send feedback entries for the last week to slack
+            Input: '{"command": "batch_feedback_to_slack", "args": ["--hours=24"]}'
 #        ImportHustings:
 #          Type: Schedule
 #          Properties:
@@ -148,13 +148,13 @@ Resources:
 #            Name: import-leaflets
 #            Description: Import leaflets
 #            Input: '{"command": "import_leaflets", "args": ["--recently-uploaded", "--uploaded-since=2022-4-1"]}'
-#        ImportWikipediaBios:
-#          Type: Schedule
-#          Properties:
-#            Schedule: rate(1 hour)
-#            Name: import-wikipedia-bios
-#            Description: Import wikipedia bio extracts
-#            Input: '{"command": "import_wikipedia_bios", "args": ["--current"]}'
+        ImportWikipediaBios:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 day)
+            Name: import-wikipedia-bios
+            Description: Import wikipedia bio extracts
+            Input: '{"command": "import_wikipedia_bios", "args": ["--current"]}'
 #        ILPGlobal:
 #          Type: Schedule
 #          Properties:
