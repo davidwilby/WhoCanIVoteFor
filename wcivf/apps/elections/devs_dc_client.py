@@ -9,7 +9,7 @@ from django.conf import settings
 class DevsDCAPIException(Exception):
     def __init__(self, response: requests.Response):
         try:
-            self.message = {"error": response.json().get("detail", "")}
+            self.message = {"error": response.json().get("message", "")}
         except JSONDecodeError:
             self.message = ""
         self.status = response.status_code
