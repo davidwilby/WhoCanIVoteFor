@@ -53,7 +53,7 @@ chown -R "$PROJECT_NAME"  "$PROJECT_ROOT"
 # Make sure pg_hba.conf is permissive.
 cat > /etc/postgresql/14/main/pg_hba.conf <<- EOF
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-local   all             postgres                                trust
+local   all             postgres                                ident map=trust
 local   all             all                                     trust
 local   all             all                                     md5
 host    all             all             127.0.0.1/32            md5
