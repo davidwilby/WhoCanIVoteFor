@@ -236,9 +236,9 @@ class Election(models.Model):
             "parish": "parishes",
             "constituency": "constituencies",
         }
-        suffix = self.post_set.first().division_suffix
-
-        if not suffix:
+        try:
+            suffix = self.post_set.first().division_suffix
+        except AttributeError:
             return "posts"
 
         return pluralise.get(suffix, f"{suffix}s")
