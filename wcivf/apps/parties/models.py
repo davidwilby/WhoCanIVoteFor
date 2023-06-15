@@ -168,6 +168,14 @@ class Party(models.Model):
         return None
 
 
+class PartyDescriptionQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def inactive(self):
+        return self.filter(active=False)
+
+
 class PartyDescription(TimeStampedModel):
     """
     A party can register one or more descriptions with The Electoral Commission.
@@ -182,6 +190,9 @@ class PartyDescription(TimeStampedModel):
 
     description = models.CharField(max_length=800)
     date_description_approved = models.DateField(null=True)
+    active = models.BooleanField(default=False)
+
+    objects = PartyDescriptionQuerySet.as_manager()
 
     class Meta:
         unique_together = (
@@ -189,7 +200,15 @@ class PartyDescription(TimeStampedModel):
             "description",
         )
 
-        ordering = ["date_description_approved"]
+        ordering = ["-active", "date_description_approved"]
+
+
+class PartyEmblemQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def inactive(self):
+        return self.filter(active=False)
 
 
 class PartyEmblem(TimeStampedModel):
@@ -201,9 +220,12 @@ class PartyEmblem(TimeStampedModel):
     description = models.CharField(max_length=255)
     date_approved = models.DateField(null=True)
     default = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
+
+    objects = PartyEmblemQuerySet.as_manager()
 
     class Meta:
-        ordering = ("-default", "ec_emblem_id")
+        ordering = ("-default", "-active", "ec_emblem_id")
 
 
 class LocalParty(TimeStampedModel):
