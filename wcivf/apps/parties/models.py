@@ -17,6 +17,7 @@ class PartyManager(models.Manager):
             "status": party["status"],
             "date_registered": party["date_registered"],
             "date_deregistered": party["date_deregistered"],
+            "alternative_name": party["alternative_name"],
         }
 
         if party["default_emblem"]:
@@ -36,6 +37,7 @@ class Party(models.Model):
 
     party_id = models.CharField(blank=True, max_length=100, primary_key=True)
     party_name = models.CharField(max_length=765)
+    alternative_name = models.CharField(max_length=765, null=True)
     emblem_url = models.URLField(blank=True, null=True)
     wikipedia_url = models.URLField(blank=True)
     description = models.TextField(blank=True)
