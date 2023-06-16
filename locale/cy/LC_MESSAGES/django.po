@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 12:41+0100\n"
+"POT-Creation-Date: 2023-06-16 12:53+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -1469,7 +1469,7 @@ msgid "%(person_name)s's home page"
 msgstr "Hafan %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:54
-#: wcivf/templates/base.html:109
+#: wcivf/templates/base.html:110
 msgid "Blog"
 msgstr "Blog"
 
@@ -2071,61 +2071,67 @@ msgid "Language:"
 msgstr "Iaith:"
 
 #: wcivf/templates/base.html:103
+#, fuzzy
+#| msgid "Parties"
+msgid "All Parties"
+msgstr "Pleidiau"
+
+#: wcivf/templates/base.html:104
 msgid "Standing as a candidate?"
 msgstr "Sefyll fel ymgeisydd?"
 
-#: wcivf/templates/base.html:104
+#: wcivf/templates/base.html:105
 #, python-format
 msgid "About %(SITE_TITLE)s"
 msgstr "Ynglŷn %(SITE_TITLE)s"
 
-#: wcivf/templates/base.html:105
+#: wcivf/templates/base.html:106
 msgid "Privacy"
 msgstr "Preifatrwydd"
 
-#: wcivf/templates/base.html:106
+#: wcivf/templates/base.html:107
 msgid "Source code"
 msgstr "Cod ffynhonnell"
 
-#: wcivf/templates/base.html:107
+#: wcivf/templates/base.html:108
 msgid "About Democracy Club"
 msgstr "Ynglŷn â'r Clwb Democratiaeth"
 
-#: wcivf/templates/base.html:108
+#: wcivf/templates/base.html:109
 msgid "Contact Us"
 msgstr "Cysylltwch â Ni"
 
-#: wcivf/templates/base.html:110
+#: wcivf/templates/base.html:111
 msgid "Twitter"
 msgstr "Trydar"
 
-#: wcivf/templates/base.html:111
+#: wcivf/templates/base.html:112
 msgid "GitHub"
 msgstr "GitHub"
 
-#: wcivf/templates/base.html:118
+#: wcivf/templates/base.html:119
 msgid "democracy"
 msgstr "democratiaeth"
 
-#: wcivf/templates/base.html:118
+#: wcivf/templates/base.html:119
 msgid "club"
 msgstr "clwb"
 
-#: wcivf/templates/base.html:124 wcivf/templates/home.html:5
+#: wcivf/templates/base.html:125 wcivf/templates/home.html:5
 #: wcivf/templates/home.html:6
 msgid "Who Can I Vote For?"
 msgstr "Pwy alla i bleidleisio ar gyfer?"
 
-#: wcivf/templates/base.html:128
+#: wcivf/templates/base.html:129
 #, python-format
 msgid "Copyright &copy; %(current_year)s"
 msgstr "Hawlfraint © %(current_year)s"
 
-#: wcivf/templates/base.html:129
+#: wcivf/templates/base.html:130
 msgid "Democracy Club Community Interest Company"
 msgstr "Cwmni Buddiannau Cymunedol y Clwb Democratiaeth"
 
-#: wcivf/templates/base.html:130
+#: wcivf/templates/base.html:131
 msgid ""
 "Company No: <a href=\"https://beta.companieshouse.gov.uk/"
 "company/09461226\">09461226</a>"
@@ -2133,7 +2139,7 @@ msgstr ""
 "Rhif y Cwmni: <a href=\"https://beta.companieshouse.gov.uk/"
 "company/09461226\">09461226</a>"
 
-#: wcivf/templates/base.html:132
+#: wcivf/templates/base.html:133
 msgid ""
 "Democracy Club is a UK-based Community Interest Company that builds the "
 "digital infrastructure needed for a 21st century democracy"
