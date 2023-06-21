@@ -29,7 +29,7 @@ PR-CL: Closed List
 
             {% if voting_system.slug == "FPTP" %}
                 <p>
-                    {% if postelection.winner_count > 1 %}
+                    {% if postelection.winner_count == 1 %}
                         {% blocktrans trimmed %}Mark an X in the box for your preferred candidate.{% endblocktrans %}
                     {% else %}
                         {% blocktrans trimmed %}Mark an X in the box for your preferred candidates.{% endblocktrans %}
