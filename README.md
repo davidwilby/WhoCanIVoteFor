@@ -103,6 +103,11 @@ render `foo.html`
 
 ## Pre-Election Tasks
 
+Update slack feedback schedule to post more frequently during election 
+season (perhaps daily)and less frequently during non-election season 
+(perhaps weekly). Both the hours and the cron schedule in needs to be 
+edited in `sam-template.yaml` for this change to take effect.
+
 # New WCIVF Google Sheets imports (Hustings, local parties)
 
 Peter will have set up some Google sheets in a known format. The CSV version of these sheets are imported in to WCIVF from time to time.
