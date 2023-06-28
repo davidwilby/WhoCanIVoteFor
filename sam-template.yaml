@@ -39,6 +39,11 @@ Parameters:
   AppDcEnvironment:
     Description: "The DC_ENVIRONMENT environment variable passed to the app."
     Type: String
+  
+  AppSendgridAPIKey:
+    Default: AppSendgridAPIKey
+    Description: "The SendGrid API key"
+    Type: AWS::SSM::Parameter::Value<String>
 
   VpcIdParameter:
     Description: "VPC ID"
@@ -94,6 +99,7 @@ Resources:
           SLACK_FEEDBACK_WEBHOOK_URL: !Ref AppSlackFeedbackWebhookUrl
           LOGGER_DB_PASSWORD: !Ref AppLoggerDbPassword
           LOGGER_DB_HOST: !Ref AppLoggerDbHost
+          SENDGRID_API_KEY: !Ref SendgridApiKey
       Tags:
         dc-environment: !Ref AppDcEnvironment
         dc-product: wcivf
