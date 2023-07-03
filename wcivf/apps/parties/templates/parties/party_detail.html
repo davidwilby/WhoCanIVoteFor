@@ -32,6 +32,9 @@
                     </div>
                     <div class="ds-not-sidebar">
                         <h2>{{ object.format_name }}</h2>
+                        {% if object.alternative_name %}
+                            <p>{% blocktrans with alt_name=object.alternative_name %}Alternative name: {{ alt_name }}{% endblocktrans %}</p>
+                        {% endif %}
                         <p>{% blocktrans with num_candidates=object.personpost_set.all.count|intcomma pluralize_candidates=object.personpost_set.all.count|pluralize %}{{ num_candidates }} candidate{{ pluralize_candidates }} in our database.{% endblocktrans %}</p>
                         {% if object.description %}
                             {{ object.description|markdown }}
@@ -101,24 +104,71 @@
             {% endif %}
         {% endif %}
 
-        {% if object.party_descriptions.all %}
-            <h3>{% trans "Ballot descriptions" %}</h3>
+
+        <h3>{% trans "Ballot descriptions" %}</h3>
+        {% if object.alternative_name or object.party_descriptions.active %}
             <p>{% blocktrans trimmed with ballot_name=object.party_name %} This party may appear on the ballot paper as "{{ ballot_name }}", or any of the following names:{% endblocktrans %}</p>
             <ul>
-                {% for description in object.party_descriptions.all %}
-                    <li>{{ description.description }}</li>
-                {% endfor %}
+                {% if object.alternative_name %}
+                    <li>{{ object.party_name}} | {{ object.alternative_name }}</li>
+                {% endif %}
+                {% if object.party_descriptions.active %}
+                    {% for description in object.party_descriptions.active %}
+                        <li>{{ description.description }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% else %}
+            <p>{% trans "This party currently has no alternative descriptions registered with the Electoral Commission." %}</p>
+        {% endif %}
+        {% if object.party_descriptions.inactive %}
+            <ul class="ds-details">
+                <li>
+                    <details>
+                        <summary>
+                            {% trans "Previous Descriptions" %}
+                        </summary>
+                        <p>{% trans "These descriptions are no longer registered with the Electoral Commission and cannot be used:" %}</p>
+                        <ul>
+                            {% for description in object.party_descriptions.inactive %}
+                                <li>{{ description.description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+                </li>
             </ul>
         {% endif %}
 
-        {% if object.emblems.all %}
-            <h3>{% trans "Emblems" %}</h3>
+
+        <h3>{% trans "Emblems" %}</h3>
+        {% if object.emblems.active %}
             <ul class="ds-grid" style="--gridCellMin: 5em;">
-                {% for emblem in object.emblems.all %}
+                {% for emblem in object.emblems.active %}
                     <li>
                         <img src="{{ emblem.emblem_url }}" alt="{{ emblem.description }}">
                     </li>
                 {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans "This party currently has no alternative emblems registered with the Electoral Commission." %}</p>
+        {% endif %}
+        {% if object.emblems.inactive %}
+            <ul class="ds-details">
+                <li>
+                    <details>
+                        <summary>
+                            {% trans "Previous Emblems" %}
+                        </summary>
+                        <p>{% trans "These emblems are no longer registered with the Electoral Commission and cannot be used:" %}</p>
+                        <ul class="ds-grid" style="--gridCellMin: 5em;">
+                            {% for emblem in object.emblems.inactive %}
+                                <li>
+                                    <img src="{{ emblem.emblem_url }}" alt="{{ emblem.description }}">
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+                </li>
             </ul>
         {% endif %}
     </div>
