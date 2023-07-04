@@ -68,7 +68,6 @@ INSTALLED_APPS = (
     "django_extensions",
     "rest_framework",
     "api",
-    "results",
     "pledges",
     "news_mentions",
     "dc_design_system",
