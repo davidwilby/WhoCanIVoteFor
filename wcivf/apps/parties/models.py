@@ -17,6 +17,7 @@ class PartyManager(models.Manager):
             "status": party["status"],
             "date_registered": party["date_registered"],
             "date_deregistered": party["date_deregistered"],
+            "alternative_name": party["alternative_name"],
         }
 
         if party["default_emblem"]:
@@ -36,6 +37,7 @@ class Party(models.Model):
 
     party_id = models.CharField(blank=True, max_length=100, primary_key=True)
     party_name = models.CharField(max_length=765)
+    alternative_name = models.CharField(max_length=765, null=True)
     emblem_url = models.URLField(blank=True, null=True)
     wikipedia_url = models.URLField(blank=True)
     description = models.TextField(blank=True)
@@ -168,6 +170,14 @@ class Party(models.Model):
         return None
 
 
+class PartyDescriptionQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def inactive(self):
+        return self.filter(active=False)
+
+
 class PartyDescription(TimeStampedModel):
     """
     A party can register one or more descriptions with The Electoral Commission.
@@ -182,6 +192,9 @@ class PartyDescription(TimeStampedModel):
 
     description = models.CharField(max_length=800)
     date_description_approved = models.DateField(null=True)
+    active = models.BooleanField(default=False)
+
+    objects = PartyDescriptionQuerySet.as_manager()
 
     class Meta:
         unique_together = (
@@ -189,7 +202,15 @@ class PartyDescription(TimeStampedModel):
             "description",
         )
 
-        ordering = ["date_description_approved"]
+        ordering = ["-active", "date_description_approved"]
+
+
+class PartyEmblemQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def inactive(self):
+        return self.filter(active=False)
 
 
 class PartyEmblem(TimeStampedModel):
@@ -201,9 +222,12 @@ class PartyEmblem(TimeStampedModel):
     description = models.CharField(max_length=255)
     date_approved = models.DateField(null=True)
     default = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
+
+    objects = PartyEmblemQuerySet.as_manager()
 
     class Meta:
-        ordering = ("-default", "ec_emblem_id")
+        ordering = ("-default", "-active", "ec_emblem_id")
 
 
 class LocalParty(TimeStampedModel):

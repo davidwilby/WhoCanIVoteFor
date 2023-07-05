@@ -208,7 +208,7 @@ SESSION_CACHE_ALIAS = "default"
 
 YNR_BASE = "https://candidates.democracyclub.org.uk"
 YNR_UTM_QUERY_STRING = "utm_source=who&utm_campaign=ynr_cta"
-EE_BASE = os.environ.get("EE_BASE", "https://elections.democracyclub.org.uk")
+EE_BASE = "https://elections.democracyclub.org.uk"
 DEVS_DC_BASE = os.environ.get(
     "DEVS_DC_BASE", "https://developers.democracyclub.org.uk"
 )

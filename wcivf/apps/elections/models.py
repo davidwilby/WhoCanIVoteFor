@@ -326,7 +326,10 @@ class Post(models.Model):
         """
         Returns last word of the division_description
         """
-        return self.division_description.split(" ")[-1].lower()
+        description = self.division_description
+        if not description:
+            return ""
+        return description.split(" ")[-1].lower()
 
     @property
     def full_label(self):
