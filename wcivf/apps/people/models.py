@@ -170,6 +170,7 @@ class Person(models.Model):
     instagram_url = models.CharField(blank=True, null=True, max_length=800)
     instagram_id = models.CharField(blank=True, null=True, max_length=800)
     youtube_profile = models.CharField(blank=True, null=True, max_length=800)
+    mastodon_username = models.CharField(blank=True, null=True, max_length=800)
 
     # Bios
     wikipedia_url = models.CharField(blank=True, null=True, max_length=800)
