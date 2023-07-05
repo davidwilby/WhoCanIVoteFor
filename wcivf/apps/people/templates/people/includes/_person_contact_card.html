@@ -36,6 +36,17 @@
                     </dd>
                 </div>
             {% endif %}
+            {% if object.mastodon_username %}
+                <div>
+                    <dt>{% trans "Mastodon" %}</dt>
+                    <dd>
+                        <a href="{{ object.mastodon_username}}" title="{% blocktrans trimmed with person_name=object.name%}{{ person_name }}'s Mastodon profile{% endblocktrans%}">
+                            {{ object.mastodon_username}}
+                        </a>
+                    </dd>
+                </div>
+            {% endif %}
+
 
             {% if object.linkedin_url %}
                 <div>

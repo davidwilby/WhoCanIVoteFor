@@ -8,6 +8,7 @@ from django.utils import timezone
 
 VALUE_TYPES_TO_IMPORT = [
     "twitter_username",
+    "mastodon_username",
     "facebook_page_url",
     "facebook_personal_url",
     "linkedin_url",
@@ -17,6 +18,7 @@ VALUE_TYPES_TO_IMPORT = [
     "wikipedia_url",
     "theyworkforyou",
     "youtube_profile",
+    "mastodon_username",
     "instagram_url",
 ]
 
