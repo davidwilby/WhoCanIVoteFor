@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 12:53+0100\n"
+"POT-Creation-Date: 2023-07-12 19:14+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -29,21 +29,21 @@ msgstr ""
 msgid "Enter your postcode"
 msgstr "Rhowch eich cod post"
 
-#: wcivf/apps/elections/models.py:655
+#: wcivf/apps/elections/models.py:659
 msgid "First-past-the-post"
 msgstr "Y Cyntaf i’r Felin"
 
-#: wcivf/apps/elections/models.py:657
+#: wcivf/apps/elections/models.py:661
 #, fuzzy
 #| msgid "The Additional Member System"
 msgid "Additional Member System"
 msgstr "Y System Aelodau Ychwanegol"
 
-#: wcivf/apps/elections/models.py:659
+#: wcivf/apps/elections/models.py:663
 msgid "Supplementary Vote"
 msgstr "Pleidlais Atodol"
 
-#: wcivf/apps/elections/models.py:661
+#: wcivf/apps/elections/models.py:665
 msgid "Single Transferable Vote"
 msgstr "Pleidlais Sengl Drosglwyddadwy"
 
@@ -74,7 +74,7 @@ msgid ""
 msgstr ""
 "Bydd yr etholiad hwn yn cael ei gynnal <strong>%(election_date)s</strong>"
 
-#: wcivf/apps/elections/templates/elections/election_view.html:40
+#: wcivf/apps/elections/templates/elections/election_view.html:39
 #, python-format
 msgid ""
 "%(stood_or_standing)s for this election, in <strong>%(post_count)s</strong> "
@@ -83,21 +83,21 @@ msgstr ""
 "Ymgeisiodd%(stood_or_standing)s yn yr etholiad hwn, mewn "
 "<strong>%(post_count)s</strong> swydd."
 
-#: wcivf/apps/elections/templates/elections/election_view.html:46
+#: wcivf/apps/elections/templates/elections/election_view.html:45
 msgid "Add more at our candidate crowd-sourcing site"
 msgstr "Ychwanegwch ragor ar ein gwefan torfoli ymgeiswyr"
 
-#: wcivf/apps/elections/templates/elections/election_view.html:51
+#: wcivf/apps/elections/templates/elections/election_view.html:50
 msgid "Add some candidates at our candidate crowd-sourcing site"
 msgstr "Ychwanegwch rai ymgeiswyr at ein gwefan torfoli ymgeiswyr"
 
-#: wcivf/apps/elections/templates/elections/election_view.html:55
+#: wcivf/apps/elections/templates/elections/election_view.html:54
 #, fuzzy, python-format
 #| msgid " %(title)s"
 msgid "%(title)s"
 msgstr " %(title)s"
 
-#: wcivf/apps/elections/templates/elections/election_view.html:59
+#: wcivf/apps/elections/templates/elections/election_view.html:58
 #, python-format
 msgid ""
 "<a href=\"%(postelection_url)s\">%(post_label)s</a> %(cancelled_message)s"
@@ -239,7 +239,9 @@ msgid "Elections"
 msgstr "Etholiadau"
 
 #: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:17
-msgid "How you vote"
+#, fuzzy
+#| msgid "How you vote"
+msgid "How to vote"
 msgstr "Sut i bleidleisio"
 
 #: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:20
@@ -1206,7 +1208,7 @@ msgstr " %(description)s "
 msgid ""
 "\n"
 "                                \"%(joint_name)s\" is a joint description of "
-"the %(first_name)s and the %(second_name)s.\n"
+"%(first_name)s and %(second_name)s.\n"
 "                            "
 msgstr ""
 "\n"
@@ -1236,7 +1238,9 @@ msgid ""
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:122
-msgid "This party currently has no alternative descriptions."
+msgid ""
+"This party currently has no descriptions registered with the Electoral "
+"Commission."
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:129
@@ -1248,29 +1252,30 @@ msgstr " %(description)s "
 #: wcivf/apps/parties/templates/parties/party_detail.html:131
 msgid ""
 "These descriptions are no longer registered with the Electoral Commission "
-"and cannot be used."
+"and cannot be used:"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:144
+#: wcivf/apps/parties/templates/parties/party_detail.html:143
 #, fuzzy
 #| msgid "emblem"
 msgid "Emblems"
 msgstr "symbol"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:154
-msgid "This party currently has no alternative emblems."
+#: wcivf/apps/parties/templates/parties/party_detail.html:153
+msgid ""
+"This party currently has no emblems registered with the Electoral Commission."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:161
+#: wcivf/apps/parties/templates/parties/party_detail.html:160
 #, fuzzy
 #| msgid "emblem"
 msgid "Previous Emblems"
 msgstr "symbol"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:163
+#: wcivf/apps/parties/templates/parties/party_detail.html:162
 msgid ""
 "These emblems are no longer registered with the Electoral Commission and "
-"cannot be used."
+"cannot be used:"
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_list.html:4
@@ -1350,38 +1355,38 @@ msgid ""
 "\">their role in elections</a> on the parliament.uk website."
 msgstr ""
 
-#: wcivf/apps/people/models.py:75
+#: wcivf/apps/people/models.py:76
 msgid "Elected unopposed"
 msgstr "Wedi'i ethol yn ddiwrthwynebiad."
 
-#: wcivf/apps/people/models.py:76
+#: wcivf/apps/people/models.py:77
 #, fuzzy
 #| msgid "This election was cancelled."
 msgid "(election cancelled)"
 msgstr "Canslwyd yr etholiad hwn."
 
-#: wcivf/apps/people/models.py:87
+#: wcivf/apps/people/models.py:88
 #, python-format
 msgid "(Results due after %(date)s)"
 msgstr ""
 
-#: wcivf/apps/people/models.py:99
+#: wcivf/apps/people/models.py:100
 #, fuzzy, python-format
 #| msgid "%(num_votes)s votes"
 msgid "%(num_votes)s votes (elected)"
 msgstr "%(num_votes)s pleidlais"
 
-#: wcivf/apps/people/models.py:102
+#: wcivf/apps/people/models.py:103
 msgid "Elected (vote count not available)"
 msgstr "Nid yw'r cyfrif pleidleisiau ar gael"
 
-#: wcivf/apps/people/models.py:108
+#: wcivf/apps/people/models.py:109
 #, fuzzy, python-format
 #| msgid "%(num_votes)s votes"
 msgid "%(num_votes)s votes (not elected)"
 msgstr "%(num_votes)s pleidlais"
 
-#: wcivf/apps/people/models.py:111
+#: wcivf/apps/people/models.py:112
 #, fuzzy
 #| msgid "Not Elected (vote count not available)"
 msgid "Not elected (vote count not available)"
@@ -1777,7 +1782,11 @@ msgstr "Canlyniadau"
 msgid "Other party affiliations in the past 12 months"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:24
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:19
+msgid "Position"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:25
 #, python-format
 msgid "%(post_label)s: %(election)s"
 msgstr "%(post_label)s: %(election)s"
