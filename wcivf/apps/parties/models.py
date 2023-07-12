@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import get_language
+from django.contrib.postgres.fields import ArrayField
 from model_utils.models import TimeStampedModel
 
 from elections.models import Election
@@ -18,6 +19,7 @@ class PartyManager(models.Manager):
             "date_registered": party["date_registered"],
             "date_deregistered": party["date_deregistered"],
             "alternative_name": party["alternative_name"],
+            "nations": party["nations"],
         }
 
         if party["default_emblem"]:
@@ -72,6 +74,17 @@ class Party(models.Model):
             ("Deregistered", "Deregistered"),
         ],
         default="Registered",
+    )
+    nations = ArrayField(
+        models.CharField(max_length=3),
+        max_length=3,
+        null=True,
+        verbose_name="Party nations",
+        help_text="""
+                    Some subset of ["ENG", "WAL", "SCO"],
+                    depending on where the party fields candidates. 
+                    Nullable as not applicable to NI-based parties.
+                """,
     )
     date_registered = models.DateField(null=True)
     date_deregistered = models.DateField(null=True)

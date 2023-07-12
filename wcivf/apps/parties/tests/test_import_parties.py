@@ -14,6 +14,7 @@ SINGLE_PARTY_JSON = """{
     "alternative_name": "Cynghrair Wombles",
     "register": "GB",
     "status": "Registered",
+    "nations": ["ENG", "WAL", "SCO"],
     "date_registered": "2018-01-31",
     "date_deregistered": null,
     "default_emblem": {
