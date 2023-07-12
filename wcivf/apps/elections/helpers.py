@@ -13,7 +13,6 @@ import requests
 
 
 class EEHelper:
-
     ee_cache = {}
 
     @property

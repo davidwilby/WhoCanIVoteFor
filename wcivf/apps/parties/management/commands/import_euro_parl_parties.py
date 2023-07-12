@@ -95,7 +95,6 @@ class Command(BaseCommand):
             )
 
     def add_manifesto(self, row, party):
-
         manifesto_web = row["EP2019 manifesto/info webpage"].strip()
         manifesto_pdf = row["EP2019 manifesto PDF"].strip()
         if any([manifesto_web, manifesto_pdf]):

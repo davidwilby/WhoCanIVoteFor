@@ -11,7 +11,6 @@ def change_weight(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("elections", "0016_postelection_contested")]
 
     operations = [migrations.RunPython(change_weight)]

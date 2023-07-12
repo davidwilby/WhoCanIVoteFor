@@ -23,7 +23,6 @@ def add_post_election(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("elections", "0020_postelection_ballot_paper_id"),
         ("people", "0024_personpost_elected"),

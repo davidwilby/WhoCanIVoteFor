@@ -306,7 +306,6 @@ class TestYNRBallotImporter:
                 assert importer.import_url == expected
 
     def test_add_replaced_ballot(self, importer, mocker, subtests):
-
         ballot = mocker.Mock()
         test_cases = [
             {

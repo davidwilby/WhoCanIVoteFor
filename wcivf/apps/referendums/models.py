@@ -4,7 +4,6 @@ from django.utils import timezone
 
 
 class Referendum(models.Model):
-
     # TODO remove this as part of a wider refactor of referendums if
     # these changes are kept
     ballots = models.ManyToManyField(

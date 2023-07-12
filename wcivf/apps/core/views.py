@@ -15,7 +15,6 @@ from .forms import PostcodeLookupForm
 
 class TranslatedTemplateView(TemplateView):
     def get_template_names(self):
-
         templates = super().get_template_names()
         base_template_name, ext = self.template_name.rsplit(".", 1)
         current_language = translation.get_language()
@@ -132,7 +131,6 @@ class StatusCheckView(View):
         return False
 
     def get(self, request, *args, **kwargs):
-
         status = 503
 
         data = {"ready_to_serve": False}

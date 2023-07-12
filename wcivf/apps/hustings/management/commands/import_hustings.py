@@ -56,7 +56,6 @@ def set_time_string_on_datetime(dt, time_string):
 
 
 class Command(BaseCommand):
-
     URLS = [
         # NI
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=1940364340&single=true&output=csv",

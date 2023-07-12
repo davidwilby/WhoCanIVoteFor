@@ -381,7 +381,6 @@ class TestPostElectionModel:
 
     @pytest.mark.freeze_time("2021-04-09")
     def test_past_expected_sopn_day(self, post_election, mocker, subtests):
-
         dates = [
             (timezone.datetime(2021, 4, 14).date(), False),
             (timezone.datetime(2021, 1, 1).date(), True),

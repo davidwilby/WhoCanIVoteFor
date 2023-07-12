@@ -17,7 +17,6 @@ class Command(BaseCommand):
         )
 
     def handle(self, **options):
-
         people = Person.objects.exclude(wikipedia_url=None)
         if options["current"]:
             current_candidacies = PersonPost.objects.current()

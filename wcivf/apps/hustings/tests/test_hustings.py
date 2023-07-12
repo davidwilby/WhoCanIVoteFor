@@ -38,7 +38,6 @@ class TestHustings(TestCase):
     @freeze_time("2017-3-22")
     @vcr.use_cassette("fixtures/vcr_cassettes/test_mayor_elections.yaml")
     def test_hustings_display_on_postcode_page(self):
-
         response = self.client.get("/elections/e32nx", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.hust.title)

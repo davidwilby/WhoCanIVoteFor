@@ -11,7 +11,6 @@ LocalElection = namedtuple("LocalElection", ["date", "csv_files"])
 
 
 class LocalPartyImporter(ReadFromUrlMixin, ReadFromFileMixin):
-
     # TODO check if this need updating
     JOINT_PARTIES = [["party:53", "joint-party:53-119"]]
 
@@ -228,7 +227,6 @@ class LocalPartyImporter(ReadFromUrlMixin, ReadFromFileMixin):
         language = row.get("Manifesto Language", "English").strip()
         easy_read_url = row.get("Manifesto Easy Read PDF", "").strip()
         if any([manifesto_web, manifesto_pdf]):
-
             defaults = {
                 "web_url": manifesto_web,
                 "pdf_url": manifesto_pdf,

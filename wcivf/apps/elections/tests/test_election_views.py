@@ -583,7 +583,6 @@ class TestPostElectionsToPeopleMixin(TestCase):
 
 
 class TestPostelectionsToPeopleMixin(TestCase):
-
     # should be updated as more queries are added
     PERSON_POST_QUERY = 1
     PLEDGE_QUERY = 1

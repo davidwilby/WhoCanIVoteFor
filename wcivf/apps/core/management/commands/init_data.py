@@ -23,7 +23,6 @@ class Command(BaseCommand):
         )
 
     def handle(self, **options):
-
         if options["full"]:
             commands = [
                 ("import_parties",),

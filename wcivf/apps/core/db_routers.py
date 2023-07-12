@@ -1,5 +1,4 @@
 class LoggerRouter(object):
-
     apps_that_use_logger = ["core", "feedback", "notifications"]
 
     def db_for_read(self, model, **hints):

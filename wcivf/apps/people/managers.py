@@ -94,7 +94,6 @@ class PersonPostManager(models.Manager):
 
 class PersonManager(models.Manager):
     def update_or_create_from_ynr(self, person):
-
         last_updated = parse_datetime(person["last_updated"])
 
         sort_name = person.get("sort_name")

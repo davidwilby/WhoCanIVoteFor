@@ -7,7 +7,6 @@ from django.utils import timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("people", "0028_person_pk_to_int")]
 
     operations = [

@@ -15,7 +15,6 @@ def add_site(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("core", "0001_initial"), ("sites", "0001_initial")]
 
     operations = [migrations.RunPython(add_site)]

@@ -8,7 +8,6 @@ from parties.models import Party
 
 class Command(BaseCommand):
     def handle(self, **options):
-
         next_page = settings.YNR_BASE + "/api/next/parties/?page_size=200"
         while next_page:
             req = requests.get(next_page)
