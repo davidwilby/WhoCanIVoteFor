@@ -81,7 +81,7 @@ class Party(models.Model):
         null=True,
         verbose_name="Party nations",
         help_text="""
-                    Some subset of ["ENG", "WAL", "SCO"],
+                    Some subset of ["ENG", "SCO", "WAL"],
                     depending on where the party fields candidates. 
                     Nullable as not applicable to NI-based parties.
                 """,
@@ -181,6 +181,28 @@ class Party(models.Model):
             return "Northern Ireland"
 
         return None
+
+    @property
+    def format_nations(self):
+        """
+        Returns human text describing which nation(s) a party can field candidates in
+        """
+        if len((self.nations or [])) == 0:
+            return None
+
+        nation_names = {
+            "ENG": "England",
+            "SCO": "Scotland",
+            "WAL": "Wales",
+        }
+
+        if len(self.nations) == 1:
+            return nation_names[self.nations[0]]
+
+        if len(self.nations) == 2:
+            return f"{nation_names[self.nations[0]]} and {nation_names[self.nations[1]]}"
+
+        return "England, Scotland, and Wales"
 
 
 class PartyDescriptionQuerySet(models.QuerySet):

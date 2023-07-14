@@ -65,9 +65,15 @@
         {% endif %}
 
         {% if object.register %}
-            {% blocktrans trimmed with register=object.format_register was_is=object.is_deregistered|yesno:"was,is" %}
-                <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register.</p>
-            {% endblocktrans %}
+            {% if object.nations %}
+                {% blocktrans trimmed with register=object.format_register nations=object.format_nations was_is=object.is_deregistered|yesno:"was,is" %}
+                    <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register and {{ was_is }} registered to stand candidates in <strong>{{ nations }}</strong>.</p>
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans trimmed with register=object.format_register was_is=object.is_deregistered|yesno:"was,is" %}
+                    <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register.</p>
+                {% endblocktrans %}
+            {% endif %}
         {% endif %}
 
         {% if object.is_joint_party %}

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-12 19:14+0100\n"
+"POT-Creation-Date: 2023-07-14 11:40+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -1187,20 +1187,29 @@ msgid ""
 "field candidates. "
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:68
+#: wcivf/apps/parties/templates/parties/party_detail.html:69
+#, fuzzy, python-format
+#| msgid "This election was held <strong>%(election_date)s</strong>."
+msgid ""
+"<p>This party %(was_is)s on the <strong>%(register)s</strong> register and "
+"%(was_is)s registered to stand candidates in <strong>%(nations)s</strong>.</"
+"p>"
+msgstr "Cynhaliwyd yr etholiad hwn <strong>%(election_date)s</strong>"
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:73
 #, fuzzy, python-format
 #| msgid "This election was held <strong>%(election_date)s</strong>."
 msgid ""
 "<p>This party %(was_is)s on the <strong>%(register)s</strong> register.</p>"
 msgstr "Cynhaliwyd yr etholiad hwn <strong>%(election_date)s</strong>"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:79
+#: wcivf/apps/parties/templates/parties/party_detail.html:85
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Joint description"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:82
+#: wcivf/apps/parties/templates/parties/party_detail.html:88
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -1214,65 +1223,65 @@ msgstr ""
 "\n"
 "                                        %(num_votes)s pleidlais (etholwyd)\n"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:91
+#: wcivf/apps/parties/templates/parties/party_detail.html:97
 #, python-format
 msgid ""
 "View the entry for the %(party_name)s in the register of political parties."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:101
+#: wcivf/apps/parties/templates/parties/party_detail.html:107
 msgid "View this party's entry in the register of political parties."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:108
+#: wcivf/apps/parties/templates/parties/party_detail.html:114
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Ballot descriptions"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:110
+#: wcivf/apps/parties/templates/parties/party_detail.html:116
 #, python-format
 msgid ""
 "This party may appear on the ballot paper as \"%(ballot_name)s\", or any of "
 "the following names:"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:122
+#: wcivf/apps/parties/templates/parties/party_detail.html:128
 msgid ""
 "This party currently has no descriptions registered with the Electoral "
 "Commission."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:129
+#: wcivf/apps/parties/templates/parties/party_detail.html:135
 #, fuzzy
 #| msgid " %(description)s "
 msgid "Previous Descriptions"
 msgstr " %(description)s "
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:131
+#: wcivf/apps/parties/templates/parties/party_detail.html:137
 msgid ""
 "These descriptions are no longer registered with the Electoral Commission "
 "and cannot be used:"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:143
+#: wcivf/apps/parties/templates/parties/party_detail.html:149
 #, fuzzy
 #| msgid "emblem"
 msgid "Emblems"
 msgstr "symbol"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:153
+#: wcivf/apps/parties/templates/parties/party_detail.html:159
 msgid ""
 "This party currently has no emblems registered with the Electoral Commission."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:160
+#: wcivf/apps/parties/templates/parties/party_detail.html:166
 #, fuzzy
 #| msgid "emblem"
 msgid "Previous Emblems"
 msgstr "symbol"
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:162
+#: wcivf/apps/parties/templates/parties/party_detail.html:168
 msgid ""
 "These emblems are no longer registered with the Electoral Commission and "
 "cannot be used:"
