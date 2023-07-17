@@ -1,10 +1,22 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView, TemplateView
 
 from .models import Party
+from .filters import PartyRegisterFilter
 
 
-class PartiesView(ListView):
-    queryset = Party.objects.exclude(personpost=None)
+class PartiesView(TemplateView):
+    template_name = "parties/parties_view.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PartiesView, self).get_context_data(*args, **kwargs)
+        queryset = Party.objects.exclude(personpost=None).order_by("party_name")
+        f = PartyRegisterFilter(
+            data=self.request.GET, queryset=queryset, request=self.request
+        )
+        context["filter"] = f
+        context["shortcuts"] = f.shortcuts
+        context["queryset"] = f.qs
+        return context
 
 
 class PartyView(DetailView):
