@@ -172,7 +172,6 @@ jobs:
                    InstanceType='<<parameters.instance-type>>' \
                    Domain='<<parameters.domain>>'
                   "
-                  post_deploy_tests:
   post_deploy_tests:
     docker:
       - image: cimg/python:3.10.4
