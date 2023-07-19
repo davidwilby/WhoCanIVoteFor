@@ -148,13 +148,6 @@ jobs:
           at: ~/repo/
       - run: echo <<parameters.instance-type>>
       - run:
-          name: install sam-cli
-          command: |
-            python -m venv .venv
-            . .venv/bin/activate
-            pip install --upgrade pip
-            pip install aws-sam-cli==1.91.0 awscli==1.29.5
-      - run:
           name: deploy
           command: |
             sam deploy \
@@ -179,6 +172,26 @@ jobs:
                    InstanceType='<<parameters.instance-type>>' \
                    Domain='<<parameters.domain>>'
                   "
+                  post_deploy_tests:
+  post_deploy_tests:
+    docker:
+      - image: cimg/python:3.10.4
+    working_directory: ~/repo
+    parameters:
+      dc-environment:
+        type: enum
+        enum: [ development, staging, production ]
+    environment:
+      DC_ENVIRONMENT: <<parameters.dc-environment>>
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v6-dependencies-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/testing.txt" }}
+      - attach_workspace:
+          at: ~/repo/
+      - run: printenv DC_ENVIRONMENT
+      - run: pip install awscli==1.29.5
       - run:
           name: post deploy tests
           command: |
@@ -267,7 +280,13 @@ workflows:
           - sam_build
           context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging, hotfix/make-token-more-unique ] } }
-
+      - post_deploy_tests:
+          name: post_deploy_tests_development
+          dc-environment: development
+          requires:
+            - sam_deploy_development
+          context: [ deployment-development-wcivf, slack-secrets ]
+          filters: { branches: { only: [ main, master, staging, hotfix/make-token-more-unique ] } }
       - code_deploy:
           name: code_deploy_development
           dc-environment: development
@@ -275,12 +294,9 @@ workflows:
           max-size: 1
           desired-capacity: 1
           requires:
-          - build_and_test
-          - sam_build
-          - sam_deploy_development
+          - post_deploy_tests_development
           context: [ deployment-development-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging, hotfix/make-token-more-unique ] } }
-
       - sam_deploy:
           name: sam_deploy_staging
           dc-environment: staging
@@ -295,7 +311,13 @@ workflows:
           - sam_build
           context: [ deployment-staging-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master, staging ] } }
-
+      - post_deploy_tests:
+          name: post_deploy_tests_staging
+          dc-environment: staging
+          requires:
+            - sam_deploy_staging
+          context: [ deployment-staging-wcivf, slack-secrets ]
+          filters: { branches: { only: [ main, master, staging ] } }
       - code_deploy:
           name: code_deploy_staging
           dc-environment: staging
@@ -307,7 +329,6 @@ workflows:
           - sam_deploy_staging
           context: [ deployment-staging-wcivf, slack-secrets ]
           filters: { branches: { only: [ main, master, staging ] } }
-        
       - sam_deploy:
           name: sam_deploy_production
           dc-environment: production
@@ -323,13 +344,19 @@ workflows:
           - code_deploy_staging
           context: [ deployment-production-wcivf, slack-secrets  ]
           filters: { branches: { only: [ main, master ] } }
-
+      - post_deploy_tests:
+          name: post_deploy_tests_production
+          dc-environment: production
+          requires:
+            - sam_deploy_production
+          context: [ deployment-production-wcivf, slack-secrets ]
+          filters: { branches: { only: [ main, master, staging ] } }
       - code_deploy:
           name: code_deploy_production
           dc-environment: production
           min-size: 1
           max-size: 20
-          desired-capacity: 3
+          desired-capacity: 1
           requires:
           - build_and_test
           - sam_deploy_staging
