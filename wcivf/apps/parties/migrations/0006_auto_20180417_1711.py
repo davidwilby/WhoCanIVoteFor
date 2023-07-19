@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("elections", "0020_postelection_ballot_paper_id"),
         ("parties", "0005_auto_20170530_1736"),

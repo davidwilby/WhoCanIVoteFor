@@ -6,7 +6,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("elections", "0013_auto_20170304_1354")]
 
     operations = [migrations.RemoveField(model_name="post", name="elections")]

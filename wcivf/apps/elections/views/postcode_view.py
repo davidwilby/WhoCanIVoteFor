@@ -215,7 +215,6 @@ class PostcodeView(
 class PostcodeiCalView(
     NewSlugsRedirectMixin, PostcodeToPostsMixin, View, PollingStationInfoMixin
 ):
-
     pk_url_kwarg = "postcode"
 
     def get(self, request, *args, **kwargs):

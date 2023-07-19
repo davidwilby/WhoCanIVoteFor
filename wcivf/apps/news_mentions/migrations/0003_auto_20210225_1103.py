@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news_mentions", "0002_ballotnewsarticle_publisher"),
     ]

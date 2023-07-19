@@ -5,13 +5,11 @@ from django.db import migrations
 
 
 def delete_cvs(app, schema_editor):
-
     CV = apps.get_model("peoplecvs", "CV")
     CV.objects.all().delete()
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("peoplecvs", "0002_auto_20170522_1324"),
     ]

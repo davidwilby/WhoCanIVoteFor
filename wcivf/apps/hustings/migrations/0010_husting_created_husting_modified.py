@@ -6,7 +6,6 @@ import model_utils.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("hustings", "0009_remove_postcode_amend_location"),
     ]

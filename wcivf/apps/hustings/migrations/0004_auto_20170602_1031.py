@@ -6,7 +6,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("hustings", "0003_husting_video_url")]
 
     operations = [

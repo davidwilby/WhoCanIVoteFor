@@ -54,7 +54,6 @@ def delete_voting_systems(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("elections", "0024_default_for_has_by_elections")]
 
     operations = [

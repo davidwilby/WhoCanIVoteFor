@@ -136,7 +136,6 @@ class Election(models.Model):
 
     @property
     def nice_election_name(self):
-
         name = self.name
         if not self.any_non_by_elections:
             name = name.replace("elections", "")

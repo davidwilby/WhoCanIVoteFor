@@ -9,7 +9,6 @@ CHANGE_DATE = timezone.datetime(2021, 1, 6).date()
 
 
 def add_party_name(apps, schema_editor):
-
     PersonPost = apps.get_model("people", "PersonPost")
 
     brexit_candidacies = PersonPost.objects.filter(
@@ -33,7 +32,6 @@ def remove_party_names(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("people", "0037_auto_20210604_1245"),
     ]

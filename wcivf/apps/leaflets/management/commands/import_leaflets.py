@@ -79,7 +79,6 @@ class Command(BaseCommand):
 
     def add_leaflets(self, results):
         for leaflet in results:
-
             if not "people" in leaflet:
                 continue
             for person_data in leaflet["people"]:

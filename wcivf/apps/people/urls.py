@@ -1,4 +1,4 @@
-from django.urls import re_path, path
+from django.urls import path
 
 from .views import PersonView, EmailPersonView, DummyPersonView
 
@@ -8,8 +8,8 @@ urlpatterns = [
         DummyPersonView.as_view(),
         name="dummy-profile",
     ),
-    re_path(
-        r"^(?P<pk>[^/]+)/email/(?P<ignored_slug>.*)$",
+    path(
+        "<int:pk>/email/<slug:ignored_slug>",
         EmailPersonView.as_view(),
         name="email_person_view",
     ),

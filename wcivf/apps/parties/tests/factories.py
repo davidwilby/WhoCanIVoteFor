@@ -14,7 +14,6 @@ class PartyFactory(factory.django.DjangoModelFactory):
 
 
 class LocalPartyFactory(factory.django.DjangoModelFactory):
-
     parent = factory.SubFactory(PartyFactory)
     post_election = factory.SubFactory(PostElectionFactory)
 

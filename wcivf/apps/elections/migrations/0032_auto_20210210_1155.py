@@ -9,7 +9,6 @@ def forwards(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("elections", "0031_post_division_type"),
     ]

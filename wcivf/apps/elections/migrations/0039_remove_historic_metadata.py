@@ -11,7 +11,6 @@ def remove_historical_metadata(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("elections", "0038_default_winner_count")]
 
     operations = [

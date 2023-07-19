@@ -31,7 +31,6 @@ def drop_varchar_pattern_ops_index(apps, schemaEditor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("people", "0027_person_party_ppc_page_url"),
         ("peoplecvs", "0002_auto_20170522_1324"),
