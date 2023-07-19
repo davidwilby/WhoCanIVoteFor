@@ -114,10 +114,6 @@ jobs:
       - run:
           name: sam build
           command: |
-            python -m venv .venv
-            . .venv/bin/activate
-            pip install --upgrade pip
-            pip install aws-sam-cli==1.91.0 awscli==1.29.5
             make build clean
       - persist_to_workspace:
           root: ~/repo/
@@ -125,7 +121,7 @@ jobs:
 
   sam_deploy:
     docker:
-      - image: cimg/python:3.10.4
+      - image: public.ecr.aws/sam/build-python3.10:latest
     working_directory: ~/repo
     parameters:
       dc-environment:
@@ -161,7 +157,6 @@ jobs:
       - run:
           name: deploy
           command: |
-            . .venv/bin/activate
             sam deploy \
                 --no-confirm-changeset \
                 --config-file ~/repo/samconfig.toml \
@@ -271,7 +266,7 @@ workflows:
           - build_and_test
           - sam_build
           context: [ deployment-development-wcivf, slack-secrets ]
-          filters: { branches: { only: [ main, master, staging ] } }
+          filters: { branches: { only: [ main, master, staging, hotfix/make-token-more-unique ] } }
 
       - code_deploy:
           name: code_deploy_development
@@ -284,7 +279,7 @@ workflows:
           - sam_build
           - sam_deploy_development
           context: [ deployment-development-wcivf, slack-secrets ]
-          filters: { branches: { only: [ main, master, staging ] } }
+          filters: { branches: { only: [ main, master, staging, hotfix/make-token-more-unique ] } }
 
       - sam_deploy:
           name: sam_deploy_staging
