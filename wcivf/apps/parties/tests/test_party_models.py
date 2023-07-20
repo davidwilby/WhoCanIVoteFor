@@ -84,3 +84,21 @@ class TestParty(TestCase):
 
         no_register_party = Party()
         assert no_register_party.format_register is None
+
+    def test_format_nations(self):
+        ni_party = Party(register="NI")
+        assert ni_party.format_nations is None
+
+        zero_nation_party = Party(register="GB")
+        assert zero_nation_party.format_nations is None
+
+        one_nation_party = Party(register="GB", nations=["WAL"])
+        assert one_nation_party.format_nations == "Wales"
+
+        two_nation_party = Party(register="GB", nations=["SCO", "WAL"])
+        assert two_nation_party.format_nations == "Scotland and Wales"
+
+        three_nation_party = Party(register="GB", nations=["SCO", "WAL", "ENG"])
+        assert (
+            three_nation_party.format_nations == "England, Scotland, and Wales"
+        )

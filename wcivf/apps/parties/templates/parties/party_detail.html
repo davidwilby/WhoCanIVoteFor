@@ -65,9 +65,15 @@
         {% endif %}
 
         {% if object.register %}
-            {% blocktrans trimmed with register=object.format_register was_is=object.is_deregistered|yesno:"was,is" %}
-                <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register.</p>
-            {% endblocktrans %}
+            {% if object.nations %}
+                {% blocktrans trimmed with register=object.format_register nations=object.format_nations was_is=object.is_deregistered|yesno:"was,is" %}
+                    <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register and {{ was_is }} registered to stand candidates in <strong>{{ nations }}</strong>.</p>
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans trimmed with register=object.format_register was_is=object.is_deregistered|yesno:"was,is" %}
+                    <p>This party {{ was_is }} on the <strong>{{ register }}</strong> register.</p>
+                {% endblocktrans %}
+            {% endif %}
         {% endif %}
 
         {% if object.is_joint_party %}
@@ -80,7 +86,7 @@
                         </h3>
                         <p>
                             {% blocktrans with joint_name=object.party_name first_name=sub_parties.0.party_name second_name=sub_parties.1.party_name %}
-                                "{{ joint_name }}" is a joint description of the {{ first_name }} and the {{ second_name }}.
+                                "{{ joint_name }}" is a joint description of {{ first_name }} and {{ second_name }}.
                             {% endblocktrans %}
                         </p>
                     </div>
@@ -119,7 +125,7 @@
                 {% endif %}
             </ul>
         {% else %}
-            <p>{% trans "This party currently has no alternative descriptions registered with the Electoral Commission." %}</p>
+            <p>{% trans "This party currently has no descriptions registered with the Electoral Commission." %}</p>
         {% endif %}
         {% if object.party_descriptions.inactive %}
             <ul class="ds-details">
@@ -150,7 +156,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>{% trans "This party currently has no alternative emblems registered with the Electoral Commission." %}</p>
+            <p>{% trans "This party currently has no emblems registered with the Electoral Commission." %}</p>
         {% endif %}
         {% if object.emblems.inactive %}
             <ul class="ds-details">
