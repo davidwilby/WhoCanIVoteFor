@@ -1,2 +1,33 @@
 [tool.black]
 line-length = 80
+
+[tool.ruff]
+line-length = 80
+ignore = ["E501"]
+extend-select = [
+    "I",
+    "C4",
+    "SIM",
+    "Q003",
+    "RET",
+]
+extend-exclude = ["wcivf/settings/local.py"]
+
+[tool.pytest.ini_options]
+norecursedirs =[
+    "src",
+    "wcivf/static_root",
+    ".aws-sam",
+    ".ruff-cache",
+    ".circleci",
+]
+DJANGO_SETTINGS_MODULE = "wcivf.settings.base"
+addopts =[
+    "--ignore=*/__pycache__",
+    "--ignore=.*",
+    "--ignore=.download-cache",
+    "--ignore=wcivf/settings/local.py",
+    "--ignore=lib",
+    "--ruff",
+    "--black",
+]
