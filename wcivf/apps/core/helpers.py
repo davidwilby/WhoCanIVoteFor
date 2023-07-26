@@ -1,8 +1,8 @@
+import json
 import re
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
-import json
 
 
 @contextmanager
@@ -46,8 +46,7 @@ def clean_postcode(postcode):
     postcode = postcode.replace("+", "")
     incode_pattern = "[0-9][ABD-HJLNP-UW-Z]{2}"
     space_regex = re.compile(r" *(%s)$" % incode_pattern)
-    postcode = space_regex.sub(r" \1", postcode.upper())
-    return postcode
+    return space_regex.sub(r" \1", postcode.upper())
 
 
 def twitter_username(url):

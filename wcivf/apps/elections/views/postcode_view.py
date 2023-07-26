@@ -1,22 +1,23 @@
-from icalendar import Calendar, Event, vText
-from django.utils import timezone
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import TemplateView, View
 from typing import Optional
 
 from core.helpers import clean_postcode
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
+from django.views.generic import TemplateView, View
 from elections.dummy_models import DummyPostElection
+from elections.models import InvalidPostcodeError
+from icalendar import Calendar, Event, vText
 from parishes.models import ParishCouncilElection
+
+from ..devs_dc_client import DevsDCAPIException
 from .mixins import (
     LogLookUpMixin,
-    PostcodeToPostsMixin,
-    PollingStationInfoMixin,
-    PostelectionsToPeopleMixin,
     NewSlugsRedirectMixin,
+    PollingStationInfoMixin,
+    PostcodeToPostsMixin,
+    PostelectionsToPeopleMixin,
 )
-from elections.models import InvalidPostcodeError
-from ..devs_dc_client import DevsDCAPIException
 
 
 class PostcodeView(
@@ -144,7 +145,7 @@ class PostcodeView(
             return False
 
         if not any(
-            [ballot for ballot in ballots if ballot.election.is_city_of_london]
+            ballot for ballot in ballots if ballot.election.is_city_of_london
         ):
             return False
 

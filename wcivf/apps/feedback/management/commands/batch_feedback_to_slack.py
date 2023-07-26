@@ -1,12 +1,10 @@
-from datetime import datetime, timedelta
 import json
 import random
+from datetime import datetime, timedelta
 
 import requests
-
-from django.core.management.base import BaseCommand
 from django.conf import settings
-
+from django.core.management.base import BaseCommand
 from feedback.models import Feedback
 
 
@@ -65,7 +63,7 @@ class Command(BaseCommand):
         if comment.found_useful == "NO":
             comment_title = "A 'not found' comment:"
             colour = not_useful_colour
-        useful_comment = {
+        return {
             "fallback": comment.comments,
             "color": colour,
             "fields": [
@@ -88,7 +86,6 @@ class Command(BaseCommand):
                 },
             ],
         }
-        return useful_comment
 
     def handle(self, **options):
         past_time = datetime.now() - timedelta(hours=int(options["hours"]))

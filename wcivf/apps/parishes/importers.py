@@ -1,6 +1,6 @@
 import sys
-from core.mixins import ImportAdditionalElectionMixin
 
+from core.mixins import ImportAdditionalElectionMixin
 from parishes.models import ParishCouncilElection
 
 

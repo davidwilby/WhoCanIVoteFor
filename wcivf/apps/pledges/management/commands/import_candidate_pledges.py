@@ -14,14 +14,13 @@ will be taken as the answer.
 
 """
 
-from django.core.management.base import BaseCommand
-from django.db import transaction
-
 import csv
 
-from pledges.models import CandidatePledge
-from people.models import Person
+from django.core.management.base import BaseCommand
+from django.db import transaction
 from elections.models import PostElection
+from people.models import Person
+from pledges.models import CandidatePledge
 
 PERSON_ID_TEXT = "person id"
 ELECTION_ID_TEXT = "election id"
@@ -44,7 +43,7 @@ class Command(BaseCommand):
             for row in reader:
                 try:
                     self.add_pledge(row)
-                except:
+                except Exception:
                     print(row)
 
     def add_pledge(self, row):

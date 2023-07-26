@@ -1,11 +1,10 @@
 from django.test import TestCase
-
-from people.tests.factories import PersonFactory, PersonPostFactory
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
     PostElectionFactory,
+    PostFactory,
 )
+from people.tests.factories import PersonFactory, PersonPostFactory
 
 
 class TestPersonInMultipleElections(TestCase):

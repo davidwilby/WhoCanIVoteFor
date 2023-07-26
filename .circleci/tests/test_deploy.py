@@ -51,6 +51,7 @@ def get_output_value(stack, output_key):
         if output["OutputKey"] == output_key:
             # Cloudformation Outputs have unique per-stack names
             return output["OutputValue"]
+    return None
 
 
 @pytest.fixture

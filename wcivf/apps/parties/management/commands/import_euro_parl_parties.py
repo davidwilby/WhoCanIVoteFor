@@ -1,11 +1,9 @@
-from django.core.management.base import BaseCommand
-from django.db import transaction
-
 import csv
 
-from parties.models import Party, LocalParty, Manifesto
-from elections.models import PostElection, Election
-
+from django.core.management.base import BaseCommand
+from django.db import transaction
+from elections.models import Election, PostElection
+from parties.models import LocalParty, Manifesto, Party
 
 csv_data = """election id,party name,party id,EP2019 manifesto PDF,EP2019 manifesto/info webpage,Party homepage,twitter,facebook
 europarl.2019-05-23,English Democrats,17,,https://www.englishdemocrats.party/the_eu_election_call_to_arms,https://www.englishdemocrats.party/,https://twitter.com/EnglishDemocrat,

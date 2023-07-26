@@ -2,7 +2,6 @@ import os
 
 from .base import *  # noqa
 
-
 DATABASES["default"] = {  # noqa
     "ENGINE": "django.db.backends.postgresql_psycopg2",
     "NAME": os.environ.get("RDS_DB_NAME"),

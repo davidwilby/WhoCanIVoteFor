@@ -1,9 +1,8 @@
-from datetime import datetime
 import csv
-from django.utils import timezone
+from datetime import datetime
 
 from django.core.management.base import BaseCommand
-
+from django.utils import timezone
 from feedback.models import Feedback
 
 

@@ -1,12 +1,12 @@
+import contextlib
 import csv
-import requests
-from newspaper import Article, ArticleException, Config
 
+import requests
 from django.core.management.base import BaseCommand
 from django.db import transaction
-
-from news_mentions.models import BallotNewsArticle
 from elections.models import PostElection
+from news_mentions.models import BallotNewsArticle
+from newspaper import Article, ArticleException, Config
 
 
 class Command(BaseCommand):
@@ -24,13 +24,11 @@ class Command(BaseCommand):
             req = requests.get(url)
             csv_data = csv.DictReader(req.text.splitlines())
             for line in csv_data:
-                try:
+                with contextlib.suppress(ArticleException):
                     self.add_article(line)
-                except ArticleException:
-                    pass
 
     def get_ballot(self, ballot_paper_id):
-        if not ballot_paper_id in self.ballot_cache:
+        if ballot_paper_id not in self.ballot_cache:
             self.ballot_cache[ballot_paper_id] = PostElection.objects.get(
                 ballot_paper_id=ballot_paper_id
             )

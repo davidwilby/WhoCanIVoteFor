@@ -1,7 +1,6 @@
 import factory
 from elections.tests.factories import PostElectionFactory
-
-from parties.models import Party, LocalParty
+from parties.models import LocalParty, Party
 
 
 class PartyFactory(factory.django.DjangoModelFactory):

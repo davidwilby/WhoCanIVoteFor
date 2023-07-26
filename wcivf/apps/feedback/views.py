@@ -1,11 +1,11 @@
-from django.utils import timezone
-from django.http import HttpResponse
-from django.views.generic import View, UpdateView
-from django.utils.http import url_has_allowed_host_and_scheme
-from django.contrib import messages
-from django.template.loader import render_to_string
 from akismet import Akismet
 from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.generic import UpdateView, View
 
 from .forms import FeedbackForm
 from .models import Feedback
@@ -54,8 +54,8 @@ class FeedbackFormView(UpdateView):
             self.object.source_url, allowed_hosts=None
         ):
             return self.object.source_url
-        else:
-            return "/"
+
+        return "/"
 
     def form_valid(self, form):
         if self.is_spam:

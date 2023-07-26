@@ -1,14 +1,13 @@
-import sys
+import contextlib
 import re
+import sys
 from urllib.parse import urlencode
 
 from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
-
-
-from elections.helpers import JsonPaginator, EEHelper
-from elections.models import PostElection, Election, Post, VotingSystem
+from elections.helpers import EEHelper, JsonPaginator
+from elections.models import Election, Post, PostElection, VotingSystem
 from parties.models import Party
 from people.models import Person, PersonPost
 
@@ -211,10 +210,7 @@ class YNRBallotImporter:
     @time_function_length
     def get_last_updated(self):
         try:
-            last_updated = (
-                PostElection.objects.last_updated_in_ynr().ynr_modified
-            )
-            return last_updated
+            return PostElection.objects.last_updated_in_ynr().ynr_modified
         except PostElection.DoesNotExist:
             # default before changes were added to YNR
             return timezone.datetime(2021, 10, 27, tzinfo=timezone.utc)
@@ -348,9 +344,10 @@ class YNRBallotImporter:
                 "locked": ballot_dict["candidates_locked"],
             }
 
-            if ballot_dict["candidates_locked"] or ballot_dict["cancelled"]:
-                if ballot_dict["winner_count"]:
-                    defaults["contested"] = not ballot_dict["uncontested"]
+            if (
+                ballot_dict["candidates_locked"] or ballot_dict["cancelled"]
+            ) and ballot_dict["winner_count"]:
+                defaults["contested"] = not ballot_dict["uncontested"]
 
             # only update this when using the recently_updated flag as otherwise
             # the timestamp will only be the modifed timestamp on the ballot
@@ -454,7 +451,7 @@ class YNRBallotImporter:
         ee_data = self.ee_helper.get_data(ballot.ballot_paper_id)
         if ee_data and "voting_system" in ee_data:
             voting_system_slug = ee_data["voting_system"]["slug"]
-            if not voting_system_slug in self.voting_systems:
+            if voting_system_slug not in self.voting_systems:
                 voting_system = VotingSystem.objects.update_or_create(
                     slug=voting_system_slug,
                     defaults={"description": ee_data["voting_system"]["name"]},
@@ -465,9 +462,12 @@ class YNRBallotImporter:
             ballot.save()
 
     def set_metadata(self, ballot):
-        if not self.force_current_metadata:
-            if ballot.metadata and not self.force_update:
-                return
+        if (
+            not self.force_current_metadata
+            and not self.force_update
+            and ballot.metadata
+        ):
+            return
         ee_data = self.ee_helper.get_data(ballot.ballot_paper_id)
         if ee_data:
             ballot.metadata = ee_data["metadata"]
@@ -513,12 +513,11 @@ class YNRBallotImporter:
         if ee_data:
             replacement_ballot_id = ee_data["replaced_by"]
             if replacement_ballot_id:
-                try:
+                with contextlib.suppress(PostElection.DoesNotExist):
                     replacement_ballot = PostElection.objects.get(
                         ballot_paper_id=replacement_ballot_id
                     )
-                except PostElection.DoesNotExist:
-                    pass
+
         return replacement_ballot
 
     def attach_cancelled_ballot_info(self):

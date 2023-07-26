@@ -1,16 +1,15 @@
 """
 Importer for all our important Hustings data
 """
-import os
 import datetime
+import os
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone
-
 from elections.models import PostElection
-from hustings.models import Husting
 from hustings.importers import HustingImporter
+from hustings.models import Husting
 
 
 def dt_from_string(dt):
@@ -51,8 +50,7 @@ def set_time_string_on_datetime(dt, time_string):
     TIME_STRING
     """
     hour, minute = stringy_time_to_inty_time(time_string)
-    dt = dt.replace(hour=hour, minute=minute)
-    return dt
+    return dt.replace(hour=hour, minute=minute)
 
 
 class Command(BaseCommand):
@@ -172,7 +170,7 @@ class Command(BaseCommand):
                 "All hustings will be deleted and replaced with only those included in the file proved. Do you want to continue? y/n\n"
             )
             if answer != "y":
-                return
+                return None
 
         count, _ = Husting.objects.all().delete()
         self.stdout.write(f"Deleting {count} Husting objects")
@@ -186,3 +184,4 @@ class Command(BaseCommand):
         for url in urls:
             self.importer = HustingImporter(url=url)
             self.import_hustings()
+        return None

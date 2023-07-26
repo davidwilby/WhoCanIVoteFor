@@ -1,7 +1,7 @@
 import sys
+
 from django.conf import settings
 from django.utils.http import urlencode
-
 from elections.helpers import JsonPaginator
 from people.models import Person
 

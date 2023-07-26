@@ -1,8 +1,7 @@
 import pytest
-
 from django.test import TestCase
-from elections.tests.factories import ElectionFactoryLazySlug
 from elections.models import Election
+from elections.tests.factories import ElectionFactoryLazySlug
 
 
 class TestElectionManager(TestCase):

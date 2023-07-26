@@ -1,7 +1,7 @@
 import json
-import sentry_sdk
 
 import django
+import sentry_sdk
 from django.core.management import call_command
 
 

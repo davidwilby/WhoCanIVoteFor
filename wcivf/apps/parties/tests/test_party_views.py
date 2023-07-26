@@ -1,13 +1,13 @@
 from django.test import TestCase
 from django.test.utils import override_settings
-from parties.tests.factories import PartyFactory
-from people.tests.factories import PersonFactory, PersonPostFactory
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
     PostElectionFactory,
+    PostFactory,
 )
 from parties.models import Party
+from parties.tests.factories import PartyFactory
+from people.tests.factories import PersonFactory, PersonPostFactory
 
 
 @override_settings(

@@ -1,19 +1,19 @@
-from django.contrib.humanize.templatetags.humanize import ordinal, intcomma
-from django.db.models import JSONField
-from django.urls import reverse
+from django.contrib.humanize.templatetags.humanize import intcomma, ordinal
 from django.db import models
+from django.db.models import JSONField
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-from django.utils.text import slugify
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.html import strip_tags
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-
 from elections.models import Election, Post
 from parties.models import Party
 
 from wcivf import settings
-from .managers import PersonPostManager, PersonManager, VALUE_TYPES_TO_IMPORT
+
+from .managers import VALUE_TYPES_TO_IMPORT, PersonManager, PersonPostManager
 
 
 class PersonPost(models.Model):
@@ -52,8 +52,8 @@ class PersonPost(models.Model):
         qs = self.party.local_parties.filter(post_election=self.post_election)
         if qs.exists:
             return qs.get()
-        else:
-            return None
+
+        return None
 
     @property
     def get_results_text(self) -> str:
@@ -136,8 +136,11 @@ class PersonPost(models.Model):
                     ].votes_cast
                 ):
                     return f"Joint {ordinal(candidate.rank)} / {candidate_count} candidates"
-                else:
-                    return f"{ordinal(candidate.rank)} / {candidate_count} candidates"
+
+                return (
+                    f"{ordinal(candidate.rank)} / {candidate_count} candidates"
+                )
+        return None
 
     class Meta:
         ordering = ("-election__election_date",)
@@ -224,7 +227,7 @@ class Person(models.Model):
         """
         Does this person have any info to display in the contact info box?
         """
-        return any([getattr(self, vt, False) for vt in VALUE_TYPES_TO_IMPORT])
+        return any(getattr(self, vt, False) for vt in VALUE_TYPES_TO_IMPORT)
 
     @property
     def cta_example_details(self):
@@ -252,9 +255,7 @@ class Person(models.Model):
     def facebook_personal_username(self):
         facebook_personal_url = self.facebook_personal_url
         facebook_split = list(filter(None, facebook_personal_url.split("/")))
-        facebook_personal_username = facebook_split[-1]
-
-        return facebook_personal_username
+        return facebook_split[-1]
 
     @property
     def facebook_username(self):
@@ -266,17 +267,13 @@ class Person(models.Model):
     def instagram_username(self):
         instagram_url = self.instagram_url
         instagram_split = list(filter(None, instagram_url.split("/")))
-        instagram_username = instagram_split[-1]
-
-        return instagram_username
+        return instagram_split[-1]
 
     @property
     def linkedin_username(self):
         linkedin_url = self.linkedin_url
         linkedin_split = list(filter(None, linkedin_url.split("/")))
-        linkedin_username = linkedin_split[-1]
-
-        return linkedin_username
+        return linkedin_split[-1]
 
     @property
     def youtube_username(self):
@@ -284,8 +281,7 @@ class Person(models.Model):
         if "channel" in youtube_url:
             return self.name + "'s Channel"
         youtube_split = list(filter(None, youtube_url.split("/")))
-        youtube_username = youtube_split[-1]
-        return youtube_username
+        return youtube_split[-1]
 
     @property
     def long_statement(self):
@@ -294,20 +290,16 @@ class Person(models.Model):
     @property
     def statement_count(self):
         statement = self.statement_to_voters
-        statement_count = len(statement.split())
-        return statement_count
+        return len(statement.split())
 
     @property
     def statement_intro(self):
-        statement_intro = self.statement_to_voters.split(".")[0] + "."
-        return statement_intro
+        return self.statement_to_voters.split(".")[0] + "."
 
     @property
     def statement_remainder(self):
         statement_split = self.statement_to_voters.split(".")
-        statement_remainder = ".".join(statement_split[1:])
-
-        return statement_remainder
+        return ".".join(statement_split[1:])
 
     @cached_property
     def current_or_future_candidacies(self):

@@ -1,9 +1,8 @@
-from django.core.management.base import BaseCommand
-
 import csv
 
-from parties.models import Party, Manifesto
+from django.core.management.base import BaseCommand
 from elections.models import Election
+from parties.models import Manifesto, Party
 
 
 class Command(BaseCommand):
@@ -31,7 +30,7 @@ class Command(BaseCommand):
 
                 try:
                     election = Election.objects.get(slug=row["election_id"])
-                except:
+                except Exception:
                     continue
                 try:
                     party = Party.objects.get(party_id="%s" % party_id)

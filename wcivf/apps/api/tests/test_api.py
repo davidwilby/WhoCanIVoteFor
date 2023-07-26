@@ -1,15 +1,14 @@
-from django.core.cache import cache
-from rest_framework.reverse import reverse
-from rest_framework.test import APITestCase
 import vcr
-
-from people.tests.factories import PersonFactory, PersonPostFactory
-from parties.tests.factories import PartyFactory
+from django.core.cache import cache
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
     PostElectionFactory,
+    PostFactory,
 )
+from parties.tests.factories import PartyFactory
+from people.tests.factories import PersonFactory, PersonPostFactory
+from rest_framework.reverse import reverse
+from rest_framework.test import APITestCase
 
 
 class TestAPIBasics(APITestCase):
@@ -133,4 +132,4 @@ class TestAPISearchViews(APITestCase):
         url = reverse("api:candidates-for-postcode-list")
         req = self.client.get("{}?postcode=EC1A4EU".format(url))
         assert req.status_code == 200
-        assert req.json()[0]["ballot_locked"] == True
+        assert req.json()[0]["ballot_locked"] is True

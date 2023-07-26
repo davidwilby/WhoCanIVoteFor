@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PersonView, EmailPersonView, DummyPersonView
+from .views import DummyPersonView, EmailPersonView, PersonView
 
 urlpatterns = [
     path(

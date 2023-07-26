@@ -4,13 +4,12 @@ Importer for all the corporate overlords
 import collections
 import csv
 import datetime
-import requests
 
+import requests
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
-
-from people.models import Person, AssociatedCompany
+from people.models import AssociatedCompany, Person
 
 Company = collections.namedtuple(
     "Commpany",
@@ -86,7 +85,8 @@ class Command(BaseCommand):
             if companies[0].role == "Director" and data.role == "Secretary":
                 print("Directorship already noted")
                 return companies[0]
-            elif companies[0].role == "Secretary" and data.role == "Director":
+
+            if companies[0].role == "Secretary" and data.role == "Director":
                 print("Updating to Director")
                 company = companies[0]
             else:
@@ -152,13 +152,12 @@ class Command(BaseCommand):
                 print(row)
                 raise
 
-            if data.person_id in self.not_associated_companies:
-                if (
-                    data.company_number
-                    in self.not_associated_companies[data.person_id]
-                ):
-                    # This (person, company) pair has been asserted as not connected
-                    continue
+            if data.person_id in self.not_associated_companies and (
+                data.company_number
+                in self.not_associated_companies[data.person_id]
+            ):
+                # This (person, company) pair has been asserted as not connected
+                continue
 
             associated_company = self.create_company(data)
             if associated_company:

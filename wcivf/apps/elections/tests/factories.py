@@ -1,7 +1,6 @@
 import factory
-
-from django.utils.text import slugify
 from django.utils import timezone
+from django.utils.text import slugify
 from elections.models import Election, Post, PostElection
 
 

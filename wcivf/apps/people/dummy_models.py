@@ -1,8 +1,7 @@
-from django.templatetags.static import static
 from django.template.loader import render_to_string
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.text import slugify
-
 from elections.models import Post
 from people.models import Person, PersonPost
 

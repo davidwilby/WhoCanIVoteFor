@@ -1,15 +1,14 @@
 import sys
 from functools import update_wrapper
 
-from django.db import transaction
-from django.conf import settings
-from django.utils.functional import cached_property
-from django.utils import timezone
-from django.utils.http import urlencode
-from uk_election_timetables.election_ids import from_election_id
-from uk_election_timetables.calendars import Country
-
 import requests
+from django.conf import settings
+from django.db import transaction
+from django.utils import timezone
+from django.utils.functional import cached_property
+from django.utils.http import urlencode
+from uk_election_timetables.calendars import Country
+from uk_election_timetables.election_ids import from_election_id
 
 
 class EEHelper:
@@ -39,6 +38,7 @@ class EEHelper:
         pages = JsonPaginator(page1=url, stdout=sys.stdout)
         for page in pages:
             return [result["election_id"] for result in page["results"]]
+        return None
 
     @transaction.atomic
     def delete_deleted_elections(self):
@@ -49,7 +49,7 @@ class EEHelper:
         from elections.models import (
             Election,
             PostElection,
-        )  # noqa avoid circular import
+        )
 
         elections_count, _ = Election.objects.filter(
             slug__in=self.deleted_election_ids,
@@ -77,8 +77,8 @@ class EEHelper:
         if req.status_code == 200:
             self.ee_cache[election_id] = req.json()
             return self.ee_cache[election_id]
-        else:
-            self.ee_cache[election_id] = None
+
+        self.ee_cache[election_id] = None
         return None
 
 

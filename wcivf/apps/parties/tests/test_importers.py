@@ -1,8 +1,8 @@
 import sys
+
 import pytest
 from elections.models import Election, PostElection, PostElectionQuerySet
-
-from parties.importers import LocalPartyImporter, LocalElection
+from parties.importers import LocalElection, LocalPartyImporter
 from parties.models import LocalParty
 
 

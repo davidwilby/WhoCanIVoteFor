@@ -1,24 +1,22 @@
-import pytest
-import vcr
-
-from django.conf import settings
-from django.db.models import Count
-from django.urls import reverse
-from django.test import TestCase, override_settings
-from pytest_django import asserts
-from elections.models import PostElection, InvalidPostcodeError
-
-from elections.tests.factories import (
-    ElectionFactory,
-    PostFactory,
-    PostElectionFactory,
-)
-from core.models import LoggedPostcode, write_logged_postcodes
-from elections.views.mixins import PostcodeToPostsMixin
-from elections.views.postcode_view import PostcodeView
 from unittest import skipIf
 
+import pytest
+import vcr
+from core.models import LoggedPostcode, write_logged_postcodes
+from django.conf import settings
+from django.db.models import Count
+from django.test import TestCase, override_settings
+from django.urls import reverse
+from elections.models import InvalidPostcodeError, PostElection
+from elections.tests.factories import (
+    ElectionFactory,
+    PostElectionFactory,
+    PostFactory,
+)
+from elections.views.mixins import PostcodeToPostsMixin
+from elections.views.postcode_view import PostcodeView
 from parishes.models import ParishCouncilElection
+from pytest_django import asserts
 
 
 @override_settings(

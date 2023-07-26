@@ -1,10 +1,10 @@
-import pytest
-import factory
+from random import shuffle
 
+import factory
+import pytest
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
-from random import shuffle
 from elections.models import Post
 from elections.tests.factories import (
     ElectionFactory,
@@ -13,6 +13,7 @@ from elections.tests.factories import (
     PostElectionFactory,
     PostFactory,
 )
+from elections.views import PostView
 from elections.views.mixins import PostelectionsToPeopleMixin
 from parties.tests.factories import PartyFactory
 from people.tests.factories import (
@@ -21,7 +22,6 @@ from people.tests.factories import (
     PersonPostWithPartyFactory,
 )
 from pytest_django.asserts import assertContains, assertNotContains
-from elections.views import PostView
 
 
 @override_settings(

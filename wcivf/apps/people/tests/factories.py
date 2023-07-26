@@ -1,12 +1,11 @@
 import factory
-from parties.tests.factories import PartyFactory
-
-from people.models import Person, PersonPost
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
     PostElectionFactory,
+    PostFactory,
 )
+from parties.tests.factories import PartyFactory
+from people.models import Person, PersonPost
 
 
 class PersonFactory(factory.django.DjangoModelFactory):

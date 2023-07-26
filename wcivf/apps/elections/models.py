@@ -1,21 +1,19 @@
 import datetime
 import re
 
-from django.db.models.functions import Greatest
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-
 import pytz
 from django.conf import settings
-from django.db.models import JSONField, DateTimeField
-from django.db import models
-from django.template.defaultfilters import pluralize
 from django.contrib.humanize.templatetags.humanize import apnumber
+from django.db import models
+from django.db.models import DateTimeField, JSONField
+from django.db.models.functions import Greatest
+from django.template.defaultfilters import pluralize
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.html import mark_safe
 from django.utils.text import slugify
-
+from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 
 from .helpers import get_election_timetable
@@ -115,24 +113,23 @@ class Election(models.Model):
 
         if delta.days == 0:
             return "today"
-        elif delta.days < 0:
+
+        if delta.days < 0:
             if delta.days == -1:
                 return "yesterday"
-            elif delta.days > -5:
+
+            if delta.days > -5:
                 return "{} days ago".format(delta.days)
-            else:
-                return "on {}".format(
-                    self.election_date.strftime("%A %-d %B %Y")
-                )
-        else:
-            if delta.days == 1:
-                return "tomorrow"
-            elif delta.days < 7:
-                return "in {} days".format(delta.days)
-            else:
-                return "on {}".format(
-                    self.election_date.strftime("%A %-d %B %Y")
-                )
+
+            return "on {}".format(self.election_date.strftime("%A %-d %B %Y"))
+
+        if delta.days == 1:
+            return "tomorrow"
+
+        if delta.days < 7:
+            return "in {} days".format(delta.days)
+
+        return "on {}".format(self.election_date.strftime("%A %-d %B %Y"))
 
     @property
     def nice_election_name(self):
@@ -532,8 +529,8 @@ class PostElection(TimeStampedModel):
     def get_voting_system(self):
         if self.voting_system:
             return self.voting_system
-        else:
-            return self.election.voting_system
+
+        return self.election.voting_system
 
     @property
     def display_as_party_list(self):
@@ -582,11 +579,12 @@ class PostElection(TimeStampedModel):
                     value = f"{value} or independent candidate{ind_and_parties_pluralized}"
                 return value
 
-            else:
-                num_candidates = people.count()
-                candidates_apnumber = apnumber(num_candidates)
-                candidates_pluralized = pluralize(num_candidates)
-                return f"{candidates_apnumber} candidate{candidates_pluralized}"
+            num_candidates = people.count()
+            candidates_apnumber = apnumber(num_candidates)
+            candidates_pluralized = pluralize(num_candidates)
+            return f"{candidates_apnumber} candidate{candidates_pluralized}"
+
+        return None
 
     @property
     def should_display_sopn_info(self):
@@ -643,24 +641,24 @@ class VotingSystem(models.Model):
     def get_absolute_url(self):
         if self.slug == "FPTP":
             return reverse("fptp_voting_system_view")
-        elif self.slug == "AMS":
+        if self.slug == "AMS":
             return reverse("ams_voting_system_view")
-        elif self.slug == "sv":
+        if self.slug == "sv":
             return reverse("sv_voting_system_view")
-        elif self.slug == "STV":
+        if self.slug == "STV":
             return reverse("stv_voting_system_view")
-        else:
-            None
+
+        return None
 
     @property
     def get_name(self):
         if self.slug == "FPTP":
             return _("First-past-the-post")
-        elif self.slug == "AMS":
+        if self.slug == "AMS":
             return _("Additional Member System")
-        elif self.slug == "sv":
+        if self.slug == "sv":
             return _("Supplementary Vote")
-        elif self.slug == "STV":
+        if self.slug == "STV":
             return _("Single Transferable Vote")
-        else:
-            None
+
+        return None

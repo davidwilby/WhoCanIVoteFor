@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, TemplateView
 
-from .models import Party
 from .filters import PartyRegisterFilter
+from .models import Party
 
 
 class PartiesView(TemplateView):

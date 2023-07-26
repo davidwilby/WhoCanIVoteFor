@@ -1,6 +1,6 @@
 import datetime
-import pytest
 
+import pytest
 from referendums.models import Referendum
 
 

@@ -1,8 +1,8 @@
+import re
 from datetime import datetime
 
 from django import template
 from django.template.defaultfilters import stringfilter
-import re
 
 register = template.Library()
 
@@ -12,6 +12,7 @@ register = template.Library()
 def ni_postcode(postcode):
     if re.match("^BT.*", postcode):
         return True
+    return False
 
 
 @register.filter(name="todate")

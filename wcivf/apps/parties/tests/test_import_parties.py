@@ -1,11 +1,9 @@
 import json
+
 import vcr
-
-from django.test import TestCase
-
 from core.tests.helpers import TmpMediaRootMixin
+from django.test import TestCase
 from parties.models import Party
-
 
 SINGLE_PARTY_JSON = """{
     "ec_id": "PP01",

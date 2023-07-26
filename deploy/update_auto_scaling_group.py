@@ -1,8 +1,8 @@
-from collections import defaultdict
 import os
-import boto3
 import time
+from collections import defaultdict
 
+import boto3
 
 client = boto3.client("autoscaling")
 
@@ -13,6 +13,7 @@ def _filter_by_code_deploy_tag(asg):
     """
     for tag in asg["Tags"]:
         return tag["Key"] == "CodeDeploy"
+    return None
 
 
 def get_latest_code_deploy_tagged_asg():

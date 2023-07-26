@@ -1,15 +1,14 @@
-from django.test import TestCase
-from django.utils.timezone import datetime
 from datetime import timezone
-from freezegun import freeze_time
 
 import vcr
-
+from django.test import TestCase
+from django.utils.timezone import datetime
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
     PostElectionFactory,
+    PostFactory,
 )
+from freezegun import freeze_time
 from hustings.models import Husting
 
 

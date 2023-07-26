@@ -1,6 +1,5 @@
 import pytest
 from elections.models import PostElection
-
 from referendums.importers import ReferendumImporter
 from referendums.models import Referendum
 
@@ -9,8 +8,7 @@ class TestReferendumImporter:
     @pytest.fixture
     def importer(self):
         url = "https://example.com"
-        importer = ReferendumImporter(url=url)
-        return importer
+        return ReferendumImporter(url=url)
 
     def test_init(self, importer):
         assert importer.url == "https://example.com"

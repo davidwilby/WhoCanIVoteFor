@@ -1,18 +1,16 @@
-from django.views.generic import TemplateView, DetailView, RedirectView
+from django.apps import apps
+from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-
-from django.db.models import Prefetch
-from django.apps import apps
-
+from django.views.generic import DetailView, RedirectView, TemplateView
+from elections.filters import ElectionTypeFilter
+from elections.models import PostElection
 from elections.views.mixins import (
     NewSlugsRedirectMixin,
     PostelectionsToPeopleMixin,
 )
-from elections.models import PostElection
 from parties.models import LocalParty, Party
 from people.models import PersonPost
-from elections.filters import ElectionTypeFilter
 
 
 class ElectionsView(TemplateView):

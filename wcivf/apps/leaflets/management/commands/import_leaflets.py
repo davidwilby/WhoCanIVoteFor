@@ -1,15 +1,13 @@
 from datetime import datetime
 
+import requests
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone as tz
 from django.utils.http import urlencode
-
-import requests
-
 from elections.models import PostElection
-from people.models import Person
 from leaflets.models import Leaflet
+from people.models import Person
 
 
 class Command(BaseCommand):
@@ -79,7 +77,7 @@ class Command(BaseCommand):
 
     def add_leaflets(self, results):
         for leaflet in results:
-            if not "people" in leaflet:
+            if "people" not in leaflet:
                 continue
             for person_data in leaflet["people"]:
                 person_id = list(person_data.keys())[0]

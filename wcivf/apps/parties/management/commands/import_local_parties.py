@@ -1,9 +1,7 @@
 from dateutil.parser import parse
-
 from django.core.management.base import BaseCommand
 from django.db import transaction
-
-from parties.importers import LocalPartyImporter, LocalElection
+from parties.importers import LocalElection, LocalPartyImporter
 
 
 class Command(BaseCommand):
@@ -168,3 +166,4 @@ class Command(BaseCommand):
             return self.import_from_url()
 
         self.import_from_elections()
+        return None

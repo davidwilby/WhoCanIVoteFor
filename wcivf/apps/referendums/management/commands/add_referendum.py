@@ -1,6 +1,6 @@
-from referendums.models import Referendum
-from elections.models import Election, PostElection, Post
 from django.core.management.base import BaseCommand
+from elections.models import Election, Post, PostElection
+from referendums.models import Referendum
 
 
 class Command(BaseCommand):

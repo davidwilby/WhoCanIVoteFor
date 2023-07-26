@@ -1,7 +1,6 @@
 import pytest
 import redis
-
-from core.models import log_postcode, LoggedPostcode
+from core.models import LoggedPostcode, log_postcode
 
 
 class TestLogPostcode:
