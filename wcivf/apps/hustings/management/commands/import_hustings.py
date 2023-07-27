@@ -2,7 +2,6 @@
 Importer for all our important Hustings data
 """
 import datetime
-import os
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -10,6 +9,8 @@ from django.utils import timezone
 from elections.models import PostElection
 from hustings.importers import HustingImporter
 from hustings.models import Husting
+
+from wcivf.utils import NoOpOutputWrapper
 
 
 def dt_from_string(dt):
@@ -162,7 +163,7 @@ class Command(BaseCommand):
         Entry point for our command.
         """
         if options["quiet"]:
-            self.stdout = open(os.devnull, "w")
+            self.stdout = NoOpOutputWrapper()
 
         file = options["filename"]
         if file:
