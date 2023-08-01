@@ -528,16 +528,13 @@ Resources:
           SslSupportMethod: sni-only
 
         DefaultCacheBehavior:
-          AllowedMethods: [ GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE ]
+          AllowedMethods: [ GET, HEAD, OPTIONS ]
           TargetOriginId: Dynamic
           ForwardedValues:
             QueryString: true
             Cookies:
-              Forward: "all"
-            Headers:
-              - Authorization
-              - Origin
-              - Referer
+              Forward: "none"
+            DefaultTTL: 3600
           ViewerProtocolPolicy: "redirect-to-https"
 
         CacheBehaviors:
