@@ -534,7 +534,7 @@ Resources:
             QueryString: true
             Cookies:
               Forward: "none"
-            DefaultTTL: 3600
+          DefaultTTL: 3600
           ViewerProtocolPolicy: "redirect-to-https"
 
         CacheBehaviors:
