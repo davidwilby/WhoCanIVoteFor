@@ -5,21 +5,20 @@ Used for making sure meta tags and important information is actually
 shown before and after template changes.
 """
 
+import pytest
+import vcr
+from dc_utils.tests.helpers import validate_html_str
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
-from dc_utils.tests.helpers import validate_html_str
-from people.tests.factories import (
-    PersonPostWithPartyFactory,
-)
-from parties.tests.factories import PartyFactory
 from elections.tests.factories import (
     ElectionFactory,
     PostElectionFactory,
 )
-
-import vcr
-import pytest
+from parties.tests.factories import PartyFactory
+from people.tests.factories import (
+    PersonPostWithPartyFactory,
+)
 
 
 @override_settings(

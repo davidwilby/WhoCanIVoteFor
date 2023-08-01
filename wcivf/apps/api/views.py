@@ -1,20 +1,18 @@
 import abc
 
+from api import serializers
+from api.serializers import VotingSystemSerializer
+from core.helpers import clean_postcode
+from django.conf import settings
+from django.utils.http import urlencode
+from elections.models import InvalidPostcodeError, PostElection
+from elections.views import mixins
+from hustings.api.serializers import HustingSerializer
+from people.models import Person
 from rest_framework import viewsets
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from django.conf import settings
-from django.utils.http import urlencode
-
-from api import serializers
-from api.serializers import VotingSystemSerializer
-from core.helpers import clean_postcode
-from elections.views import mixins
-from elections.models import PostElection, InvalidPostcodeError
-from hustings.api.serializers import HustingSerializer
-from people.models import Person
 
 
 class PostcodeNotProvided(APIException):
@@ -160,8 +158,7 @@ class CandidatesAndElectionsForBallots(BaseCandidatesAndElectionsViewSet):
             pes = pes.modified_gt_with_related(date=modified_gt)
         else:
             pes = pes.order_by(*ordering)
-        ret = {"ballots": pes[:100]}
-        return ret
+        return {"ballots": pes[:100]}
 
 
 class LastUpdatedView(APIView):

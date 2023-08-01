@@ -1,10 +1,9 @@
 import requests
 from django.conf import settings
-
 from django.db import models
 from django.db.models import Count
-from django.utils.dateparse import parse_datetime
 from django.utils import timezone
+from django.utils.dateparse import parse_datetime
 
 VALUE_TYPES_TO_IMPORT = [
     "twitter_username",

@@ -1,8 +1,6 @@
 from django.test import TestCase
-
-from people.tests.factories import PersonFactory
-
 from people.models import Person
+from people.tests.factories import PersonFactory
 
 
 class TestFactories(TestCase):

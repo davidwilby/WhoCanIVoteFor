@@ -4,8 +4,6 @@ black==23.7.0
 
 pytest
 pytest-django
-pytest-pep8
-pytest-flakes
 pytest-cov
 factory_boy
 vcrpy==5.0.0
@@ -16,3 +14,6 @@ tomlkit
 freezegun==1.2.2
 django-debug-toolbar==4.1.0
 curlylint==0.13.1
+ruff==0.0.280
+pytest-ruff
+pytest-black

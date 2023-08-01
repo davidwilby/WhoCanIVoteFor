@@ -1,22 +1,20 @@
-import os
 import json
-import tempfile
+import os
 import shutil
+import tempfile
 from urllib.parse import urlencode
 
+import requests
+from core.helpers import show_data_on_error
 from dateutil.parser import parse
-
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from django.conf import settings
-
-import requests
-
-from core.helpers import show_data_on_error
 from elections.import_helpers import YNRBallotImporter
+from elections.models import PostElection
 from parties.models import Party
 from people.models import Person
-from elections.models import PostElection
+
 from wcivf.apps.elections.import_helpers import time_function_length
 from wcivf.apps.people.import_helpers import YNRPersonImporter
 

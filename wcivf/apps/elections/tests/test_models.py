@@ -1,8 +1,7 @@
 import datetime
-from django.utils import timezone
-from faker import Faker
-import pytest
 
+import pytest
+from django.utils import timezone
 from elections.models import Election, Post, PostElection
 from elections.tests.factories import (
     ElectionFactoryLazySlug,
@@ -10,9 +9,9 @@ from elections.tests.factories import (
     PostElectionFactory,
     PostFactory,
 )
+from faker import Faker
 from parties.tests.factories import PartyFactory
 from people.tests.factories import PersonFactory, PersonPostFactory
-
 
 fake = Faker()
 

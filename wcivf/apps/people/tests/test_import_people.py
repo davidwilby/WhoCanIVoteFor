@@ -1,5 +1,4 @@
 import pytest
-
 from elections.models import PostElection
 from parties.models import Party
 from people.management.commands.import_people import Command

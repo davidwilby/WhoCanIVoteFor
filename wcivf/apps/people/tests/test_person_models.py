@@ -1,6 +1,6 @@
-from people.tests.helpers import create_person
-from people.tests.factories import PersonFactory
 from django.test import TestCase
+from people.tests.factories import PersonFactory
+from people.tests.helpers import create_person
 
 from wcivf.apps.elections.tests.factories import ElectionFactory
 from wcivf.apps.people.tests.factories import PersonPostFactory

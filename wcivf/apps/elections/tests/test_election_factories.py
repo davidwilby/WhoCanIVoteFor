@@ -1,14 +1,12 @@
 from django.test import TestCase
 from django.utils.text import slugify
-
+from elections.models import Election, Post, PostElection
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
-    PostElectionFactory,
     ElectionFactoryLazySlug,
+    PostElectionFactory,
+    PostFactory,
 )
-
-from elections.models import Election, Post, PostElection
 
 
 class TestFactories(TestCase):

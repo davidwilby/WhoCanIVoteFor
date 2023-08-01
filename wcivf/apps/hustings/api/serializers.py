@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from hustings.models import Husting
+from rest_framework import serializers
 
 
 class HustingSerializer(serializers.ModelSerializer):

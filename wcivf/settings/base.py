@@ -1,19 +1,32 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import contextlib
 import os
 import sys
 
+import dc_design_system
+import redis
+from dc_logging_client import DCWidePostcodeLoggingClient
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
 from dc_utils.settings.whitenoise import whitenoise_add_middleware
 
-from dc_logging_client import DCWidePostcodeLoggingClient
-
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+
+
+def here(*x):
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+
+
 PROJECT_ROOT = here("..")
-root = lambda *x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
-repo_root = lambda *x: os.path.join(os.path.abspath(here("../..")), *x)
+
+
+def root(*x):
+    return os.path.join(os.path.abspath(PROJECT_ROOT), *x)
+
+
+def repo_root(*x):
+    return os.path.join(os.path.abspath(here("../..")), *x)
+
 
 # Add apps to the PYTHON PATH
 sys.path.insert(0, root("apps"))
@@ -189,7 +202,6 @@ PIPELINE = get_pipeline_settings(
     extra_js=["js/scripts.js", "feedback/js/feedback_form.js"],
 )
 
-import dc_design_system
 
 PIPELINE["SASS_ARGUMENTS"] += (
     " -I " + dc_design_system.DC_SYSTEM_PATH + "/system"
@@ -236,8 +248,6 @@ AKISMET_API_KEY = os.environ.get("AKISMET_API_KEY")
 AKISMET_BLOG_URL = CANONICAL_URL
 
 
-import redis
-
 REDIS_POOL = redis.ConnectionPool(host="127.0.0.1", port=6379, db=5)
 REDIS_KEY_PREFIX = "WCIVF"
 REDIS_LOG_POSTCODE = True
@@ -268,7 +278,7 @@ if os.environ.get("DC_ENVIRONMENT"):
     CHECK_HOST_DIRTY = True
 
     import sentry_sdk
-    from sentry_sdk.integrations import django, aws_lambda
+    from sentry_sdk.integrations import aws_lambda, django
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_DSN"),
@@ -282,25 +292,20 @@ if os.environ.get("DC_ENVIRONMENT"):
 # DC Logging Client
 FIREHOSE_ACCOUNT_ARN = os.environ.get("FIREHOSE_ACCOUNT_ARN", None)
 if FIREHOSE_ACCOUNT_ARN:
-    firehose_args = dict(assume_role_arn=FIREHOSE_ACCOUNT_ARN)
+    firehose_args = {"assume_role_arn": FIREHOSE_ACCOUNT_ARN}
 else:
-    firehose_args = dict(fake=True)
+    firehose_args = {"fake": True}
 POSTCODE_LOGGER = DCWidePostcodeLoggingClient(**firehose_args)
 
-
-# .local.py overrides all the common settings.
-try:
+with contextlib.suppress(ImportError):
+    # .local.py overrides all the common settings.
     from .local import *  # noqa
 
     if DEBUG:
         INSTALLED_APPS += ("debug_toolbar",)
         MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 
-except ImportError:
-    pass
 
 if os.environ.get("CIRCLECI"):
-    try:
+    with contextlib.suppress(ImportError):
         from .ci import *  # noqa
-    except ImportError:
-        pass

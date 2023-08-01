@@ -1,9 +1,8 @@
-from rest_framework import serializers
-
 from elections.models import VotingSystem
 from leaflets.api.serializers import LeafletSerializer
-from people.models import Person, PersonPost
 from parties.models import Party
+from people.models import Person, PersonPost
+from rest_framework import serializers
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -33,6 +32,7 @@ class PersonSerializer(serializers.ModelSerializer):
         leaflets = obj.ordered_leaflets[:4]
         if leaflets:
             return LeafletSerializer(leaflets, many=True, read_only=True).data
+        return None
 
 
 class PartySerializer(serializers.HyperlinkedModelSerializer):
@@ -78,6 +78,7 @@ class PersonPostSerializer(serializers.HyperlinkedModelSerializer):
         parties = obj.previous_party_affiliations.all()
         if parties:
             return PartySerializer(parties, many=True, read_only=True).data
+        return None
 
 
 class VotingSystemSerializer(serializers.ModelSerializer):

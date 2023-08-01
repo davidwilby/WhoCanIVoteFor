@@ -1,9 +1,10 @@
 from django.core.management.base import BaseCommand
-
-from elections.import_helpers import YNRBallotImporter, EEHelper
-from elections.models import Election
-from elections.import_helpers import time_function_length
-from elections.models import PostElection
+from elections.import_helpers import (
+    EEHelper,
+    YNRBallotImporter,
+    time_function_length,
+)
+from elections.models import Election, PostElection
 
 
 class Command(BaseCommand):

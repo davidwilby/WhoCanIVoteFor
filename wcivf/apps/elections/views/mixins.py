@@ -1,23 +1,19 @@
 from datetime import date, datetime
 from typing import Optional
 
-from django.db.models import F, Prefetch
-from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.core.cache import cache
-from django.db.models import IntegerField
-from django.db.models import When, Case, Count
-from django.db.models.functions import Coalesce
-from django.urls import reverse
-
 from core.models import log_postcode
 from core.utils import LastWord
-from elections.devs_dc_client import DevsDCClient, DevsDCAPIException
-from leaflets.models import Leaflet
-from elections.constants import UPDATED_SLUGS
-
+from django.core.cache import cache
+from django.db.models import Case, Count, F, IntegerField, Prefetch, When
+from django.db.models.functions import Coalesce
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.urls import reverse
 from elections.constants import (
     PEOPLE_FOR_BALLOT_KEY_FMT,
+    UPDATED_SLUGS,
 )
+from elections.devs_dc_client import DevsDCAPIException, DevsDCClient
+from leaflets.models import Leaflet
 
 DEVS_DC_CLIENT = DevsDCClient()
 
@@ -137,10 +133,7 @@ class PostelectionsToPeopleMixin(object):
 
 class PollingStationInfoMixin(object):
     def show_polling_card(self, post_elections):
-        for p in post_elections:
-            if p.contested and not p.cancelled:
-                return True
-        return False
+        return any(p.contested and not p.cancelled for p in post_elections)
 
     def get_advance_voting_station_info(self, polling_station: Optional[dict]):
         if not polling_station or not polling_station.get(

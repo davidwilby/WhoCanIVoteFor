@@ -1,6 +1,6 @@
 import csv
-import requests
 
+import requests
 from elections.models import PostElection
 
 

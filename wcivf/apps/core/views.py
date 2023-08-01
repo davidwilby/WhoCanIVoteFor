@@ -1,15 +1,14 @@
 import datetime
 import os
 
+from core.helpers import may_election_day_this_year
 from django import http
 from django.conf import settings
 from django.urls import reverse
-from django.utils import timezone
-from django.utils import translation
-from django.views.generic import View, FormView, TemplateView
-
-from core.helpers import may_election_day_this_year
+from django.utils import timezone, translation
+from django.views.generic import FormView, TemplateView, View
 from elections.models import PostElection
+
 from .forms import PostcodeLookupForm
 
 

@@ -1,16 +1,14 @@
 import pytest
-
 from django.test import TestCase
 from django.utils import timezone
-
-from people.models import Person, PersonPost
-from people.tests.factories import PersonFactory, PersonPostFactory
 from elections.tests.factories import (
     ElectionFactory,
-    PostFactory,
-    PostElectionFactory,
     ElectionFactoryLazySlug,
+    PostElectionFactory,
+    PostFactory,
 )
+from people.models import Person, PersonPost
+from people.tests.factories import PersonFactory, PersonPostFactory
 
 
 class PersonManagerTests(TestCase):

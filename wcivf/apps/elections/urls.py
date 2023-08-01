@@ -1,18 +1,17 @@
+from core.views import TranslatedTemplateView
 from django.urls import re_path
-
 from elections.views.postcode_view import DummyPostcodeView
 
+from .helpers import ElectionIDSwitcher
 from .views import (
-    PostcodeView,
     ElectionsView,
     ElectionView,
-    PostView,
-    PostcodeiCalView,
-    RedirectPostView,
     PartyListVew,
+    PostcodeiCalView,
+    PostcodeView,
+    PostView,
+    RedirectPostView,
 )
-from .helpers import ElectionIDSwitcher
-from core.views import TranslatedTemplateView
 
 urlpatterns = [
     re_path(r"^$", ElectionsView.as_view(), name="elections_view"),

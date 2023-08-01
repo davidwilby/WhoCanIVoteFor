@@ -1,9 +1,9 @@
 from django import forms
 
 from .models import (
-    Feedback,
     FOUND_USEFUL_CHOICES,
     VOTE_CHOICES,
+    Feedback,
     generate_feedback_token,
 )
 

@@ -14,15 +14,10 @@ def get_wikipedia_extract(wikipedia_url):
         return None
     try:
         resp = resp.json()
-    except:
+    except Exception:
         return None
 
-    if "extract" in resp:
-        first_para = resp["extract"]
-    else:
-        first_para = None
-
-    return first_para
+    return resp.get("extract", None)
 
 
 def peopleposts_for_election_post(election, post):

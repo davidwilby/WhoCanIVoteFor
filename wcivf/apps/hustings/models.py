@@ -1,13 +1,12 @@
 """
 Models for Hustings
 """
-from django.utils import timezone
 import hashlib
 
 from django.db import models
-from model_utils.models import TimeStampedModel
-
+from django.utils import timezone
 from elections.models import PostElection
+from model_utils.models import TimeStampedModel
 
 
 class HustingQueryset(models.QuerySet):

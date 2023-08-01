@@ -1,12 +1,11 @@
+from django.db.models import Count, Prefetch, Q
+from django.http import Http404
 from django.urls import reverse
 from django.views.generic import DetailView, RedirectView
-from django.http import Http404
-from django.db.models import Prefetch, Q, Count
-
 from elections.dummy_models import DummyPostElection
+from parties.models import Manifesto
 
 from .models import Person, PersonPost
-from parties.models import Manifesto
 
 
 class PersonMixin(object):

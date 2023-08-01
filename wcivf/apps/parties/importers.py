@@ -1,11 +1,10 @@
 import sys
 from collections import namedtuple
 
-from core.mixins import ReadFromUrlMixin, ReadFromFileMixin
 from core.helpers import twitter_username
-from elections.models import PostElection, Election
+from core.mixins import ReadFromFileMixin, ReadFromUrlMixin
+from elections.models import Election, PostElection
 from parties.models import LocalParty, Manifesto, Party
-
 
 LocalElection = namedtuple("LocalElection", ["date", "csv_files"])
 
@@ -106,8 +105,7 @@ class LocalPartyImporter(ReadFromUrlMixin, ReadFromFileMixin):
             ballots = PostElection.objects.filter(
                 election__slug=election_id
             ).exclude(localparty__parent__in=parties)
-        ballots = ballots.filter(personpost__party__in=parties)
-        return ballots
+        return ballots.filter(personpost__party__in=parties)
 
     def add_local_party(self, row, party, ballots, file_url):
         """

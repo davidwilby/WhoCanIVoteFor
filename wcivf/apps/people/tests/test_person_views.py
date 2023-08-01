@@ -1,24 +1,24 @@
 from unittest.mock import MagicMock
-from django.utils.html import strip_tags
-from freezegun import freeze_time
 
 import pytest
 from django.test import TestCase
 from django.test.utils import override_settings
+from django.utils.html import strip_tags
 from elections.tests.factories import (
     ElectionFactory,
     ElectionFactoryLazySlug,
     PostElectionFactory,
     PostFactory,
 )
+from freezegun import freeze_time
 from parties.tests.factories import LocalPartyFactory, PartyFactory
 from people.tests.factories import (
     PersonFactory,
     PersonPostFactory,
     PersonPostWithPartyFactory,
 )
-from people.views import PersonView
 from people.tests.helpers import create_person
+from people.views import PersonView
 
 
 @override_settings(

@@ -1,12 +1,11 @@
-from django.urls import reverse
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import get_language
-from django.contrib.postgres.fields import ArrayField
-from model_utils.models import TimeStampedModel
-
 from elections.models import Election
+from model_utils.models import TimeStampedModel
 
 
 class PartyManager(models.Manager):
@@ -134,12 +133,11 @@ class Party(models.Model):
         if self.is_joint_party:
             sub_party_numeric_ids = self.party_id.rsplit(":")[1].split("-")
 
-            sub_parties = Party.objects.filter(
+            return Party.objects.filter(
                 party_id__in=[
                     f"party:{party_id}" for party_id in sub_party_numeric_ids
                 ]
             )
-            return sub_parties
 
         return None
 

@@ -3,8 +3,8 @@ from django.views.generic.base import RedirectView
 
 from .views import (
     HomePageView,
-    StatusCheckView,
     OpenSearchView,
+    StatusCheckView,
     TranslatedTemplateView,
 )
 

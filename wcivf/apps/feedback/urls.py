@@ -1,5 +1,6 @@
 from django.urls import re_path
-from .views import RecordJsonFeedback, FeedbackFormView
+
+from .views import FeedbackFormView, RecordJsonFeedback
 
 urlpatterns = [
     re_path(

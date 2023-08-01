@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.db.models import QuerySet
-
-from people.import_helpers import YNRPersonImporter
 from elections.helpers import JsonPaginator
+from people.import_helpers import YNRPersonImporter
 from people.models import Person
 
 

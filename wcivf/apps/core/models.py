@@ -1,11 +1,10 @@
 import json
 
-from django.conf import settings
-from django.utils import timezone
-from django.db import models
-
-from django_extensions.db.models import TimeStampedModel
 import redis
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+from django_extensions.db.models import TimeStampedModel
 
 
 class LoggedPostcode(TimeStampedModel):
@@ -33,6 +32,7 @@ def log_postcode(log_dict, blocking=False):
 
     value = json.dumps(log_dict)
     red.zadd(key, {value: log_dict["created"]})
+    return None
 
 
 def write_logged_postcodes():

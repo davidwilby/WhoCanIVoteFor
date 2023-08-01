@@ -1,22 +1,22 @@
-from django.conf import settings
-import pytest
 import sys
+from datetime import date
 
+import pytest
+from django.conf import settings
 from django.test import TestCase
 from django.utils import timezone
-from elections.tests.factories import (
-    PostFactory,
-    ElectionFactory,
-)
 from elections.helpers import (
-    get_election_timetable,
     EEHelper,
     JsonPaginator,
+    get_election_timetable,
 )
 from elections.import_helpers import YNRBallotImporter, YNRPostImporter
-from elections.models import Election, PostElection, Post
-from datetime import date
-from elections.tests.factories import PostElectionFactory
+from elections.models import Election, Post, PostElection
+from elections.tests.factories import (
+    ElectionFactory,
+    PostElectionFactory,
+    PostFactory,
+)
 from parties.models import Party
 from people.models import PersonPost
 

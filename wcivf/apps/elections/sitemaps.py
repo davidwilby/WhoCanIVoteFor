@@ -1,5 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.db.models import Q
+
 from .models import Election, PostElection
 
 

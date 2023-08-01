@@ -1,4 +1,4 @@
-from core.mixins import ReadFromUrlMixin, ReadFromFileMixin
+from core.mixins import ReadFromFileMixin, ReadFromUrlMixin
 
 
 class HustingImporter(ReadFromUrlMixin, ReadFromFileMixin):

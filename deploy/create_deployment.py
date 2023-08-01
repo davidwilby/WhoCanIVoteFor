@@ -1,6 +1,7 @@
 import os
-import boto3
 import time
+
+import boto3
 
 session = boto3.Session()
 

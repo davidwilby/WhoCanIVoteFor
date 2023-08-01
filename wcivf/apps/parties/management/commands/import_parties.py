@@ -1,8 +1,6 @@
-from django.core.management.base import BaseCommand
-from django.conf import settings
-
 import requests
-
+from django.conf import settings
+from django.core.management.base import BaseCommand
 from parties.models import Party
 
 

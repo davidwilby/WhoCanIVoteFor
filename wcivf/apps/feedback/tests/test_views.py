@@ -1,8 +1,8 @@
 # Test: FeedbackFormViewTests
-from django.urls import reverse
 from django.test import TestCase
-from feedback.views import FeedbackFormView
+from django.urls import reverse
 from feedback.models import Feedback
+from feedback.views import FeedbackFormView
 
 
 class FeedbackFormViewTests(TestCase, FeedbackFormView):

@@ -1,14 +1,13 @@
-from django.urls import include, path, re_path
-from django.contrib import admin
-from django.conf.urls.static import static
 from django.conf import settings
-from django.contrib.sitemaps.views import sitemap, index
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.sitemaps.views import index, sitemap
+from django.urls import include, path, re_path
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
-
 from elections.sitemaps import ElectionSitemap, PostElectionSitemap
-from people.sitemaps import PersonSitemap
 from parties.sitemaps import PartySitemap
+from people.sitemaps import PersonSitemap
 
 sitemaps = {
     "elections": ElectionSitemap,

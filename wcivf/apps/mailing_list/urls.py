@@ -1,10 +1,8 @@
-from django.urls import include, re_path
-from django.views.decorators.csrf import csrf_exempt
-
-
 from dc_signup_form.forms import MailingListSignupForm
 from dc_signup_form.views import SignupFormView
 from django.conf import settings
+from django.urls import include, re_path
+from django.views.decorators.csrf import csrf_exempt
 
 app_name = "mailing_list"
 

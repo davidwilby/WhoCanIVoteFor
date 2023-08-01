@@ -8,8 +8,8 @@ https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
 import os
-import dotenv
 
+import dotenv
 from django.core.wsgi import get_wsgi_application
 
 dotenv.read_dotenv(

@@ -1,11 +1,10 @@
 from urllib.parse import urlencode
+
+import django_filters
 from django.db.models import BLANK_CHOICE_DASH
 from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 from django_filters.widgets import LinkWidget
-
-import django_filters
-
 from parties.models import Party
 
 

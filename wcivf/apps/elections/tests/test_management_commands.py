@@ -1,9 +1,9 @@
 import pytest
-from elections.tests.factories import (
-    PostElectionFactory,
-    ElectionFactoryLazySlug,
-)
 from elections.management.commands.import_ballots import Command
+from elections.tests.factories import (
+    ElectionFactoryLazySlug,
+    PostElectionFactory,
+)
 
 
 class TestPopulateAnyNonByElections:

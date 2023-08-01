@@ -1,8 +1,5 @@
 from django.core.management.base import BaseCommand
-
-
 from django.db import connection
-
 from elections.models import VotingSystem
 
 
