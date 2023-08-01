@@ -3,7 +3,7 @@
 <div class="ds-card">
     <div class="ds-card-body">
         {% if postelections.count == 0 %}
-            {% trans "We don't know of any upcoming elections." %}
+            <h2>{% trans "We don't know of any upcoming elections in your area." %}</h2>
         {% else %}
             {% regroup postelections by election.election_date as header_elections_by_date %}
             {% if address_picker %}
@@ -82,10 +82,11 @@
             {% endif %}
 
             {% if not ballot.election.contested and not ballot.election.ynr_sopn_link %}
-                <p>{% trans "There may also be parish, town or community council elections in some areas." %}</p>
+                <p>{% trans "There may be parish, town or community council elections in some areas." %}</p>
+                <p>{% trans "Local and devolved elections in the UK typically happen on the first Thursday in May. By-elections and parliamentary general elections can happen at any time. Not all areas have elections each year." %}</p>
+                <p>{% blocktrans %}Learn more about elections in the UK <a href="https://www.electoralcommission.org.uk/i-am-a/voter/types-elections">on the Electoral Commission website</a>.{% endblocktrans %}</p>
             {% endif %}
 
-            <p><a href='#where'>{% trans "Where do I vote?" %}</a></p>
         {% endif %}
     </div>
 </div>
