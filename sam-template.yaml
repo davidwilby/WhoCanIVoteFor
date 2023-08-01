@@ -551,7 +551,7 @@ Resources:
                 - Origin
             ViewerProtocolPolicy: "redirect-to-https"
             MinTTL: '50'
-          - AllowedMethods: [ GET, HEAD, OPTIONS, POST]
+          - AllowedMethods: [ HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH]
             PathPattern: admin/*
             TargetOriginId: Dynamic
             Compress: true
