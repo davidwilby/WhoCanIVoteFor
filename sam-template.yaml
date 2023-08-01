@@ -528,7 +528,7 @@ Resources:
           SslSupportMethod: sni-only
 
         DefaultCacheBehavior:
-          AllowedMethods: [ GET, HEAD, OPTIONS, POST ]
+          AllowedMethods: [ HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH ]
           TargetOriginId: Dynamic
           ForwardedValues:
             QueryString: true
