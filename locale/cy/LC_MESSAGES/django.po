@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-21 15:46+0100\n"
+"POT-Creation-Date: 2023-08-01 17:19+0100\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -25,25 +25,25 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != "
 "11) ? 2 : 3;\n"
 
-#: wcivf/apps/core/forms.py:8
+#: wcivf/apps/core/forms.py:7
 msgid "Enter your postcode"
 msgstr "Rhowch eich cod post"
 
-#: wcivf/apps/elections/models.py:658
+#: wcivf/apps/elections/models.py:656
 msgid "First-past-the-post"
 msgstr "Y Cyntaf i’r Felin"
 
-#: wcivf/apps/elections/models.py:660
+#: wcivf/apps/elections/models.py:658
 #, fuzzy
 #| msgid "The Additional Member System"
 msgid "Additional Member System"
 msgstr "Y System Aelodau Ychwanegol"
 
-#: wcivf/apps/elections/models.py:662
+#: wcivf/apps/elections/models.py:660
 msgid "Supplementary Vote"
 msgstr "Pleidlais Atodol"
 
-#: wcivf/apps/elections/models.py:664
+#: wcivf/apps/elections/models.py:662
 msgid "Single Transferable Vote"
 msgstr "Pleidlais Sengl Drosglwyddadwy"
 
@@ -836,7 +836,9 @@ msgid "View results"
 msgstr "Gweld y canlyniadau"
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:6
-msgid "We don't know of any upcoming elections."
+#, fuzzy
+#| msgid "We don't know of any upcoming elections."
+msgid "We don't know of any upcoming elections in your area."
 msgstr "Ni wyddwn am unrhyw etholiadau sydd i ddod"
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:12
@@ -869,15 +871,36 @@ msgid "(may be contested)"
 msgstr "(efallai y bydd cystadleuaeth)"
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:85
-msgid ""
-"There may also be parish, town or community council elections in some areas."
+#, fuzzy
+#| msgid ""
+#| "There may also be parish, town or community council elections in some "
+#| "areas."
+msgid "There may be parish, town or community council elections in some areas."
 msgstr ""
 "Efallai y bydd etholiadau cyngor plwyf, tref neu gymunedol mewn rhai "
 "ardaloedd."
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:88
-msgid "Where do I vote?"
-msgstr "Ble rydw i'n pleidleisio?"
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:86
+msgid ""
+"Local and devolved elections in the UK typically happen on the first "
+"Thursday in May. By-elections and parliamentary general elections can happen "
+"at any time. Not all areas have elections each year."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:87
+#, fuzzy
+#| msgid ""
+#| "For more information, visit <a href=\"https://www.electoralcommission.org."
+#| "uk/i-am-a/voter/how-cast-your-vote\">The Electoral Commission's website</"
+#| "a> or ask an official at your polling station."
+msgid ""
+"Learn more about elections in the UK <a href=\"https://www."
+"electoralcommission.org.uk/i-am-a/voter/types-elections\">on the Electoral "
+"Commission website</a>."
+msgstr ""
+"Am fwy o wybodaeth, ewch i <href=\"https://www.electoralcommission.org.uk/i-"
+"am-a/voter/how-cast-your-vote\">Wefan y Comisiwn Etholiadol</a> neu "
+"gofynnwch i swyddog yn eich gorsaf bleidleisio."
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:14
 msgid "emblem"
@@ -983,11 +1006,11 @@ msgstr ""
 msgid "Enter this URL and save"
 msgstr "Rhowch yr URL hwn a'i arbed"
 
-#: wcivf/apps/feedback/models.py:8 wcivf/apps/feedback/models.py:9
+#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
 msgid "Yes"
 msgstr "Ie"
 
-#: wcivf/apps/feedback/models.py:8 wcivf/apps/feedback/models.py:9
+#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
 msgid "No"
 msgstr "Na"
 
@@ -2149,6 +2172,9 @@ msgstr "Etholiadau i ddod"
 #: wcivf/templates/mailing_list.html:8
 msgid "Join our mailing list"
 msgstr "Ymunwch â'n rhestr bostio"
+
+#~ msgid "Where do I vote?"
+#~ msgstr "Ble rydw i'n pleidleisio?"
 
 #~ msgid ""
 #~ "<h2>UK political parties</h2> <p>The following is a list of all political "
