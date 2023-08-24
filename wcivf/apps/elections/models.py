@@ -26,6 +26,13 @@ class InvalidPostcodeError(Exception):
     pass
 
 
+class ElectionCancellationReason(models.TextChoices):
+    NO_CANDIDATES = "NO_CANDIDATES", "No candidates"
+    EQUAL_CANDIDATES = "EQUAL_CANDIDATES", "Equal candidates to seats"
+    UNDER_CONTESTED = "UNDER_CONTESTED", "Fewer candidates than seats"
+    CANDIDATE_DEATH = "CANDIDATE_DEATH", "Death of a candidate"
+
+
 def utc_to_local(utc_dt):
     return utc_dt.replace(tzinfo=pytz.utc).astimezone(LOCAL_TZ)
 
@@ -403,6 +410,13 @@ class PostElection(TimeStampedModel):
         help_text="Timestamp of when this ballot was updated in the YNR",
     )
     requires_voter_id = models.CharField(blank=True, null=True, max_length=50)
+    cancellation_reason = models.CharField(
+        max_length=16,
+        null=True,
+        blank=True,
+        choices=ElectionCancellationReason.choices,
+        default=None,
+    )
 
     objects = PostElectionQuerySet.as_manager()
 
