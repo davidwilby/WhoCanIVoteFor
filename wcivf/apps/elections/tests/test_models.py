@@ -31,6 +31,26 @@ class TestElectionModel:
 
         assert election.in_past is True
 
+    def test_electorate(self):
+        election = Election(electorate=1000)
+        assert election.electorate == 1000
+        assert type(election.electorate) == int
+
+    def test_turnout(self):
+        election = Election(turnout=1000)
+        assert election.turnout == 1000
+        assert type(election.turnout) == int
+
+    def test_spoilt_ballots(self):
+        election = Election(spoilt_ballots=1000)
+        assert election.spoilt_ballots == 1000
+        assert type(election.spoilt_ballots) == int
+
+    def test_ballot_papers_issued(self):
+        election = Election(ballot_papers_issued=1000)
+        assert election.ballot_papers_issued == 1000
+        assert type(election.ballot_papers_issued) == int
+
     def test_is_city_of_london(self, election, city_of_london_election):
         assert election.is_city_of_london is False
         assert city_of_london_election.is_city_of_london is True

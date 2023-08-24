@@ -103,6 +103,24 @@ class YNRElectionImporter:
                 },
             )
 
+            if ballot_dict["results"]:
+                election, created = Election.objects.update_or_create(
+                    slug=slug,
+                    election_type=election_type,
+                    defaults={
+                        "ballot_papers_issued": ballot_dict["results"][
+                            "num_turnout_reported"
+                        ],
+                        "electorate": ballot_dict["results"][
+                            "total_electorate"
+                        ],
+                        "turnout": ballot_dict["results"]["turnout_percentage"],
+                        "spoilt_ballots": ballot_dict["results"][
+                            "num_spoilt_ballots"
+                        ],
+                    },
+                )
+
             self.import_metadata_from_ee(election)
             self.election_cache[election.slug] = election
         return self.election_cache[slug]

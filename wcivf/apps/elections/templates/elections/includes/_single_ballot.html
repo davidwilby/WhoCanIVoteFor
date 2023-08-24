@@ -129,7 +129,42 @@
                     {% endif %}
                 </p>
             {% endif %}
+            {% if postelection.election.in_past and postelection.election.has_results %}
+                <section class="ds-card ds-width-half-text">
+                    <div class="ds-table">
+                        <table id="results-table">
+                            {% if postelection.election.electorate %}
+                                <tr>
+                                    <th>{% trans "Electorate" %}</th>
+                                    <td>{{ postelection.election.electorate }}</td>
+                                </tr>
+                            {% endif %}
 
+                            {% if postelection.election.ballot_papers_issued %}
+                                <tr>
+                                    <th>{% trans "Ballot Papers Issued" %}</th>
+                                    <td>{{ postelection.election.ballot_papers_issued}}</td>
+                                </tr>
+                            {% endif %}
+
+                            {% if postelection.election.spoilt_ballots %}
+                                <tr>
+                                    <th>{% trans "Spoilt Ballots" %}</th>
+                                    <td>{{ postelection.election.spoilt_ballots }}</td>
+                                </tr>
+                            {% endif %}
+
+                            {% if postelection.election.turnout %}
+                                <tr>
+                                    <th>{% trans "Turnout" %}</th>
+                                    <td>{{ postelection.election.turnout|stringformat:"d%%" }}</td>
+                                </tr>
+                            {% endif %}
+
+                        </table>
+                    </div>
+                </section>
+            {% endif %}
             {% if postelection.people and postelection.should_show_candidates %}
                 {% if postelection.display_as_party_list %}
                     {% include "elections/includes/_people_list_with_lists.html" with people=postelection.people %}
