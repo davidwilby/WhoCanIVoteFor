@@ -641,15 +641,8 @@ class PostElection(TimeStampedModel):
             return True
         if not self.metadata:
             return True
-        if reason := self.metadata.get("cancelled_election", {}).get(
-            "cancellation_reason", ""
-        ):
-            if reason == "CANDIDATE_DEATH":
-                return False
-            if reason == "EQUAL_CANDIDATES":
-                return True
-            if reason == "UNDER_CONTESTED":
-                return True
+        if self.cancellation_reason in ["CANDIDATE_DEATH"]:
+            return False
         return True
 
 
