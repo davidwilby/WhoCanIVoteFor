@@ -368,6 +368,16 @@ class PersonViewTests(TestCase):
         self.assertEqual(response.template_name, ["people/person_detail.html"])
         self.assertNotContains(response, "Wikipedia")
 
+    def test_not_current_about_section(self):
+        response = self.client.get(self.person_url, follow=True)
+        self.assertEqual(
+            response.template_name, ["people/not_current_person_detail.html"]
+        )
+        self.assertNotEqual(
+            response.template_name, ["people/person_about_card.html"]
+        )
+        self.assertNotContains(response, "About Candidate 24")
+
     def test_wikipedia(self):
         self.person.wikipedia_bio = "yo"
         self.person.wikipedia_url = "https//www.wikipedia.com/yo"
