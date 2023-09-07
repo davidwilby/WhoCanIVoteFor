@@ -226,15 +226,22 @@ class TestPostcodeViewPolls:
         )
 
     def test_multiple_elections_london(self, mock_response, client):
+        """This test is for the case where there are multiple elections in
+        London on the same day and we want to make sure that the correct
+        polling station opening times are displayed for each election
+        as well as the correct anchor links to the election pages
+        """
         local_london = PostElectionFactory(
             ballot_paper_id="local.city-of-london.aldgate.2021-05-06",
-            election__slug="local.city-of-london.2021-05-06",
-            election__election_date="2021-05-06",
+            election__slug="local.city-of-london.2024-05-06",
+            election__election_date="2024-05-06",
+            election__name="City of London Corporation local election",
         )
         parl_london = PostElectionFactory(
             ballot_paper_id="parl.cities-of-london-and-westminster.by.2021-05-06",
-            election__slug="parl.2021-05-06",
-            election__election_date="2021-05-06",
+            election__slug="parl.2024-05-06",
+            election__election_date="2024-05-06",
+            election__name="Cities of London and Westminster by-election",
         )
 
         mock_response.json.return_value["dates"].extend(
@@ -264,6 +271,35 @@ class TestPostcodeViewPolls:
         )
         asserts.assertNotContains(
             response, "Polling stations are open from 8a.m. till 8p.m. today"
+        )
+
+        asserts.assertContains(
+            response,
+            '<a href="#election_local.city-of-london.2024-05-06">',
+        )
+        asserts.assertContains(
+            response,
+            '<a href="#election_parl.2024-05-06">',
+        )
+        # click the anchor link to the local election and check the header
+        # contains the correct election name
+        response = client.get(
+            reverse("postcode_view", kwargs={"postcode": "TE11ST"})
+            + "#election_local.city-of-london.2024-05-06",
+            follow=True,
+        )
+        asserts.assertContains(
+            response,
+            "City of London Corporation local election",
+        )
+        response = client.get(
+            reverse("postcode_view", kwargs={"postcode": "TE11ST"})
+            + "#election_parl.2024-05-06",
+            follow=True,
+        )
+        asserts.assertContains(
+            response,
+            "Cities of London and Westminster by-election",
         )
 
     def test_multiple_elections_not_london(self, mock_response, client):
@@ -302,6 +338,13 @@ class TestPostcodeViewPolls:
         )
         asserts.assertNotContains(
             response, "Polling stations are open from 8a.m. till 8p.m. today"
+        )
+        asserts.assertTemplateUsed(response, "elections/postcode_view.html")
+        asserts.assertTemplateUsed(
+            response, "elections/includes/inline_elections_nav_list.html"
+        )
+        asserts.assertTemplateUsed(
+            response, "elections/includes/_single_ballot.html"
         )
 
 
