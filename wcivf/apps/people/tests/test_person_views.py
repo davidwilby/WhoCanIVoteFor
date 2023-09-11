@@ -553,6 +553,18 @@ class PersonViewTests(TestCase):
         req = self.client.get("/person/partywebsite.org/")
         self.assertEqual(req.status_code, 404)
 
+    def test_noindex_tag_added(self):
+        noindex_string = """<meta name="robots" content="noindex">"""
+        PersonPostWithPartyFactory(
+            person=self.person, election=ElectionFactory()
+        )
+        response = self.client.get(self.person_url, follow=True)
+        self.assertNotContains(response, noindex_string)
+        self.person.delisted = True
+        self.person.save()
+        response = self.client.get(self.person_url, follow=True)
+        self.assertInHTML(noindex_string, response.content.decode("utf8"))
+
 
 class TestPersonViewUnitTests:
     @pytest.fixture

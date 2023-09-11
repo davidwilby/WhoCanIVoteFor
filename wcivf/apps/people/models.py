@@ -193,6 +193,9 @@ class Person(models.Model):
     last_or_current_job = models.CharField(null=True, max_length=800)
     previously_in_parliament = models.CharField(null=True, max_length=800)
 
+    # Meta
+    delisted = models.BooleanField(default=False)
+
     objects = PersonManager()
 
     class Meta:
