@@ -29,6 +29,14 @@ class PersonManagerTests(TestCase):
         assert Person.objects.all().count() == 5
         assert PersonPost.objects.all().counts_by_post().count() == 1
 
+    def test_delisted_value(self):
+        assert PersonPost.objects.all().contains_delisted_person() is False
+
+        person = Person.objects.first()
+        person.delisted = True
+        person.save()
+        assert PersonPost.objects.all().contains_delisted_person() is True
+
 
 @pytest.mark.freeze_time("2021-01-13")
 class PersonPostManagerTests(TestCase):

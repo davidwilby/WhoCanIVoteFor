@@ -67,6 +67,9 @@ class PersonPostQuerySet(models.QuerySet):
         """
         return self.filter(election__current=True)
 
+    def contains_delisted_person(self):
+        return self.filter(person__delisted=True).exists()
+
 
 class PersonPostManager(models.Manager):
     def get_queryset(self):
@@ -107,6 +110,7 @@ class PersonManager(models.Manager):
             "birth_date": person["birth_date"] or None,
             "death_date": person["death_date"] or None,
             "last_updated": last_updated,
+            "delisted": person.get("delisted", False),
         }
 
         for value_type in VALUE_TYPES_TO_IMPORT:

@@ -14,6 +14,11 @@
 {% block twitter_image %}{% if object.photo_url %}{{ object.photo_url }}{% else %}{{ CANONICAL_URL }}{% static 'images/blank-avatar.png' %}{% endif %}{% endblock twitter_image %}
 {% block twitter_description_content %}{% include "people/includes/_person_meta_description.html" %}{% endblock twitter_description_content %}
 {% block twitter_image_alt %}Photo of {{ object.name }}{% endblock twitter_image_alt %}
+{% block page_meta %}
+    {% if object.delisted %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     {% if referer_postcode %}
