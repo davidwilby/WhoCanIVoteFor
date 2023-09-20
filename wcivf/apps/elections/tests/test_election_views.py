@@ -1,3 +1,4 @@
+import datetime
 from random import shuffle
 
 import factory
@@ -135,6 +136,44 @@ class ElectionPostViewTests(TestCase):
         self.post = PostFactory(label="Adur local election")
         self.post_election = PostElectionFactory(
             election=self.election, post=self.post
+        )
+
+    def test_pre_sopn_text_with_candidates(self):
+        future_election = ElectionFactory(
+            name="Adur local election",
+            election_date="2024-05-06",
+            slug="local.adur.churchill.2024-05-06",
+        )
+        future_post = PostFactory(label="Adur local election")
+        future_post_election = PostElectionFactory(
+            election=future_election,
+            post=future_post,
+            ballot_paper_id="local.adur.churchill.2024-05-06",
+        )
+        future_post.territory = "ENG"
+        future_post.save()
+        person = PersonFactory()
+        PersonPostFactory(
+            post_election=future_post_election,
+            election=future_election,
+            post=future_post,
+            person=person,
+        )
+        response = self.client.get(
+            future_post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(future_post_election.locked)
+        self.assertEqual(len(future_post_election.personpost_set.all()), 1)
+        self.assertEqual(
+            future_post_election.expected_sopn_date, datetime.date(2024, 4, 10)
+        )
+
+        pre_sopn_text = """This candidate will not be confirmed until the council publishes the official candidate list on 10 April 2024."""
+        self.assertContains(response, pre_sopn_text)
+        self.assertContains(
+            response,
+            """Once nomination papers are published, we will manually verify each candidate.""",
         )
 
     def test_zero_candidates(self):

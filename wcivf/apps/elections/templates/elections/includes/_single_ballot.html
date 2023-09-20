@@ -106,14 +106,22 @@
 
                                 {% else %}
                                     {# Case: Candidates and the post is NOT locked (add CTA) #}
-                                    {% blocktrans trimmed with num_ballots=postelection.party_ballot_count postelection=postelection.friendly_name ynr_link=postelection.ynr_link %}
-                                        The official candidate list has not yet been published.
-                                        However, we expect at least <strong>{{ num_ballots }}</strong>
-                                        in the {{ postelection }}.
+                                    {% blocktrans trimmed with expected_sopn_date=postelection.expected_sopn_date|date:"j F Y"  count counter=postelection.people.count %}
+                                        This candidate will not be confirmed until the council publishes
+                                        the official candidate list on {{ expected_sopn_date }}.
+                                    {% plural %}
+                                        These candidates will not be confirmed until the council publishes
+                                        the official candidate list on {{ expected_sopn_date }}.
+                                    {% endblocktrans %}
 
+
+                                    {% blocktrans trimmed with ynr_link=postelection.ynr_link %}
+                                        Once nomination papers are published, we will manually verify each candidate.
                                         You can help improve this page: <a href="{{ ynr_link }}">
                                             add information about candidates to our database</a>.
                                     {% endblocktrans %}
+
+
                                 {% endif %}
 
                             {% endif %}
