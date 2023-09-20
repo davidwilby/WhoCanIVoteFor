@@ -15,3 +15,5 @@ AWS parameter store is used to store secrets and values that we then use to expo
 - `WDIV_API_KEY`
 - `FIREHOSE_ACCOUNT_ARN`
 - `AKISMET_API_KEY`
+- `EMAIL_SIGNUP_EVENT_BRIDGE_ARN` - For mailing list signups. See the developer
+  handbook for values per account type
