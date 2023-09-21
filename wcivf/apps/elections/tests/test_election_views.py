@@ -235,6 +235,102 @@ class ElectionPostViewTests(TestCase):
             response, f"See all 5 candidates in the {self.post.label}"
         )
 
+    def test_cancellation_reason_candidate_death(self):
+        self.post_election.cancelled = True
+        self.post_election.cancellation_reason = "CANDIDATE_DEATH"
+        self.post_election.save()
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "elections/post_view.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_description.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
+        self.assertNotContains(response, "No candidates known yet.")
+        self.assertContains(
+            response,
+            "This election was cancelled due to the death of a candidate.",
+        )
+
+    def test_cancellation_reason_no_candidates(self):
+        self.post_election.cancelled = True
+        self.post_election.cancellation_reason = "NO_CANDIDATES"
+        self.post_election.save()
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "elections/post_view.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_description.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
+        self.assertNotContains(response, "No candidates known yet.")
+        self.assertContains(
+            response,
+            "This election was cancelled because no candidates stood for the available seats",
+        )
+
+    def test_cancellation_reason_equal_candidates(self):
+        self.post_election.cancelled = True
+        self.post_election.cancellation_reason = "EQUAL_CANDIDATES"
+        self.post_election.save()
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "elections/post_view.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_description.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
+        self.assertNotContains(response, "No candidates known yet.")
+        self.assertContains(
+            response,
+            "This election was cancelled because the number of candidates who stood was equal to the number of available seats.",
+        )
+
+    def test_cancellation_reason_under_contested(self):
+        self.post_election.cancelled = True
+        self.post_election.cancellation_reason = "UNDER_CONTESTED"
+        self.post_election.save()
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "elections/post_view.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_description.html"
+        )
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
+        self.assertNotContains(response, "No candidates known yet.")
+        self.assertContains(
+            response,
+            "This election was cancelled because the number of candidates who stood was fewer than the number of available seats.",
+        )
+
     def test_cancelled_with_metadata(self):
         """Case 1: Cancelled election and Metadata
         is set in EE"""
@@ -268,102 +364,6 @@ class ElectionPostViewTests(TestCase):
             response,
             f"{self.post_election.election.name}: This election has been cancelled",
         )
-
-    def test_cancelled_uncontested_and_equal(self):
-        """Case 2: Election cancelled, uncontested,
-        number of candidates equal seats, no metadata"""
-        self.post_election.winner_count = 4
-        people = [PersonFactory() for p in range(4)]
-        for person in people:
-            PersonPostFactory(
-                post_election=self.post_election,
-                election=self.election,
-                post=self.post,
-                person=person,
-            )
-        self.post_election.contested = False
-        self.post_election.cancelled = True
-        self.post_election.metadata = None
-        self.post_election.save()
-        response = self.client.get(
-            self.post_election.get_absolute_url(), follow=True
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(
-            response, "elections/includes/_cancelled_election.html"
-        )
-        self.assertContains(response, "Uncontested Election")
-        self.assertContains(
-            response,
-            "No votes will be cast, and the candidates below have been automatically declared",
-        )
-        self.assertNotContains(response, "This election was cancelled.")
-
-    def test_cancelled_uncontested_and_fewer_candidates(self):
-        """Case 3: Election cancelled, uncontested,
-        number of candidates fewer than seats, no
-        metadata"""
-        self.post_election.winner_count = 5
-        people = [PersonFactory() for p in range(4)]
-        for person in people:
-            PersonPostFactory(
-                post_election=self.post_election,
-                election=self.election,
-                post=self.post,
-                person=person,
-            )
-        self.post_election.contested = False
-        self.post_election.metadata = None
-        self.post_election.cancelled = True
-        self.post_election.save()
-
-        response = self.client.get(
-            self.post_election.get_absolute_url(), follow=True
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(
-            response, "elections/includes/_cancelled_election.html"
-        )
-
-        self.assertContains(
-            response,
-            "This election was uncontested because the number of candidates who stood was fewer than the number of available seats.",
-        )
-        self.assertNotContains(response, "This election was cancelled.")
-
-    def test_cancelled_uncontested_no_candidates(self):
-        """Case 4: Election cancelled, uncontested,
-        zero candidates, no metadata"""
-        self.post_election.winner_count = 4
-        self.post_election.cancelled = True
-        self.post_election.contested = False
-        self.post_election.metadata = None
-        self.post_election.save()
-        response = self.client.get(
-            self.post_election.get_absolute_url(), follow=True
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(
-            response, "elections/includes/_cancelled_election.html"
-        )
-        self.assertNotContains(response, "No votes will be cast")
-        self.assertNotContains(response, "have been automatically declared")
-
-    def test_cancelled_contested(self):
-        """Case 5: Election cancelled, contested,
-        no metadata"""
-        self.post_election.cancelled = True
-        self.post_election.contested = True
-        self.post_election.metadata = None
-        self.post_election.save()
-        response = self.client.get(
-            self.post_election.get_absolute_url(), follow=True
-        )
-        self.assertTemplateUsed(
-            response, "elections/includes/_cancelled_election.html"
-        )
-        self.assertContains(response, "This election was cancelled.")
-        self.assertNotContains(response, "No votes will be cast")
 
     def test_previous_cancelled_elections(self):
         """

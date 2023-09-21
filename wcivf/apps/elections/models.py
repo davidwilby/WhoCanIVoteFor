@@ -539,19 +539,30 @@ class PostElection(TimeStampedModel):
         if not self.cancelled:
             return ""
         message = None
-        if self.metadata and self.metadata.get("cancelled_election"):
-            title = self.metadata["cancelled_election"].get("title")
-            url = self.metadata["cancelled_election"].get("url")
-            message = title
-            if url:
-                message = """<strong> ❌ <a href="{}">{}</a></strong>""".format(
-                    url, title
-                )
+
+        if self.cancellation_reason:
+            if self.cancellation_reason == "CANDIDATE_DEATH":
+                message = """<strong> ❌ This election has been cancelled due to the death of a candidate.</strong>"""
+            else:
+                message = """<strong> ❌ The poll for this election will not take place because it is uncontested.</strong>"""
+        else:
+            # Leaving this in for now as we transition away from metadata
+            if self.metadata and self.metadata.get("cancelled_election"):
+                title = self.metadata["cancelled_election"].get("title")
+                url = self.metadata["cancelled_election"].get("url")
+                message = title
+                if url:
+                    message = (
+                        """<strong> ❌ <a href="{}">{}</a></strong>""".format(
+                            url, title
+                        )
+                    )
         if not message:
             if self.election.in_past:
                 message = "(The poll for this election was cancelled)"
             else:
                 message = "<strong>(The poll for this election has been cancelled)</strong>"
+
         return mark_safe(message)
 
     @property
