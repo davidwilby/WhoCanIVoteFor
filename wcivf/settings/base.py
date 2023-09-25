@@ -232,11 +232,11 @@ CANONICAL_URL = "https://whocanivotefor.co.uk"
 ROBOTS_USE_HOST = False
 USE_X_FORWARDED_HOST = True
 
-EMAIL_SIGNUP_ENDPOINT = (
-    "https://democracyclub.org.uk/mailing_list/api_signup/v1/"
-)
-EMAIL_SIGNUP_API_KEY = os.environ.get("EMAIL_SIGNUP_API_KEY", "")
-EMAIL_SIGNUP_BACKEND = "remote_db"
+EMAIL_SIGNUP_BACKEND = "event_bridge"
+EMAIL_SIGNUP_BACKEND_KWARGS = {
+    "source": "WCIVF",
+    "bus_arn": os.environ.get("EMAIL_SIGNUP_EVENT_BRIDGE_ARN"),
+}
 
 # DC Base Theme settings
 SITE_TITLE = "Who Can I Vote For?"
