@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 
+{% block og_url_content %}{{ request.build_absolute_uri }}{% endblock og_url_content %}
 
 {% block extra_site_css %}
     {% if USE_COMPRESSED_CSS %}
