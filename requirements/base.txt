@@ -15,9 +15,9 @@ redis==4.6.0
 icalendar==5.0.7
 dealer==2.1.0
 
-https://github.com/DemocracyClub/dc_signup_form/archive/refs/tags/2.3.0.tar.gz
-https://github.com/DemocracyClub/design-system/archive/refs/tags/0.2.4.tar.gz
-https://github.com/DemocracyClub/dc_django_utils/archive/refs/tags/2.3.0.tar.gz
+git+https://github.com/DemocracyClub/dc_signup_form.git@3.0.0
+git+https://github.com/DemocracyClub/design-system.git@0.2.4
+git+https://github.com/DemocracyClub/dc_django_utils.git@2.3.0
 git+https://github.com/DemocracyClub/dc_logging.git@0.0.9
 
 djangorestframework-jsonp==1.0.2
