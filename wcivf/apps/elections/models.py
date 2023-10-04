@@ -143,8 +143,6 @@ class Election(models.Model):
             name = name.replace("election", "")
             name = name.replace("UK Parliament", "UK Parliamentary")
             name = "{} {}".format(name, "by-election")
-        if self.election_type == "mayor":
-            name = name.replace("election", "")
 
         return name
 
