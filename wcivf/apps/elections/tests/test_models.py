@@ -413,3 +413,30 @@ class TestPostElectionModel:
                     return_value=date[0],
                 )
                 assert post_election.past_expected_sopn_day is date[1]
+
+    def test_short_cancelled_message_html(self, post_election):
+        assert post_election.short_cancelled_message_html == ""
+
+        post_election.cancelled = True
+        assert (
+            post_election.short_cancelled_message_html
+            == "(The poll for this election was cancelled)"
+        )
+
+        cancellation_reasons = [
+            "EQUAL_CANDIDATES",
+            "NO_CANDIDATES",
+            "UNDER_CONTESTED",
+        ]
+        for reason in cancellation_reasons:
+            post_election.cancellation_reason = reason
+            assert (
+                post_election.short_cancelled_message_html
+                == "<strong> ❌ The poll for this election will not take place because it is uncontested.</strong>"
+            )
+
+        post_election.cancellation_reason = "CANDIDATE_DEATH"
+        assert (
+            post_election.short_cancelled_message_html
+            == "<strong> ❌ This election has been cancelled due to the death of a candidate.</strong>"
+        )
