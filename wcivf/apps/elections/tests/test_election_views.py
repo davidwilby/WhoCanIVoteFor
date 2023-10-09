@@ -125,6 +125,34 @@ class ElectionViewTests(TestCase):
         self.assertContains(response, local_election.election_date)
         self.assertNotContains(response, parl_election.nice_election_name)
 
+    def test_election_filters_exact_election_type(self):
+        """
+        Regresson test: previously we would get false positive results when
+        filtering on 'parl', as 'europarl' also contains 'parl'. The lookup expression
+        should be exact not "contains"
+        """
+
+        ElectionWithPostFactory(
+            slug="europarl.uk-eastern.2014-05-22",
+            election_date="2014-05-22",
+            name="European Union Parliament (UK) elections: Eastern",
+            election_type="europarl",
+        )
+        ElectionWithPostFactory(
+            slug="parl.stroud.2019-12-12",
+            election_date="2019-12-12",
+            name="Stroud 2019",
+            election_type="parl",
+        )
+        url = reverse("elections_view")
+        url = f"{url}?election_type=parl"
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        print(response.content)
+        self.assertNotContains(
+            response, "European Union Parliament (UK) elections: Eastern"
+        )
+
 
 class ElectionPostViewTests(TestCase):
     def setUp(self):
