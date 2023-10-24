@@ -246,11 +246,13 @@ class TestYNRBallotImporter:
         result = importer.build_params(params=None)
         assert result == {"last_updated": ts.isoformat(), "page_size": 200}
 
+        importer.api_key = "test_api_key"
         result = importer.build_params(params={"foo": "bar"})
         assert result == {
             "last_updated": ts.isoformat(),
             "page_size": 200,
             "foo": "bar",
+            "auth_token": "test_api_key",
         }
 
     def test_should_run_post_ballot_import_tasks(
