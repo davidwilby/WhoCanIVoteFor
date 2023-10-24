@@ -11,6 +11,9 @@ class YNRPersonImporter:
         self.base_url = base_url or settings.YNR_BASE
         self.params = {"page_size": 200}
         self.stdout = stdout or sys.stdout
+        self.api_key = settings.YNR_API_KEY
+        if self.api_key:
+            self.params["auth_token"] = self.api_key
         if params:
             self.params.update(params)
 
