@@ -71,6 +71,10 @@ Parameters:
     Description: "Webhook url used to send feeback entries to Slack"
     Type: String
 
+  AppYnrApiKey:
+    Description: "API key used to import data from YNR"
+    Type: String 
+
 Resources:
   WCIVFControllerFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -94,6 +98,7 @@ Resources:
           SLACK_FEEDBACK_WEBHOOK_URL: !Ref AppSlackFeedbackWebhookUrl
           LOGGER_DB_PASSWORD: !Ref AppLoggerDbPassword
           LOGGER_DB_HOST: !Ref AppLoggerDbHost
+          YNR_API_KEY: !Ref AppYnrApiKey
       Tags:
         dc-environment: !Ref AppDcEnvironment
         dc-product: wcivf
