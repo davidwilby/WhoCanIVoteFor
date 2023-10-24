@@ -6,7 +6,10 @@ from parties.models import Party
 
 class Command(BaseCommand):
     def handle(self, **options):
-        next_page = settings.YNR_BASE + "/api/next/parties/?page_size=200"
+        next_page = f"{settings.YNR_BASE}/api/next/parties/?page_size=200"
+        if settings.YNR_API_KEY:
+            next_page = f"{next_page}&auth_token={settings.YNR_API_KEY}"
+
         while next_page:
             req = requests.get(next_page)
             results = req.json()
