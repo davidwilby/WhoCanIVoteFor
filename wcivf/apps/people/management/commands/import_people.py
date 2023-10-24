@@ -243,12 +243,9 @@ class Command(BaseCommand):
 
     @time_function_length
     def delete_merged_people(self):
-        url = (
-            settings.YNR_BASE
-            + "/api/next/person_redirects/?page_size=200&updated_gte={}".format(
-                self.past_time_str
-            )
-        )
+        url = f"{settings.YNR_BASE}/api/next/person_redirects/?page_size=200&updated_gte={self.past_time_str}"
+        if settings.YNR_API_KEY:
+            url = f"{url}&auth_token={settings.YNR_API_KEY}"
         merged_ids = []
         while url:
             req = requests.get(url)
