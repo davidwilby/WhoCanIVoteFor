@@ -216,6 +216,7 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_CACHE_ALIAS = "default"
 
+YNR_API_KEY = os.environ.get("YNR_API_KEY", None)
 YNR_BASE = "https://candidates.democracyclub.org.uk"
 YNR_UTM_QUERY_STRING = "utm_source=who&utm_campaign=ynr_cta"
 EE_BASE = "https://elections.democracyclub.org.uk"
