@@ -177,7 +177,10 @@ class LastUpdatedView(APIView):
         try:
             ts = PostElection.objects.last_updated_in_ynr().ynr_modified
             data["ballot_timestamp"] = ts.isoformat()
-            qs = urlencode({"last_updated": ts.isoformat()})
+            params = {"last_updated": ts.isoformat()}
+            if settings.YNR_API_KEY:
+                params.update({"auth_token": settings.YNR_API_KEY})
+            qs = urlencode(params)
             data["ballot_last_updated_url"] = f"{api_base_url}ballots/?{qs}"
         except PostElection.DoesNotExist:
             pass
