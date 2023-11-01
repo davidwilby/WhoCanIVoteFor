@@ -18,5 +18,5 @@ DATABASES = {
 }
 
 SECRET_KEY = "just_for_ci"
-
+YNR_API_KEY = None
 EE_BASE = "https://elections.democracyclub.org.uk"

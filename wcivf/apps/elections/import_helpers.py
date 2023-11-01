@@ -210,6 +210,7 @@ class YNRBallotImporter:
         force_current_metadata=False,
         recently_updated=False,
         base_url=None,
+        api_key=None,
         default_params=None,
     ):
         self.stdout = stdout
@@ -224,6 +225,7 @@ class YNRBallotImporter:
         self.force_current_metadata = force_current_metadata
         self.recently_updated = recently_updated
         self.base_url = base_url or settings.YNR_BASE
+        self.api_key = api_key or settings.YNR_API_KEY
         self.default_params = default_params or {"page_size": 200}
 
     @time_function_length
@@ -263,6 +265,10 @@ class YNRBallotImporter:
         empty dict
         """
         params = params or {}
+
+        if self.api_key:
+            params["auth_token"] = self.api_key
+
         if self.current_only:
             params["current"] = True
 

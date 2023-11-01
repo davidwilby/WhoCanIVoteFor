@@ -14,9 +14,9 @@ class TestYNRPersonImporter:
         assert importer.base_url == "http://example.com"
 
     def test_import_url(self):
-        params = {"foo": "bar"}
+        params = {"foo": "bar", "auth_token": "1234"}
         importer = YNRPersonImporter(params=params)
-        expected = f"{settings.YNR_BASE}/api/next/people/?page_size=200&foo=bar"
+        expected = f"{settings.YNR_BASE}/api/next/people/?page_size=200&foo=bar&auth_token=1234"
         assert importer.import_url == expected
 
     def test_paginator(self):

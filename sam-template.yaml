@@ -71,6 +71,10 @@ Parameters:
     Description: "Webhook url used to send feeback entries to Slack"
     Type: String
 
+  AppYnrApiKey:
+    Description: "API key used to import data from YNR"
+    Type: String 
+
 Resources:
   WCIVFControllerFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -94,6 +98,7 @@ Resources:
           SLACK_FEEDBACK_WEBHOOK_URL: !Ref AppSlackFeedbackWebhookUrl
           LOGGER_DB_PASSWORD: !Ref AppLoggerDbPassword
           LOGGER_DB_HOST: !Ref AppLoggerDbHost
+          YNR_API_KEY: !Ref AppYnrApiKey
       Tags:
         dc-environment: !Ref AppDcEnvironment
         dc-product: wcivf
@@ -106,6 +111,8 @@ Resources:
             Name: import-people-recently-updated
             Description: Update all people updated in YNR recently
             Input: '{"command": "import_people", "args": ["--recently-updated"]}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
         DeleteDeletedPeople:
           Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
           Properties:
@@ -113,6 +120,8 @@ Resources:
             Name: delete-deleted-people
             Description: Deletes people deleted in YNR in the last hour
             Input: '{"command": "delete_deleted_people"}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
         ImportBallotsRecentlyUpdated:
           Type: Schedule # More info about API Event Source: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
           Properties:
@@ -120,6 +129,8 @@ Resources:
             Name: import-ballots-recently-updated
             Description: Update all ballots updated in YNR recently
             Input: '{"command": "import_ballots", "args": ["--recently-updated"]}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
         ImportParties:
           Type: Schedule
           Properties:
@@ -127,6 +138,8 @@ Resources:
             Name: import-parties
             Description: Import parties
             Input: '{"command": "import_parties"}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
         BatchFeedbackToSlack:
           Type: Schedule
           Properties:
@@ -155,6 +168,8 @@ Resources:
             Name: import-wikipedia-bios
             Description: Import wikipedia bio extracts
             Input: '{"command": "import_wikipedia_bios", "args": ["--current"]}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
 #        ILPGlobal:
 #          Type: Schedule
 #          Properties:
