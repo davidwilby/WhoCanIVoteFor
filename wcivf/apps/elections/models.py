@@ -420,7 +420,7 @@ class PostElection(TimeStampedModel):
             or self.ballot_papers_issued
             or self.turnout
             or self.electorate
-            or self.postelection_set.filter(personpost__elected=True).exists()
+            or self.personpost_set.filter(elected=True)
         )
 
     @property
