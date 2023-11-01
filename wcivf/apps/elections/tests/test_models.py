@@ -31,26 +31,6 @@ class TestElectionModel:
 
         assert election.in_past is True
 
-    def test_electorate(self):
-        election = Election(electorate=1000)
-        assert election.electorate == 1000
-        assert type(election.electorate) == int
-
-    def test_turnout(self):
-        election = Election(turnout=1000)
-        assert election.turnout == 1000
-        assert type(election.turnout) == int
-
-    def test_spoilt_ballots(self):
-        election = Election(spoilt_ballots=1000)
-        assert election.spoilt_ballots == 1000
-        assert type(election.spoilt_ballots) == int
-
-    def test_ballot_papers_issued(self):
-        election = Election(ballot_papers_issued=1000)
-        assert election.ballot_papers_issued == 1000
-        assert type(election.ballot_papers_issued) == int
-
     def test_is_city_of_london(self, election, city_of_london_election):
         assert election.is_city_of_london is False
         assert city_of_london_election.is_city_of_london is True
@@ -167,6 +147,26 @@ class TestPostElectionModel:
     @pytest.fixture
     def post_election(self):
         return PostElectionFactory.build(election__any_non_by_elections=True)
+
+    def test_electorate(self):
+        election = PostElection(electorate=1000)
+        assert election.electorate == 1000
+        assert type(election.electorate) == int
+
+    def test_turnout(self):
+        election = PostElection(turnout=1000)
+        assert election.turnout == 1000
+        assert type(election.turnout) == int
+
+    def test_spoilt_ballots(self):
+        election = PostElection(spoilt_ballots=1000)
+        assert election.spoilt_ballots == 1000
+        assert type(election.spoilt_ballots) == int
+
+    def test_ballot_papers_issued(self):
+        election = PostElection(ballot_papers_issued=1000)
+        assert election.ballot_papers_issued == 1000
+        assert type(election.ballot_papers_issued) == int
 
     @pytest.mark.parametrize(
         "ballot_paper_id,expected",
