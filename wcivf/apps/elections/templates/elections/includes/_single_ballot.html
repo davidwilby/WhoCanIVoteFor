@@ -129,35 +129,35 @@
                     {% endif %}
                 </p>
             {% endif %}
-            {% if postelection.election.in_past and postelection.election.has_results %}
+            {% if postelection.election.in_past and postelection.has_results %}
                 <section class="ds-card ds-width-half-text">
                     <div class="ds-table">
                         <table id="results-table">
-                            {% if postelection.election.electorate %}
+                            {% if postelection.electorate %}
                                 <tr>
                                     <th>{% trans "Electorate" %}</th>
-                                    <td>{{ postelection.election.electorate }}</td>
+                                    <td>{{ postelection.electorate }}</td>
                                 </tr>
                             {% endif %}
 
-                            {% if postelection.election.ballot_papers_issued %}
+                            {% if postelection.ballot_papers_issued %}
                                 <tr>
                                     <th>{% trans "Ballot Papers Issued" %}</th>
-                                    <td>{{ postelection.election.ballot_papers_issued}}</td>
+                                    <td>{{ postelection.ballot_papers_issued | intcomma }}</td>
                                 </tr>
                             {% endif %}
 
-                            {% if postelection.election.spoilt_ballots %}
+                            {% if postelection.spoilt_ballots %}
                                 <tr>
                                     <th>{% trans "Spoilt Ballots" %}</th>
-                                    <td>{{ postelection.election.spoilt_ballots }}</td>
+                                    <td>{{ postelection.spoilt_ballots | intcomma}}</td>
                                 </tr>
                             {% endif %}
 
-                            {% if postelection.election.turnout %}
+                            {% if postelection.turnout %}
                                 <tr>
                                     <th>{% trans "Turnout" %}</th>
-                                    <td>{{ postelection.election.turnout|stringformat:"d%%" }}</td>
+                                    <td>{{ postelection.turnout|stringformat:"d%%" }}</td>
                                 </tr>
                             {% endif %}
 
