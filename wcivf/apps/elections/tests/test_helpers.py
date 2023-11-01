@@ -355,6 +355,7 @@ class TestYNRImporterAddBallots:
             "replaces": "local.sheffield.fulwood.2020-05-07",
             "last_updated": "2021-10-12T00:00:00+00:00",
             "candidacies": [],
+            "results": [],
         }
 
     @pytest.fixture
