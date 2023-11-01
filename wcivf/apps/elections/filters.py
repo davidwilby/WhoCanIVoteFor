@@ -69,7 +69,7 @@ class ElectionTypeFilter(django_filters.FilterSet):
     def election_type_filter(self, queryset, name, value):
         if value == "senedd":
             return queryset.filter(election_type__in=["senedd", "naw"])
-        return queryset.filter(election_type__contains=value)
+        return queryset.filter(election_type=value)
 
     election_type = django_filters.ChoiceFilter(
         widget=DSLinkWidget,
