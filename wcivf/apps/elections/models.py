@@ -55,10 +55,6 @@ class Election(models.Model):
     election_weight = models.IntegerField(default=10)
     metadata = JSONField(null=True)
     any_non_by_elections = models.BooleanField(default=False)
-    ballot_papers_issued = models.IntegerField(blank=True, null=True)
-    electorate = models.IntegerField(blank=True, null=True)
-    turnout = models.IntegerField(blank=True, null=True)
-    spoilt_ballots = models.IntegerField(blank=True, null=True)
 
     objects = ElectionManager()
 
@@ -248,19 +244,6 @@ class Election(models.Model):
 
         return pluralise.get(suffix, f"{suffix}s")
 
-    @property
-    def has_results(self):
-        """
-        Returns a boolean for if the election has results
-        """
-        return bool(
-            self.spoilt_ballots
-            or self.ballot_papers_issued
-            or self.turnout
-            or self.electorate
-            or self.postelection_set.filter(personpost__elected=True).exists()
-        )
-
 
 class Post(models.Model):
     """
@@ -417,11 +400,28 @@ class PostElection(TimeStampedModel):
         choices=ElectionCancellationReason.choices,
         default=None,
     )
+    ballot_papers_issued = models.IntegerField(blank=True, null=True)
+    electorate = models.IntegerField(blank=True, null=True)
+    turnout = models.IntegerField(blank=True, null=True)
+    spoilt_ballots = models.IntegerField(blank=True, null=True)
 
     objects = PostElectionQuerySet.as_manager()
 
     class Meta:
         get_latest_by = "ynr_modified"
+
+    @property
+    def has_results(self):
+        """
+        Returns a boolean for if the election has results
+        """
+        return bool(
+            self.spoilt_ballots
+            or self.ballot_papers_issued
+            or self.turnout
+            or self.electorate
+            or self.personpost_set.filter(elected=True)
+        )
 
     @property
     def expected_sopn_date(self):

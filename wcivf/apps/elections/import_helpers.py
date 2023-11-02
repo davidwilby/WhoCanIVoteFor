@@ -102,25 +102,6 @@ class YNRElectionImporter:
                     "uses_lists": ballot_dict["election"]["party_lists_in_use"],
                 },
             )
-
-            if ballot_dict["results"]:
-                election, created = Election.objects.update_or_create(
-                    slug=slug,
-                    election_type=election_type,
-                    defaults={
-                        "ballot_papers_issued": ballot_dict["results"][
-                            "num_turnout_reported"
-                        ],
-                        "electorate": ballot_dict["results"][
-                            "total_electorate"
-                        ],
-                        "turnout": ballot_dict["results"]["turnout_percentage"],
-                        "spoilt_ballots": ballot_dict["results"][
-                            "num_spoilt_ballots"
-                        ],
-                    },
-                )
-
             self.import_metadata_from_ee(election)
             self.election_cache[election.slug] = election
         return self.election_cache[slug]
@@ -383,6 +364,20 @@ class YNRBallotImporter:
             # see BallotSerializer.get_last_updated in YNR
             if self.recently_updated:
                 defaults["ynr_modified"] = ballot_dict["last_updated"]
+
+            if ballot_dict["results"]:
+                results_defaults = {
+                    "ballot_papers_issued": ballot_dict["results"][
+                        "num_turnout_reported"
+                    ],
+                    "electorate": ballot_dict["results"]["total_electorate"],
+                    "turnout": ballot_dict["results"]["turnout_percentage"],
+                    "spoilt_ballots": ballot_dict["results"][
+                        "num_spoilt_ballots"
+                    ],
+                }
+
+                defaults = {**defaults, **results_defaults}
 
             ballot, created = PostElection.objects.update_or_create(
                 ballot_paper_id=ballot_dict["ballot_paper_id"],

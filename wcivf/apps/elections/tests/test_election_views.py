@@ -204,25 +204,6 @@ class ElectionPostViewTests(TestCase):
             """Once nomination papers are published, we will manually verify each candidate.""",
         )
 
-    def test_results_table(self):
-        """check that the table containing the electorate,
-        turnout, spoilt ballots, ballot papers exist
-        for past elections"""
-        self.election.electorate = 100
-        self.election.spoilt_ballots = 5
-        self.election.save()
-
-        response = self.client.get(
-            self.post_election.get_absolute_url(), follow=True
-        )
-        self.assertEqual(response.status_code, 200)
-
-        self.assertTrue(self.post_election.election.has_results)
-        self.assertContains(response, "Electorate")
-        self.assertNotContains(response, "Turnout")
-        self.assertContains(response, "Spoilt Ballots")
-        self.assertNotContains(response, "Ballot Papers Issued")
-
     def test_zero_candidates(self):
         response = self.client.get(
             self.post_election.get_absolute_url(), follow=True
@@ -641,6 +622,32 @@ class TestPostViewTemplateName:
     def test_get_template_names(self, boolean, template, view_obj, mocker):
         view_obj.object = mocker.Mock(is_referendum=boolean)
         assert view_obj.get_template_names() == [template]
+
+
+class TestPostElectionView(TestCase):
+    def setUp(self):
+        self.post_election = PostElectionFactory(
+            election__election_date="2017-03-23"
+        )
+
+    def test_results_table(self):
+        """check that the table containing the electorate,
+        turnout, spoilt ballots, ballot papers exist
+        for past elections"""
+
+        self.post_election.electorate = 100
+        self.post_election.spoilt_ballots = 5
+        self.post_election.save()
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTrue(self.post_election.has_results)
+        self.assertContains(response, "Electorate")
+        self.assertNotContains(response, "Turnout")
+        self.assertContains(response, "Spoilt Ballots")
+        self.assertNotContains(response, "Ballot Papers Issued")
 
 
 class TestPostElectionsToPeopleMixin(TestCase):
