@@ -136,7 +136,7 @@
                             {% if postelection.electorate %}
                                 <tr>
                                     <th>{% trans "Electorate" %}</th>
-                                    <td>{{ postelection.electorate }}</td>
+                                    <td>{{ postelection.electorate | intcomma }}</td>
                                 </tr>
                             {% endif %}
 
