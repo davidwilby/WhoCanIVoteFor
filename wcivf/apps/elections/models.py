@@ -217,7 +217,7 @@ class Election(models.Model):
             "mayor.newham.2022-05-05": "booklets/2022-05-05/mayoral/mayor.newham.2022-05-05.pdf",
             "mayor.sheffield-city-ca.2022-05-05": "booklets/2022-05-05/mayoral/mayor.sheffield-city-ca.2022-05-05.pdf",
             "mayor.tower-hamlets.2022-05-05": "booklets/2022-05-05/mayoral/mayor.tower-hamlets.2022-05-05.pdf",
-            "mayor.hackney.2023-11-09": "booklets/2023-11-09/mayoral/mayor.hackney.2023-11-09.pdf",
+            "mayor.hackney.by.2023-11-09": "booklets/2023-11-09/mayoral/mayor.hackney.2023-11-09.pdf",
         }
 
         return election_to_booklet.get(self.slug)
