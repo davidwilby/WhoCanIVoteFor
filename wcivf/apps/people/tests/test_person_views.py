@@ -48,7 +48,8 @@ class PersonViewTests(TestCase):
         self.assertTemplateUsed(
             response, "people/not_current_person_detail.html"
         )
-        self.assertContains(response, f"{ self.person.name} stood for election")
+        self.assertContains(response, f"{self.person.name}")
+        self.assertContains(response, "stood for election")
         self.assertNotContains(response, f"{ self.person.name} Online")
         self.assertContains(response, '<meta name="robots" content="noindex">')
 
@@ -120,7 +121,9 @@ class PersonViewTests(TestCase):
 
         response = self.client.get(self.person_url, follow=True)
         self.assertContains(response, election_name)
-        self.assertContains(response, "was a")
+        self.assertContains(response, "stood for election")
+        self.assertContains(response, "once")
+        self.assertNotContains(response, "times")
 
     def test_multiple_candidacies_intro(self):
         election_one = ElectionFactory()
