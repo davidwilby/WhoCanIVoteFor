@@ -126,8 +126,24 @@ class PersonViewTests(TestCase):
         self.assertNotContains(response, "times")
 
     def test_multiple_candidacies_intro(self):
-        election_one = ElectionFactory()
-        election_two = ElectionFactoryLazySlug()
+        election_one = ElectionFactory(
+            election_date="2040-02-01",
+            current=True,
+            name="FooBar Election 2040",
+            slug="local.foobar.2040-02-01",
+        )
+        election_two = ElectionFactory(
+            election_date="2040-01-01",
+            current=True,
+            name="FooBar Election 2040",
+            slug="local.foobar.2040-01-01",
+        )
+        election_three = ElectionFactory(
+            election_date="2015-01-01",
+            current=False,
+            name="FooBar Election 2015",
+            slug="local.foobar.2015-01-01",
+        )
         party = PartyFactory(party_name="Liberal Democrat", party_id="foo")
         PersonPostFactory(
             person=self.person,
@@ -141,13 +157,36 @@ class PersonViewTests(TestCase):
             party=party,
             party_name=party.party_name,
         )
+        PersonPostFactory(
+            person=self.person,
+            election=election_three,
+            party=party,
+            party_name=party.party_name,
+        )
+        self.assertEqual(self.person.future_candidacies.count(), 2)
         response = self.client.get(self.person_url, follow=True)
         expected = "is a Liberal Democrat candidate in the following elections:"
         self.assertContains(response, expected)
 
     def test_multiple_independent_candidacies_intro(self):
-        election_one = ElectionFactory()
-        election_two = ElectionFactoryLazySlug()
+        election_one = ElectionFactory(
+            election_date="2040-02-01",
+            current=True,
+            name="FooBar Election 2040",
+            slug="local.foobar.2040-02-01",
+        )
+        election_two = ElectionFactory(
+            election_date="2040-01-01",
+            current=True,
+            name="FooBar Election 2040",
+            slug="local.foobar.2040-01-01",
+        )
+        election_three = ElectionFactory(
+            election_date="2015-01-01",
+            current=False,
+            name="FooBar Election 2015",
+            slug="local.foobar.2015-01-01",
+        )
         party = PartyFactory(party_name="Independent", party_id="ynmp-party:2")
         PersonPostFactory(
             person=self.person,
@@ -161,6 +200,13 @@ class PersonViewTests(TestCase):
             party=party,
             party_name=party.party_name,
         )
+        PersonPostFactory(
+            person=self.person,
+            election=election_three,
+            party=party,
+            party_name=party.party_name,
+        )
+        self.assertEqual(self.person.future_candidacies.count(), 2)
         response = self.client.get(self.person_url, follow=True)
         expected = "is an Independent candidate in the following elections:"
         self.assertContains(response, expected)
@@ -170,17 +216,19 @@ class PersonViewTests(TestCase):
         party = PartyFactory(
             party_name="Conservative and Unionist Party", party_id="ConUnion"
         )
-        person_post = PersonPostFactory(
+        PersonPostFactory(
             person=self.person,
             election=election,
             party=party,
             party_name=party.party_name,
         )
         self.assertTrue(election.in_past)
+        self.assertEqual(self.person.future_candidacies.count(), 0)
+        self.assertEqual(self.person.current_or_future_candidacies.count(), 1)
         response = self.client.get(self.person_url, follow=True)
         self.assertContains(
             response,
-            f"{self.person.name} was a {person_post.party_name} candidate in {person_post.post.label} constituency in the {election.nice_election_name}.",
+            "was a Conservative and Unionist Party candidate in",
         )
 
     def test_previous_party_affiliations_in_current_elections(self):

@@ -42,6 +42,12 @@ class PersonPostQuerySet(models.QuerySet):
             .order_by("-election__election_date", "post__label")
         )
 
+    def future(self):
+        """
+        Return objects where election is in the future
+        """
+        return self.filter(election__election_date__gte=timezone.now())
+
     def current_or_future(self):
         """
         Return objects where election is marked as current or election is in the future
@@ -83,6 +89,9 @@ class PersonPostManager(models.Manager):
 
     def counts_by_post(self):
         return self.get_queryset().counts_by_post()
+
+    def future(self):
+        return self.get_queryset().future()
 
     def current_or_future(self):
         return self.get_queryset().current_or_future()
