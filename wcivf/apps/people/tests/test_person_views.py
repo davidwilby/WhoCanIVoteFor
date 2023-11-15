@@ -176,10 +176,11 @@ class PersonViewTests(TestCase):
             party=party,
             party_name=party.party_name,
         )
+        self.assertTrue(election.in_past)
         response = self.client.get(self.person_url, follow=True)
         self.assertContains(
             response,
-            f"{self.person.name} is a {person_post.party_name} candidate in {person_post.post.label} constituency in the {election.nice_election_name}.",
+            f"{self.person.name} was a {person_post.party_name} candidate in {person_post.post.label} constituency in the {election.nice_election_name}.",
         )
 
     def test_previous_party_affiliations_in_current_elections(self):

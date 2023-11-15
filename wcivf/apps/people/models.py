@@ -305,6 +305,18 @@ class Person(models.Model):
         return ".".join(statement_split[1:])
 
     @cached_property
+    def current_but_past_candidacies(self):
+        """
+        Returns a QuerySet of related PersonPost
+        objects that are considered current but the
+        election date has passed.
+        """
+        for candidacy in self.current_or_future_candidacies:
+            if candidacy.election.in_past:
+                return candidacy
+        return None
+
+    @cached_property
     def current_or_future_candidacies(self):
         """
         Returns a QuerySet of related PersonPost objects in the future
@@ -382,7 +394,7 @@ class Person(models.Model):
         Return a rendered string of the persons intro from a template.
         """
         verb = "was"
-        if self.current_or_future_candidacies and not self.death_date:
+        if not self.current_but_past_candidacies and not self.death_date:
             verb = "is"
 
         context = {
