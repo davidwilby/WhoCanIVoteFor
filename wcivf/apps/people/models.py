@@ -309,12 +309,24 @@ class Person(models.Model):
         """
         Returns a QuerySet of related PersonPost
         objects that are considered current but the
-        election date has passed.
+        election date has recently passed.
         """
         for candidacy in self.current_or_future_candidacies:
             if candidacy.election.in_past:
                 return candidacy
         return None
+
+    @cached_property
+    def future_candidacies(self):
+        """
+        Returns a QuerySet of related PersonPost
+        objects that are in the future.
+        """
+        return (
+            self.personpost_set.future()
+            .select_related("party", "post", "election", "post_election")
+            .order_by("-election__election_date")
+        )
 
     @cached_property
     def current_or_future_candidacies(self):
@@ -394,7 +406,11 @@ class Person(models.Model):
         Return a rendered string of the persons intro from a template.
         """
         verb = "was"
-        if not self.current_but_past_candidacies and not self.death_date:
+        if (
+            self.current_or_future_candidacies
+            and not self.death_date
+            and not self.current_but_past_candidacies
+        ):
             verb = "is"
 
         context = {
