@@ -161,6 +161,7 @@ class LogLookUpMixin(object):
         entry = settings.POSTCODE_LOGGER.entry_class(
             postcode=postcode,
             dc_product=settings.POSTCODE_LOGGER.dc_product.wcivf,
+            calls_devs_dc_api=True,
             **self.request.session.get("utm_data"),
         )
         settings.POSTCODE_LOGGER.log(entry)
