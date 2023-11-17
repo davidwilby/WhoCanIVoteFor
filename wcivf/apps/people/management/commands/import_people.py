@@ -192,6 +192,9 @@ class Command(BaseCommand):
                 ballot = PostElection.objects.get(
                     ballot_paper_id=ballot_paper_id
                 )
+                if not ballot.contested:
+                    candidacy["elected"] = True
+
             except PostElection.DoesNotExist:
                 # This might be because we've not run import_ballots
                 # recently enough. Let's import just the ballots for this
@@ -201,6 +204,8 @@ class Command(BaseCommand):
                 ballot = PostElection.objects.get(
                     ballot_paper_id=ballot_paper_id
                 )
+                if not ballot.contested:
+                    candidacy["elected"] = True
 
             # TODO check if the post/election could have changed and should be
             # used in defaults dict
