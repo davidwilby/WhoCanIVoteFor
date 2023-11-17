@@ -17,3 +17,5 @@ AWS parameter store is used to store secrets and values that we then use to expo
 - `AKISMET_API_KEY`
 - `EMAIL_SIGNUP_EVENT_BRIDGE_ARN` - For mailing list signups. See the developer
   handbook for values per account type
+- `LOGGER_ARN`: The ARN for the Lambda ingest function that accepts postcode 
+  logs. See the dev handbook for these values

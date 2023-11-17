@@ -290,12 +290,10 @@ if os.environ.get("DC_ENVIRONMENT"):
     )
 
 # DC Logging Client
-FIREHOSE_ACCOUNT_ARN = os.environ.get("FIREHOSE_ACCOUNT_ARN", None)
-if FIREHOSE_ACCOUNT_ARN:
-    firehose_args = {"assume_role_arn": FIREHOSE_ACCOUNT_ARN}
-else:
-    firehose_args = {"fake": True}
+LOGGER_ARN = os.environ.get("LOGGER_ARN", None)
+firehose_args = {"function_arn": LOGGER_ARN} if LOGGER_ARN else {"fake": True}
 POSTCODE_LOGGER = DCWidePostcodeLoggingClient(**firehose_args)
+
 
 with contextlib.suppress(ImportError):
     # .local.py overrides all the common settings.

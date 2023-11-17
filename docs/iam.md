@@ -11,7 +11,8 @@ This will let you identify resources created via the AWS console in future.
 
 Create an IAM Policy named `CodeDeploy-EC2-Permissions`. This policy will alter be attached to the IAM instance profile that the EC2 instances use.
 
-Set its Policy document as follows:
+Set its Policy document as follows. Make sure the logging ARN matches the 
+environment:
 
 ```
 {
@@ -26,9 +27,11 @@ Set its Policy document as follows:
             "Resource": "arn:aws:s3:::aws-codedeploy-eu-west-2/*"
         },
         {
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
             "Effect": "Allow",
-            "Action": "sts:AssumeRole",
-            "Resource": "arn:aws:iam::[MONITORING ACCOUNT ID]:role/put-record-from-[WCIVF ACCOUNT ID]"
+            "Resource": "arn:aws:lambda:eu-west-2:985364114241:function:ingest-dc-postcode-searches-development"
         }
     ]
 }
