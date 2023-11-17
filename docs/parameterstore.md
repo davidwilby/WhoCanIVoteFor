@@ -4,8 +4,6 @@ AWS parameter store is used to store secrets and values that we then use to expo
 
 - `DC_ENVIRONMENT` e.g. `production`, `staging`, `development`
 - `EMAIL_SIGNUP_API_KEY`
-- `LOGGER_DB_HOST`
-- `LOGGER_DB_PASSWORD`
 - `RDS_DB_NAME`
 - `RDS_DB_PASSWORD`
 - `RDS_HOST`

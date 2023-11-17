@@ -4,7 +4,6 @@ import os
 import sys
 
 import dc_design_system
-import redis
 from dc_logging_client import DCWidePostcodeLoggingClient
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
@@ -154,19 +153,6 @@ DATABASES = {
     }
 }
 
-if os.environ.get("LOGGER_DB_PASSWORD") and os.environ.get("LOGGER_DB_HOST"):
-    DATABASES["logger"] = {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "wcivf_logger",
-        "USER": "wcivf",
-        "PASSWORD": os.environ.get("LOGGER_DB_PASSWORD"),
-        "HOST": os.environ.get("LOGGER_DB_HOST"),
-        "PORT": "",
-    }
-
-if os.environ.get("DC_ENVIRONMENT") in ["production"]:
-    DATABASE_ROUTERS = ["core.db_routers.LoggerRouter"]
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -246,11 +232,6 @@ SITE_LOGO_WIDTH = "440px"
 AKISMET_API_KEY = os.environ.get("AKISMET_API_KEY")
 
 AKISMET_BLOG_URL = CANONICAL_URL
-
-
-REDIS_POOL = redis.ConnectionPool(host="127.0.0.1", port=6379, db=5)
-REDIS_KEY_PREFIX = "WCIVF"
-REDIS_LOG_POSTCODE = True
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
