@@ -6,7 +6,6 @@ from ppc_2024.models import PPCPerson
 
 
 class PPCFilter(django_filters.FilterSet):
-
     region = django_filters.AllValuesFilter(
         widget=DSLinkWidget,
         field_name="region_name",
