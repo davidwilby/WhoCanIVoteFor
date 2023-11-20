@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    UK Prospective Parliamentary Candidates
+{% endblock %}
+
+{% block content %}
+    <h1>UK Prospective Parliamentary&nbsp;Candidates</h1>
+
+    <p>The next UK parliamentary general election is due to occur no later than January 2025, and political parties are
+        currently selecting their candidates for each House of Commons constituency.</p>
+
+    <p>Democracy Club’s volunteers are collecting information on each candidate as they are announced. The live tables
+        below display all the candidates we are aware of. Where a candidate has a recent electoral history, this is
+        displayed on their Democracy Club profile.</p>
+
+    <p>Spotted an error? Think we’ve missed a candidate? Get in touch: <a href="mailto:hello@democracyclub.org.uk">hello@democracyclub.org.uk</a></p>
+
+    <details class="ds-details ds-stack ds-stack-smaller">
+        <summary>More information about the general election</summary>
+
+        <p>There are 650 constituencies in the House of Commons, and each constituency elects one Member of Parliament
+            (MP). Following a recent redistribution, in the next election England will elect 543 MPs, Scotland will
+            elect 57, Wales will elect 32, and Northern Ireland will elect 18.</p>
+
+        <h2 class="ds-h4">Boundary changes</h2>
+        <p>The next general election will be held on new constituency boundaries. See the
+            <a href="https://commonslibrary.parliament.uk/boundary-review-2023-which-seats-will-change/">
+                website of the House of Commons Library
+            </a> to find out what is happening to your constituency.</p>
+
+        <h2 class="ds-h4">MPs standing down</h2>
+        <p>Some existing Members of Parliament have announced they will not be standing at the next election.
+            <a href="https://www.instituteforgovernment.org.uk/explainer/mps-standing-down-next-election">
+                Visit the website of the Institute for Government for a full list</a>.</p>
+
+        <h2 class="ds-h4">Timetable</h2>
+        <p>Democracy Club’s <a href="https://election-timetable.democracyclub.org.uk/">
+            general election timetable generator</a> provides an election timetable for any given date.</p>
+
+
+    </details>
+
+
+    <h2>The data</h2>
+    {% if by_region %}
+        <div class="ds-table">
+            <table>
+                <caption>Number of candidates announced per UK region or nation</caption>
+                <tr>
+                    <th>Region / nation</th>
+                    <th>Candidates</th>
+                    <th>Total seats in region</th>
+                </tr>
+                {% for region_name, data in by_region.items %}
+                    <tr>
+                        <td><a href="{% url "ppc_2024:details" %}?region={{ region_name }}">{{ region_name }}</a></td>
+                        <td>{{ data.candidate_count|default:0 }}</td>
+                        <td>{{ data.total_seats }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    {% if by_party %}
+        <div class="ds-table">
+            <table>
+                <caption>Candidate selections by political party</caption>
+                <tr>
+                    <th>Party</th>
+                    <th>Candidates</th>
+                </tr>
+                {% for party in by_party %}
+                    <tr>
+                        <td><a href="{% url "ppc_2024:details" %}?party_name={{ party.name }}">{{ party.name }}</a></td>
+                        <td>{{ party.candidate_count }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    <h2>Browse the data</h2>
+    <p>The <a href="{% url "ppc_2024:details" %}">full list of prospective parliamentary candidates</a> is available as a browsable table or a CSV.</p>
+
+    <h2>Support our work</h2>
+    <p>Democracy Club is a non-profit Community Interest Company. If you’ve found this resource useful, please consider
+        a donation.</p>
+
+    <p><a href="https://www.paypal.com/biz/fund?id=EX33MCYQ9UUDJ" class="ds-cta">Donate now</a></p>
+
+
+{% endblock %}
