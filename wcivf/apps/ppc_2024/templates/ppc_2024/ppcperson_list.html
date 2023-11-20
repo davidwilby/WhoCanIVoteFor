@@ -2,6 +2,13 @@
 
 {% block content %}
 
+    <h1>UK Prospective Parliamentary Candidates</h1>
+    <p>
+        Democracy Club’s volunteers are collecting information on each candidate as they are announced.
+        The live table below displays all the candidates we are aware of. Where a candidate has a
+        recent electoral history, this is displayed on their Democracy Club profile, linked to from their name.
+    </p>
+
     <aside class="ds-filter" aria-labelledby="filter-label">
 
         <form>
@@ -28,16 +35,20 @@
                 <th>Name</th>
                 <th>Party</th>
                 <th>Constituency</th>
-                <th>Country / Region</th>
+                <th>Nation / English region</th>
             </tr>
             {% for object in queryset %}
                 <tr>
                     <td>
                         {% if object.person %}
                             <a href="{% url "person_view" object.person_id %}">{{ object.person.name }}</a>
+                            <br><small>
+                                <a href="{{ object.sheet_row.Source }}">Source</a>
+                            </small>
                         {% else %}
                             {{ object.person_name }}
                         {% endif %}
+
                     </td>
                     <td>{{ object.party.party_name }}</td>
                     <td>{{ object.constituency_name }}</td>
