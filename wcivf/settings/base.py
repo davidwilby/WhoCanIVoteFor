@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     "dc_design_system",
     "referendums",
     "parishes",
+    "ppc_2024",
 )
 
 MIDDLEWARE = (

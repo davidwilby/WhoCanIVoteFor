@@ -27,6 +27,10 @@ urlpatterns = (
         path("feedback/", include("feedback.urls")),
         path("api/", include(("api.urls", "api"), namespace="api")),
         path(
+            "ppcs/",
+            include(("ppc_2024.urls", "ppc_2024"), namespace="ppc_2024"),
+        ),
+        path(
             "sitemap.xml",
             cache_page(86400)(index),
             {"sitemaps": sitemaps},

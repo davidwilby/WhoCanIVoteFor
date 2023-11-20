@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <aside class="ds-filter" aria-labelledby="filter-label">
+
+        <form>
+            <details {% if filter.data %}open=""{% endif %}>
+                <summary>Filters</summary>
+                <div class="ds-advanced-filters">
+                    <div class="ds-filter-cluster">
+                        {% for field in filter.form.visible_fields %}
+                            <ul aria-labelledby="adv-filter-label-{{ forloop.counter }}">
+                                <li id="adv-filter-label-{{ forloop.counter }}" class="ds-filter-label" aria-hidden="true" style="flex-basis:100%;margin-top:1em">{{ field.label }}:</li>
+                                {{ field }}
+                            </ul>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </details>
+        </form>
+    </aside>
+    <p>You can also <a href="{{  csv_url}}">download the CSV</a> of all prospective parliamentary candidates.</p>
+    <div class="ds-table">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Party</th>
+                <th>Constituency</th>
+                <th>Country / Region</th>
+            </tr>
+            {% for object in queryset %}
+                <tr>
+                    <td>
+                        {% if object.person %}
+                            <a href="{% url "person_view" object.person_id %}">{{ object.person.name }}</a>
+                        {% else %}
+                            {{ object.person_name }}
+                        {% endif %}
+                    </td>
+                    <td>{{ object.party.party_name }}</td>
+                    <td>{{ object.constituency_name }}</td>
+                    <td>{{ object.region_name }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+{% endblock %}
