@@ -83,10 +83,17 @@
             </ul>
         </aside>
     {% endif %}
+
+    <aside class="ds-status messages">
+        <ul>
+            <li class="ds-status-message"><a href="{% url "ppc_2024:home" %}">Browse the list of people and parties standing in the next general election</a>.</li>
+        </ul>
+
+    </aside>
 {% endblock messages %}
 
-
 {% block content %}
+
     {% block page_content %}
     {% endblock page_content %}
 {% endblock content %}
