@@ -11,7 +11,7 @@ class PPCPersonQuerySet(models.QuerySet):
             self.all()
             .annotate(name=F("party__party_name"))
             .values("name")
-            .annotate(candidate_count=Count("person"))
+            .annotate(candidate_count=Count("pk"))
             .order_by("name")
         )
 
@@ -37,7 +37,7 @@ class PPCPersonQuerySet(models.QuerySet):
         qs = (
             self.all()
             .values("region_name")
-            .annotate(candidate_count=Count("person"))
+            .annotate(candidate_count=Count("pk"))
             .order_by("region_name")
         )
         for region in qs:
@@ -49,6 +49,16 @@ class PPCPersonQuerySet(models.QuerySet):
 
     def for_details(self):
         return self.select_related("person", "party")
+
+    # If we want to show previous details, ever
+    # def annotate_previously_stood(self):
+    #     return self.annotate(
+    #         previously_stood=Count("person__personpost"),
+    #     )
+    # def annotate_previously_elected(self):
+    #     return self.annotate(
+    #         previously_elected=Count("person__personpost", Q(person__personpost__elected=True)),
+    #     )
 
 
 # Create your models here.
