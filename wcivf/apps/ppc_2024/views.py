@@ -12,6 +12,7 @@ class PCC2024HomeView(TemplateView):
 
         context["by_party"] = PPCPerson.objects.by_party()
         context["by_region"] = PPCPerson.objects.by_region()
+        context["person_count"] = PPCPerson.objects.count()
 
         return context
 

@@ -43,6 +43,10 @@
 
 
     <h2>The data</h2>
+
+    <p>The <a href="{% url "ppc_2024:details" %}">full list of prospective parliamentary candidates</a> is available as a browsable table or a CSV.</p>
+
+
     {% if by_region %}
         <div class="ds-table">
             <table>
@@ -59,6 +63,11 @@
                         <td>{{ data.total_seats }}</td>
                     </tr>
                 {% endfor %}
+                <tr>
+                    <th>Totals</th>
+                    <td>{{ person_count }}</td>
+                    <td>650</td>
+                </tr>
             </table>
         </div>
     {% endif %}
@@ -77,12 +86,14 @@
                         <td>{{ party.candidate_count }}</td>
                     </tr>
                 {% endfor %}
+                <tr>
+                    <th>Total</th>
+                    <td>{{ person_count }}</td>
+                </tr>
             </table>
         </div>
     {% endif %}
 
-    <h2>Browse the data</h2>
-    <p>The <a href="{% url "ppc_2024:details" %}">full list of prospective parliamentary candidates</a> is available as a browsable table or a CSV.</p>
 
     <h2>Support our work</h2>
     <p>Democracy Club is a non-profit Community Interest Company. If you’ve found this resource useful, please consider
