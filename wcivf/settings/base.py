@@ -4,7 +4,6 @@ import os
 import sys
 
 import dc_design_system
-import redis
 from dc_logging_client import DCWidePostcodeLoggingClient
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
@@ -155,19 +154,6 @@ DATABASES = {
     }
 }
 
-if os.environ.get("LOGGER_DB_PASSWORD") and os.environ.get("LOGGER_DB_HOST"):
-    DATABASES["logger"] = {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "wcivf_logger",
-        "USER": "wcivf",
-        "PASSWORD": os.environ.get("LOGGER_DB_PASSWORD"),
-        "HOST": os.environ.get("LOGGER_DB_HOST"),
-        "PORT": "",
-    }
-
-if os.environ.get("DC_ENVIRONMENT") in ["production"]:
-    DATABASE_ROUTERS = ["core.db_routers.LoggerRouter"]
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -248,11 +234,6 @@ AKISMET_API_KEY = os.environ.get("AKISMET_API_KEY")
 
 AKISMET_BLOG_URL = CANONICAL_URL
 
-
-REDIS_POOL = redis.ConnectionPool(host="127.0.0.1", port=6379, db=5)
-REDIS_KEY_PREFIX = "WCIVF"
-REDIS_LOG_POSTCODE = True
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -291,12 +272,10 @@ if os.environ.get("DC_ENVIRONMENT"):
     )
 
 # DC Logging Client
-FIREHOSE_ACCOUNT_ARN = os.environ.get("FIREHOSE_ACCOUNT_ARN", None)
-if FIREHOSE_ACCOUNT_ARN:
-    firehose_args = {"assume_role_arn": FIREHOSE_ACCOUNT_ARN}
-else:
-    firehose_args = {"fake": True}
+LOGGER_ARN = os.environ.get("LOGGER_ARN", None)
+firehose_args = {"function_arn": LOGGER_ARN} if LOGGER_ARN else {"fake": True}
 POSTCODE_LOGGER = DCWidePostcodeLoggingClient(**firehose_args)
+
 
 with contextlib.suppress(ImportError):
     # .local.py overrides all the common settings.

@@ -120,12 +120,6 @@ the cache backend with a file at `./wcivf/settings/local.py` with the following:
         }
     }
 
-You will also need to add:
-
-    REDIS_LOG_POSTCODE = False
-
-This will disable using redis to log postcodes.
-
 
 ## Setting up PostgreSQL and PostGIS
 
