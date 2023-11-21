@@ -129,6 +129,15 @@
                     {% endif %}
                 </p>
             {% endif %}
+            {% if postelection.election.election_booklet %}
+                <h4>
+                    <a href="{% static postelection.election.election_booklet %}">{% trans "Read the official candidate booklet for this election." %}</a>
+                </h4>
+            {% endif %}
+
+            {% if postelection.election.description %}
+                {% blocktrans with description=postelection.election.description|markdown %} {{ description }} {% endblocktrans %}
+            {% endif %}
             {% if postelection.election.in_past and postelection.has_results %}
                 <section class="ds-card ds-width-half-text">
                     <div class="ds-table">
@@ -136,7 +145,7 @@
                             {% if postelection.electorate %}
                                 <tr>
                                     <th>{% trans "Electorate" %}</th>
-                                    <td>{{ postelection.electorate }}</td>
+                                    <td>{{ postelection.electorate | intcomma }}</td>
                                 </tr>
                             {% endif %}
 
@@ -189,15 +198,6 @@
                     {% endif %}
                 </p>
 
-                {% if postelection.election.election_booklet %}
-                    <h4>
-                        <a href="{% static postelection.election.election_booklet %}">{% trans "Read the official candidate booklet for this election." %}</a></h4>
-                {% endif %}
-
-                {% if postelection.election.description %}
-                    {% blocktrans with description=postelection.election.description|markdown %} {{ description }} {% endblocktrans %}
-                {% endif %}
-
                 {%  if not postelection.cancelled %}
                     {% if postelection.election.voter_age %}
                         <ul class="ds-details">
@@ -220,9 +220,6 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-
-
-
 
             {% if postelection.ballotnewsarticle_set.exists %}
                 {% include "news_mentions/news_articles.html" with news_articles=postelection.ballotnewsarticle_set.all %}

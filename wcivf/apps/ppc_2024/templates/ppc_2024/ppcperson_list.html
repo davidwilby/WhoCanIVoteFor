@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    UK Prospective Parliamentary Candidates
+{% endblock %}
+{% block og_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock og_description_content %}
+{% block twitter_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock twitter_description_content %}
+
+
+
+{% block content %}
+
+    <h1>UK Prospective Parliamentary Candidates</h1>
+    <p>
+        Democracy Club’s volunteers are collecting information on each candidate as they are announced.
+        The live table below displays all the candidates we are aware of. Where a candidate has a
+        recent electoral history, this is displayed on their Democracy Club profile, linked to from their name.
+    </p>
+
+    <aside class="ds-filter" aria-labelledby="filter-label">
+
+        <form>
+            <details {% if filter.data %}open=""{% endif %}>
+                <summary>Filters</summary>
+                <div class="ds-advanced-filters">
+                    <div class="ds-filter-cluster">
+                        {% for field in filter.form.visible_fields %}
+                            <ul aria-labelledby="adv-filter-label-{{ forloop.counter }}">
+                                <li id="adv-filter-label-{{ forloop.counter }}" class="ds-filter-label" aria-hidden="true" style="flex-basis:100%;margin-top:1em">{{ field.label }}:</li>
+                                {{ field }}
+                            </ul>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </details>
+        </form>
+    </aside>
+    <p>You can also <a href="{{  csv_url}}">download the CSV</a> of all prospective parliamentary candidates.</p>
+    <div class="ds-table">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Party</th>
+                <th>Constituency</th>
+                <th>Nation / English region</th>
+            </tr>
+            {% for object in queryset %}
+                <tr>
+                    <td>
+                        {% if object.person %}
+                            <a href="{% url "person_view" object.person_id %}">{{ object.person.name }}</a>
+
+                        {% else %}
+                            {{ object.person_name }}
+                        {% endif %}
+                        <br>
+                        <small>
+                            <cite><a href="{{ object.sheet_row.Source }}">Source</a></cite>
+                        </small>
+
+                    </td>
+                    <td>{{ object.party.party_name }}</td>
+                    <td>{{ object.constituency_name }}</td>
+                    <td>{{ object.region_name }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+{% endblock %}
