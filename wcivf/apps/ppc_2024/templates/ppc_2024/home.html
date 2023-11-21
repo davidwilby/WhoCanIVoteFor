@@ -4,6 +4,10 @@
     UK Prospective Parliamentary Candidates
 {% endblock %}
 
+{% block og_description_content %}The next UK parliamentary general election is due to occur no later than January 2025, and political parties are currently selecting their candidates for each House of Commons constituency.{% endblock og_description_content %}
+{% block twitter_description_content %}The next UK parliamentary general election is due to occur no later than January 2025, and political parties are currently selecting their candidates for each House of Commons constituency.{% endblock twitter_description_content %}
+
+
 {% block content %}
     <h1>UK Prospective Parliamentary&nbsp;Candidates</h1>
 
@@ -58,7 +62,7 @@
                 </tr>
                 {% for region_name, data in by_region.items %}
                     <tr>
-                        <td><a href="{% url "ppc_2024:details" %}?region={{ region_name }}">{{ region_name }}</a></td>
+                        <td><a href="{% url "ppc_2024:details" %}?region={{ region_name|urlencode }}">{{ region_name }}</a></td>
                         <td>{{ data.candidate_count|default:0 }}</td>
                         <td>{{ data.total_seats }}</td>
                     </tr>
@@ -82,7 +86,7 @@
                 </tr>
                 {% for party in by_party %}
                     <tr>
-                        <td><a href="{% url "ppc_2024:details" %}?party_name={{ party.name }}">{{ party.name }}</a></td>
+                        <td><a href="{% url "ppc_2024:details" %}?party_name={{ party.name|urlencode }}">{{ party.name }}</a></td>
                         <td>{{ party.candidate_count }}</td>
                     </tr>
                 {% endfor %}

@@ -21,7 +21,17 @@
                     <h2 class="ds-candidate-name ds-h3">
                         {{ object.name }}
                     </h2>
-                    <p>{% blocktrans trimmed with person_name=object.name past_candidacy_count=object.past_not_current_candidacies.count %}{{ person_name }} stood for election {{ past_candidacy_count }} times.{% endblocktrans %}</p>
+                    {% if object.past_not_current_candidacies.count == 2 %}
+                        {% blocktrans %}
+                            <p>{{ person_name }} stood for election twice.</p>
+                        {% endblocktrans %}
+                    {% else %}
+                        {% blocktrans trimmed count past_candidacy_count=object.past_not_current_candidacies.count %}
+                            <p>{{ person_name }} stood for election once.</p>
+                        {% plural %}
+                            <p>{{ person_name }} stood for election {{ past_candidacy_count }} times.</p>
+                        {% endblocktrans %}
+                    {% endif %}
                 </div>
 
                 {% if object.photo_url %}

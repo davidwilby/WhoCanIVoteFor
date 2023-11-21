@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block page_title %}
+    UK Prospective Parliamentary Candidates
+{% endblock %}
+{% block og_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock og_description_content %}
+{% block twitter_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock twitter_description_content %}
+
+
+
 {% block content %}
 
     <h1>UK Prospective Parliamentary Candidates</h1>
@@ -42,12 +50,14 @@
                     <td>
                         {% if object.person %}
                             <a href="{% url "person_view" object.person_id %}">{{ object.person.name }}</a>
-                            <br><small>
-                                <a href="{{ object.sheet_row.Source }}">Source</a>
-                            </small>
+
                         {% else %}
                             {{ object.person_name }}
                         {% endif %}
+                        <br>
+                        <small>
+                            <cite><a href="{{ object.sheet_row.Source }}">Source</a></cite>
+                        </small>
 
                     </td>
                     <td>{{ object.party.party_name }}</td>
