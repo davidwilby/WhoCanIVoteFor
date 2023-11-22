@@ -1,13 +1,14 @@
 from datetime import date, datetime
 from typing import Optional
 
-from core.models import log_postcode
 from core.utils import LastWord
+from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Case, Count, F, IntegerField, Prefetch, When
 from django.db.models.functions import Coalesce
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.urls import reverse
+from django.views import View
 from elections.constants import (
     PEOPLE_FOR_BALLOT_KEY_FMT,
     UPDATED_SLUGS,
@@ -156,10 +157,14 @@ class PollingStationInfoMixin(object):
 
 
 class LogLookUpMixin(object):
-    def log_postcode(self, postcode):
-        kwargs = {"postcode": postcode}
-        kwargs.update(self.request.session["utm_data"])
-        log_postcode(kwargs)
+    def log_postcode(self: View, postcode):
+        entry = settings.POSTCODE_LOGGER.entry_class(
+            postcode=postcode,
+            dc_product=settings.POSTCODE_LOGGER.dc_product.wcivf,
+            calls_devs_dc_api=True,
+            **self.request.session.get("utm_data"),
+        )
+        settings.POSTCODE_LOGGER.log(entry)
 
 
 class NewSlugsRedirectMixin(object):

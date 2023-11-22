@@ -1,9 +1,5 @@
-from unittest import skipIf
-
 import pytest
 import vcr
-from core.models import LoggedPostcode, write_logged_postcodes
-from django.conf import settings
 from django.db.models import Count
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -37,18 +33,6 @@ class PostcodeViewTests(TestCase):
         response = self.client.get("/elections/EC1A4EU", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/postcode_view.html")
-
-    @vcr.use_cassette("fixtures/vcr_cassettes/test_postcode_view.yaml")
-    @override_settings(REDIS_KEY_PREFIX="WCIVF_TEST")
-    @skipIf(settings.REDIS_LOG_POSTCODE is False, "Dependant on redis running")
-    def test_logged_postcodes(self):
-        assert LoggedPostcode.objects.all().count() == 0
-        response = self.client.get("/elections/EC1A4EU", follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "elections/postcode_view.html")
-        assert LoggedPostcode.objects.all().count() == 0
-        write_logged_postcodes()
-        assert LoggedPostcode.objects.all().count() == 1
 
     @vcr.use_cassette("fixtures/vcr_cassettes/test_ical_view.yaml")
     def test_ical_view(self):
@@ -107,6 +91,7 @@ class PostcodeViewTests(TestCase):
                 HTTP_AUTHORIZATION="Token foo",
             )
 
+        logging_message = None
         for record in captured.records:
             if record.message.startswith("dc-postcode-searches"):
                 logging_message = record
@@ -116,6 +101,7 @@ class PostcodeViewTests(TestCase):
         assert '"utm_source": "test"' in logging_message.message
         assert '"utm_campaign": "better_tracking"' in logging_message.message
         assert '"utm_medium": "pytest"' in logging_message.message
+        assert '"calls_devs_dc_api": true' in logging_message.message
 
     def test_dc_logging_postcode_invalid(self):
         with self.assertLogs(level="DEBUG") as captured:
@@ -129,7 +115,6 @@ class PostcodeViewTests(TestCase):
                 },
                 HTTP_AUTHORIZATION="Token foo",
             )
-
         for record in captured.records:
             assert not record.message.startswith("dc-postcode-searches")
 

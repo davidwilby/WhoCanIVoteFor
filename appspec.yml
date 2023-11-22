@@ -55,9 +55,6 @@ hooks:
     - location: deploy/after_install/system_files.sh
       timeout: 300
       runas: root
-    - location: deploy/after_install/migrate_logger.sh
-      timeout: 300
-      runas: wcivf
     - location: deploy/after_install/collectstatic.sh
       timeout: 300
       runas: wcivf
