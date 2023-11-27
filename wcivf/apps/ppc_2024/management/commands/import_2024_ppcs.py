@@ -124,9 +124,9 @@ class Command(BaseCommand):
         for row in reader:
             try:
                 data = CSVRow.from_csv_row(row)
-            except BlankRowException:
+                self.create_ppc(data)
+            except (BlankRowException, ValueError):
                 continue
-            self.create_ppc(data)
 
             counter += 1
         print(counter)
