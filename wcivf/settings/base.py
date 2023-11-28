@@ -4,6 +4,7 @@ import os
 import sys
 
 import dc_design_system
+import sentry_sdk.integrations.django
 from dc_logging_client import DCWidePostcodeLoggingClient
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
@@ -289,3 +290,7 @@ with contextlib.suppress(ImportError):
 if os.environ.get("CIRCLECI"):
     with contextlib.suppress(ImportError):
         from .ci import *  # noqa
+
+sentry_sdk.init(
+    integrations=[sentry_sdk.integrations.django.DjangoIntegration()],
+)
