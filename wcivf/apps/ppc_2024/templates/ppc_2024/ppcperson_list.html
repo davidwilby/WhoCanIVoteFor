@@ -60,7 +60,11 @@
                         </small>
 
                     </td>
-                    <td>{{ object.party.party_name }}</td>
+                    {% if object.party.register == "NI" %}
+                        <td>{{ object.party.party_name }} (Northern Ireland)</td>
+                    {% else %}
+                        <td>{{ object.party.party_name }}</td>
+                    {% endif %}
                     <td>{{ object.constituency_name }}</td>
                     <td>{{ object.region_name }}</td>
                 </tr>
