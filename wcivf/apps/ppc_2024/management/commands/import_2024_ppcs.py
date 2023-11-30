@@ -121,7 +121,9 @@ class Command(BaseCommand):
         self.delete_all_ppcs()
         counter = 0
         req = requests.get(PPCPerson.CSV_URL)
-        reader: List[Dict] = csv.DictReader(req.text.splitlines())
+        reader: List[Dict] = csv.DictReader(
+            req.content.decode("utf8").splitlines()
+        )
         for row in reader:
             try:
                 data = CSVRow.from_csv_row(row)
