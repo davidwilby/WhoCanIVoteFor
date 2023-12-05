@@ -2281,7 +2281,3 @@ msgstr ""
 #: wcivf/templates/home.html:52
 msgid "Upcoming Elections"
 msgstr "Etholiadau i ddod"
-
-#: wcivf/templates/mailing_list.html:8
-msgid "Join our mailing list"
-msgstr "Ymunwch â'n rhestr bostio"
