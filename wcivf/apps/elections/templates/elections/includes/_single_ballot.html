@@ -136,8 +136,14 @@
             {% endif %}
 
             {% if postelection.election.description %}
-                {% blocktrans with description=postelection.election.description|markdown %} {{ description }} {% endblocktrans %}
+                <div class="ds-card">
+                    <div class="ds-card-body">
+                        <h3>About this position</h3>
+                        <p>{% blocktrans with description=postelection.election.description|markdown %} {{ description }}{% endblocktrans%}</p>
+                    </div>
+                </div>
             {% endif %}
+
             {% if postelection.election.in_past and postelection.has_results %}
                 <section class="ds-card ds-width-half-text">
                     <div class="ds-table">
@@ -208,7 +214,7 @@
                                     <p>
                                         {% blocktrans trimmed with voter_age=postelection.election.voter_age voter_age_date=postelection.election.election_date|date:"jS" election_date=postelection.election.election_date|date:"F Y" %}
                                             You need to be over {{ voter_age }} on the {{ voter_age_date }} of {{ election_date }} in order to vote in this election.
-                                        {% endblocktrans %}}
+                                        {% endblocktrans %}
                                     </p>
                                     {% if postelection.election.voter_citizenship %}
                                         <h5>{% trans "Citizenship" %}</h5>
