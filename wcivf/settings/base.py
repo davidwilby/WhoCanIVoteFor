@@ -152,6 +152,19 @@ DATABASES = {
     }
 }
 
+if int(os.environ.get("FEEDBACK_DB_ENABLED", "0")):
+    DATABASES["feedback"] = {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.environ.get("FEEDBACK_DB_NAME", "wcivf_feedback_production"),
+        "USER": "postgres",
+        "PASSWORD": os.environ.get("FEEDBACK_DB_PASSWORD"),
+        "HOST": os.environ.get("FEEDBACK_DB_HOST"),
+        "PORT": "",
+    }
+
+    if os.environ.get("DC_ENVIRONMENT") in ["production"]:
+        DATABASE_ROUTERS = ["core.db_routers.FeedbackRouter"]
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
