@@ -411,7 +411,6 @@ class YNRBallotImporter:
                     # if we dont have a result, get the "elected" value from
                     # the main candidacy data
                     elected = result.get("elected", candidate["elected"])
-
                     person_post = PersonPost.objects.create(
                         post_election=ballot,
                         person=person,
@@ -421,6 +420,8 @@ class YNRBallotImporter:
                             "party_description_text"
                         ],
                         list_position=candidate["party_list_position"],
+                        deselected=candidate["deselected"],
+                        deselected_source=candidate["deselected_source"],
                         elected=elected,
                         votes_cast=result.get("num_ballots", None),
                         post=ballot.post,

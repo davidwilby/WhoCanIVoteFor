@@ -13,6 +13,8 @@ class TestUpdateCandidacies:
                 {
                     "elected": False,
                     "party_list_position": 1,
+                    "deselected": False,
+                    "deselected_source": None,
                     "party": {
                         "url": "http://candidates.democracyclub.org.uk/api/next/parties/PP53/",
                         "ec_id": "PP53",
@@ -30,6 +32,8 @@ class TestUpdateCandidacies:
                 {
                     "elected": False,
                     "party_list_position": None,
+                    "deselected": False,
+                    "deselected_source": None,
                     "party": {
                         "url": "http://candidates.democracyclub.org.uk/api/next/parties/PP53/",
                         "ec_id": "PP53",
@@ -98,6 +102,8 @@ class TestUpdateCandidacies:
                 defaults={
                     "party_id": "party:53",
                     "list_position": 1,
+                    "deselected": False,
+                    "deselected_source": None,
                     "elected": False,
                     "party_name": "Labour Party",
                     "party_description_text": "Labour Party",
@@ -110,6 +116,8 @@ class TestUpdateCandidacies:
                 defaults={
                     "party_id": "party:53",
                     "list_position": None,
+                    "deselected": False,
+                    "deselected_source": None,
                     "elected": False,
                     "party_name": "Labour Party",
                     "party_description_text": "Labour Party",
