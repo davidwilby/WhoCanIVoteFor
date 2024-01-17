@@ -463,6 +463,27 @@ class ElectionPostViewTests(TestCase):
         self.assertContains(response, "{}'s Elections".format(self.person.name))
         self.assertContains(response, "Not elected (vote count not available)")
 
+    def test_deselected_person(self):
+        self.person = PersonFactory()
+        self.person_post = PersonPostFactory(
+            post_election=self.post_election,
+            election=self.election,
+            post=self.post,
+            person=self.person,
+            elected=False,
+            votes_cast=None,
+            deselected=True,
+            deselected_source="www.google.com",
+        )
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
+        self.assertContains(
+            response,
+            "This candidate has been deselected by their party",
+        )
+        self.assertContains(response, "Learn more")
+
 
 @pytest.mark.django_db
 class TestPostViewName:
