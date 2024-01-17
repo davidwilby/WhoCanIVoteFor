@@ -511,6 +511,8 @@ class TestYNRImporterAddBallots:
                 "person": {"name": "Joe Bloggs", "id": "9876"},
                 "result": None,
                 "elected": False,
+                "deselected": False,
+                "deselected_source": None,
                 "party_list_position": None,
                 "party": {
                     "url": "http://candidates.democracyclub.org.uk/api/next/parties/PP53/",

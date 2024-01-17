@@ -207,6 +207,8 @@ class Command(BaseCommand):
             defaults = {
                 "party_id": candidacy["party"]["legacy_slug"],
                 "list_position": candidacy["party_list_position"],
+                "deselected": candidacy["deselected"],
+                "deselected_source": candidacy["deselected_source"],
                 "elected": candidacy["elected"],
                 "party_name": candidacy["party_name"],
                 "party_description_text": candidacy["party_description_text"],
