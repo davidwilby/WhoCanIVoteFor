@@ -40,6 +40,8 @@ class PersonPost(models.Model):
         Party, related_name="affiliated_memberships", blank=True
     )
     rank = models.PositiveIntegerField(null=True)
+    deselected = models.BooleanField(default=False)
+    deselected_source = models.CharField(max_length=800, blank=True, null=True)
 
     objects = PersonPostManager()
 
