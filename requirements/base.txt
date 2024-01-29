@@ -15,7 +15,7 @@ redis==4.6.0
 icalendar==5.0.7
 dealer==2.1.0
 
-git+https://github.com/DemocracyClub/design-system.git@0.4.4
+git+https://github.com/DemocracyClub/design-system.git@0.4.5
 git+https://github.com/DemocracyClub/dc_django_utils.git@2.3.0
 https://github.com/DemocracyClub/dc_logging/archive/refs/tags/1.0.1.tar.gz
 
