@@ -75,10 +75,10 @@ jobs:
             python manage.py check
             python manage.py makemigrations --check
       - run:
-          name: Black
+          name: Ruff
           command: |
             . .venv/bin/activate
-            black -l 80 --check .
+            ruff format .
       - run:
           name: CurlyLint
           command: |
