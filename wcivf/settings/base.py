@@ -200,9 +200,7 @@ PIPELINE = get_pipeline_settings(
 )
 
 
-PIPELINE["SASS_ARGUMENTS"] += (
-    " -I " + dc_design_system.DC_SYSTEM_PATH + "/system"
-)
+PIPELINE["SASS_ARGUMENTS"] += " -I " + dc_design_system.DC_SYSTEM_PATH + "/system"
 
 CACHES = {
     "default": {
@@ -218,9 +216,7 @@ YNR_API_KEY = os.environ.get("YNR_API_KEY", None)
 YNR_BASE = "https://candidates.democracyclub.org.uk"
 YNR_UTM_QUERY_STRING = "utm_source=who&utm_campaign=ynr_cta"
 EE_BASE = "https://elections.democracyclub.org.uk"
-DEVS_DC_BASE = os.environ.get(
-    "DEVS_DC_BASE", "https://developers.democracyclub.org.uk"
-)
+DEVS_DC_BASE = os.environ.get("DEVS_DC_BASE", "https://developers.democracyclub.org.uk")
 DEVS_DC_API_KEY = os.environ.get("DEVS_DC_API_KEY", None)
 
 WDIV_BASE = "http://wheredoivote.co.uk"
@@ -259,9 +255,7 @@ REST_FRAMEWORK = {
 PARTY_LIST_VOTING_TYPES = ["PR-CL", "AMS"]
 
 WDIV_API_KEY = os.environ.get("WDIV_API_KEY")
-SLACK_FEEDBACK_WEBHOOK_URL = os.environ.get(
-    "SLACK_FEEDBACK_WEBHOOK_URL"
-)  # noqa
+SLACK_FEEDBACK_WEBHOOK_URL = os.environ.get("SLACK_FEEDBACK_WEBHOOK_URL")  # noqa
 
 CHECK_HOST_DIRTY = False
 DIRTY_FILE_PATH = "~/server_dirty"
