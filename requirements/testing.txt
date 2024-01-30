@@ -1,6 +1,5 @@
 -r base.txt
 
-black==23.7.0
 
 pytest
 pytest-django
@@ -14,6 +13,5 @@ tomlkit
 freezegun==1.2.2
 django-debug-toolbar==4.1.0
 curlylint==0.13.1
-ruff==0.0.280
-pytest-ruff
-pytest-black
+ruff==0.1.15
+pytest-ruff==0.2.1
