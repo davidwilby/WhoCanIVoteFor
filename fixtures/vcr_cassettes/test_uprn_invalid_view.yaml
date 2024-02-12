@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://developers.democracyclub.org.uk/api/v1/address/www.somerset.gov.uk/?include_current=1
+  response:
+    body:
+      string: '""'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Feb 2024 16:37:12 GMT
+      Via:
+      - 1.1 bfd49bf523c81f536763bdb558e5f014.cloudfront.net (CloudFront), 1.1 6aa6edecec0700ca349b892f43a2c0b6.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - 9OXf-p26wqI_HRHLzWV7ec6NqYWrecrtk1wf2YPytHy8DGV8hBiYNQ==
+      X-Amz-Cf-Pop:
+      - LHR50-P2
+      - LHR5-P3
+      X-Amzn-Trace-Id:
+      - Root=1-65ca4938-3347b3a73383d5b0640e6bab;Parent=36c72daa753ae061;Sampled=0;lineage=b30bce40:0
+      X-Cache:
+      - Error from cloudfront
+      x-amz-apigw-id:
+      - TCBg3HkvrPEEAEA=
+      x-amzn-Remapped-content-length:
+      - '2'
+      x-amzn-RequestId:
+      - 4bb022dd-90a0-4e2e-9858-9a529de824da
+    status:
+      code: 404
+      message: Not Found
+version: 1
