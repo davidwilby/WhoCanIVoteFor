@@ -101,8 +101,10 @@
 {% block footer_base %}
     <footer class="ds-footer">
         <div class="ds-block-centered ds-text-centered ds-stack">
-            <div>
-                {% include "mailing_list.html" %}
+            <div class="ds-dark">
+                <a class="ds-cta ds-cta-blue" href="https://mailinglist.democracyclub.org.uk/subscription/form">
+                    Join our mailing list
+                </a>
             </div>
             <div class="ds-cluster-center">
                 <ul>
@@ -122,7 +124,7 @@
             </div>
             <div class="ds-copyright">
                 <a class="ds-logo" href="/">
-                    <img src="{% static 'images/logo_icon.svg' %}" alt="" />
+                    <img src="{% static 'images/logo_icon.svg' %}" width="{{ SITE_LOGO_WIDTH|default:'80' }}" alt="Democracy Club" />
                     <span class="ds-text-left">
                         {% trans "democracy" %}<br>{% trans "club" %}
                     </span>

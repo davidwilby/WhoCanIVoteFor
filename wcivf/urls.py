@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import index, sitemap
 from django.urls import include, path, re_path
 from django.views.decorators.cache import cache_page
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView, TemplateView
 from elections.sitemaps import ElectionSitemap, PostElectionSitemap
 from parties.sitemaps import PartySitemap
 from people.sitemaps import PersonSitemap
@@ -47,7 +47,12 @@ urlpatterns = (
                 template_name="robots.txt", content_type="text/plain"
             ),
         ),
-        path("mailing_list/", include("mailing_list.urls", "dc_signup_form")),
+        path(
+            "email/$",
+            RedirectView.as_view(
+                url="https://mailinglist.democracyclub.org.uk/subscription/form"
+            ),
+        ),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

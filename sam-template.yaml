@@ -64,16 +64,23 @@ Parameters:
     Description: "Webhook url used to send feeback entries to Slack"
     Type: String
 
-  AppLoggerDbPassword:
-    Description: "Webhook url used to send feeback entries to Slack"
-    Type: String
-  AppLoggerDbHost:
-    Description: "Webhook url used to send feeback entries to Slack"
-    Type: String
-
   AppYnrApiKey:
     Description: "API key used to import data from YNR"
-    Type: String 
+    Type: String
+
+  AppFeedbackDbEnabled:
+    Default: FEEDBACK_DB_ENABLED
+    Description: "Is the feedback DB enabled?"
+    Type: AWS::SSM::Parameter::Value<String>
+  AppFeedbackDbPassword:
+    Default: FEEDBACK_DB_PASSWORD
+    Description: "Webhook url used to send feeback entries to Slack"
+    Type: AWS::SSM::Parameter::Value<String>
+
+  AppFeedbackDbHost:
+    Default: FEEDBACK_DB_HOST
+    Description: "Webhook url used to send feeback entries to Slack"
+    Type: AWS::SSM::Parameter::Value<String>
 
 Resources:
   WCIVFControllerFunction:
@@ -96,9 +103,10 @@ Resources:
           SECRET_KEY: !Ref AppSecretKey
           DC_ENVIRONMENT: !Ref AppDcEnvironment
           SLACK_FEEDBACK_WEBHOOK_URL: !Ref AppSlackFeedbackWebhookUrl
-          LOGGER_DB_PASSWORD: !Ref AppLoggerDbPassword
-          LOGGER_DB_HOST: !Ref AppLoggerDbHost
           YNR_API_KEY: !Ref AppYnrApiKey
+          FEEDBACK_DB_ENABLED: !Ref AppFeedbackDbEnabled
+          FEEDBACK_DB_PASSWORD: !Ref AppFeedbackDbPassword
+          FEEDBACK_DB_HOST: !Ref AppFeedbackDbHost
       Tags:
         dc-environment: !Ref AppDcEnvironment
         dc-product: wcivf

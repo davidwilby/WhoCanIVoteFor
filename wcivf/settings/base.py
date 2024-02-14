@@ -4,7 +4,7 @@ import os
 import sys
 
 import dc_design_system
-import redis
+import sentry_sdk.integrations.django
 from dc_logging_client import DCWidePostcodeLoggingClient
 from dc_utils.settings.pipeline import *  # noqa
 from dc_utils.settings.pipeline import get_pipeline_settings
@@ -64,9 +64,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.sites",
     "django_filters",
-    "dc_signup_form",
     "dc_utils",
-    "mailing_list",
     "pipeline",
     "elections",
     "core",
@@ -122,7 +120,6 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "dc_signup_form.context_processors.signup_form",
                 "core.context_processors.canonical_url",
                 "core.context_processors.site_title",
                 "core.context_processors.use_compress_css",
@@ -155,18 +152,18 @@ DATABASES = {
     }
 }
 
-if os.environ.get("LOGGER_DB_PASSWORD") and os.environ.get("LOGGER_DB_HOST"):
-    DATABASES["logger"] = {
+if int(os.environ.get("FEEDBACK_DB_ENABLED", "0")):
+    DATABASES["feedback"] = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "wcivf_logger",
-        "USER": "wcivf",
-        "PASSWORD": os.environ.get("LOGGER_DB_PASSWORD"),
-        "HOST": os.environ.get("LOGGER_DB_HOST"),
+        "NAME": os.environ.get("FEEDBACK_DB_NAME", "wcivf_feedback_production"),
+        "USER": "postgres",
+        "PASSWORD": os.environ.get("FEEDBACK_DB_PASSWORD"),
+        "HOST": os.environ.get("FEEDBACK_DB_HOST"),
         "PORT": "",
     }
 
-if os.environ.get("DC_ENVIRONMENT") in ["production"]:
-    DATABASE_ROUTERS = ["core.db_routers.LoggerRouter"]
+    if os.environ.get("DC_ENVIRONMENT") in ["production"]:
+        DATABASE_ROUTERS = ["core.db_routers.FeedbackRouter"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -203,9 +200,7 @@ PIPELINE = get_pipeline_settings(
 )
 
 
-PIPELINE["SASS_ARGUMENTS"] += (
-    " -I " + dc_design_system.DC_SYSTEM_PATH + "/system"
-)
+PIPELINE["SASS_ARGUMENTS"] += " -I " + dc_design_system.DC_SYSTEM_PATH + "/system"
 
 CACHES = {
     "default": {
@@ -221,9 +216,7 @@ YNR_API_KEY = os.environ.get("YNR_API_KEY", None)
 YNR_BASE = "https://candidates.democracyclub.org.uk"
 YNR_UTM_QUERY_STRING = "utm_source=who&utm_campaign=ynr_cta"
 EE_BASE = "https://elections.democracyclub.org.uk"
-DEVS_DC_BASE = os.environ.get(
-    "DEVS_DC_BASE", "https://developers.democracyclub.org.uk"
-)
+DEVS_DC_BASE = os.environ.get("DEVS_DC_BASE", "https://developers.democracyclub.org.uk")
 DEVS_DC_API_KEY = os.environ.get("DEVS_DC_API_KEY", None)
 
 WDIV_BASE = "http://wheredoivote.co.uk"
@@ -241,17 +234,11 @@ EMAIL_SIGNUP_BACKEND_KWARGS = {
 
 # DC Base Theme settings
 SITE_TITLE = "Who Can I Vote For?"
-SITE_LOGO = "images/logo.png"
-SITE_LOGO_WIDTH = "440px"
+SITE_LOGO_WIDTH = "80"
 
 AKISMET_API_KEY = os.environ.get("AKISMET_API_KEY")
 
 AKISMET_BLOG_URL = CANONICAL_URL
-
-
-REDIS_POOL = redis.ConnectionPool(host="127.0.0.1", port=6379, db=5)
-REDIS_KEY_PREFIX = "WCIVF"
-REDIS_LOG_POSTCODE = True
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -268,9 +255,7 @@ REST_FRAMEWORK = {
 PARTY_LIST_VOTING_TYPES = ["PR-CL", "AMS"]
 
 WDIV_API_KEY = os.environ.get("WDIV_API_KEY")
-SLACK_FEEDBACK_WEBHOOK_URL = os.environ.get(
-    "SLACK_FEEDBACK_WEBHOOK_URL"
-)  # noqa
+SLACK_FEEDBACK_WEBHOOK_URL = os.environ.get("SLACK_FEEDBACK_WEBHOOK_URL")  # noqa
 
 CHECK_HOST_DIRTY = False
 DIRTY_FILE_PATH = "~/server_dirty"
@@ -291,12 +276,10 @@ if os.environ.get("DC_ENVIRONMENT"):
     )
 
 # DC Logging Client
-FIREHOSE_ACCOUNT_ARN = os.environ.get("FIREHOSE_ACCOUNT_ARN", None)
-if FIREHOSE_ACCOUNT_ARN:
-    firehose_args = {"assume_role_arn": FIREHOSE_ACCOUNT_ARN}
-else:
-    firehose_args = {"fake": True}
+LOGGER_ARN = os.environ.get("LOGGER_ARN", None)
+firehose_args = {"function_arn": LOGGER_ARN} if LOGGER_ARN else {"fake": True}
 POSTCODE_LOGGER = DCWidePostcodeLoggingClient(**firehose_args)
+
 
 with contextlib.suppress(ImportError):
     # .local.py overrides all the common settings.
@@ -310,3 +293,7 @@ with contextlib.suppress(ImportError):
 if os.environ.get("CIRCLECI"):
     with contextlib.suppress(ImportError):
         from .ci import *  # noqa
+
+sentry_sdk.init(
+    integrations=[sentry_sdk.integrations.django.DjangoIntegration()],
+)

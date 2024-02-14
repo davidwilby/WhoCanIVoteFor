@@ -14,8 +14,6 @@ CACHES = {
     }
 }
 
-REDIS_LOG_POSTCODE = False
-
 ALLOWED_HOSTS = ["*"]
 
 YNR_BASE = "https://candidates.democracyclub.org.uk"

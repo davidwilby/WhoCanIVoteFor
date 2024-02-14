@@ -1,6 +1,3 @@
-[tool.black]
-line-length = 80
-
 [tool.ruff]
 line-length = 80
 ignore = ["E501"]
@@ -29,5 +26,5 @@ addopts =[
     "--ignore=wcivf/settings/local.py",
     "--ignore=lib",
     "--ruff",
-    "--black",
+    "--ruff-format",
 ]

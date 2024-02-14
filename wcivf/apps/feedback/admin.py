@@ -56,16 +56,12 @@ class FeedbackAdmin(admin.ModelAdmin):
         return self.export(
             Feedback.objects.all()
             .exclude(comments="")
-            .order_by(
-                "found_useful", "sources", "flagged_as_spam", "-created", "id"
-            )
+            .order_by("found_useful", "sources", "flagged_as_spam", "-created", "id")
         )
 
     def export(self, qs):
         response = HttpResponse(content_type="text/csv")
-        response[
-            "Content-Disposition"
-        ] = 'attachment; filename="feedback-%s.csv"' % (
+        response["Content-Disposition"] = 'attachment; filename="feedback-%s.csv"' % (
             datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
         )
         fields = [

@@ -1,0 +1,112 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://developers.democracyclub.org.uk/api/v1/address/10003417754/?include_current=1
+  response:
+    body:
+      string: '{"address_picker":false,"addresses":[],"dates":[{"date":"2024-05-02","polling_station":{"polling_station_known":false,"custom_finder":null,"report_problem_url":null,"station":null},"advance_voting_station":null,"notifications":[],"ballots":[{"ballot_paper_id":"pcc.west-mercia.2024-05-02","ballot_title":"Police
+        and Crime Commissioner for West Mercia","poll_open_date":"2024-05-02","elected_role":"Police
+        and Crime Commissioner","metadata":null,"cancelled":false,"cancellation_reason":null,"replaced_by":null,"replaces":null,"requires_voter_id":null,"ballot_url":"https://developers.democracyclub.org.uk/api/v1/elections/pcc.west-mercia.2024-05-02/","election_id":"pcc.west-mercia.2024-05-02","election_name":"Police
+        and Crime Commissioner for West Mercia","post_name":"West Mercia Police","candidates_verified":false,"candidates":[],"wcivf_url":"http://whocanivotefor.co.uk/elections/pcc.west-mercia.2024-05-02/west-mercia-police/","voting_system":{"slug":"FPTP","name":"First-past-the-post"},"seats_contested":1,"hustings":null}]}],"electoral_services":{"council_id":"SHR","name":"Shropshire
+        Council","email":"elections@shropshire.gov.uk","phone":"0345 678 9015","website":"http://www.shropshire.gov.uk/","postcode":"SY2
+        6ND","address":"Electoral Registration Officer\nShirehall\nAbbey Foregate\nShrewsbury","identifiers":["E06000051"],"nation":"England"},"registration":{"council_id":"SHR","name":"Shropshire
+        Council","email":"elections@shropshire.gov.uk","phone":"0345 678 9015","website":"http://www.shropshire.gov.uk/","postcode":"SY2
+        6ND","address":"Electoral Registration Officer\nShirehall\nAbbey Foregate\nShrewsbury","identifiers":["E06000051"],"nation":"England"},"postcode_location":{"type":"Feature","properties":null,"geometry":{"type":"Point","coordinates":[-2.326615276923077,52.49552346923076]}},"parl_boundary_changes":{"current_constituencies_official_identifier":"gss:E14000799","current_constituencies_name":"Ludlow","new_constituencies_official_identifier":"gss:E14001493","new_constituencies_name":"South
+        Shropshire","CHANGE_TYPE":"NAME_CHANGE_BOUNDARY_CHANGE"}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2086'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Feb 2024 16:34:59 GMT
+      Via:
+      - 1.1 de7bb21ade87bd155cf024cdea5bf62e.cloudfront.net (CloudFront), 1.1 804261ff0b3271a24a562f70d4c0c93a.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - pqZYAMu2kWlRD6hMjSMx4LJZI-irirbs8Bs1IzamK2j9jX15aeg-VQ==
+      X-Amz-Cf-Pop:
+      - LHR50-P2
+      - LHR5-P3
+      X-Amzn-Trace-Id:
+      - Root=1-65ca48b3-6921966831308c6f77cba8f5;Parent=74670f99679512dc;Sampled=0;lineage=b30bce40:0
+      X-Cache:
+      - Miss from cloudfront
+      x-amz-apigw-id:
+      - TCBMBEkuLPEEHnA=
+      x-amzn-Remapped-content-length:
+      - '2086'
+      x-amzn-RequestId:
+      - 192909e5-b28c-4783-92bf-4e95fbd3441c
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://developers.democracyclub.org.uk/api/v1/address/10003417754/?auth_token=eaf0ff4132934ed0b7f5af0bc906cd186083f196&include_current=1
+  response:
+    body:
+      string: '{"address_picker":false,"addresses":[],"dates":[{"date":"2024-05-02","polling_station":{"polling_station_known":false,"custom_finder":null,"report_problem_url":null,"station":null},"advance_voting_station":null,"notifications":[],"ballots":[{"ballot_paper_id":"pcc.west-mercia.2024-05-02","ballot_title":"Police
+        and Crime Commissioner for West Mercia","poll_open_date":"2024-05-02","elected_role":"Police
+        and Crime Commissioner","metadata":null,"cancelled":false,"cancellation_reason":null,"replaced_by":null,"replaces":null,"requires_voter_id":null,"ballot_url":"https://developers.democracyclub.org.uk/api/v1/elections/pcc.west-mercia.2024-05-02/","election_id":"pcc.west-mercia.2024-05-02","election_name":"Police
+        and Crime Commissioner for West Mercia","post_name":"West Mercia Police","candidates_verified":false,"candidates":[],"wcivf_url":"http://whocanivotefor.co.uk/elections/pcc.west-mercia.2024-05-02/west-mercia-police/","voting_system":{"slug":"FPTP","name":"First-past-the-post"},"seats_contested":1,"hustings":null}]}],"electoral_services":{"council_id":"SHR","name":"Shropshire
+        Council","email":"elections@shropshire.gov.uk","phone":"0345 678 9015","website":"http://www.shropshire.gov.uk/","postcode":"SY2
+        6ND","address":"Electoral Registration Officer\nShirehall\nAbbey Foregate\nShrewsbury","identifiers":["E06000051"],"nation":"England"},"registration":{"council_id":"SHR","name":"Shropshire
+        Council","email":"elections@shropshire.gov.uk","phone":"0345 678 9015","website":"http://www.shropshire.gov.uk/","postcode":"SY2
+        6ND","address":"Electoral Registration Officer\nShirehall\nAbbey Foregate\nShrewsbury","identifiers":["E06000051"],"nation":"England"},"postcode_location":{"type":"Feature","properties":null,"geometry":{"type":"Point","coordinates":[-2.326615276923077,52.49552346923076]}},"parl_boundary_changes":{"current_constituencies_official_identifier":"gss:E14000799","current_constituencies_name":"Ludlow","new_constituencies_official_identifier":"gss:E14001493","new_constituencies_name":"South
+        Shropshire","CHANGE_TYPE":"NAME_CHANGE_BOUNDARY_CHANGE"}}'
+    headers:
+      Age:
+      - '25'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2086'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Feb 2024 16:34:59 GMT
+      Via:
+      - 1.1 de7bb21ade87bd155cf024cdea5bf62e.cloudfront.net (CloudFront), 1.1 00c2f7a1029c42b6c62aaf7bca905898.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - MakGwJPqWskMuI-fKvdLAFAyXRW7bV3N1evfaLME5HShCfKCXaSOWA==
+      X-Amz-Cf-Pop:
+      - LHR50-P2
+      - LHR5-P3
+      X-Amzn-Trace-Id:
+      - Root=1-65ca48b3-6921966831308c6f77cba8f5;Parent=74670f99679512dc;Sampled=0;lineage=b30bce40:0
+      X-Cache:
+      - Hit from cloudfront
+      x-amz-apigw-id:
+      - TCBMBEkuLPEEHnA=
+      x-amzn-Remapped-content-length:
+      - '2086'
+      x-amzn-RequestId:
+      - 192909e5-b28c-4783-92bf-4e95fbd3441c
+    status:
+      code: 200
+      message: OK
+version: 1

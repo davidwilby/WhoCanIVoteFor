@@ -6,38 +6,34 @@
         <h2 class="ds-candidate-name ds-h3">
             {{ object.name }}
         </h2>
-
-        {% if object.current_or_future_candidacies.all.count > 1 %}
+        {% comment %}
+        If there is more than candidacy, only list the future elections. 
+        Past elections will appear in the table below. 
+        {% endcomment %}
+        {% if object.future_candidacies.all.count > 1 %}
             <h5>{{ object.name }}
-                {% blocktrans trimmed with party_name=object.current_or_future_candidacies.0.party_name a_or_an=object.current_or_future_candidacies.0.party.is_independent|yesno:_("an,a") %}
+                {% blocktrans trimmed with party_name=object.future_candidacies.0.party_name a_or_an=object.future_candidacies.0.party.is_independent|yesno:_("an,a") %}
                     is {{ a_or_an }} {{ party_name }} candidate in the following elections:
                 {% endblocktrans %}
             </h5>
 
-            {% for candidacy in object.current_or_future_candidacies %}
+            {% for candidacy in object.future_candidacies %}
                 <ul>
                     <li>
                         {% blocktrans trimmed with election=candidacy.election.name %}{{ election }} for{% endblocktrans %}
                         <a href="{{ candidacy.post_election.get_absolute_url }}">
                             {{ candidacy.post_election.friendly_name }}
                         </a>
-                        {% if candidacy.votes_cast %}
-                            {% blocktrans trimmed with num_votes=candidacy.votes_cast|intcomma %}
-                                {{ num_votes }} votes
-                            {% endblocktrans %}
-                        {% endif %}
-                        {% if candidacy.elected %}
-                            {% trans "(elected)" %}
-                        {% endif %}
                     </li>
                 </ul>
-
             {% endfor %}
+            {% comment %} Otherwise, display the featured candidacy, whether it is current or not. {% endcomment %}
         {% else %}
             <p>
                 {{ object.intro|safe }}
             </p>
         {% endif %}
+
         {% if object.previous_party_count %}
             {% include "elections/includes/_previous_party_affiliations.html" with person=object candidacies=object.current_or_future_candidacies %}
         {% endif %}

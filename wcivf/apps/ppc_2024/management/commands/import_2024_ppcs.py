@@ -8,6 +8,7 @@ from typing import Dict, List, Optional
 from urllib.parse import urljoin
 
 import requests
+import sentry_sdk
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -47,7 +48,8 @@ class CSVRow:
     def from_csv_row(cls, row: dict):
         party_id = clean_party_id(row.pop("Party ID", None))
         if not party_id:
-            raise BlankRowException()
+            raise BlankRowException("No party ID")
+
         person_name = row.pop("Candidate Name")
         person_id = row.pop("DC Candidate ID")
         constituency_name = row.pop("Constituency")
@@ -77,9 +79,7 @@ class Command(BaseCommand):
             # if this person doesn't exist in WCIVF
             # this could be due to a merge.
             # See if we can get an alternative person id from YNR
-            url = urljoin(
-                settings.YNR_BASE, f"/api/next/person_redirects/{person_id}"
-            )
+            url = urljoin(settings.YNR_BASE, f"/api/next/person_redirects/{person_id}")
             req = requests.get(url)
             if req.status_code != 200:
                 raise
@@ -120,13 +120,17 @@ class Command(BaseCommand):
         self.delete_all_ppcs()
         counter = 0
         req = requests.get(PPCPerson.CSV_URL)
-        reader: List[Dict] = csv.DictReader(req.text.splitlines())
+        reader: List[Dict] = csv.DictReader(req.content.decode("utf8").splitlines())
         for row in reader:
             try:
                 data = CSVRow.from_csv_row(row)
-            except BlankRowException:
-                continue
-            self.create_ppc(data)
+                self.create_ppc(data)
+            except (BlankRowException, ValueError):
+                with contextlib.suppress(BlankRowException):
+                    self.stderr.write(f"Error importing row: {row}")
+                    # send a error to sentry
+                    sentry_sdk.capture_exception()
+                    continue
 
             counter += 1
         print(counter)

@@ -60,7 +60,6 @@ class PostcodeView(
         context = super().get_context_data(**kwargs)
         self.postcode = clean_postcode(kwargs["postcode"])
         self.uprn = self.kwargs.get("uprn")
-        self.log_postcode(self.postcode)
 
         context["postcode"] = self.postcode
 
@@ -71,12 +70,7 @@ class PostcodeView(
         except (InvalidPostcodeError, DevsDCAPIException) as exception:
             raise exception
 
-        entry = settings.POSTCODE_LOGGER.entry_class(
-            postcode=self.postcode,
-            dc_product=settings.POSTCODE_LOGGER.dc_product.wcivf,
-            **self.request.session.get("utm_data"),
-        )
-        settings.POSTCODE_LOGGER.log(entry)
+        self.log_postcode(self.postcode)
 
         if context["address_picker"]:
             return context
