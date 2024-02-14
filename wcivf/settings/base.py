@@ -293,7 +293,3 @@ with contextlib.suppress(ImportError):
 if os.environ.get("CIRCLECI"):
     with contextlib.suppress(ImportError):
         from .ci import *  # noqa
-
-sentry_sdk.init(
-    integrations=[sentry_sdk.integrations.django.DjangoIntegration()],
-)
