@@ -34,6 +34,20 @@ class PostcodeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/postcode_view.html")
 
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_uprn_view.yaml")
+    def test_uprn_view(self):
+        response = self.client.get("/elections/WV15 6EG/10003417754/", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "elections/postcode_view.html")
+
+    @vcr.use_cassette("fixtures/vcr_cassettes/test_uprn_invalid_view.yaml")
+    def test_uprn_invalid_view(self):
+        response = self.client.get(
+            "/elections/WV15 6EG/www.somerset.gov.uk/", follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "home.html")
+
     @vcr.use_cassette("fixtures/vcr_cassettes/test_ical_view.yaml")
     def test_ical_view(self):
         election = ElectionFactory(slug="local.cambridgeshire.2017-05-04")
@@ -234,16 +248,12 @@ class TestPostcodeViewPolls:
                 {
                     "date": local_london.election.election_date,
                     "polling_station": {"polling_station_known": False},
-                    "ballots": [
-                        {"ballot_paper_id": local_london.ballot_paper_id}
-                    ],
+                    "ballots": [{"ballot_paper_id": local_london.ballot_paper_id}],
                 },
                 {
                     "date": parl_london.election.election_date,
                     "polling_station": {"polling_station_known": False},
-                    "ballots": [
-                        {"ballot_paper_id": parl_london.ballot_paper_id}
-                    ],
+                    "ballots": [{"ballot_paper_id": parl_london.ballot_paper_id}],
                 },
             ]
         )
@@ -328,9 +338,7 @@ class TestPostcodeViewPolls:
         asserts.assertTemplateUsed(
             response, "elections/includes/inline_elections_nav_list.html"
         )
-        asserts.assertTemplateUsed(
-            response, "elections/includes/_single_ballot.html"
-        )
+        asserts.assertTemplateUsed(response, "elections/includes/_single_ballot.html")
 
 
 class TestPostcodeViewMethods:
@@ -340,9 +348,7 @@ class TestPostcodeViewMethods:
         Returns an instance of PostcodeView
         """
         view = PostcodeView()
-        request = rf.get(
-            reverse("postcode_view", kwargs={"postcode": "s11 8qe"})
-        )
+        request = rf.get(reverse("postcode_view", kwargs={"postcode": "s11 8qe"}))
         view.setup(request=request)
 
         return view
@@ -470,9 +476,7 @@ class TestPostcodeViewMethods:
     def test_num_ballots_no_parish_election(self, view_obj, mocker):
         future_post_election = mocker.MagicMock(spec=PostElection, past_date=0)
         past_post_election = mocker.MagicMock(spec=PostElection, past_date=1)
-        view_obj.ballot_dict = {
-            "ballots": [future_post_election, past_post_election]
-        }
+        view_obj.ballot_dict = {"ballots": [future_post_election, past_post_election]}
         assert view_obj.num_ballots() == 1
 
     def test_num_ballots_with_contested_parish_election(self, view_obj, mocker):
@@ -483,15 +487,11 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=True,
         )
-        view_obj.ballot_dict = {
-            "ballots": [future_post_election, past_post_election]
-        }
+        view_obj.ballot_dict = {"ballots": [future_post_election, past_post_election]}
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 2
 
-    def test_num_ballots_with_uncontested_parish_election(
-        self, view_obj, mocker
-    ):
+    def test_num_ballots_with_uncontested_parish_election(self, view_obj, mocker):
         future_post_election = mocker.MagicMock(spec=PostElection, past_date=0)
         past_post_election = mocker.MagicMock(spec=PostElection, past_date=1)
         parish_council_election = mocker.MagicMock(
@@ -499,15 +499,11 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=False,
         )
-        view_obj.ballot_dict = {
-            "ballots": [future_post_election, past_post_election]
-        }
+        view_obj.ballot_dict = {"ballots": [future_post_election, past_post_election]}
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
-    def test_num_ballots_with_is_contested_none_parish_election(
-        self, view_obj, mocker
-    ):
+    def test_num_ballots_with_is_contested_none_parish_election(self, view_obj, mocker):
         future_post_election = mocker.MagicMock(spec=PostElection, past_date=0)
         past_post_election = mocker.MagicMock(spec=PostElection, past_date=1)
         parish_council_election = mocker.MagicMock(
@@ -515,9 +511,7 @@ class TestPostcodeViewMethods:
             in_past=False,
             is_contested=None,
         )
-        view_obj.ballot_dict = {
-            "ballots": [future_post_election, past_post_election]
-        }
+        view_obj.ballot_dict = {"ballots": [future_post_election, past_post_election]}
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
@@ -529,15 +523,11 @@ class TestPostcodeViewMethods:
             in_past=True,
             is_contested=True,
         )
-        view_obj.ballot_dict = {
-            "ballots": [future_post_election, past_post_election]
-        }
+        view_obj.ballot_dict = {"ballots": [future_post_election, past_post_election]}
         view_obj.parish_council_election = parish_council_election
         assert view_obj.num_ballots() == 1
 
-    def test_get_parish_council_election_when_already_assigned(
-        self, view_obj, mocker
-    ):
+    def test_get_parish_council_election_when_already_assigned(self, view_obj, mocker):
         """
         Test if view has a parish_council_election set it is returned
         """
@@ -603,9 +593,7 @@ class TestPostcodeViewMethods:
         post_election_no_id = mocker.MagicMock(
             spec=PostElection, requires_voter_id=None, cancelled=False
         )
-        view_obj.ballot_dict = {
-            "ballots": [post_election_no_id, post_election_no_id]
-        }
+        view_obj.ballot_dict = {"ballots": [post_election_no_id, post_election_no_id]}
         assert view_obj.get_voter_id_status() is None
 
 

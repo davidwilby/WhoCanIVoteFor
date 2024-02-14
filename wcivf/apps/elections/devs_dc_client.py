@@ -9,7 +9,7 @@ class DevsDCAPIException(Exception):
     def __init__(self, response: requests.Response):
         try:
             self.message = {"error": response.json().get("message", "")}
-        except JSONDecodeError:
+        except (JSONDecodeError, AttributeError):
             self.message = ""
         self.status = response.status_code
         self.response = response
