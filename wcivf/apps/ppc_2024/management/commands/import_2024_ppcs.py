@@ -8,7 +8,6 @@ from typing import Dict, List, Optional
 from urllib.parse import urljoin
 
 import requests
-import sentry_sdk
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -126,11 +125,8 @@ class Command(BaseCommand):
                 data = CSVRow.from_csv_row(row)
                 self.create_ppc(data)
             except (BlankRowException, ValueError):
-                with contextlib.suppress(BlankRowException):
-                    self.stderr.write(f"Error importing row: {row}")
-                    # send a error to sentry
-                    sentry_sdk.capture_exception()
-                    continue
+                self.stderr.write(f"Error importing row: {row}")
+                continue
 
             counter += 1
         print(counter)
