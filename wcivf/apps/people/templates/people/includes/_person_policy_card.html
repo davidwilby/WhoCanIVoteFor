@@ -68,16 +68,6 @@
                 </div>
 
             {% endif %}
-
-            <!-- TWFY  -->
-            {% if object.twfy_id %}
-                <h4>{% trans "Record in office" %}</h4>
-                <p>{% trans "See this candidate's " %}
-                    <a href="https://www.theyworkforyou.com/mp/{{ object.twfy_id }}">
-                        {% trans "record on TheyWorkForYou" %}</a> -
-                    {% trans "their speeches, voting history and more" %}
-                </p>
-            {% endif %}
         </div>
     </section>
 {% endif %}
