@@ -19,6 +19,7 @@
                                 <summary>{% trans "Full statement" %}</summary>
                                 <p>{{ object.statement_remainder|linebreaksbr }}</p>
                             </details>
+                            <p>This statement was last updated on {{ object.statement_last_updated|naturalday }}</p>
                         </blockquote>
                     </div>
                 {% else %}

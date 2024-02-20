@@ -34,6 +34,16 @@
             </p>
         {% endif %}
 
+        {% for candidacy in object.future_candidacies %}
+            {% if candidacy.deselected %}
+                <p>
+                    {% trans "This candidate has been deselected by their party, but will remain on the ballot paper." %}
+                    <a href="{{ candidacy.deselected_source }}" target="_blank">{% trans "Learn more" %}.</a>
+                </p>
+            {% endif %}
+        {% endfor %}
+
+
         {% if object.previous_party_count %}
             {% include "elections/includes/_previous_party_affiliations.html" with person=object candidacies=object.current_or_future_candidacies %}
         {% endif %}
