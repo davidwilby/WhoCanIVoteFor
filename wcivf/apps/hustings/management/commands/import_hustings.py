@@ -18,7 +18,7 @@ def dt_from_string(dt):
     Given a date string DT, return a datetime object.
     """
     try:
-        date = datetime.datetime.strptime(dt, "%Y-%m-%d")
+        date = datetime.datetime.strptime(dt, "%d-%m-%Y")
     except ValueError:
         pass
     except TypeError:
@@ -56,18 +56,8 @@ def set_time_string_on_datetime(dt, time_string):
 
 class Command(BaseCommand):
     URLS = [
-        # NI
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=1940364340&single=true&output=csv",
-        # ENG MAYORS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=1517245531&single=true&output=csv",
-        # ENG LOCALS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnQcyfJHIDBhtJuuxQShQ0rjWKfv-zNW_fa0OyxQf3md4BHEwmwHmprRe-IOJYfIY8ZkKweY039F74/pub?gid=0&single=true&output=csv",
-        # SCOT LOCALS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=976193034&single=true&output=csv",
-        # WALES LOCALS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=2061283903&single=true&output=csv",
-        # BY-ELECTIONS
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_VvyPiJA75yOCv7j_E0PjZe3yFy77C9RH9ucb1bM2_QBhSIWSRKsF3_qhcukrxQsRMu9SRyNXWX05/pub?gid=1279122722&single=true&output=csv",
+        # 2024
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRQ2M-Kwm8LVvT-eu89wP5bt-ffE0bClfdB0iegFSnoHep_k8bdYk1Ndl5XlwvzMKleynlDOXhYXET8/pub?gid=0&single=true&output=csv",
     ]
 
     def add_arguments(self, parser):
@@ -97,20 +87,16 @@ class Command(BaseCommand):
         Create an individual husting
         """
         # kept the second option to work with previous years spreadsheets
-        starts = row.get("Date (YYYY-MM-DD)") or row.get("Date (YYYY-Month-DD)")
+        starts = row.get("Date (DD-MM-YYYY)") or row.get("Date (YYYY-Month-DD)")
         starts = dt_from_string(starts)
         if not starts:
             return None
 
         ends = None
         if row["Start time (00:00)"]:
-            starts = set_time_string_on_datetime(
-                starts, row["Start time (00:00)"]
-            )
+            starts = set_time_string_on_datetime(starts, row["Start time (00:00)"])
         if row["End time (if known)"]:
-            ends = set_time_string_on_datetime(
-                starts, row["End time (if known)"]
-            )
+            ends = set_time_string_on_datetime(starts, row["End time (if known)"])
 
         # Get the post_election
         pes = PostElection.objects.filter(ballot_paper_id=row["Election ID"])
@@ -125,9 +111,7 @@ class Command(BaseCommand):
                 url=row["Link to event information"],
                 starts=starts,
                 ends=ends,
-                location=row.get(
-                    "Location (if online only please leave blank)", ""
-                ),
+                location=row.get("Location (if online only please leave blank)", ""),
                 postevent_url=row[
                     "Link to post-event information (e.g. blog post, video)"
                 ],
@@ -143,7 +127,7 @@ class Command(BaseCommand):
                 husting = None
 
             if not husting:
-                title = row.get("Tilte of event", None)
+                title = row.get("Title of event", None)
                 if title:
                     self.stdout.write(f"Couldn't create {title}")
                 else:
