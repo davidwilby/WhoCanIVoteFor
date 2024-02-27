@@ -163,9 +163,7 @@ class Election(models.Model):
 
     def _election_datetime_tz(self):
         election_date = self.election_date
-        election_datetime = datetime.datetime.fromordinal(
-            election_date.toordinal()
-        )
+        election_datetime = datetime.datetime.fromordinal(election_date.toordinal())
         election_datetime.replace(tzinfo=LOCAL_TZ)
         return election_datetime
 
@@ -180,9 +178,7 @@ class Election(models.Model):
         return utc_to_local(election_datetime.replace(hour=22))
 
     def get_absolute_url(self):
-        return reverse(
-            "election_view", args=[str(self.slug), slugify(self.name)]
-        )
+        return reverse("election_view", args=[str(self.slug), slugify(self.name)])
 
     def election_booklet(self):
         election_to_booklet = {
@@ -218,6 +214,7 @@ class Election(models.Model):
             "mayor.sheffield-city-ca.2022-05-05": "booklets/2022-05-05/mayoral/mayor.sheffield-city-ca.2022-05-05.pdf",
             "mayor.tower-hamlets.2022-05-05": "booklets/2022-05-05/mayoral/mayor.tower-hamlets.2022-05-05.pdf",
             "mayor.hackney.by.2023-11-09": "booklets/2023-11-09/mayoral/mayor.hackney.2023-11-09.pdf",
+            "mayor.lewisham.2024-03-07": "booklets/2024-03-07/mayoral/lewisham.mayor.2024-03-07.pdf",
         }
 
         return election_to_booklet.get(self.slug)
@@ -279,9 +276,7 @@ class Post(models.Model):
     area_name = models.CharField(blank=True, max_length=100)
     area_id = models.CharField(blank=True, max_length=100)
     territory = models.CharField(blank=True, max_length=3)
-    elections = models.ManyToManyField(
-        Election, through="elections.PostElection"
-    )
+    elections = models.ManyToManyField(Election, through="elections.PostElection")
     division_type = models.CharField(
         blank=True, max_length=3, choices=DIVISION_TYPE_CHOICES
     )
@@ -318,9 +313,7 @@ class Post(models.Model):
         """
         Return a string to describe the division.
         """
-        mapping = {
-            choice[0]: choice[1] for choice in self.DIVISION_TYPE_CHOICES
-        }
+        mapping = {choice[0]: choice[1] for choice in self.DIVISION_TYPE_CHOICES}
         return mapping.get(self.division_type, "")
 
     @property
@@ -553,16 +546,16 @@ class PostElection(TimeStampedModel):
                 url = self.metadata["cancelled_election"].get("url")
                 message = title
                 if url:
-                    message = (
-                        """<strong> ❌ <a href="{}">{}</a></strong>""".format(
-                            url, title
-                        )
+                    message = """<strong> ❌ <a href="{}">{}</a></strong>""".format(
+                        url, title
                     )
         if not message:
             if self.election.in_past:
                 message = "(The poll for this election was cancelled)"
             else:
-                message = "<strong>(The poll for this election has been cancelled)</strong>"
+                message = (
+                    "<strong>(The poll for this election has been cancelled)</strong>"
+                )
 
         return mark_safe(message)
 
@@ -617,7 +610,9 @@ class PostElection(TimeStampedModel):
                 ind_and_parties_pluralized = pluralize(ind_and_parties)
                 value = f"{ind_and_parties_apnumber} parties"
                 if ind_candidates:
-                    value = f"{value} or independent candidate{ind_and_parties_pluralized}"
+                    value = (
+                        f"{value} or independent candidate{ind_and_parties_pluralized}"
+                    )
                 return value
 
             num_candidates = people.count()
