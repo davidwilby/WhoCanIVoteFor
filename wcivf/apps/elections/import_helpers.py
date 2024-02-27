@@ -299,6 +299,9 @@ class YNRBallotImporter:
         if self.should_run_post_ballot_import_tasks:
             self.attach_cancelled_ballot_info()
 
+        if self.recently_updated:
+            self.check_for_ee_updates()
+
         self.delete_orphan_posts()
 
     @time_function_length
@@ -568,3 +571,15 @@ class YNRBallotImporter:
             # been imported already
             self.set_metadata(cb)
             cb.save()
+
+    def check_for_ee_updates(self):
+        print("checking for recently updated EE")
+        for election_id in self.ee_helper.iter_recently_modified_election_ids():
+            print(election_id)
+            if self.ee_helper.ee_cache[election_id]["group_type"]:
+                election = Election.objects.get(slug=election_id)
+                self.election_importer.import_metadata_from_ee(election)
+            else:
+                ballot = PostElection.objects.get(ballot_paper_id=election_id)
+                print(f"importing metadata from EE for {ballot}")
+                self.import_metadata_from_ee(ballot)
