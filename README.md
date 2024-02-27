@@ -102,6 +102,11 @@ season (perhaps daily)and less frequently during non-election season
 (perhaps weekly). Both the hours and the cron schedule in needs to be 
 edited in `sam-template.yaml` for this change to take effect.
 
+## Mayoral Booklets
+
+PDF booklets can be manually added here wcivf/assets/booklets following the same naming convention as the other booklets. The file name should be the same as the election slug.
+Then, add the slug and corresponding booklet file name to the list here /wcivf/apps/elections/models.py#L187.
+
 # New WCIVF Google Sheets imports (Hustings, local parties)
 
 Peter will have set up some Google sheets in a known format. The CSV version of these sheets are imported in to WCIVF from time to time.
