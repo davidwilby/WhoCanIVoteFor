@@ -125,21 +125,24 @@
                 </div>
             {% endif %}
 
-            {% if object.email and object.current_or_future_candidacies %}
-                <div>
-                    <dt>{% trans "Email" %}</dt>
-                    <dd>
-                        <a href="mailto:{{ object.email }}" title="{% blocktrans trimmed with person_name=object.name%}{{ person_name }}'s email{% endblocktrans%}">{{ object.email }}</a>
-                    </dd>
-                </div>
-            {% else %}
-                <div>
-                    {% blocktrans trimmed with person_name=object.name %}<dt>We don't know {{ person_name }}'s email address.</dt>{% endblocktrans %}
-                    <dd>
-                        <a href="{{ object.get_ynr_url }}">{% trans "Can you add it?" %}</a>
-                    </dd>
-                </div>
+            {% if object.current_or_future_candidacies %}
+                {% if object.email %}
+                    <div>
+                        <dt>{% trans "Email" %}</dt>
+                        <dd>
+                            <a href="mailto:{{ object.email }}" title="{% blocktrans trimmed with person_name=object.name%}{{ person_name }}'s email{% endblocktrans%}">{{ object.email }}</a>
+                        </dd>
+                    </div>
+                {% else %}
+                    <div>
+                        {% blocktrans trimmed with person_name=object.name %}<dt>We don't know {{ person_name }}'s email address.</dt>{% endblocktrans %}
+                        <dd>
+                            <a href="{{ object.get_ynr_url }}">{% trans "Can you add it?" %}</a>
+                        </dd>
+                    </div>
+                {% endif %}
             {% endif %}
+
         </dl>
     </div>
 </section>
