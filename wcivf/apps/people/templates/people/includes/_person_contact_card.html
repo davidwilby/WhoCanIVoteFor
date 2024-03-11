@@ -1,6 +1,5 @@
 {% load i18n %}
-<section class="ds-card">
-    <div class="ds-card-body ds-stack-smaller">
+<section class="ds-stack-smaller">
         <h2 class="ds-candidate-name ds-h3">
             {{ object.name }} {% trans "online" %}
         </h2>
@@ -171,5 +170,4 @@
                 <a href="{{ object.get_ynr_url }}">{% trans "Can you add it?" %}</a>
             </div>
         {% endif %}
-    </div>
 </section>

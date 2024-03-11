@@ -1,88 +1,97 @@
 {% load humanize %}
 {% load i18n %}
-<div class="ds-card">
-    <div class="ds-card-body">
-        {% if postelections.count == 0 %}
-            <h2>{% trans "We don't know of any upcoming elections in your area." %}</h2>
-            <p>{% trans "Local and devolved elections in the UK typically happen on the first Thursday in May. By-elections and parliamentary general elections can happen at any time. Not all areas have elections each year." %}</p>
-            <p>{% blocktrans %}Learn more about elections in the UK <a href="https://www.electoralcommission.org.uk/i-am-a/voter/types-elections">on the Electoral Commission website</a>.{% endblocktrans %}</p>
+<div class="ds-stack-smaller">
+    {% if postelections.count == 0 %}
+        <h2>{% trans "We don't know of any upcoming elections in your area." %}</h2>
+        <p>{% trans "Local and devolved elections in the UK typically happen on the first Thursday in May. By-elections and parliamentary general elections can happen at any time. Not all areas have elections each year." %}</p>
+        <p>{% blocktrans %}Learn more about elections in the UK <a href="https://www.electoralcommission.org.uk/i-am-a/voter/types-elections">on the Electoral Commission website</a>.{% endblocktrans %}</p>
+    {% else %}
+        {% regroup postelections by election.election_date as header_elections_by_date %}
+        {% if address_picker %}
+            <h2>Select your address</h2>
         {% else %}
-            {% regroup postelections by election.election_date as header_elections_by_date %}
-            {% if address_picker %}
-                <h2>Select your address</h2>
-            {% else %}
-                <h2>{% trans "Elections in your area" %}</h2>
-            {% endif %}
-            {% if address_picker %}
-                <div class="ds-padded-large">
-                    <ul class="ds-stack-smaller">
-                        {% for address in addresses %}
-                            <li><a href="{% url "uprn_view" postcode=postcode uprn=address.slug %}">{{ address.address }}</a></li>
-                        {% endfor %}
-
-                    </ul>
-                </div>
-
-
-            {% endif %}
-            {% for election_group in header_elections_by_date %}
-
-                {% if election_group.list.0.past_date %}
-                    {% ifchanged election_group.list.0.past_date %}
-                        <h3>{% trans "Recently past elections" %}</h3>
-                    {% endifchanged %}
-                {% endif %}
-
-                {% if election_group.list.0.past_date %}
-                    <h4>
-                        {{ election_group.grouper|naturalday:"l j F Y"|title }}
-                    </h4>
-                {% else %}
-                    <h3>
-                        {{ election_group.grouper|naturalday:"l j F Y"|title }}
-                    </h3>
-                    <p>
-                        {% blocktrans trimmed with num_ballots=election_group.list|length|apnumber ballots_pluralised=election_group.list|pluralize %}
-                            You will have {{ num_ballots }} ballot paper{{ ballots_pluralised }} to fill out.
-                        {% endblocktrans %}
-                    </p>
-                {% endif %}
-
-                <ul>
-                    {% for ballot in election_group.list %}
-                        <li {% if ballot.past_date %}class="past_elections" {% endif %}>
-
-                            <a href="#election_{{ ballot.election.slug }}">
-                                {{ ballot.election.nice_election_name  }}
-                                {% if ballot.post.label != post.election and not ballot.is_mayoral and not ballot.is_pcc %}
-                                    : {{ ballot.post.label }}
-                                {% endif %}
-                            </a>
-                            {% blocktrans trimmed with short_cancelled_message=ballot.short_cancelled_message_html %}
-                                {{ ballot.short_cancelled_message_html }}
-                            {% endblocktrans %}
-                        </li>
+            <h2>{% trans "Elections in your area" %}</h2>
+        {% endif %}
+        {% if address_picker %}
+            <div class="ds-padded-large">
+                <ul class="ds-stack-smaller">
+                    {% for address in addresses %}
+                        <li><a href="{% url "uprn_view" postcode=postcode uprn=address.slug %}">{{ address.address }}</a></li>
                     {% endfor %}
 
-                    {% if parish_council_election and parish_council_election.election_date == election_group.grouper %}
-                        <li {% if parish_council_election.in_past %}class="past_elections" {% endif %}>
-                            <a href="#parishcouncil">
-                                {{ parish_council_election.council_name }}
-                                {% if parish_council_election.is_unconstested %} {% trans "(uncontested)" %}
-                                {% elif parish_council_election.unknown_if_contested %} {% trans "(may be contested)" %}
-                                {% endif %}
-                            </a>
-                        </li>
-                    {% endif %}
-
                 </ul>
-            {% endfor %}
+            </div>
+
+
         {% endif %}
-        {% if not address_picker %}
-            {% if referendums %}
-                {% include 'referendums/includes/_list.html' with referendums=referendums %}
+        {% for election_group in header_elections_by_date %}
+
+            {% if election_group.list.0.past_date %}
+                {% ifchanged election_group.list.0.past_date %}
+                    <h3>{% trans "Recently past elections" %}</h3>
+                {% endifchanged %}
             {% endif %}
-            <p>{% trans "There may be parish, town or community council elections in some areas." %}</p>
+
+            {% if election_group.list.0.past_date %}
+                <h4>
+                    {{ election_group.grouper|naturalday:"l j F Y"|title }}
+                </h4>
+            {% else %}
+                <h3>
+                    {{ election_group.grouper|naturalday:"l j F Y"|title }}
+                </h3>
+                <p>
+                    {% blocktrans trimmed with num_ballots=election_group.list|length|apnumber ballots_pluralised=election_group.list|pluralize %}
+                        You will have {{ num_ballots }} ballot paper{{ ballots_pluralised }} to fill out.
+                    {% endblocktrans %}
+                </p>
+            {% endif %}
+
+            <ul>
+                {% for ballot in election_group.list %}
+                    <li {% if ballot.past_date %}class="past_elections" {% endif %}>
+
+                        <a href="#election_{{ ballot.election.slug }}">
+                            {{ ballot.election.nice_election_name  }}
+                            {% if ballot.post.label != post.election and not ballot.is_mayoral and not ballot.is_pcc %}
+                                : {{ ballot.post.label }}
+                            {% endif %}
+                        </a>
+                        {% blocktrans trimmed with short_cancelled_message=ballot.short_cancelled_message_html %}
+                            {{ ballot.short_cancelled_message_html }}
+                        {% endblocktrans %}
+                    </li>
+                {% endfor %}
+
+                {% if parish_council_election and parish_council_election.election_date == election_group.grouper %}
+                    <li {% if parish_council_election.in_past %}class="past_elections" {% endif %}>
+                        <a href="#parishcouncil">
+                            {{ parish_council_election.council_name }}
+                            {% if parish_council_election.is_unconstested %} {% trans "(uncontested)" %}
+                            {% elif parish_council_election.unknown_if_contested %} {% trans "(may be contested)" %}
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if show_polling_card %}
+                    <li><a href="#where">Where to vote</a></li>
+                {% endif %}
+
+                {% if requires_voter_id %}
+                    <li><a href="#requirements">Voter ID requirements</a></li>
+                {% endif %}
+
+                {% if not postelections or not postelections.first.past_registration_deadline %}
+                    <li><a href="#register">Register to vote</a></li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% if not address_picker %}
+        {% if referendums %}
+            {% include 'referendums/includes/_list.html' with referendums=referendums %}
         {% endif %}
-    </div>
+        <p>{% trans "There may be parish, town or community council elections in some areas." %}</p>
+    {% endif %}
 </div>

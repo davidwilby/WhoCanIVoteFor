@@ -8,41 +8,40 @@
 
     <div class="ds-page">
         <div class="ds-stack">
-            <div class="ds-card ds-padded">
-                <div class="ds-card-body">
-                    <h2>Single Transferable Vote (STV)</h2>
 
-                    <p>In an STV election, voters rank candidates in order of
-                        preference using numbers rather than crosses. They may number
-                        as many candidates as they like on the ballot paper.
-                        STV constituencies or wards always contain more than one seat.
-                        It is designed to provide results that are more proportional than simple
-                        <a href="{% url 'fptp_voting_system_view' %}">First-past-the-post</a>.</p>
 
-                    <p>STV is used in Scottish and Northern Irish council elections, and for elections to the Northern Ireland Assembly. There is also a mechanism for Welsh councils to introduce it for Welsh council elections.</p>
+            <h2>Single Transferable Vote (STV)</h2>
 
-                    <h3>How STV works</h3>
+            <p>In an STV election, voters rank candidates in order of
+                preference using numbers rather than crosses. They may number
+                as many candidates as they like on the ballot paper.
+                STV constituencies or wards always contain more than one seat.
+                It is designed to provide results that are more proportional than simple
+                <a href="{% url 'fptp_voting_system_view' %}">First-past-the-post</a>.</p>
 
-                    <p>Candidates need a predetermined number of votes to get elected, known as the ‘quota’.
-                    </p>
+            <p>STV is used in Scottish and Northern Irish council elections, and for elections to the Northern Ireland Assembly. There is also a mechanism for Welsh councils to introduce it for Welsh council elections.</p>
 
-                    <p>To begin with, the number of votes needed to win a seat (the quota) is calculated using the following formula:
-                    </p>
+            <h3>How STV works</h3>
 
-                    <pre>(Valid Votes Cast) ➗ (seats available +1) + 1</pre>
+            <p>Candidates need a predetermined number of votes to get elected, known as the ‘quota’.
+            </p>
 
-                    <p>For example, in a three-member ward, each candidate will need a quarter of the votes plus one to win a seat.</p>
+            <p>To begin with, the number of votes needed to win a seat (the quota) is calculated using the following formula:
+            </p>
 
-                    <p>If no candidate has achieved that quota in first  preference (1s) votes, then the candidate with the fewest first preference votes is eliminated and their votes reallocated to other candidates, according to their voters’ second preferences (2s). This process continues until all the seats are filled.
-                    </p>
+            <pre>(Valid Votes Cast) ➗ (seats available +1) + 1</pre>
 
-                    <p>If a candidate does achieve the quota, any surplus votes gained by that candidate are reallocated according to the voters’ next preferences. Because this is done only using the proportion of votes that are surplus, fractions of a vote are usually created.
-                    </p>
+            <p>For example, in a three-member ward, each candidate will need a quarter of the votes plus one to win a seat.</p>
 
-                    <p>This process is repeated until all of the seats in a ward or constituency are filled. Counting votes cast in STV elections can take some time, although in many places the ballots are counted electronically to speed this up. Scotland uses e-counting methods in local elections.
-                    </p>
-                </div>
-            </div>
+            <p>If no candidate has achieved that quota in first  preference (1s) votes, then the candidate with the fewest first preference votes is eliminated and their votes reallocated to other candidates, according to their voters’ second preferences (2s). This process continues until all the seats are filled.
+            </p>
+
+            <p>If a candidate does achieve the quota, any surplus votes gained by that candidate are reallocated according to the voters’ next preferences. Because this is done only using the proportion of votes that are surplus, fractions of a vote are usually created.
+            </p>
+
+            <p>This process is repeated until all of the seats in a ward or constituency are filled. Counting votes cast in STV elections can take some time, although in many places the ballots are counted electronically to speed this up. Scotland uses e-counting methods in local elections.
+            </p>
+
         </div>
     </div>
 

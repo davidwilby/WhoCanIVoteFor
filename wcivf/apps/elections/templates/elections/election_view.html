@@ -13,74 +13,73 @@
 
     {% include "elections/includes/_election_breadcrumbs.html" %}
 
-    <div class="ds-stack-smaller">
-        <div class="ds-card">
-            <div class="ds-card-body">
-                <h3>{{ object.nice_election_name }}</h3>
+    <div class="ds-card ds-stack-smaller">
+        <div class="ds-card-body">
+            <h3>{{ object.nice_election_name }}</h3>
 
-                <p>
-                    {% if object.is_election_day %}
-                        {% blocktrans trimmed with election=object.nice_election_name %}The {{ election }}
-                            <strong>is being held today</strong>. Polls are open from{% endblocktrans %} {{ object.polls_open|time:"ga" }} {% trans "till" %} {{ object.polls_close|time:"ga" }}
-                    {% else %}
-                        {% comment %} TO DO: Change text when the election is "tomorrow" {% endcomment %}
-                        {% blocktrans trimmed with was_will_be_in_past=object.in_past|yesno:"was,will be" election_date=object.election_date|naturalday:"\o\n l j F Y" %} This election {{ was_will_be_in_past }} held <strong>{{ election_date }}</strong>.{% endblocktrans %}
-                    {% endif %}
-                </p>
-                {% if object.election_type != "ref" %}
-                    {% if election.person_set.count %}
-                        <p>
-                            {% if object.locked %}
-                                There are <strong>{{election.person_set.count}}</strong> candidates
-                            {% else %}
-                                We know about <strong>{{election.person_set.count}} candidates</strong>
-                            {% endif %}
-                            {% blocktrans trimmed with stood_or_standing=object.in_past|yesno:"that stood,standing" post_count=object.post_set.count %}
-                                {{ stood_or_standing }} for this election, in <strong>{{ post_count }}</strong> posts.
-                            {% endblocktrans %}
-                        </p>
-
-                        {% if not object.in_past and not object.locked %}
-                            <p><a href="{{ object.ynr_link }}">{% trans "Add more at our candidate crowd-sourcing site" %}</a></p>
-                        {% endif %}
-
-                    {% else %}
-                        {% if not object.postelection_set.first.past_expected_sopn_day %}
-                            <p><a href="{{ object.ynr_link }}">{% trans "Add some candidates at our candidate crowd-sourcing site" %}</a></p>
-                        {% endif %}
-                    {% endif %}
-
-                    <h3>{% blocktrans trimmed with title=object.pluralized_division_name|title %} {{ title }}{% endblocktrans %}</h3>
-                    <ul>
-                        {% for postelection in object.postelection_set.all %}
-                            <li>
-                                {% blocktrans trimmed with postelection_url=postelection.get_absolute_url post_label=postelection.post.label cancelled_message=postelection.short_cancelled_message_html %}
-                                    <a href="{{ postelection_url }}">{{ post_label }}</a>
-                                    {{ cancelled_message }}
-                                {% endblocktrans %}
-                            </li>
-                        {% endfor %}
-                    </ul>
+            <p>
+                {% if object.is_election_day %}
+                    {% blocktrans trimmed with election=object.nice_election_name %}The {{ election }}
+                        <strong>is being held today</strong>. Polls are open from{% endblocktrans %} {{ object.polls_open|time:"ga" }} {% trans "till" %} {{ object.polls_close|time:"ga" }}
+                {% else %}
+                    {% comment %} TO DO: Change text when the election is "tomorrow" {% endcomment %}
+                    {% blocktrans trimmed with was_will_be_in_past=object.in_past|yesno:"was,will be" election_date=object.election_date|naturalday:"\o\n l j F Y" %} This election {{ was_will_be_in_past }} held <strong>{{ election_date }}</strong>.{% endblocktrans %}
                 {% endif %}
-                <script type="application/ld+json">
-                    {
-                        "@context": "http://schema.org",
-                        "@type": "Event",
-                        "name": "{{ object.name }}",
-                        "startDate": "{{ object.election_date }}",
-                        "url": "{{ CANONICAL_URL }}{% url 'election_view' object.slug object.name|slugify %}",
-                        "location": {
-                            "@type": "Place",
-                            "name": "UK",
-                        }
-                    }
-                </script>
-            </div>
-        </div>
-        {% include "elections/includes/_postcode_search_form.html" %}
+            </p>
+            {% if object.election_type != "ref" %}
+                {% if election.person_set.count %}
+                    <p>
+                        {% if object.locked %}
+                            There are <strong>{{election.person_set.count}}</strong> candidates
+                        {% else %}
+                            We know about <strong>{{election.person_set.count}} candidates</strong>
+                        {% endif %}
+                        {% blocktrans trimmed with stood_or_standing=object.in_past|yesno:"that stood,standing" post_count=object.post_set.count %}
+                            {{ stood_or_standing }} for this election, in <strong>{{ post_count }}</strong> posts.
+                        {% endblocktrans %}
+                    </p>
 
-        {% include "feedback/feedback_form.html" %}
+                    {% if not object.in_past and not object.locked %}
+                        <p><a href="{{ object.ynr_link }}">{% trans "Add more at our candidate crowd-sourcing site" %}</a></p>
+                    {% endif %}
+
+                {% else %}
+                    {% if not object.postelection_set.first.past_expected_sopn_day %}
+                        <p><a href="{{ object.ynr_link }}">{% trans "Add some candidates at our candidate crowd-sourcing site" %}</a></p>
+                    {% endif %}
+                {% endif %}
+
+                <h3>{% blocktrans trimmed with title=object.pluralized_division_name|title %} {{ title }}{% endblocktrans %}</h3>
+                <ul>
+                    {% for postelection in object.postelection_set.all %}
+                        <li>
+                            {% blocktrans trimmed with postelection_url=postelection.get_absolute_url post_label=postelection.post.label cancelled_message=postelection.short_cancelled_message_html %}
+                                <a href="{{ postelection_url }}">{{ post_label }}</a>
+                                {{ cancelled_message }}
+                            {% endblocktrans %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <script type="application/ld+json">
+                {
+                    "@context": "http://schema.org",
+                    "@type": "Event",
+                    "name": "{{ object.name }}",
+                    "startDate": "{{ object.election_date }}",
+                    "url": "{{ CANONICAL_URL }}{% url 'election_view' object.slug object.name|slugify %}",
+                    "location": {
+                        "@type": "Place",
+                        "name": "UK",
+                    }
+                }
+            </script>
+        </div>
     </div>
+    {% include "elections/includes/_postcode_search_form.html" %}
+
+    {% include "feedback/feedback_form.html" %}
+
 
 
 {% endblock content %}
