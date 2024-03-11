@@ -10,7 +10,7 @@
         border-color: #E6007C;
     }
 </style>
-<div class="ds-card">
+<div>
     <form id="feedback_form" method="post" action="{% url 'feedback_form_view' %}" novalidate>
         {% csrf_token %}
         {{ feedback_form.token }}

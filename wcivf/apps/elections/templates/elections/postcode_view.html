@@ -12,7 +12,7 @@
 {% block twitter_description_content %}{% include "elections/includes/_postcode_meta_title.html" %}{% endblock twitter_description_content %}
 
 {% block content %}
-    <div class="ds-stack-smaller">
+    <div class="ds-stack-larger">
         {% if postelections.count != 1 %}
             {#  Inline nav of elections #}
             {% include "elections/includes/inline_elections_nav_list.html" %}
@@ -54,31 +54,30 @@
             {% endif %}
 
             {% if not messages %}
-                <div class="ds-card">
-                    <div class="ds-card-body">
-                        <h4>
-                            <span aria-hidden="true">⏰</span>
-                            {% blocktrans trimmed %}Add future elections in {{ postcode }} to your calendar{% endblocktrans %}
-                        </h4>
-                        <p>
-                            <p>{% trans "Manually subscribe by following these simple steps for your chosen calendar tool:" %}</p>
-                            <ol>
-                                <li>
-                                    {% trans "In your calendar app settings, choose the option for adding a new calendar." %}
-                                </li>
-                                <li>
-                                    {% trans "If presented with the option to choose a calendar type, choose web calendar." %}
-                                </li>
-                                <li>
-                                    {% if uprn %}
-                                        {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'uprn_ical_view' postcode uprn %}</code>
-                                    {% else %}
-                                        {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'postcode_ical_view' postcode %}</code>
-                                    {% endif %}
-                                </li>
-                            </ol>
-                        </p>
-                    </div>
+                <div>
+                    <h4>
+                        <span aria-hidden="true">⏰</span>
+                        {% blocktrans trimmed %}Add future elections in {{ postcode }} to your calendar{% endblocktrans %}
+                    </h4>
+                    <p>
+                        <p>{% trans "Manually subscribe by following these simple steps for your chosen calendar tool:" %}</p>
+                        <ol>
+                            <li>
+                                {% trans "In your calendar app settings, choose the option for adding a new calendar." %}
+                            </li>
+                            <li>
+                                {% trans "If presented with the option to choose a calendar type, choose web calendar." %}
+                            </li>
+                            <li>
+                                {% if uprn %}
+                                    {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'uprn_ical_view' postcode uprn %}</code>
+                                {% else %}
+                                    {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'postcode_ical_view' postcode %}</code>
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </p>
+
                 </div>
             {% endif %}
 
