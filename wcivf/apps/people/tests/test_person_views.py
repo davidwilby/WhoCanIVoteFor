@@ -369,11 +369,16 @@ class PersonViewTests(TestCase):
 
     def test_statement_to_voters(self):
         self.person.statement_to_voters = "I believe in equal rights."
+
+        self.person.statement_to_voters_last_updated = "2021-04-15"
         self.person.save()
         PersonPostWithPartyFactory(person=self.person, election=ElectionFactory())
         response = self.client.get(self.person_url, follow=True)
         self.assertEqual(response.template_name, ["people/person_detail.html"])
         self.assertContains(response, "Statement to voters")
+        self.assertContains(
+            response, "This statement was last updated on April 15, 2021"
+        )
 
     def test_no_TWFY(self):
         PersonPostWithPartyFactory(person=self.person, election=ElectionFactory())
