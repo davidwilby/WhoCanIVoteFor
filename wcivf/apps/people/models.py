@@ -99,18 +99,14 @@ class PersonPost(models.Model):
         num_votes = intcomma(self.votes_cast)
         if self.elected:
             if self.votes_cast:
-                return _("%(num_votes)s votes (elected)") % {
-                    "num_votes": num_votes
-                }
+                return _("%(num_votes)s votes (elected)") % {"num_votes": num_votes}
             return _("Elected (vote count not available)")
 
         # If we have votes cast, but we've not marked the candidacy as elected
         # then the person wasn't elected, but we should still show the votes
         # they got.
         if self.votes_cast:
-            return _("%(num_votes)s votes (not elected)") % {
-                "num_votes": num_votes
-            }
+            return _("%(num_votes)s votes (not elected)") % {"num_votes": num_votes}
         return _("Not elected (vote count not available)")
 
     @property
@@ -121,9 +117,7 @@ class PersonPost(models.Model):
         list_of_candidates_sorted_by_votes_cast = (
             self.post_election.personpost_set.order_by("-votes_cast")
         )
-        for index, candidate in enumerate(
-            list_of_candidates_sorted_by_votes_cast
-        ):
+        for index, candidate in enumerate(list_of_candidates_sorted_by_votes_cast):
             # If we find the candidate in the sorted list, assign their rank based on their index
             # in the list. Otherwise, loop through the list until we find the candidate.
             if self.person == candidate.person:
@@ -133,15 +127,11 @@ class PersonPost(models.Model):
                 # there is a tie and assign a joint rank
                 if index != candidate_count - 1 and (
                     candidate.votes_cast
-                    == list_of_candidates_sorted_by_votes_cast[
-                        index + 1
-                    ].votes_cast
+                    == list_of_candidates_sorted_by_votes_cast[index + 1].votes_cast
                 ):
                     return f"Joint {ordinal(candidate.rank)} / {candidate_count} candidates"
 
-                return (
-                    f"{ordinal(candidate.rank)} / {candidate_count} candidates"
-                )
+                return f"{ordinal(candidate.rank)} / {candidate_count} candidates"
         return None
 
     class Meta:
@@ -165,9 +155,7 @@ class Person(models.Model):
     # contact points
     twitter_username = models.CharField(blank=True, null=True, max_length=100)
     facebook_page_url = models.CharField(blank=True, null=True, max_length=800)
-    facebook_personal_url = models.CharField(
-        blank=True, null=True, max_length=800
-    )
+    facebook_personal_url = models.CharField(blank=True, null=True, max_length=800)
     linkedin_url = models.CharField(blank=True, null=True, max_length=800)
     homepage_url = models.CharField(blank=True, null=True, max_length=800)
     blog_url = models.CharField(blank=True, null=True, max_length=800)
@@ -181,6 +169,7 @@ class Person(models.Model):
     wikipedia_url = models.CharField(blank=True, null=True, max_length=800)
     wikipedia_bio = models.TextField(null=True)
     statement_to_voters = models.TextField(null=True)
+    statement_to_voters_last_updated = models.DateTimeField(null=True)
 
     # Background data from Nesta research
     place_of_birth = models.CharField(null=True, max_length=800)
@@ -207,9 +196,7 @@ class Person(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse(
-            "person_view", args=[str(self.ynr_id), slugify(self.name)]
-        )
+        return reverse("person_view", args=[str(self.ynr_id), slugify(self.name)])
 
     def has_biographical_info(self):
         attrs = [
@@ -248,12 +235,7 @@ class Person(models.Model):
     @property
     def get_max_facebook_ad_spend(self):
         return round(
-            sum(
-                [
-                    float(x.get_spend_range[1])
-                    for x in self.facebookadvert_set.all()
-                ]
-            )
+            sum([float(x.get_spend_range[1]) for x in self.facebookadvert_set.all()])
         )
 
     @property
@@ -435,9 +417,7 @@ class Person(models.Model):
                     "election_url": self.featured_candidacy.election.get_absolute_url(),
                 }
             )
-        return render_to_string(
-            template_name=self.intro_template, context=context
-        )
+        return render_to_string(template_name=self.intro_template, context=context)
 
     @property
     def text_intro(self):
@@ -467,8 +447,7 @@ class FacebookAdvert(models.Model):
         max_length=500, help_text="The Facebook ID for this advert"
     )
     ad_json = JSONField(
-        help_text="The JSON returned from the Facebook "
-        "Graph API for this advert"
+        help_text="The JSON returned from the Facebook " "Graph API for this advert"
     )
     image_url = models.URLField(blank=True, null=True)
 
