@@ -82,16 +82,12 @@ class PostcodeToPostsMixin(object):
 
 class PostelectionsToPeopleMixin(object):
     def people_for_ballot(self, postelection, compact=False):
-        key = PEOPLE_FOR_BALLOT_KEY_FMT.format(
-            postelection.ballot_paper_id, compact
-        )
+        key = PEOPLE_FOR_BALLOT_KEY_FMT.format(postelection.ballot_paper_id, compact)
         people_for_post = cache.get(key)
         if people_for_post:
             return people_for_post
         people_for_post = postelection.personpost_set.all()
-        people_for_post = people_for_post.annotate(
-            last_name=LastWord("person__name")
-        )
+        people_for_post = people_for_post.annotate(last_name=LastWord("person__name"))
         people_for_post = people_for_post.annotate(
             name_for_ordering=Coalesce("person__sort_name", "last_name")
         )
@@ -101,11 +97,11 @@ class PostelectionsToPeopleMixin(object):
             order_by = ["name_for_ordering", "person__name"]
 
         people_for_post = people_for_post.order_by(
-            F("elected").desc(nulls_last=True), *order_by
+            F("elected").desc(nulls_last=True),
+            F("votes_cast").desc(nulls_last=True),
+            *order_by,
         )
-        people_for_post = people_for_post.order_by(
-            F("votes_cast").desc(nulls_last=True), *order_by
-        )
+
         people_for_post = people_for_post.select_related(
             "post",
             "election",
@@ -118,16 +114,12 @@ class PostelectionsToPeopleMixin(object):
         people_for_post = people_for_post.prefetch_related(
             Prefetch(
                 "person__leaflet_set",
-                queryset=Leaflet.objects.order_by(
-                    "date_uploaded_to_electionleaflets"
-                ),
+                queryset=Leaflet.objects.order_by("date_uploaded_to_electionleaflets"),
                 to_attr="ordered_leaflets",
             )
         )
         if not compact:
-            people_for_post = people_for_post.prefetch_related(
-                "person__pledges"
-            )
+            people_for_post = people_for_post.prefetch_related("person__pledges")
         cache.set(key, people_for_post)
         return people_for_post
 
@@ -137,9 +129,7 @@ class PollingStationInfoMixin(object):
         return any(p.contested and not p.cancelled for p in post_elections)
 
     def get_advance_voting_station_info(self, polling_station: Optional[dict]):
-        if not polling_station or not polling_station.get(
-            "advance_voting_station"
-        ):
+        if not polling_station or not polling_station.get("advance_voting_station"):
             return None
         advance_voting_station = polling_station["advance_voting_station"]
 
