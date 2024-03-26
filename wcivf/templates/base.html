@@ -83,13 +83,6 @@
             </ul>
         </aside>
     {% endif %}
-
-    <aside class="ds-status messages">
-        <ul>
-            <li class="ds-status-message"><a href="{% url "ppc_2024:home" %}">Browse the list of people and parties standing in the next general election</a>.</li>
-        </ul>
-
-    </aside>
 {% endblock messages %}
 
 {% block content %}
@@ -120,6 +113,8 @@
                     <li><a href="https://democracyclub.org.uk/blog/">{% trans "Blog" %}</a></li>
                     <li><a href="https://twitter.com/democlub">{% trans "Twitter" %}</a></li>
                     <li><a href="https://github.com/DemocracyClub">{% trans "GitHub" %}</a></li>
+                    <li><a href="{% url "ppc_2024:home" %}">Browse the list of people and parties standing in the next general election</a>.</li>
+
                 </ul>
             </div>
             <div class="ds-copyright">
