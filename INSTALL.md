@@ -184,4 +184,8 @@ Feedback should appear in your Slack channel.
 
 # Update Welsh Translations
 
-After adding new translation tags to a template, run `django-admin makemessages -l cy --ignore='env*'` then `django-admin compilemessages --ignore='env'` to generate matching translation strings to be translated.
+Now that we are including common footer elements in dc_utils, we need to update the Welsh translations for these elements. To do this, we need to first create a symlink to the dc_utils library:
+
+`ln -s ../env/lib/python3.9/site-packages/dc_utils`
+
+After adding new translation tags to a template, run `django-admin makemessages -l cy --symlinks --ignore='env*'` then `django-admin compilemessages --ignore='env'` to generate matching translation strings to be translated.

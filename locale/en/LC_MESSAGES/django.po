@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 12:40+0100\n"
+"POT-Creation-Date: 2024-04-11 16:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,19 +22,48 @@ msgstr ""
 msgid "Enter your postcode"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:615
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:54
+msgid "Join our mailing list"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:65
+msgid "democracy"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:65
+msgid "club"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:70
+msgid "Copyright"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:71
+msgid "Democracy Club Community Interest Company"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:72
+msgid "Company No: "
+msgstr ""
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:74
+msgid "Building digital infrastructure for a 21st century democracy."
+msgstr ""
+
+
+#: wcivf/apps/elections/models.py:689
 msgid "First-past-the-post"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:617
+#: wcivf/apps/elections/models.py:691
 msgid "Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:619
+#: wcivf/apps/elections/models.py:693
 msgid "Supplementary Vote"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:621
+#: wcivf/apps/elections/models.py:695
 msgid "Single Transferable Vote"
 msgstr ""
 
@@ -196,64 +225,59 @@ msgstr ""
 msgid "Elections"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:17
-msgid "How you vote"
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:18
+msgid "How to vote"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:20
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:23
 #, python-format
 msgid ""
 "This election uses <a href=\"%(voting_system_url)s\">%(voting_system_name)s</"
 "a>."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:24
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:27
 #, python-format
 msgid "This election uses %(voting_system_name)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:33
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:85
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:36
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:80
 msgid "Mark an X in the box for your preferred candidate."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:35
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:38
 msgid "Mark an X in the box for your preferred candidates."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:40
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:43
 #, python-format
 msgid "You can mark up to %(winner_count)s candidate."
 msgid_plural "You can mark up to %(winner_count)s candidates."
 msgstr[0] ""
 msgstr[1] ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:51
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:54
 msgid ""
 "Rank the candidates by your preference: 1, 2, 3… You don't have to rank all "
 "the candidates, but you must at least mark your first choice."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:60
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:63
 msgid ""
 "Mark an X in the first column for your first choice. Mark an X in the second "
 "column for your second choice. You do not have to mark a second choice."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:70
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:73
 msgid "Mark an X in the box for one party or independent candidate."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:78
-msgid ""
-"Mark an X in the box next to your preferred party or independent candidate"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:88
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:83
 msgid "Read the instructions at the top of your ballot paper carefully."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:89
+#: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:84
 msgid ""
 "For more information, visit <a href=\"https://www.electoralcommission.org.uk/"
 "i-am-a/voter/how-cast-your-vote\">The Electoral Commission's website</a> or "
@@ -340,12 +364,11 @@ msgstr ""
 msgid "It will be open from <strong>7am to 10pm</strong>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:65
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:64
 msgid "and"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:74
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:76
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:72
 msgid "You don't need to take your poll card with you."
 msgstr ""
 
@@ -545,71 +568,73 @@ msgid "This election will be held <strong> %(election_date)s</strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:55
+msgid "About this position"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:59
+#, python-format
+msgid " %(description)s"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:66
 #, python-format
 msgid ""
 "<strong>%(num_candidates)s candidate%(plural)s</strong> stood in the "
 "%(postelection)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:60
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:71
 msgid ""
 "We don't know of any candidates standing yet. You can help improve this page:"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:61
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:68
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:72
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:83
 msgid "add information about candidates to our database"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:66
-msgid "We don't know of any candidates standing yet."
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:77
+#, python-format
+msgid ""
+"We don't know of any candidates standing yet. The official candidate list "
+"will be published by %(expected_sopn_date)s, when this page will be updated. "
+"You can help improve this page:"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:67
-msgid "You can help improve this page:"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:73
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:89
 msgid ""
 "You will have one vote, and can vote for a single party list or independent "
 "candidate."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:76
-#, python-format
-msgid ""
-"You will have %(winner_count)s vote%(plural)s, and can choose from <strong>"
-"%(num_candidates)s candidate%(plural_candidates)s</strong>."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:82
-#, python-format
-msgid ""
-"You will have one vote, and can choose from <strong>%(num_ballots)s</strong> "
-"in the %(postelection)s."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:87
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:92
 #, python-format
 msgid ""
 "You will have two votes, and can choose from <strong>%(num_ballots)s</"
 "strong> in the %(postelection)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:94
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:98
 #, python-format
 msgid ""
 "There is one seat up for election, and you can choose from %(num_ballots)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:98
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:103
 #, python-format
 msgid ""
-"There are %(winner_count)s seats up for election, and you can choose from "
-"%(num_ballots)s."
+"You will have <strong>two votes</strong>, and can choose from "
+"<strong>%(num_ballots)s</strong> in the %(postelection)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:109
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:110
+#, python-format
+msgid ""
+"There is <strong>one seat</strong>  up for election, and you can choose from "
+"<strong>%(num_ballots)s</strong>."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:114
 #, python-format
 msgid ""
 "The official candidate list has not yet been published. However, we expect "
@@ -618,55 +643,82 @@ msgid ""
 "candidates to our database</a>."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:135
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:125
+#, python-format
+msgid ""
+"We are currently aware of %(num_candidates)s candidate%(plural_candidates)s "
+"for this position."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:129
+#, python-format
+msgid ""
+"The official candidate list will be published by %(expected_sopn_date)s, "
+"when this page will be updated. Once nomination papers are published, we "
+"will manually verify each candidate. You can help improve this page: <a "
+"href=\"%(ynr_link)s\"> add information about candidates to our database</a>."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:145
+msgid "Read the official candidate booklet for this election."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:155
+msgid "Electorate"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:162
+msgid "Ballot Papers Issued"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:169
+msgid "Spoilt Ballots"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:176
+msgid "Turnout"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:198
 #, python-format
 msgid ""
 "The <a href=\"%(sopn_url)s\">official candidate list</a> has been published."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:140
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:203
 msgid "The official candidate list should have been published on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:142
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:205
 msgid "The official candidate list should be published on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:151
-msgid "Read the official candidate booklet for this election."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:155
-#, python-format
-msgid " %(description)s "
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:162
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:216
 msgid "Can you vote in this election?"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:163
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:217
 msgid "Age"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:165
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:219
 #, python-format
 msgid ""
 "You need to be over %(voter_age)s on the %(voter_age_date)s of "
 "%(election_date)s in order to vote in this election."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:170
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:224
 msgid "Citizenship"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:189
-#: wcivf/apps/people/templates/people/includes/_person_about_card.html:9
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:241
+#: wcivf/apps/people/templates/people/includes/_person_about_card.html:7
 msgid "Wikipedia"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:191
-#: wcivf/apps/people/templates/people/includes/_person_about_card.html:11
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:243
+#: wcivf/apps/people/templates/people/includes/_person_about_card.html:9
 msgid "Read more on Wikipedia"
 msgstr ""
 
@@ -769,7 +821,8 @@ msgstr ""
 msgid "Tweets by"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:86
+#: wcivf/apps/elections/templates/elections/party_list_view.html:71
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:62
 msgid "Candidates"
 msgstr ""
 
@@ -792,44 +845,15 @@ msgstr ""
 msgid "due to take place on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/postcode_view.html:53
-#, python-format
-msgid "Add future elections in %(postcode)s to your calendar"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/postcode_view.html:56
-msgid "Subscribe to the iCal feed"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/postcode_view.html:57
-msgid ""
-"Or manually subscribe by following these simple steps for your chosen "
-"calendar tool:"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/postcode_view.html:60
-msgid ""
-"In your calendar app settings, choose the option for adding a new calendar."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/postcode_view.html:63
-msgid ""
-"If presented with the option to choose a calendar type, choose web calendar."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/postcode_view.html:66
-msgid "Enter this URL and save"
-msgstr ""
-
-#: wcivf/apps/feedback/models.py:6 wcivf/apps/feedback/models.py:7
+#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
 msgid "Yes"
 msgstr ""
 
-#: wcivf/apps/feedback/models.py:6 wcivf/apps/feedback/models.py:7
+#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
 msgid "No"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:10
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:20
 msgid "Did you find what you were looking for?"
 msgstr ""
 
@@ -1043,12 +1067,12 @@ msgid ""
 "\">Can you add it?</a>"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_about_card.html:6
+#: wcivf/apps/people/templates/people/includes/_person_about_card.html:4
 #, python-format
 msgid "About %(name)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_about_card.html:14
+#: wcivf/apps/people/templates/people/includes/_person_about_card.html:12
 #, python-format
 msgid "<h4>Favourite Biscuit</h4> <p>%(biscuit)s</p>"
 msgstr ""
@@ -1346,7 +1370,8 @@ msgstr ""
 msgid "Election"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:14
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:44
 msgid "Party"
 msgstr ""
 
@@ -1527,6 +1552,142 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/person_detail.html:58
 msgid "Back to candidates in"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:4
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:10
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:11
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:4
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:13
+msgid "UK Prospective Parliamentary Candidates"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:7
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:8
+msgid ""
+"The next UK parliamentary general election is due to occur no later than "
+"January 2025, and political parties are currently selecting their candidates "
+"for each House of Commons constituency"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:14
+msgid "UK Prospective Parliamentary&nbsp;Candidates"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:23
+msgid "Spotted an error? Think we’ve missed a candidate? Get in touch:"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:26
+msgid "More information about the general election"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:32
+msgid "Boundary changes"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:33
+msgid ""
+"The next general election will be held on new constituency boundaries. See "
+"the"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:35
+msgid "website of the House of Commons Library"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:36
+msgid "to find out what is happening to your constituency."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:38
+msgid "MPs standing down"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:39
+msgid ""
+"Some existing Members of Parliament have announced they will not be standing "
+"at the next election."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:41
+msgid "Visit the website of the Institute for Government for a full list"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
+msgid "Democracy Club's"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:45
+msgid "general election timetable generator"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:51
+msgid "The data"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
+msgid "The"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
+msgid "full list of prospective parliamentary candidates"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
+#, python-format
+msgid "is available as a browsable table or a CSV{%% endblocktrans"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:59
+msgid "Number of candidates announced per UK region or nation"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:61
+msgid "Region / nation"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
+msgid "Total seats in region"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
+msgid "Donate now"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:6
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:7
+msgid ""
+"Democracy Club’s volunteers are collecting information on each candidate as "
+"they are announced"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:24
+msgid "Filters"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:30
+#, python-format
+msgid "%(field)s"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:39
+#, python-format
+msgid ""
+"You can also <a href=\"%(csv_url)s\">download the CSV</a> of all prospective "
+"parliamentary candidates."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:43
+msgid "Name"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
+msgid "Constituency"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:46
+msgid "Nation / English region"
 msgstr ""
 
 #: wcivf/apps/referendums/templates/referendums/includes/_card.html:9
