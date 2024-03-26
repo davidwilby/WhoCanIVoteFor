@@ -120,6 +120,11 @@ class PersonManager(models.Manager):
             "death_date": person["death_date"] or None,
             "last_updated": last_updated,
             "delisted": person.get("delisted", False),
+            "statement_to_voters": person["statement_to_voters"] or None,
+            "statement_to_voters_last_updated": person[
+                "statement_to_voters_last_updated"
+            ]
+            or None,
         }
 
         for value_type in VALUE_TYPES_TO_IMPORT:
@@ -137,11 +142,6 @@ class PersonManager(models.Manager):
                 else:
                     defaults[value_type] = identifier["value"]
 
-        defaults["statement_to_voters"] = person["statement_to_voters"]
-        if defaults["statement_to_voters"]:
-            defaults["statement_to_voters_last_updated"] = person[
-                "statement_to_voters_last_updated"
-            ]
         defaults["favourite_biscuit"] = person["favourite_biscuit"]
 
         if "thumbnail" in person:
