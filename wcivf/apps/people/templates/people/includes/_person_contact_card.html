@@ -117,6 +117,43 @@
                     </div>
                 {% endif %}
 
+                {% if object.tiktok_url %}
+                    <div>
+                        <dt>{% trans "TikTok" %}</dt>
+                        <dd>
+                            <a href="{{ object.tiktok_url }}" title="{% blocktrans trimmed with person_name=object.tiktok_url%}{{ person_name }}'s TikTok{% endblocktrans%}">{{ object.tiktok_url}}</a>
+                        </dd>
+                    </div>
+                {% endif %}
+
+                {% if object.threads_url %}
+                    <div>
+                        <dt>{% trans "Threads" %}</dt>
+                        <dd>
+                            <a href="{{ object.threads_url }}" title="{% blocktrans trimmed with person_name=object.threads_url %}{{ person_name }}'s Threads{% endblocktrans%}">{{ object.threads_url }}</a>
+                        </dd>
+                    </div>
+                {% endif %}
+
+                {% if object.blue_sky_url %}
+                    <div>
+                        <dt>{% trans "BlueSky" %}</dt>
+                        <dd>
+                            <a href="{{ object.blue_sky_url }}" title="{% blocktrans trimmed with person_name=object.blue_sky_url %}{{ person_name }}BlueSky'{% endblocktrans%}">{{ object.blue_sky_url }}</a>
+                        </dd>
+                    </div>
+                {% endif %}
+
+                {% if object.other_url %}
+                    <div>
+                        <dt>{% trans "Other contact info" %}</dt>
+                        <dd>
+                            <a href="{{ object.other_url }}" title="{% blocktrans trimmed with person_name=object.other_url %}{{ person_name }}other contact info{% endblocktrans%}">{{ object.other_url }}</a>
+                        </dd>
+                    </div>
+                {% endif %}
+
+
                 {% if object.current_or_future_candidacies %}
                     {% if object.email %}
                         <div>
