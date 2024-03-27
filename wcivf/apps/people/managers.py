@@ -20,6 +20,10 @@ VALUE_TYPES_TO_IMPORT = [
     "mastodon_username",
     "instagram_url",
     "email",
+    "tiktok_url",
+    "threads_url",
+    "blue_sky_url",
+    "other_url",
 ]
 
 
