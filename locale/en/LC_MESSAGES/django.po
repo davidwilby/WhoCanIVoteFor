@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: wcivf/apps/core/forms.py:8
+#: wcivf/apps/core/forms.py:7
 msgid "Enter your postcode"
 msgstr ""
 
@@ -73,22 +73,17 @@ msgstr ""
 msgid "The %(election)s %(was_or_will_be)s held on %(date)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/election_view.html:23
+#: wcivf/apps/elections/templates/elections/election_view.html:22
 #, python-format
 msgid ""
 "The %(election)s <strong>is being held today</strong>. Polls are open from"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/election_view.html:24
+#: wcivf/apps/elections/templates/elections/election_view.html:23
 msgid "till"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/election_view.html:28
-#, python-format
-msgid "%(was_will_be_in_past)s held <strong>%(election_date)s</strong>."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/election_view.html:40
+#: wcivf/apps/elections/templates/elections/election_view.html:38
 #, python-format
 msgid ""
 "%(stood_or_standing)s for this election, in <strong>%(post_count)s</strong> "
@@ -125,12 +120,12 @@ msgstr ""
 msgid "All Elections in the UK"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/elections_view.html:18
-#: wcivf/templates/base.html:150
+#: wcivf/apps/elections/templates/elections/elections_view.html:16
+#: wcivf/templates/base.html:103
 msgid "All Elections"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/elections_view.html:19
+#: wcivf/apps/elections/templates/elections/elections_view.html:17
 msgid ""
 "This is a list of upcoming elections, and all elections Democracy Club has "
 "covered since 2010. The local election database was founded in 2016."
@@ -140,88 +135,146 @@ msgstr ""
 msgid "The Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:15
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:9
+#, python-format
+msgid "Add future elections in %(postcode)s to your calendar"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:13
+msgid ""
+"Manually subscribe by following these simple steps for your chosen calendar "
+"tool:"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:16
+msgid ""
+"In your calendar app settings, choose the option for adding a new calendar."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:19
+msgid ""
+"If presented with the option to choose a calendar type, choose web calendar."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:23
+#: wcivf/apps/elections/templates/elections/includes/_calendar.html:25
+msgid "Enter this URL and save"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:8
 msgid "Uncontested Election"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:18
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:10
 #, python-format
 msgid ""
-"This election was uncontested because the number of candidates who stood was "
+"This election was cancelled because the number of candidates who stood was "
 "equal to the number of available seats. There %(is_or_are)s %(winner_count)s "
-"seat%(pluralise_seat)s in %(post)s, and only %(num_people)s candidate"
-"%(pluralise_candidates)s."
+"seat%(pluralise_seat)s in %(post)s, and only %(num_people)s "
+"candidate%(pluralise_candidates)s."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:16
+#, python-format
+msgid ""
+"No votes will be cast, and the candidate%(pluralise_candidates)s below "
+"ha%(has_or_have)s been automatically declared the "
+"winner%(pluralise_candidates)s."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:22
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:41
+msgid "Uncontested and Rescheduled Election"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:24
 #, python-format
 msgid ""
-"No votes will be cast, and the candidate%(pluralise_candidates)s below ha"
-"%(has_or_have)s been automatically declared the winner"
-"%(pluralise_candidates)s."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:39
-msgid "Uncontested and Rescheduled Election"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:42
-#, python-format
-msgid ""
-"This election was uncontested because the number of candidates who stood was "
+"This election was cancelled because the number of candidates who stood was "
 "fewer than the number of available seats. There is %(winner_count)s seat in "
 "%(post_label)s, and %(num_people)s candidate."
 msgid_plural ""
-"This election was uncontested because the number of candidates who stood was "
+"This election was cancelled because the number of candidates who stood was "
 "fewer than the number of available seats. There are %(winner_count)s seats "
 "in %(post_label)s, and %(num_people)s candidates."
 msgstr[0] ""
 msgstr[1] ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:54
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:31
 #, python-format
 msgid ""
 "No votes will be cast, and the candidate%(plural)s below ha%(has_or_have)s "
 "been automatically declared the winner%(plural)s. A new election to fill the "
 "unclaimed seat%(plural)s will be held within 35 working days of the original "
-"election date.</p>"
+"election date."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:72
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:43
+#, python-format
+msgid ""
+"\n"
+"                This election was cancelled because no candidates stood for "
+"the available seats.\n"
+"\n"
+"                A new election to fill the unclaimed seat%(plural)s\n"
+"                will be held within 35 working days of the original election "
+"date.\n"
+"            "
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:51
+msgid "Cancelled and Rescheduled Election"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:53
+#, python-format
+msgid ""
+"\n"
+"                This election was cancelled due to the death of a "
+"candidate.\n"
+"\n"
+"                A new election to fill the unclaimed seat%(plural)s\n"
+"                will be held within 35 working days of the original election "
+"date.\n"
+"            "
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:66
 msgid "Cancelled Election"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:73
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:67
 msgid "This election was cancelled."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:80
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:75
 msgid "It was rescheduled for"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:82
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:77
 msgid "It will now take place on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:92
+#: wcivf/apps/elections/templates/elections/includes/_cancelled_election.html:85
 msgid "Read more"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_elections_breadcrumbs.html:3
-#: wcivf/apps/parties/templates/parties/party_list.html:10
+#: wcivf/apps/parties/templates/parties/parties_view.html:9
 msgid "You are here"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_elections_breadcrumbs.html:6
 #: wcivf/apps/elections/templates/elections/includes/_postcode_breadcrumbs.html:5
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:17
 #: wcivf/apps/parties/templates/parties/party_detail.html:17
-#: wcivf/apps/people/templates/people/person_detail.html:27
-#: wcivf/templates/base.html:149
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:17
+#: wcivf/apps/people/templates/people/person_detail.html:31
+#: wcivf/templates/base.html:102
 msgid "Home"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_elections_breadcrumbs.html:9
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:9
 msgid "Elections"
 msgstr ""
 
@@ -285,82 +338,95 @@ msgid ""
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:15
-msgid "Elected:"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:24
 #, python-format
 msgid "Photo of %(pp.person.name)s"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:39
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:22
+msgid "Elected:"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:36
 msgid "Party emblem"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:47
+#: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:44
 #, python-format
 msgid "Show %(num_candidates)s candidates"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_person_card.html:23
+#: wcivf/apps/elections/templates/elections/includes/_person_card.html:18
 msgid "Elected"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_person_card.html:30
+#: wcivf/apps/elections/templates/elections/includes/_person_card.html:23
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:42
+msgid ""
+"This candidate has been deselected by their party, but will remain on the "
+"ballot paper."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_person_card.html:24
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:43
+msgid "Learn more"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_person_card.html:31
 #, python-format
 msgid "%(votes_cast)s votes"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_person_card.html:38
+#: wcivf/apps/elections/templates/elections/includes/_person_card.html:39
 #, python-format
 msgid "Photo of %(person_name)s"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:10
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:9
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:82
 msgid "Where to vote"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:16
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:15
 msgid ""
 "Your council is trialling a system that allows you to vote in person before "
 "polling day. You can vote in advance at this location, or vote at your "
 "polling station as normal on polling day."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:23
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:22
 msgid "Vote before polling day"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:25
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:24
 msgid "Your advance voting station is:"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:34
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:33
 msgid "Advance voting station opening times"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:36
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:12
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:35
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:9
 msgid "Date"
 msgstr ""
 
 #. Translators: Opening times, from and to
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:38
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:37
 msgid "Open"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:49
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:48
 msgid "Vote on polling day"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:51
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:50
 #, python-format
 msgid ""
 "<p> Your polling station is: </p> <address>%(polling_station_address)s</"
 "address>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:59
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:58
 msgid "It will be open from <strong>7am to 10pm</strong>"
 msgstr ""
 
@@ -372,73 +438,77 @@ msgstr ""
 msgid "You don't need to take your poll card with you."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:81
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:77
 msgid ""
 "If you have a postal vote, you can hand it in at this polling station on "
 "election day up to 10pm"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:87
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:84
 #, python-format
 msgid ""
 "<p>You can find your polling station by <a href=\"%(custom_finder)s\"> "
 "following this link</a>. </p>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:95
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:92
 #, python-format
 msgid ""
 "<strong>Polling stations are open from %(open_time)s till %(close_time)s "
 "today.</strong>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:100
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:97
 #, python-format
 msgid ""
-"<p>Your polling station in %(postcode)s depends on your address. <a href="
-"\"https://wheredoivote.co.uk/postcode/%(postcode)s/\">Check the correct "
+"<p>Your polling station in %(postcode)s depends on your address. <a "
+"href=\"https://wheredoivote.co.uk/postcode/%(postcode)s/\">Check the correct "
 "polling station for your address &raquo;</a></p>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:105
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:102
 msgid ""
 "You should get a \"poll card\" through the post telling you where to vote."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:108
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:105
 #, python-format
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call the "
 "Electoral Office on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:113
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:110
 #, python-format
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call "
 "%(council_name)s on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:118
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:115
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call your "
 "local council"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:127
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:124
 msgid "You will need photographic identification."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:133
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:130
 msgid "Read more about how to vote in Northern Ireland"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:137
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:134
 msgid "Read more about how to vote"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:145
-msgid "Get walking directions from"
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:143
+msgid "Get directions"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:147
+msgid "Get directions from"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_post_meta_description.html:4
@@ -484,7 +554,7 @@ msgid ""
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_postcode_search_form.html:11
-#: wcivf/templates/home.html:23
+#: wcivf/templates/home.html:22
 msgid "Find your candidates"
 msgstr ""
 
@@ -499,70 +569,63 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:9
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:10
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:90
 msgid "Register to vote"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:13
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:15
 msgid ""
 "You need to be registered in order to vote. If you aren't registered to vote "
 "visit <a href=\"https://www.gov.uk/register-to-vote\"> https://www.gov.uk/"
 "register-to-vote </a>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:23
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:25
 #, python-format
 msgid ""
 "Register before midnight on %(registration_deadline)s to vote on "
 "%(election_date)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:28
-#, python-format
-msgid ""
-"If you want to vote by post in the elections on %(election_date)s, first "
-"ensure you are registered to vote and then <a href=\"https://www.gov.uk/"
-"government/publications/apply-for-a-postal-vote\">apply for a postal vote</"
-"a> before 5pm on %(postal_vote_application_deadline)s."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:36
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:42
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:32
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:38
 msgid "To register by post, contact your Valuation Joint Board."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:38
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:34
 #, python-format
 msgid "To register by post, contact %(council_name)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:44
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:40
 msgid "To register by post, contact your local council."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:56
+#: wcivf/apps/elections/templates/elections/includes/_registration_details.html:52
 msgid ""
 "For questions about your poll card, polling place, or about returning your "
 "postal voting ballot, contact your council."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:21
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:19
 msgid "Additional members"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:32
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:30
 #, python-format
 msgid ""
 "This election <strong>is being held today</strong>. Polls are open from "
 "%(open_time)s till %(close_time)s"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:38
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:36
+#: wcivf/apps/elections/templates/elections/election_view.html:27
 #, python-format
 msgid "This election was held <strong>%(election_date)s</strong>."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:42
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:40
 #, python-format
 msgid "This election will be held <strong> %(election_date)s</strong>."
 msgstr ""
@@ -610,14 +673,16 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:92
 #, python-format
 msgid ""
-"You will have two votes, and can choose from <strong>%(num_ballots)s</"
-"strong> in the %(postelection)s."
+"You will have <strong>%(winner_count)s vote%(plural)s</strong>, and can "
+"choose from <strong>%(num_candidates)s candidate%(plural_candidates)s</"
+"strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:98
 #, python-format
 msgid ""
-"There is one seat up for election, and you can choose from %(num_ballots)s."
+"You will have <strong>one vote</strong>, and can choose from "
+"<strong>%(num_ballots)s</strong> in the %(postelection)s."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:103
@@ -637,10 +702,8 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:114
 #, python-format
 msgid ""
-"The official candidate list has not yet been published. However, we expect "
-"at least <strong>%(num_ballots)s</strong> in the %(postelection)s. You can "
-"help improve this page: <a href=\"%(ynr_link)s\"> add information about "
-"candidates to our database</a>."
+"There are <strong>%(winner_count)s seats</strong>  up for election, and you "
+"can choose from <strong>%(num_ballots)s</strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:125
@@ -722,102 +785,133 @@ msgstr ""
 msgid "Read more on Wikipedia"
 msgstr ""
 
+#: wcivf/apps/elections/templates/elections/includes/_voter_id.html:11
+msgid ""
+"You will need to take photo ID to vote at a polling station in this election"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_voter_id.html:15
+msgid ""
+"You do not need your poll card to vote. You must vote at your assigned "
+"polling station.\n"
+"                Read more about <a href=\"https://www.gov.uk/voting-in-the-"
+"uk/polling-stations\">voting in Great Britain</a>."
+msgstr ""
+
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:7
-#: wcivf/apps/elections/templates/elections/includes/eu_results.html:9
+#: wcivf/apps/elections/templates/elections/includes/eu_results.html:15
 msgid "European Parliament election results"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/eu_results.html:12
+#: wcivf/apps/elections/templates/elections/includes/eu_results.html:9
 msgid ""
 "The results of the UK European Parliament elections are published on the "
 "European Parliament's election results website."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/eu_results.html:14
+#: wcivf/apps/elections/templates/elections/includes/eu_results.html:11
+#: wcivf/apps/elections/templates/elections/includes/eu_results.html:16
 msgid "View results"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:6
-msgid "We don't know of any upcoming elections."
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:5
+msgid "We don't know of any upcoming elections in your area."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:9
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:6
+msgid ""
+"Local and devolved elections in the UK typically happen on the first "
+"Thursday in May. By-elections and parliamentary general elections can happen "
+"at any time. Not all areas have elections each year."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:7
+msgid ""
+"Learn more about elections in the UK <a href=\"https://www."
+"electoralcommission.org.uk/i-am-a/voter/types-elections\">on the Electoral "
+"Commission website</a>."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:13
 msgid "Elections in your area"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:15
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:31
 msgid "Recently past elections"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:28
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:44
 #, python-format
 msgid ""
 "You will have %(num_ballots)s ballot paper%(ballots_pluralised)s to fill out."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:44
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:60
 #, python-format
 msgid "%(ballot.short_cancelled_message_html)s"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:54
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:70
 msgid "(uncontested)"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:55
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:71
 msgid "(may be contested)"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:70
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:79
+msgid "Get ready to vote"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:86
+msgid "Voter ID requirements"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:101
 msgid ""
 "There may also be parish, town or community council elections in some areas."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:73
-msgid "Where do I vote?"
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/party_list_view.html:14
+#: wcivf/apps/elections/templates/elections/party_list_view.html:10
 msgid "emblem"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:31
+#: wcivf/apps/elections/templates/elections/party_list_view.html:27
 #, python-format
 msgid "%(party_name)s's Facebook profile"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:39
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:43
+#: wcivf/apps/elections/templates/elections/party_list_view.html:35
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:66
 msgid "Home page"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:41
+#: wcivf/apps/elections/templates/elections/party_list_view.html:37
 #, python-format
 msgid "%(party_name)s's home page"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:48
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:109
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:40
+#: wcivf/apps/elections/templates/elections/party_list_view.html:44
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:159
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:38
 msgid "Email"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:62
+#: wcivf/apps/elections/templates/elections/party_list_view.html:55
 #: wcivf/apps/people/templates/people/includes/_person_manifesto_card.html:7
 msgid "Party manifesto"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:65
+#: wcivf/apps/elections/templates/elections/party_list_view.html:58
 #, python-format
 msgid "Find out more about the %(party_name)s in their %(manifesto)s."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:74
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:124
+#: wcivf/apps/elections/templates/elections/party_list_view.html:63
 msgid "Latest tweets"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/party_list_view.html:77
+#: wcivf/apps/elections/templates/elections/party_list_view.html:66
 msgid "Tweets by"
 msgstr ""
 
@@ -826,22 +920,22 @@ msgstr ""
 msgid "Candidates"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/post_view.html:27
+#: wcivf/apps/elections/templates/elections/post_view.html:29
 msgid "Next election"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/post_view.html:29
+#: wcivf/apps/elections/templates/elections/post_view.html:31
 #, python-format
 msgid ""
 "The <a href=\"%(post_election_url)s\">next election for %(postelection)s</a> "
 "is"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/post_view.html:31
+#: wcivf/apps/elections/templates/elections/post_view.html:33
 msgid "being held today"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/post_view.html:33
+#: wcivf/apps/elections/templates/elections/post_view.html:35
 msgid "due to take place on"
 msgstr ""
 
@@ -857,19 +951,15 @@ msgstr ""
 msgid "Did you find what you were looking for?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:19
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:29
 msgid "Has this information made you more likely to vote?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:27
-msgid "What other websites/sources have you used to research the election?"
-msgstr ""
-
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:32
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:37
 msgid "Can you tell us anything more?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:35
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:40
 msgid "Send feedback"
 msgstr ""
 
@@ -879,16 +969,14 @@ msgstr ""
 
 #: wcivf/apps/feedback/templates/feedback/feedback_thanks.html:10
 msgid ""
-"<p>The information you see here is gathered publicly, by people like you.</"
-"p> <p>Help us do more to make democracy work better for everyone!</p>"
+"<p>The information you see here is gathered publicly, by people like you.</p>"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_thanks.html:16
+#: wcivf/apps/feedback/templates/feedback/feedback_thanks.html:14
 msgid ""
 "<p>We're sorry you didn't find what you were looking for. We'll read your "
 "feedback and pass it on to our volunteers.</p> <p>The information you see "
-"here is gathered publicly, by people like you.</p> <p>Help us do better in "
-"future!</p>"
+"here is gathered publicly, by people like you.</p>"
 msgstr ""
 
 #: wcivf/apps/hustings/templates/hustings/includes/_ballot.html:6
@@ -943,78 +1031,192 @@ msgstr ""
 msgid "on <a href=\"%(parish_council_election_url)s\">%(council_name)s</a>"
 msgstr ""
 
-#: wcivf/apps/parishes/templates/parishes/includes/_card.html:31
+#: wcivf/apps/parishes/templates/parishes/includes/_card.html:30
 #, python-format
 msgid ""
-"%(council_type)s councils are the first tier of local government</a>, and "
-"have a wide range of powers including looking after community buildings, "
-"planning, street lighting and allotments. They also have the power to raise "
-"money through council tax, known as the 'precept'. In 2020-2021, "
-"%(council_name)s raised £%(precept_amount)s through the precept."
+"<a href=\"https://www.localgov.co.uk/What-are-parish-"
+"councils/35176\">%(council_type)s councils are the first tier of local "
+"government</a>, and have a wide range of powers including looking after "
+"community buildings, planning, street lighting and allotments. They also "
+"have the power to raise money through council tax, known as the 'precept'. "
+"In 2020-2021, %(council_name)s raised £%(precept_amount)s through the "
+"precept."
 msgstr ""
 
-#: wcivf/apps/parishes/templates/parishes/includes/_card.html:42
+#: wcivf/apps/parishes/templates/parishes/includes/_card.html:41
 msgid "View the official list of candidates (PDF)."
 msgstr ""
 
-#: wcivf/apps/parishes/templates/parishes/includes/_card.html:48
+#: wcivf/apps/parishes/templates/parishes/includes/_card.html:47
 msgid "See who was elected"
 msgstr ""
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:20
 #: wcivf/apps/parties/templates/parties/party_detail.html:20
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:20
 msgid "Parties"
 msgstr ""
 
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:22
 #: wcivf/apps/parties/templates/parties/party_detail.html:22
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:22
 #, python-format
 msgid "Current: %(party_name)s"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:36
-#: wcivf/apps/parties/templates/parties/party_detail.html:50
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:30
+#: wcivf/apps/parties/templates/parties/party_detail.html:38
+#: wcivf/apps/parties/templates/parties/party_detail.html:54
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:30
 #, python-format
-msgid "%(num_candidates)s candidate%(pluralize_candidates)s</p>"
+msgid "%(num_candidates)s candidate%(pluralize_candidates)s in our database."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:41
-#: wcivf/apps/parties/templates/parties/party_detail.html:55
-msgid "Read more on wikipedia"
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:36
+msgid "Independent candidates are unaffiliated with any political party."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_detail.html:68
-msgid "Post"
-msgstr ""
-
-#: wcivf/apps/parties/templates/parties/party_detail.html:69
-msgid "Number of candidates"
-msgstr ""
-
-#: wcivf/apps/parties/templates/parties/party_detail.html:74
+#: wcivf/apps/parties/templates/parties/independent_candidate.html:37
 #, python-format
-msgid "%(num_candidates)s candidate%(pluralize_candidates)s"
+msgid ""
+"An independent candidate may appear on the ballot paper as "
+"\"%(ballot_name)s\", or with no description at all."
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_list.html:4
-#: wcivf/apps/parties/templates/parties/party_list.html:5
+#: wcivf/apps/parties/templates/parties/parties_view.html:4
+#: wcivf/apps/parties/templates/parties/parties_view.html:5
 msgid "UK Political Parties"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_list.html:6
+#: wcivf/apps/parties/templates/parties/parties_view.html:6
 msgid "List of candidates for UK Political Parties"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_list.html:15
+#: wcivf/apps/parties/templates/parties/parties_view.html:14
 msgid "Current: Parties"
 msgstr ""
 
-#: wcivf/apps/parties/templates/parties/party_list.html:20
+#: wcivf/apps/parties/templates/parties/parties_view.html:20
+msgid "UK political parties"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:21
 msgid ""
-"<h2>UK political parties</h2> <p>The following is a list of all political "
-"parties represented by candidates in Democracy Club's UK election database "
-"(est. 2015). The list includes active, deregistered, and defunct parties.</"
-"p> <p>Party names and emblems are taken from the <a href=\"http://www."
-"electoralcommission.org.uk/\">Electoral Commission's register of political "
-"parties.</a></p>"
+"<p>The following is a list of all political parties represented by "
+"candidates in Democracy Club's UK election database (est. 2015). This list "
+"includes registered and deregistered parties.</p> <p>There are two party "
+"registers in the UK: a combined Great Britain register for England, Wales "
+"and Scotland, and a separate register for Northern Ireland. Parties in Great "
+"Britain can only field candidates in the nations they have specified in "
+"their entry.</p> <p>A registered party may field candidates in elections.</"
+"p> <p>A deregistered party may no longer field candidates in elections. A "
+"party can become deregistered through choice, or becuase it failed to renew "
+"its annual registration status. In some cases, parties have been "
+"deregistered and then subsequently reregistered; in these cases, the party "
+"will have an entry for each registration.</p> <p>Party names and emblems are "
+"taken from the <a href=\"http://www.electoralcommission.org.uk/\">Electoral "
+"Commission's register of political parties.</a></p>"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:36
+#, python-format
+msgid "Alternative name: %(alt_name)s"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:43
+#: wcivf/apps/parties/templates/parties/party_detail.html:59
+msgid "Read more on wikipedia"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:46
+#: wcivf/apps/parties/templates/parties/party_detail.html:62
+#, python-format
+msgid ""
+"This political party was deregistered on %(dereg_date)s, and can no longer "
+"field candidates. "
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:69
+#, python-format
+msgid ""
+"<p>This party %(was_is)s on the <strong>%(register)s</strong> register and "
+"%(was_is)s registered to stand candidates in <strong>%(nations)s</strong>.</"
+"p>"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:73
+#, python-format
+msgid ""
+"<p>This party %(was_is)s on the <strong>%(register)s</strong> register.</p>"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:85
+msgid "Joint description"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:88
+#, python-format
+msgid ""
+"\n"
+"                                \"%(joint_name)s\" is a joint description of "
+"%(first_name)s and %(second_name)s.\n"
+"                            "
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:97
+#, python-format
+msgid ""
+"View the entry for the %(party_name)s in the register of political parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:107
+msgid "View this party's entry in the register of political parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:114
+msgid "Ballot descriptions"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:116
+#, python-format
+msgid ""
+"This party may appear on the ballot paper as \"%(ballot_name)s\", or any of "
+"the following names:"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:128
+msgid ""
+"This party currently has no descriptions registered with the Electoral "
+"Commission."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:135
+msgid "Previous Descriptions"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:137
+msgid ""
+"These descriptions are no longer registered with the Electoral Commission "
+"and cannot be used:"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:149
+msgid "Emblems"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:159
+msgid ""
+"This party currently has no emblems registered with the Electoral Commission."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:166
+msgid "Previous Emblems"
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:168
+msgid ""
+"These emblems are no longer registered with the Electoral Commission and "
+"cannot be used:"
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/single_manifesto.html:5
@@ -1039,32 +1241,60 @@ msgstr ""
 msgid "Easy Read version"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/_person_email_form.html:27
-#, python-format
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:36
 msgid ""
-"This page generates a customised email for %(name)s to ask them to provide "
-"missing data for the Democracy Club dataset."
+"The Speaker of the House of Commons stands in general elections under the "
+"banner"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/_person_email_form.html:35
-#, python-format
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:37
 msgid ""
-"Add your name, check the box if you live in %(post_label)s, and then press "
-"'open email in email program'."
+"They are not affiliated with any political party, nor do they campaign on "
+"any political issues."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/_person_email_form.html:49
-#, python-format
-msgid ""
-"Here's the email text we've generated for you to send to <span class="
-"\"candidatename\">%(person_name)s"
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:38
+msgid "The Speaker generally runs unopposed by the major parties."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/email_person.html:31
-#, python-format
+#: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:39
 msgid ""
-"We don't know %(person_name)s's email address. <a href=\"%(edit_profile_url)s"
-"\">Can you add it?</a>"
+"Find out more about <a href=\"https://www.parliament.uk/mps-lords-and-"
+"offices/offices/commons/speakers-office/\">The Speaker</a> and <a "
+"href=\"https://www.parliament.uk/about/living-heritage/evolutionofparliament/"
+"parliamentwork/offices-and-ceremonies/overview/the-speaker/elections/"
+"\">their role in elections</a> on the parliament.uk website."
+msgstr ""
+
+#: wcivf/apps/people/models.py:78
+msgid "Elected unopposed"
+msgstr ""
+
+#: wcivf/apps/people/models.py:79
+msgid "(election cancelled)"
+msgstr ""
+
+#: wcivf/apps/people/models.py:90
+#, python-format
+msgid "(Results due after %(date)s)"
+msgstr ""
+
+#: wcivf/apps/people/models.py:102
+#, python-format
+msgid "%(num_votes)s votes (elected)"
+msgstr ""
+
+#: wcivf/apps/people/models.py:103
+msgid "Elected (vote count not available)"
+msgstr ""
+
+#: wcivf/apps/people/models.py:109
+#, python-format
+msgid "%(num_votes)s votes (not elected)"
+msgstr ""
+
+#: wcivf/apps/people/models.py:110
+msgid "Not elected (vote count not available)"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:4
@@ -1077,204 +1307,231 @@ msgstr ""
 msgid "<h4>Favourite Biscuit</h4> <p>%(biscuit)s</p>"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:5
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:4
 msgid "online"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:10
-#: wcivf/templates/base.html:159
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:11
 msgid "Facebook"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:14
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:15
 #, python-format
 msgid "%(person_name)s's personal Facebook"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:21
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:22
 #, python-format
 msgid "%(person_name)s's Facebook page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:32
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
+#: wcivf/templates/base.html:112
+msgid "Twitter"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:35
+#, python-format
+msgid "%(person_name)s's Twitter profile"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:44
+msgid "Mastodon"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:46
+#, python-format
+msgid "%(person_name)s's Mastodon profile"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:55
 msgid "LinkedIn"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:34
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:57
 #, python-format
 msgid "%(person_name)s's LinkedIn profile"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:45
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:68
 #, python-format
 msgid "%(person_name)s's home page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:54
-#: wcivf/templates/base.html:157
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:77
+#: wcivf/templates/base.html:111
 msgid "Blog"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:56
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:57
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:79
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:80
 #, python-format
 msgid "%(person_name)s's blog"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:65
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:88
 msgid "Instagram"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:67
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:90
 #, python-format
 msgid "%(person_name)s's Instagram"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:76
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:99
 msgid "YouTube"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:78
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:101
 #, python-format
 msgid "%(person_name)s's YouTube"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:98
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:110
 msgid "The party's candidate page for this person"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:100
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:112
 #, python-format
 msgid "Party page for %(person_name)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:111
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:121
+msgid "TikTok"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:123
+#, python-format
+msgid "%(person_name)s's TikTok"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:130
+msgid "Threads"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:132
+#, python-format
+msgid "%(person_name)s's Threads"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:139
+msgid "BlueSky"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:141
+#, python-format
+msgid "%(person_name)sBlueSky'"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:148
+msgid "Other contact info"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:150
+#, python-format
+msgid "%(person_name)sother contact info"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:161
 #, python-format
 msgid "%(person_name)s's email"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:116
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:169
 #, python-format
-msgid "<dt>We don't know %(person_name)s's email address.</dt>"
+msgid "<dt>We don't have %(person_name)s's contact info.</dt>"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:118
+#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:170
 msgid "Can you add it?"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_contact_card.html:127
-#, python-format
-msgid "Tweets by @%(twitter_name)s"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:7
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:5
 msgid "That's all we know! Will you help us find more about this candidate?"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:8
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:6
 msgid ""
 "Our volunteers have been working hard to add information on as many "
 "candidates as possible, but they need help."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:11
-msgid "Thousands of voters will rely on this site."
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:15
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:8
 msgid "If you can add information that should be on this page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:18
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:11
 #, python-format
 msgid "- such as %(person)s's %(cta)s -"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:21
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:14
 msgid "please use our crowdsourcing website to add it."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:23
+#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:17
 msgid "Add or edit details &raquo;"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:27
-#, python-format
-msgid ""
-"You can also email %(person)s directly to ask them to add information to "
-"this page."
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_edit_details_card.html:29
-msgid "Ask the candidate for more information &raquo;"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:15
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:16
 msgid "an,a"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:15
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:16
 #, python-format
-msgid "is %(a_or_an)s %(party_name)s candidate in the following elections:"
+msgid ""
+"is %(a_or_an)s <a href=\"%(party_link)s\">%(party_name)s</a> candidate in "
+"the following elections:"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:23
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:24
 #, python-format
 msgid "%(election)s for"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:28
-#, python-format
-msgid "%(num_votes)s votes"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:33
-msgid "(elected)"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:51
+#: wcivf/apps/people/templates/people/includes/_person_intro_card.html:56
 #, python-format
 msgid "profile photo of %(person)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:8
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:6
 #, python-format
 msgid "%(person)s's local party is %(party_label)s."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:10
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:8
 #, python-format
 msgid "%(person)s is a %(party)s candidate."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:32
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:30
 msgid "Party Homepage"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:34
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:32
 #, python-format
 msgid "%(party)s's website"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:42
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:40
 #, python-format
 msgid "%(party)s's email"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:48
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:46
 msgid "Contact page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:50
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:48
 #, python-format
 msgid "%(party)s's contact page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:56
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:54
 msgid "Youtube page"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:58
+#: wcivf/apps/people/templates/people/includes/_person_local_party_card.html:56
 #, python-format
 msgid "%(party)s's Youtube profile"
 msgstr ""
@@ -1303,26 +1560,31 @@ msgstr ""
 msgid "%(intro)sGet the latest information on this candidate at %(SITE_TITLE)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:9
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:7
 #, python-format
 msgid "%(person_name)s's policies"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:13
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:10
 msgid "Statement to voters"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:19
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:16
 msgid "Full statement"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:25
+#, python-format
+msgid "This statement was last updated on %(date)s"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_policy_card.html:28
 #, python-format
 msgid ""
-"This statement was added by %(person_name)s, their team, or by a <a href="
-"\"https://candidates.democracyclub.org.uk/person/%(object.ynr_id)s\"> "
-"Democracy Club volunteer</a>, based on information published by the "
-"candidate elsewhere\"."
+"This statement was added by %(person_name)s, their team, or by a <a "
+"href=\"https://candidates.democracyclub.org.uk/volunteer/"
+"%(object.ynr_id)s\"> Democracy Club volunteer</a>, based on information "
+"published by the candidate elsewhere."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_policy_card.html:39
@@ -1330,43 +1592,47 @@ msgstr ""
 msgid "Recent leaflets from %(person_name)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:46
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:47
 #, python-format
 msgid "Thumbnail of leaflet from %(person_name)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:50
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:51
 #, python-format
 msgid ""
-"Uploaded %(date)s<br /> <a href=\"https://electionleaflets.org/leaflets/"
+"Uploaded %(date)s<br/> <a href=\"https://electionleaflets.org/leaflets/"
 "%(leaflet_id)s\" class=\"cta\">See leaflet</a>"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:60
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:61
 #, python-format
 msgid ""
-"<a class=\"ds-cta\" href=\"https://electionleaflets.org/person/%(person_id)s"
-"\"> More leaflets from %(person_name)s</a> <a class=\"ds-cta\" href="
-"\"https://electionleaflets.org/leaflets/add/\"> Upload a leaflet </a>"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:74
-msgid "Record in office"
+"<a class=\"ds-cta\" href=\"https://electionleaflets.org/person/"
+"%(person_id)s\"> More leaflets from %(person_name)s</a> <a class=\"ds-cta\" "
+"href=\"https://electionleaflets.org/leaflets/add/\"> Upload a leaflet </a>"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_policy_card.html:75
+msgid "Record in office"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:76
 msgid "See this candidate's "
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:77
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:78
 msgid "record on TheyWorkForYou"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:78
+#: wcivf/apps/people/templates/people/includes/_person_policy_card.html:79
 msgid "their speeches, voting history and more"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:13
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:6
+msgid "elections"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:10
 msgid "Election"
 msgstr ""
 
@@ -1375,69 +1641,40 @@ msgstr ""
 msgid "Party"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:15
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:12
 msgid "Results"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:17
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:14
 msgid "Other party affiliations in the past 12 months"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:23
-#, python-format
-msgid "%(post_label)s: %(election)s"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:28
-#, python-format
-msgid ""
-"\n"
-"                                        %(num_votes)s votes (elected)\n"
-"                                    "
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:32
-msgid "Elected (vote count not available)"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:36
-msgid "Elected unopposed"
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:40
-#, python-format
-msgid ""
-"\n"
-"                                        %(num_votes)s votes (not elected)\n"
-"                                    "
-msgstr ""
-
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:44
-msgid "Not Elected (vote count not available)"
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:16
+msgid "Position"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_constituency.html:5
 #, python-format
 msgid ""
 "%(name)s is the <a href=\"%(party_url)s\">%(party_name)s</a> candidate for "
-"<a href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a href="
-"\"%(election_url)s\" title=\"%(election)s\">%(election_name)s</a>."
+"<a href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_constituency.html:10
 #, python-format
 msgid ""
 "%(name)s was the <a href=\"%(party_url)s\">%(party_name)s</a> candidate for "
-"<a href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a href="
-"\"%(election_url)s\" title=\"%(election)s\">%(election_name)s</a>."
+"<a href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_independent.html:6
 #, python-format
 msgid ""
-"%(person_name)s is an independent candidate in <a href=\"%(post_url)s\">"
-"%(post_label)s</a> in the <a href=\"%(election_url)s\" title="
-"\"%(election_name)s\">%(election_name)s</a>."
+"%(person_name)s is an independent candidate in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> in the <a href=\"%(election_url)s\" "
+"title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_list_ballot.html:8
@@ -1460,52 +1697,52 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/intros/_pcc.html:6
 #, python-format
 msgid ""
-"%(person_name)s is the <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate for <a href=\"%(election_url)s\" title="
-"\"%(election_name)s\">%(election_name)s</a>."
+"%(person_name)s is the <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate for <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_mayor.html:11
 #: wcivf/apps/people/templates/people/includes/intros/_pcc.html:13
 #, python-format
 msgid ""
-"%(person_name)s was the <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate for <a href=\"%(election_url)s\" title="
-"\"%(election_name)s\">%(election_name)s</a>."
+"%(person_name)s was the <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate for <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_parl.html:7
 #, python-format
 msgid ""
-"%(person_name)s is a <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate in <a href=\"%(post_url)s\">%(post_label)s</a> "
-"constituency in the <a href=\"%(election_url)s\" title=\"%(election_name)s\">"
-"%(election_name)s</a>."
+"%(person_name)s is a <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_parl.html:13
 #, python-format
 msgid ""
-"%(person_name)s was a <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate in <a href=\"%(post_url)s\">%(post_label)s</a> "
-"constituency in the <a href=\"%(election_url)s\" title=\"%(election_name)s\">"
-"%(election_name)s</a>."
+"%(person_name)s was a <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_speaker.html:5
 #, python-format
 msgid ""
-"%(person_name)s is the Speaker seeking re-election in <a href=\"%(post_url)s"
-"\">%(post_label)s</a> constituency in the <a href=\"%(election_url)s\" title="
-"\"%(election_name)s\">%(election_name)s</a>."
+"%(person_name)s is the Speaker seeking re-election in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_speaker.html:11
 #, python-format
 msgid ""
-"%(person_name)s was the Speaker seeking re-election in <a href=\"%(post_url)s"
-"\">%(post_label)s</a> constituency in the <a href=\"%(election_url)s\" title="
-"\"%(election_name)s\">%(election_name)s</a>."
+"%(person_name)s was the Speaker seeking re-election in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> constituency in the <a "
+"href=\"%(election_url)s\" title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_votes_cast.html:5
@@ -1521,36 +1758,48 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/intros/base.html:4
 #, python-format
 msgid ""
-"%(person_name)s is a <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate in <a href=\"%(post_url)s\">%(post_label)s</a> "
-"in the <a href=\"%(election_url)s\" title=\"%(election_name)s\">"
-"%(election_name)s</a>."
+"%(person_name)s is a <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> in the <a href=\"%(election_url)s\" "
+"title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/base.html:11
 #, python-format
 msgid ""
-"%(person_name)s was a <a href=\"%(party_url)s\" title=\"%(party_name)s\">"
-"%(party_name)s</a> candidate in <a href=\"%(post_url)s\">%(post_label)s</a> "
-"in the <a href=\"%(election_url)s\" title=\"%(election_name)s\">"
-"%(election_name)s</a>."
+"%(person_name)s was a <a href=\"%(party_url)s\" "
+"title=\"%(party_name)s\">%(party_name)s</a> candidate in <a "
+"href=\"%(post_url)s\">%(post_label)s</a> in the <a href=\"%(election_url)s\" "
+"title=\"%(election_name)s\">%(election_name)s</a>."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/not_current_person_detail.html:27
+#: wcivf/apps/people/templates/people/not_current_person_detail.html:25
 #, python-format
-msgid "%(person_name)s stood for election %(past_candidacy_count)s times."
+msgid ""
+"\n"
+"                            <p>%(person_name)s stood for election twice.</"
+"p>\n"
+"                        "
 msgstr ""
 
-#: wcivf/apps/people/templates/people/not_current_person_detail.html:32
+#: wcivf/apps/people/templates/people/not_current_person_detail.html:29
+#, python-format
+msgid "<p>%(person_name)s stood for election once.</p>"
+msgid_plural ""
+"<p>%(person_name)s stood for election %(past_candidacy_count)s times.</p>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wcivf/apps/people/templates/people/not_current_person_detail.html:39
 #, python-format
 msgid "profile photo of %(object.name)s"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/person_detail.html:24
+#: wcivf/apps/people/templates/people/person_detail.html:28
 msgid "You are here:"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/person_detail.html:58
+#: wcivf/apps/people/templates/people/person_detail.html:64
 msgid "Back to candidates in"
 msgstr ""
 
@@ -1748,115 +1997,93 @@ msgstr ""
 msgid "%(short_cancelled_message)s"
 msgstr ""
 
-#: wcivf/apps/results/templates/results/results_list.html:3
-msgid "Election results"
-msgstr ""
-
-#: wcivf/apps/results/templates/results/results_list.html:16
-msgid "See these results on a map, thanks to our friends at ODI Leeds"
-msgstr ""
-
-#: wcivf/apps/results/templates/results/results_list.html:33
-#: wcivf/apps/results/templates/results/results_list.html:39
-msgid "Constituency"
-msgstr ""
-
-#: wcivf/apps/results/templates/results/results_list.html:34
-#: wcivf/apps/results/templates/results/results_list.html:40
-msgid "Result"
-msgstr ""
-
-#: wcivf/apps/results/templates/results/results_list.html:60
-msgid "Expected"
-msgstr ""
-
-#: wcivf/apps/results/templates/results/results_list.html:71
-msgid "No results yet"
-msgstr ""
-
-#: wcivf/templates/base.html:94
+#: wcivf/templates/base.html:59
 msgid "Language:"
 msgstr ""
 
-#: wcivf/templates/base.html:118 wcivf/templates/base.html:173
-#: wcivf/templates/home.html:5 wcivf/templates/home.html:6
-msgid "Who Can I Vote For?"
+#: wcivf/templates/base.html:104
+msgid "All Parties"
 msgstr ""
 
-#: wcivf/templates/base.html:151
+#: wcivf/templates/base.html:105
 msgid "Standing as a candidate?"
 msgstr ""
 
-#: wcivf/templates/base.html:152
+#: wcivf/templates/base.html:106
 #, python-format
 msgid "About %(SITE_TITLE)s"
 msgstr ""
 
-#: wcivf/templates/base.html:153
+#: wcivf/templates/base.html:107
 msgid "Privacy"
 msgstr ""
 
-#: wcivf/templates/base.html:154
+#: wcivf/templates/base.html:108
 msgid "Source code"
 msgstr ""
 
-#: wcivf/templates/base.html:155
+#: wcivf/templates/base.html:109
 msgid "About Democracy Club"
 msgstr ""
 
-#: wcivf/templates/base.html:156
+#: wcivf/templates/base.html:110
 msgid "Contact Us"
 msgstr ""
 
-#: wcivf/templates/base.html:158
-msgid "Twitter"
-msgstr ""
-
-#: wcivf/templates/base.html:160
+#: wcivf/templates/base.html:113
 msgid "GitHub"
 msgstr ""
 
-#: wcivf/templates/base.html:167
-msgid "democracy"
+#: wcivf/templates/home.html:5 wcivf/templates/home.html:6
+msgid "Who Can I Vote For?"
 msgstr ""
 
-#: wcivf/templates/base.html:167
-msgid "club"
-msgstr ""
-
-#: wcivf/templates/base.html:177
-#, python-format
-msgid "Copyright &copy; %(current_year)s"
-msgstr ""
-
-#: wcivf/templates/base.html:178
-msgid "Democracy Club Community Interest Company"
-msgstr ""
-
-#: wcivf/templates/base.html:179
-msgid ""
-"Company No: <a href=\"https://beta.companieshouse.gov.uk/"
-"company/09461226\">09461226</a>"
-msgstr ""
-
-#: wcivf/templates/base.html:181
-msgid ""
-"Democracy Club is a UK-based Community Interest Company that builds the "
-"digital infrastructure needed for a 21st century democracy"
-msgstr ""
-
-#: wcivf/templates/home.html:12
+#: wcivf/templates/home.html:10
 msgid "Find out about candidates in your area"
 msgstr ""
 
-#: wcivf/templates/home.html:19
+#: wcivf/templates/home.html:17
 #, python-format
 msgid ""
 "Sorry, we don't know the postcode %(postcode)s. Is there another one you can "
 "try?"
 msgstr ""
 
-#: wcivf/templates/home.html:32
-msgid "Upcoming Elections"
+#: wcivf/templates/home.html:33
+msgid "Photographic identification"
 msgstr ""
 
+#: wcivf/templates/home.html:35
+msgid ""
+"Photographic identification will be required to vote in English local "
+"elections, and parliamentary elections across the UK, on and after 4 May "
+"2023."
+msgstr ""
+
+#: wcivf/templates/home.html:37
+msgid ""
+"Learn more about photographic identification for voters on the website of "
+"the Electoral Commission."
+msgstr ""
+
+#: wcivf/templates/home.html:37
+msgid "Learn more on the website of the Electoral Commission."
+msgstr ""
+
+#: wcivf/templates/home.html:40
+msgid ""
+"You can apply for a free 'Voter Authority Certificate' if you do not already "
+"possess a valid ID."
+msgstr ""
+
+#: wcivf/templates/home.html:42
+msgid "Apply for free voter ID."
+msgstr ""
+
+#: wcivf/templates/home.html:44
+msgid "You do not need photo ID to vote by post."
+msgstr ""
+
+#: wcivf/templates/home.html:48
+msgid "Upcoming Elections"
+msgstr ""
