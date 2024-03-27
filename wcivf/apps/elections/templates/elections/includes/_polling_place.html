@@ -77,11 +77,11 @@
                     {% endif %}
                 </p>
             {% endif %}
-            {% if not postcode|ni_postcode %}
+            {% comment %} {% if not postcode|ni_postcode %}
                 <p>
                     {% blocktrans %}If you have a postal vote, you can hand it in at this polling station on election day up to 10pm{% endblocktrans %}
                 </p>
-            {% endif %}
+            {% endif %} {% endcomment %}
 
 
         {% else %}
