@@ -19,6 +19,7 @@ VALUE_TYPES_TO_IMPORT = [
     "youtube_profile",
     "mastodon_username",
     "instagram_url",
+    "email",
 ]
 
 
