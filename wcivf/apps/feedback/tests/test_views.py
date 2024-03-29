@@ -22,7 +22,7 @@ class FeedbackFormViewTests(TestCase, FeedbackFormView):
             reverse("feedback_form_view"),
             {
                 "found_useful": "YES",
-                "vote": "YES",
+                "vote": "MORE_LIKELY",
                 "source_url": "https://example.com",
                 "token": "123",
             },

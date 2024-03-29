@@ -1,11 +1,20 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 
-FOUND_USEFUL_CHOICES = (("YES", _("Yes")), ("NO", _("No")))
-VOTE_CHOICES = (("YES", _("Yes")), ("NO", _("No")))
+FOUND_USEFUL_CHOICES = (
+    ("YES", _("Yes")),
+    ("NO", _("No")),
+    ("PROBLEM", _("Report a problem with this page")),
+)
+VOTE_CHOICES = (
+    ("MORE_LIKELY", _("More likely")),
+    ("LESS_LIKELY", _("Less likely")),
+    ("NO_DIFFERENCE", _("I always vote (no change)")),
+)
 
 
 def generate_feedback_token():
@@ -19,7 +28,9 @@ class Feedback(TimeStampedModel):
     vote = models.CharField(blank=True, max_length=100, choices=VOTE_CHOICES)
     sources = models.TextField(blank=True)
     comments = models.TextField(blank=True)
-    source_url = models.CharField(blank=True, max_length=800)
+    source_url = models.CharField(
+        blank=True, max_length=800, default=settings.CANONICAL_URL
+    )
     token = models.CharField(
         blank=True, max_length=100, default=generate_feedback_token
     )

@@ -196,7 +196,7 @@ STATIC_ROOT = root("static")
 
 PIPELINE = get_pipeline_settings(
     extra_css=["scss/style.scss"],
-    extra_js=["js/scripts.js", "feedback/js/feedback_form.js"],
+    extra_js=["feedback/js/feedback_form.js"],
 )
 
 

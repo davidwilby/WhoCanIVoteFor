@@ -59,6 +59,15 @@ class FeedbackFormView(UpdateView):
             self.object.flagged_as_spam = True
         return super().form_valid(form)
 
+    def form_invalid(self, form):
+        for err in form.errors:
+            messages.error(
+                self.request,
+                "There was an error with your submission. Error message: %s. Please try again."
+                % err,
+            )
+        return super().form_invalid(form)
+
 
 class RecordJsonFeedback(View):
     def post(self, request):

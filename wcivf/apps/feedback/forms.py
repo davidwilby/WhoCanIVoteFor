@@ -24,6 +24,8 @@ class FeedbackForm(forms.ModelForm):
     vote = forms.ChoiceField(
         choices=VOTE_CHOICES,
         widget=forms.RadioSelect(attrs={"data-toggle": "button"}),
+        required=False,
     )
+    email = forms.EmailField(required=False)
     source_url = forms.CharField(widget=forms.HiddenInput())
     token = forms.CharField(widget=forms.HiddenInput())
