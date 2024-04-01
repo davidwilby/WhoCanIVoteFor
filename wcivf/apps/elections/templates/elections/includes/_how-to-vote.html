@@ -65,6 +65,14 @@ PR-CL: Closed List
                 </p>
             {% endif %}
 
+                     {% if voting_system.slug == "AMS" %}
+                <p>
+                    {% blocktrans trimmed %}
+                        Mark an X in the box for one party or independent candidate.
+                    {% endblocktrans %}
+                </p>
+            {% endif %}
+
             {% if voting_system.slug == "PR-CL" %}
                 <p>
                     {% blocktrans trimmed %}
