@@ -3,14 +3,16 @@
 {% load static %}
 {% load i18n %}
 
-<div class="ds-card">
-    <div class="ds-card-body">
-        <h2>
-            <span aria-hidden="true">🗳</span>️
-            {% trans "You will need to take photo ID to vote at a polling station in this election" %}
-        </h2>
+<li id="requirements">
+    <details>
+        <summary>
+            <h2>
+                <span aria-hidden="true"></span>️
+                {% trans "You will need to take photo ID to vote at a polling station in this election" %}
+            </h2>
+        </summary>
         <p>
             {% trans "You must vote at your assigned polling station." %}
         </p>
-    </div>
-</div>
+    </details>
+</li>
