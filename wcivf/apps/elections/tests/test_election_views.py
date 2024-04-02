@@ -338,7 +338,8 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = True
         self.post_election.save()
         response = self.client.get(self.person.get_absolute_url(), follow=True)
-        self.assertContains(response, "{}'s Elections".format(self.person.name))
+        # import pdb; pdb.set_trace()
+        self.assertContains(response, "{}'s elections".format(self.person.name))
         self.assertContains(response, "(election cancelled")
 
     def test_previous_elections_elected_with_count(self):
@@ -355,7 +356,7 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = False
         self.post_election.save()
         response = self.client.get(self.person.get_absolute_url(), follow=True)
-        self.assertContains(response, "{}'s Elections".format(self.person.name))
+        self.assertContains(response, "{}'s elections".format(self.person.name))
         self.assertContains(
             response, "{} votes (elected)".format(self.person_post.votes_cast)
         )
@@ -392,7 +393,7 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = False
         self.post_election.save()
         response = self.client.get(self.person.get_absolute_url(), follow=True)
-        self.assertContains(response, "{}'s Elections".format(self.person.name))
+        self.assertContains(response, "{}'s elections".format(self.person.name))
         self.assertContains(response, "Elected (vote count not available")
 
     def test_previous_elections_not_elected_no_count(self):
@@ -409,7 +410,7 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = False
         self.post_election.save()
         response = self.client.get(self.person.get_absolute_url(), follow=True)
-        self.assertContains(response, "{}'s Elections".format(self.person.name))
+        self.assertContains(response, "{}'s elections".format(self.person.name))
         self.assertContains(response, "Not elected (vote count not available)")
 
     def test_deselected_person(self):
