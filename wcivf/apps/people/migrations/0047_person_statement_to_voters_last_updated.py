@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("people", "0046_personpost_deselected_personpost_deselected_source"),
     ]
