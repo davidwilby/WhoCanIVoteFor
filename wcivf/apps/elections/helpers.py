@@ -81,18 +81,23 @@ class EEHelper:
         self.ee_cache[election_id] = None
         return None
 
-    def iter_recently_modified_election_ids(self):
+    def iter_recently_modified_election_ids(self, group_type=None):
+        modified_date = timezone.datetime.now().date() - timezone.timedelta(days=20)
+
         params = {
-            "modified": timezone.datetime.now().date()
-            - timezone.timedelta(hours=1),
+            "modified": modified_date,
         }
+
+        if group_type:
+            params["group_type"] = group_type
+
         querystring = urlencode(params)
         url = f"{self.base_elections_url}?{querystring}"
         pages = JsonPaginator(page1=url, stdout=sys.stdout)
         for page in pages:
             for result in page["results"]:
                 self.ee_cache[result["election_id"]] = result
-                if result["group_type"] == "election":
+                if not group_type and result["group_type"] == "election":
                     continue
                 yield result["election_id"]
 
