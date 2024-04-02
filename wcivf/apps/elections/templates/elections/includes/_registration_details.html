@@ -2,12 +2,14 @@
 {% load postcode_tags %}
 {% load humanize %}
 
-<section class="ds-card">
-    <div class="ds-card-body">
-        <h2 id='where'>
-            <span aria-hidden="true">📝</span>
-            {% blocktrans trimmed %}Register to vote{% endblocktrans %}
-        </h2>
+<li>
+    <details>
+        <summary>
+            <h2 id='register'>
+                <span aria-hidden="true"></span>
+                {% blocktrans trimmed %}Register to vote{% endblocktrans %}
+            </h2>
+        </summary>
 
         <p>
             {% blocktrans trimmed %}
@@ -59,5 +61,5 @@
 
         {% endif %}
 
-    </div>
-</section>
+    </details>
+</li>

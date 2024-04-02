@@ -73,19 +73,25 @@
                         </a>
                     </li>
                 {% endif %}
-
-                {% if show_polling_card %}
-                    <li><a href="#where">Where to vote</a></li>
-                {% endif %}
-
-                {% if requires_voter_id %}
-                    <li><a href="#requirements">Voter ID requirements</a></li>
-                {% endif %}
-
-                {% if not postelections or not postelections.first.past_registration_deadline %}
-                    <li><a href="#register">Register to vote</a></li>
-                {% endif %}
             </ul>
+
+            {% if show_polling_card or requires_voter_id %}
+                <p>Get ready to vote:</p>
+                <ul>
+                    {% if show_polling_card %}
+                        <li><a href="#where">Where to vote</a></li>
+                    {% endif %}
+
+                    {% if requires_voter_id %}
+                        <li><a href="#requirements">Voter ID requirements</a></li>
+                    {% endif %}
+
+                    {% if not postelections or not postelections.first.past_registration_deadline %}
+                        <li><a href="#register">Register to vote</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
         {% endfor %}
     {% endif %}
     {% if not address_picker %}

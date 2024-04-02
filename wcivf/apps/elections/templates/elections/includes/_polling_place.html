@@ -2,14 +2,13 @@
 {% load humanize %}
 {% load i18n %}
 
-<div class="ds-card" id="polling_place">
-    <div class="ds-card-body">
-
-        <h2 id='where'>
-            <span aria-hidden="true">📍</span>
-            {% trans "Where to vote" %}
-        </h2>
-
+<li id="polling_place">
+    <details {% if polling_station.polling_station_known %}open{% endif %}>
+        <summary>
+            <h2 id='where'>
+                <span aria-hidden="true">{% trans "Where to vote" %}</span>
+            </h2>
+        </summary>
         {% if polling_station.polling_station_known %}
             {% if advance_voting_station and advance_voting_station.open_in_future %}
                 <p>
@@ -78,10 +77,10 @@
                 </p>
             {% endif %}
             {% comment %} {% if not postcode|ni_postcode %}
-                <p>
-                    {% blocktrans %}If you have a postal vote, you can hand it in at this polling station on election day up to 10pm{% endblocktrans %}
-                </p>
-            {% endif %} {% endcomment %}
+                    <p>
+                        {% blocktrans %}If you have a postal vote, you can hand it in at this polling station on election day up to 10pm{% endblocktrans %}
+                    </p>
+                {% endif %} {% endcomment %}
 
 
         {% else %}
@@ -155,53 +154,49 @@
         {% endif %}
 
 
-    </div>
+        {% if not polling_station.custom_finder and polling_station.polling_station_known and polling_station.station.geometry %}
+            <div id="area_map" class="ds-card-image"></div>
 
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
+            <script type="text/javascript">
+                // Maps
+                window.create_area_map = function(polling_station_point) {
+                    var polling_station_location = polling_station_point;
+                    window.polling_station_location = polling_station_location;
 
+                    var map = L.map('area_map', {
+                        zoomControl: true
+                    });
+                    map.dragging.disable();
+                    // map.touchZoom.disable();
+                    // map.doubleClickZoom.disable();
+                    map.scrollWheelZoom.disable();
 
-    {% if not polling_station.custom_finder and polling_station.polling_station_known and polling_station.station.geometry %}
-        <div id="area_map" class="ds-card-image"></div>
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.{ext}', {
+                        ext: 'png',
+                        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+                        subdomains: 'abc'
+                    }).addTo(map);
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+                    window.map = map;
 
-        <script type="text/javascript">
-            // Maps
-            window.create_area_map = function(polling_station_point) {
-                var polling_station_location = polling_station_point;
-                window.polling_station_location = polling_station_location;
+                    L.marker(polling_station_location, {
+                        'clickable': true,
+                    }).addTo(map);
 
-                var map = L.map('area_map', {
-                    zoomControl: true
-                });
-                map.dragging.disable();
-                // map.touchZoom.disable();
-                // map.doubleClickZoom.disable();
-                map.scrollWheelZoom.disable();
+                    map.setView(polling_station_location, 15);
+                };
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.{ext}', {
-                    ext: 'png',
-                    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-                    subdomains: 'abc'
-                }).addTo(map);
+                var polling_station_point = [
+                    {{ polling_station.station.geometry.coordinates.1 }},
+                    {{ polling_station.station.geometry.coordinates.0 }},
 
-                window.map = map;
+                ];
 
-                L.marker(polling_station_location, {
-                    'clickable': true,
-                }).addTo(map);
-
-                map.setView(polling_station_location, 15);
-            };
-
-            var polling_station_point = [
-                {{ polling_station.station.geometry.coordinates.1 }},
-                {{ polling_station.station.geometry.coordinates.0 }},
-
-            ];
-
-            create_area_map(polling_station_point);
-        </script>
-    {% endif %}
-</div>
+                create_area_map(polling_station_point);
+            </script>
+        {% endif %}
+    </details>
+</li>
