@@ -7,8 +7,8 @@
 
 {% block content %}
 
-    <h1 class="ds-h2">{% trans "Find out about candidates in your area" %}</h1>
-    <div class="ds-field">
+    <h1 class="ds-h2 ds-text-centered">{% trans "Find out about candidates in your area" %}</h1>
+    <div class="ds-field ds-text-centered">
         <form method="post">
             {% csrf_token %}
             {{ form|dc_form }}
