@@ -576,16 +576,34 @@ class YNRBallotImporter:
         print("checking for recently updated EE")
         for election_id in self.ee_helper.iter_recently_modified_election_ids():
             print(election_id)
+            
+            org_type = election_id.split('.')[0]
             group_type = self.ee_helper.ee_cache[election_id]["group_type"]
-            if group_type in ["election", "organisation"] or self.is_pcc_or_gla(
-                group_type, election_id
-            ):
+            
+            # if the election_id startings with "local" and group_type is election
+            # it is neither an Election nor a PostElection in WCIVF. Skip it.
+            if org_type == "local" and group_type == "election":
+                continue 
+            
+            ballot = None
+            election = None
+             
+            try: 
                 election = Election.objects.get(slug=election_id)
+            except Election.DoesNotExist:
+                print(f"election {election_id} does not exist")
+                try: 
+                    ballot = PostElection.objects.get(ballot_paper_id=election_id)
+                except PostElection.DoesNotExist:
+                    print(f"ballot {election_id} does not exist")
+                    continue
+            
+            if election and ballot:
                 self.election_importer.import_metadata_from_ee(election)
-            else:
-                ballot = PostElection.objects.get(ballot_paper_id=election_id)
-                print(f"importing metadata from EE for {ballot}")
+            elif ballot and not election:
                 self.import_metadata_from_ee(ballot)
-
-    def is_pcc_or_gla(self, group_type, election_id):
-        return not group_type and election_id.startswith(("pcc", "gla"))
+            elif election and not ballot:
+                self.election_importer.import_metadata_from_ee(election)
+            if not election and not ballot:
+                print(f"neither election nor ballot {election_id} exists")
+                continue
