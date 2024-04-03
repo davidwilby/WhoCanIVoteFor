@@ -576,10 +576,16 @@ class YNRBallotImporter:
         print("checking for recently updated EE")
         for election_id in self.ee_helper.iter_recently_modified_election_ids():
             print(election_id)
-            if self.ee_helper.ee_cache[election_id]["group_type"]:
+            group_type = self.ee_helper.ee_cache[election_id]["group_type"]
+            if group_type in ["election", "organisation"] or self.is_pcc_or_gla(
+                group_type, election_id
+            ):
                 election = Election.objects.get(slug=election_id)
                 self.election_importer.import_metadata_from_ee(election)
             else:
                 ballot = PostElection.objects.get(ballot_paper_id=election_id)
                 print(f"importing metadata from EE for {ballot}")
                 self.import_metadata_from_ee(ballot)
+
+    def is_pcc_or_gla(self, group_type, election_id):
+        return not group_type and election_id.startswith(("pcc", "gla"))
