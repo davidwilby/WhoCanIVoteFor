@@ -167,3 +167,8 @@ input[type=radio] {
     font-size: inherit;
 }
 
+@media (max-width: 738px) {
+    .emblem-for-candidate-list {
+        display: none;
+    }
+}
