@@ -76,18 +76,18 @@
             </ul>
 
             {% if show_polling_card or requires_voter_id %}
-                <p>Get ready to vote:</p>
+                <p>{% trans "Get ready to vote" %}:</p>
                 <ul>
                     {% if show_polling_card %}
-                        <li><a href="#where">Where to vote</a></li>
+                        <li><a href="#where">{% trans "Where to vote" %}</a></li>
                     {% endif %}
 
                     {% if requires_voter_id %}
-                        <li><a href="#requirements">Voter ID requirements</a></li>
+                        <li><a href="#requirements">{% trans "Voter ID requirements" %}</a></li>
                     {% endif %}
 
                     {% if not postelections or not postelections.first.past_registration_deadline %}
-                        <li><a href="#register">Register to vote</a></li>
+                        <li><a href="#register">{% trans "Register to vote" %}</a></li>
                     {% endif %}
                 </ul>
             {% endif %}
