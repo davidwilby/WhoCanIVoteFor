@@ -82,7 +82,7 @@ class EEHelper:
         return None
 
     def iter_recently_modified_election_ids(self, group_type=None):
-        modified_date = timezone.datetime.now().date() - timezone.timedelta(days=20)
+        modified_date = timezone.datetime.now().date() - timezone.timedelta(hours=1)
 
         params = {
             "modified": modified_date,
@@ -97,8 +97,6 @@ class EEHelper:
         for page in pages:
             for result in page["results"]:
                 self.ee_cache[result["election_id"]] = result
-                if not group_type and result["group_type"] == "election":
-                    continue
                 yield result["election_id"]
 
 
