@@ -144,6 +144,7 @@ class YNRElectionImporter:
                 updated = True
 
             if updated:
+                print(f"Updated {election.slug}")
                 election.save()
 
 
@@ -578,28 +579,35 @@ class YNRBallotImporter:
             print(election_id)
             
             org_type = election_id.split('.')[0]
-            group_type = self.ee_helper.ee_cache[election_id]["group_type"]
-            
-            # if the election_id startings with "local" and group_type is election
-            # it is neither an Election nor a PostElection in WCIVF. Skip it.
-            if org_type == "local" and group_type == "election":
-                continue 
-            
+             
             ballot = None
             election = None
-             
-            try: 
-                election = Election.objects.get(slug=election_id)
-            except Election.DoesNotExist:
-                print(f"election {election_id} does not exist")
-                try: 
-                    ballot = PostElection.objects.get(ballot_paper_id=election_id)
-                except PostElection.DoesNotExist:
-                    print(f"ballot {election_id} does not exist")
-                    continue
             
+            # if the election_id is has two parts such as local.2021-05-06, check the last time that
+            # the child ballots were updated
+            if len(election_id.split('.')) == 2 and self.ee_helper.ee_cache[election_id]['group_type'] == "election" and self.ee_helper.ee_cache[election_id]['children']: 
+                for child_id in self.ee_helper.ee_cache[election_id]['children']:
+                    try: 
+                        ballot = PostElection.objects.get(ballot_paper_id=child_id)
+                        if org_type in ['pcc', 'mayor']:
+                            election = Election.objects.get(slug=child_id)
+                    except PostElection.DoesNotExist:
+                        print(f"ballot {election_id} does not exist")
+                        continue
+            else: 
+                try: 
+                    election = Election.objects.get(slug=election_id) 
+                except Election.DoesNotExist:
+                    print(f"election {election_id} does not exist")
+                    try: 
+                        ballot = PostElection.objects.get(ballot_paper_id=election_id)
+                    except PostElection.DoesNotExist:
+                        print(f"ballot {election_id} does not exist")
+                        continue
+                
             if election and ballot:
                 self.election_importer.import_metadata_from_ee(election)
+                self.import_metadata_from_ee(ballot)
             elif ballot and not election:
                 self.import_metadata_from_ee(ballot)
             elif election and not ballot:
