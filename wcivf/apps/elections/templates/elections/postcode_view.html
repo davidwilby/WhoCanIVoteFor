@@ -54,35 +54,11 @@
                 {% if not postelections or not postelections.first.past_registration_deadline %}
                     {% include "elections/includes/_registration_details.html" with postelection=postelections.first council=polling_station.council %}
                 {% endif %}
+
+                {% if not messages %}
+                    {% include "elections/includes/_calendar.html" %}
+                {% endif %}
             </ul>
-
-            {% if not messages %}
-                <div>
-                    <h4>
-                        <span aria-hidden="true">⏰</span>
-                        {% blocktrans trimmed %}Add future elections in {{ postcode }} to your calendar{% endblocktrans %}
-                    </h4>
-                    <p>
-                        <p>{% trans "Manually subscribe by following these simple steps for your chosen calendar tool:" %}</p>
-                        <ol>
-                            <li>
-                                {% trans "In your calendar app settings, choose the option for adding a new calendar." %}
-                            </li>
-                            <li>
-                                {% trans "If presented with the option to choose a calendar type, choose web calendar." %}
-                            </li>
-                            <li>
-                                {% if uprn %}
-                                    {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'uprn_ical_view' postcode uprn %}</code>
-                                {% else %}
-                                    {% trans 'Enter this URL and save' %}: <code>webcal://whocanivotefor.co.uk{% url 'postcode_ical_view' postcode %}</code>
-                                {% endif %}
-                            </li>
-                        </ol>
-                    </p>
-
-                </div>
-            {% endif %}
 
             {% if postelections %}
                 {% include "feedback/feedback_form.html" %}
