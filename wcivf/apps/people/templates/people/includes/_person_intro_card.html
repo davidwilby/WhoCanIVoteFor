@@ -12,8 +12,8 @@
         {% endcomment %}
         {% if object.future_candidacies.all.count > 1 %}
             <h5>{{ object.name }}
-                {% blocktrans trimmed with party_name=object.future_candidacies.0.party_name a_or_an=object.future_candidacies.0.party.is_independent|yesno:_("an,a") %}
-                    is {{ a_or_an }} {{ party_name }} candidate in the following elections:
+                {% blocktrans trimmed with party_name=object.future_candidacies.0.party_name a_or_an=object.future_candidacies.0.party.is_independent|yesno:_("an,a") party_link=object.future_candidacies.0.party.get_absolute_url %}
+                    is {{ a_or_an }} <a href="{{ party_link }}">{{ party_name }}</a> candidate in the following elections:
                 {% endblocktrans %}
             </h5>
 

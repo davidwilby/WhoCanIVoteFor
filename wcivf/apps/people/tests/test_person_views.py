@@ -160,7 +160,7 @@ class PersonViewTests(TestCase):
         )
         self.assertEqual(self.person.future_candidacies.count(), 2)
         response = self.client.get(self.person_url, follow=True)
-        expected = "is a Liberal Democrat candidate in the following elections:"
+        expected = """is a <a href="/parties/foo/liberal-democrat">Liberal Democrat</a> candidate in the following elections:"""
         self.assertContains(response, expected)
 
     def test_multiple_independent_candidacies_intro(self):
@@ -203,7 +203,7 @@ class PersonViewTests(TestCase):
         )
         self.assertEqual(self.person.future_candidacies.count(), 2)
         response = self.client.get(self.person_url, follow=True)
-        expected = "is an Independent candidate in the following elections:"
+        expected = """is an <a href="/parties/ynmp-party:2/independent">Independent</a> candidate in the following elections:"""
         self.assertContains(response, expected)
 
     def test_one_candidacy_intro(self):
