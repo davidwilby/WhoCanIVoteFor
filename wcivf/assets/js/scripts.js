@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var feedback_form = document.forms[1]
 	var feedback_form_token = feedback_form.elements[1].value
 	var csrfmiddlewaretoken = feedback_form.elements[0].value
+	var found_useful_label = feedback_form.elements[3].label
+	found_useful_label.style.display = 'none'
 	document.querySelector('[name=found_useful]').click(function(el) {
 	    var found_useful = document.querySelector(this).value;
 	    fetch('/feedback/submit_initial/', {
