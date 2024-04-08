@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% if object.personpost_set.exists %}
-    <div class="ds-table">
+    <div class="ds-table ds-stack">
         <h2 class="ds-h3">{{ object.name }}'s {% trans "elections" %}</h2>
         <table>
             <tr>
