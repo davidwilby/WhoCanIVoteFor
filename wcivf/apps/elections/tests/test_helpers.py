@@ -1,3 +1,4 @@
+import datetime
 import sys
 from datetime import date
 
@@ -562,6 +563,37 @@ class TestYNRImporterAddBallots:
         person_post.previous_party_affiliations.add.assert_called_once_with(
             party
         )
+
+    @pytest.mark.django_db
+    def test_import_ballots_updates_election_description(
+        self, mocker, importer, ballot_dict, ballot
+    ):
+        election_id = "pcc.2024-05-02"
+        ballot_paper_id = "pcc.avon-and-somerset.2024-05-02"
+        election = ElectionFactory(slug=election_id, ee_last_updated=None)
+        PostElectionFactory(ballot_paper_id=ballot_paper_id, election=election)
+        # mock the same election from EE with a different description and a new explainer and later modified time
+        ee_election = {
+            "election_id": election_id,
+            "current": True,
+            "modified_date": datetime.datetime.now().isoformat(),
+        }
+        ee_ballot = {
+            "election_id": ballot_paper_id,
+            "description": "new description for PCC election",
+        }
+        mocker.patch.object(EEHelper, "get_data", side_effect=[ee_election, ee_ballot])
+        
+        results = {"results": [ballot_dict]}
+        
+        importer.add_ballots(results=results)
+
+        # assert that the election description is updated
+        self.assertEqual(
+            election.description, "new description for PCC election"
+        )
+        # assert that the election ee_last_updated is updated
+        self.assertEqual(election.ee_last_updated, ee_election["modified_date"])
 
 
 class TestYNRBallotImporterDivisionType:
