@@ -82,7 +82,9 @@ class EEHelper:
         return None
 
     def iter_recently_modified_election_ids(self, group_type=None):
-        modified_date = timezone.datetime.now().date() - timezone.timedelta(days=3)
+        modified_date = timezone.datetime.now().date() - timezone.timedelta(
+            hours=1
+        )
 
         params = {
             "modified": modified_date,
