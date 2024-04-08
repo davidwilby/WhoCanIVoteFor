@@ -215,6 +215,7 @@ class Election(models.Model):
             "mayor.tower-hamlets.2022-05-05": "booklets/2022-05-05/mayoral/mayor.tower-hamlets.2022-05-05.pdf",
             "mayor.hackney.by.2023-11-09": "booklets/2023-11-09/mayoral/mayor.hackney.2023-11-09.pdf",
             "mayor.lewisham.2024-03-07": "booklets/2024-03-07/mayoral/lewisham.mayor.2024-03-07.pdf",
+            "mayor.london.2024-05-02": "booklets/2024-05-02/mayoral/mayor.london.2024-05-02.pdf",
         }
 
         return election_to_booklet.get(self.slug)
