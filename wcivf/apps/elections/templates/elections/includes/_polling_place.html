@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load i18n %}
 
-<li id="polling_place">
+<li>
     <details {% if polling_station.polling_station_known %}open{% endif %}>
         <summary>
             <h2 id='where'>
@@ -148,16 +148,18 @@
                 {% endif %}
             </p>
         {% endif %}
-
-
         {% if not polling_station.custom_finder and polling_station.polling_station_known and polling_station.station.geometry %}
-            <div id="area_map" class="ds-card-image"></div>
 
+            <div class="ds-card">
+                <div class="ds-card-image" id="area_map"></div>
+            </div>
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
             <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
             <script type="text/javascript">
                 // Maps
+
+
                 window.create_area_map = function(polling_station_point) {
                     var polling_station_location = polling_station_point;
                     window.polling_station_location = polling_station_location;
