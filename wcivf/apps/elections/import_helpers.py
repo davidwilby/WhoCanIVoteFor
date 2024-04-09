@@ -113,8 +113,15 @@ class YNRElectionImporter:
         This means grabbing the data from EE directly
         """
         ee_data = self.ee_helper.get_data(election.slug)
+
         if ee_data:
             updated = False
+            
+            election_title = ee_data["election_title"]
+            if election_title:
+                election.name = election_title
+                updated = True
+                
             metadata = ee_data["metadata"]
             if metadata:
                 election.metadata = metadata
@@ -578,56 +585,69 @@ class YNRBallotImporter:
         for election_id in self.ee_helper.iter_recently_modified_election_ids():
             # ^^ this will return election_ids for recently updated elections
             # and we will decide if we need to update the metadata for both the election
-            # and the ballot or just one or the other. 
-            
+            # and the ballot or just one or the other.
+
             # Previously, we only updated an election if a group_type exists.
-            # In this iteration, if an election_id has a group_type of election, 
-            # we will update the election and all of its children. 
-             
+            # In this iteration, if an election_id has a group_type of election,
+            # we will update the election and all of its children.
+
             ballot = None
             election = None
 
-            # if the election_id is has two parts such as local.2021-05-06 or pcc.2024-05-02 find the children and 
+            # if the election_id is has two parts such as local.2021-05-06 or pcc.2024-05-02 find the children and
             # try to match with a WCIVF ballot and/or election object.
-            if len(election_id.split('.')) == 2 and self.ee_helper.ee_cache[election_id]['group_type'] == "election": 
-                if self.ee_helper.ee_cache[election_id]['children']:
-                    for child_id in self.ee_helper.ee_cache[election_id]['children']:
+            if (
+                len(election_id.split(".")) == 2
+                and self.ee_helper.ee_cache[election_id]["group_type"]
+                == "election"
+            ):
+                if self.ee_helper.ee_cache[election_id]["children"]:
+                    for child_id in self.ee_helper.ee_cache[election_id][
+                        "children"
+                    ]:
                         election, ballot = self.match_ids(child_id)
-                        
+
             # If the election_id does not have a group_type or a group_type of "subtype",
             # we will update the ballot. If nothing matches, no metadata will be updated.
-            elif len(election_id.split('.')) > 2 and self.ee_helper.ee_cache[election_id]['group_type'] in ["subtype", None]:
+            elif len(election_id.split(".")) > 2 and self.ee_helper.ee_cache[
+                election_id
+            ]["group_type"] in ["subtype", None]:
                 election, ballot = self.match_ids(election_id)
-                
+
             if election and ballot:
-                print(f"I'm going to import metadata from EE for the Election:{election.slug} and Ballot:{ballot.ballot_paper_id}")
+                print(
+                    f"I'm going to import metadata from EE for the Election:{election.slug} and Ballot:{ballot.ballot_paper_id}"
+                )
                 self.election_importer.import_metadata_from_ee(election)
                 self.import_metadata_from_ee(ballot)
             elif ballot and not election:
-                print(f"I'm going to import metadata from EE for the Ballot:{ballot.ballot_paper_id} but no elections")
+                print(
+                    f"I'm going to import metadata from EE for the Ballot:{ballot.ballot_paper_id} but no elections"
+                )
                 self.import_metadata_from_ee(ballot)
             elif election and not ballot:
-                print(f"I'm going to import metadata from EE for the Election:{election.slug} but no ballots")
+                print(
+                    f"I'm going to import metadata from EE for the Election:{election.slug} but no ballots"
+                )
                 self.election_importer.import_metadata_from_ee(election)
             else:
                 print(f"neither election nor ballot {election_id} exists")
-            
+
     def match_ids(self, id):
         """
         This method takes an id and checks if a ballot and/or election exists in the WCIVF database.
         """
         ballot = None
         election = None
-        try: 
+        try:
             election = Election.objects.get(slug=id)
-            print(f"election {id} exists") 
+            print(f"election {id} exists")
         except Election.DoesNotExist:
             print(f"election {id} does not exist")
 
-        try: 
+        try:
             ballot = PostElection.objects.get(ballot_paper_id=id)
             print(f"ballot {id} exists")
         except PostElection.DoesNotExist:
             print(f"ballot {id} does not exist")
         return election, ballot
-            
