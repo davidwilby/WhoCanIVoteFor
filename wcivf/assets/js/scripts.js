@@ -28,3 +28,25 @@ if (found_useful.value = undefined) {
 		comments.style.display = ''
 	})
 }
+
+
+
+// TODO: this could be move to the design system in theory
+function checkAndOpenDetails() {
+  const hash = window.location.hash; // Get the current hash.
+  if (hash) {
+    const targetElement = document.querySelector(hash); // Find the element with the ID.
+    if (targetElement) {
+      // Check if the target is within a <details> element.
+      const parentDetails = targetElement.closest('details');
+      if (parentDetails) {
+        parentDetails.open = true; // Open the <details> element.
+      }
+    }
+  }
+}
+// Run the function on page load.
+window.onload = checkAndOpenDetails;
+
+// Optional: if you want to open the details when the hash changes without reloading the page.
+window.onhashchange = checkAndOpenDetails;
