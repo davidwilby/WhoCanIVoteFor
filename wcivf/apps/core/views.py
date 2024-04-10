@@ -1,13 +1,11 @@
 import datetime
 import os
 
-
 from django import http
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone, translation
 from django.views.generic import FormView, TemplateView, View
-
 
 from .forms import PostcodeLookupForm
 
