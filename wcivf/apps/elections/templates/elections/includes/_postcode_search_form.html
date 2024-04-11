@@ -5,7 +5,7 @@
     <div class="ds-card-body">
         <h3>{% trans "All elections where you live" %}</h3>
         <p>{% trans "Enter your postcode to get information about elections, your candidates and where to vote." %}</p>
-        <form method="post" action="/">
+        <form class="ds-text-centered" method="post" action="/">
             {% csrf_token %}
             {{ postcode_form|dc_form }}
             <button type="submit" class="ds-button">{% trans "Find your candidates" %}</button>

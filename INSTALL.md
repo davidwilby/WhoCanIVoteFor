@@ -189,3 +189,5 @@ Now that we are including common footer elements in dc_utils, we need to update 
 `ln -s ../env/lib/python3.9/site-packages/dc_utils`
 
 After adding new translation tags to a template, run `django-admin makemessages -l cy --symlinks --ignore='env*'` then `django-admin compilemessages --ignore='env'` to generate matching translation strings to be translated.
+
+If you're just filling in blanks for Welsh translations that already exist, you can skip the `makemessages` step and just run `django-admin compilemessages --ignore='env'`.
