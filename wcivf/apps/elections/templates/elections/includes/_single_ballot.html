@@ -50,7 +50,12 @@
             {% if postelection.election.description %}
                 <div class="ds-details">
                     <details>
-                        <summary>{% trans "About this position" %}</summary>
+                        <summary>
+                            <h2>
+                                <span aria-hidden="true">{% trans "About this position" %}
+                                </span>
+                            </h2>
+                        </summary>
                         <p>{% blocktrans with description=postelection.election.description|markdown %} {{ description }}{% endblocktrans%}</p>
                     </details>
                 </div>
@@ -136,9 +141,9 @@
         {% endif %}
 
         {% if postelection.election.election_booklet %}
-            <h4>
+            <b>
                 <a href="{% static postelection.election.election_booklet %}">{% trans "Read the official candidate booklet for this election." %}</a>
-            </h4>
+            </b>
         {% endif %}
 
         {% if postelection.election.in_past and postelection.has_results %}
