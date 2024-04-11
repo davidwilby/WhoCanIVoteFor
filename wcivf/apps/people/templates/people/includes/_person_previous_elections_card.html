@@ -39,7 +39,7 @@
                         {% if person_post.votes_cast %}
                             {{ person_post.get_results_rank }}
                         {% else %}
-                            Position not available
+                            {% trans "Position not available" %}
                         {% endif %}
                     </td>
                 </tr>
