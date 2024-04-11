@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    UK Prospective Parliamentary Candidates
+    {% trans "UK Prospective Parliamentary Candidates" %}
 {% endblock %}
-{% block og_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock og_description_content %}
-{% block twitter_description_content %}Democracy Club’s volunteers are collecting information on each candidate as they are announced{% endblock twitter_description_content %}
+{% block og_description_content %}{% trans "Democracy Club’s volunteers are collecting information on each candidate as they are announced" %}{% endblock og_description_content %}
+{% block twitter_description_content %}{% trans "Democracy Club’s volunteers are collecting information on each candidate as they are announced" %}{% endblock twitter_description_content %}
 
 
 
 {% block content %}
 
-    <h1>UK Prospective Parliamentary Candidates</h1>
+    <h1>{% trans "UK Prospective Parliamentary Candidates" %}</h1>
     <p>
-        Democracy Club’s volunteers are collecting information on each candidate as they are announced.
+        {% trans "Democracy Club's volunteers are collecting information on each candidate as they are announced.
         The live table below displays all the candidates we are aware of. Where a candidate has a
-        recent electoral history, this is displayed on their Democracy Club profile, linked to from their name.
+        recent electoral history, this is displayed on their Democracy Club profile, linked to from their name." %}
     </p>
 
     <aside class="ds-filter" aria-labelledby="filter-label">
 
         <form>
             <details {% if filter.data %}open=""{% endif %}>
-                <summary>Filters</summary>
+                <summary>{% trans "Filters" %}</summary>
                 <div class="ds-advanced-filters">
                     <div class="ds-filter-cluster">
                         {% for field in filter.form.visible_fields %}
                             <ul aria-labelledby="adv-filter-label-{{ forloop.counter }}">
                                 <li id="adv-filter-label-{{ forloop.counter }}" class="ds-filter-label" aria-hidden="true" style="flex-basis:100%;margin-top:1em">{{ field.label }}:</li>
-                                {{ field }}
+                                {% blocktrans %}{{ field }}{% endblocktrans %}
                             </ul>
                         {% endfor %}
 
@@ -36,14 +36,14 @@
             </details>
         </form>
     </aside>
-    <p>You can also <a href="{{  csv_url}}">download the CSV</a> of all prospective parliamentary candidates.</p>
+    <p>{% blocktrans %}You can also <a href="{{ csv_url }}">download the CSV</a> of all prospective parliamentary candidates.{% endblocktrans %}</p>
     <div class="ds-table">
         <table>
             <tr>
-                <th>Name</th>
-                <th>Party</th>
-                <th>Constituency</th>
-                <th>Nation / English region</th>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Party" %}</th>
+                <th>{% trans "Constituency" %}</th>
+                <th>{% trans "Nation / English region" %}</th>
             </tr>
             {% for object in queryset %}
                 <tr>
@@ -56,7 +56,7 @@
                         {% endif %}
                         <br>
                         <small>
-                            <cite><a href="{{ object.sheet_row.Source }}">Source</a></cite>
+                            <cite><a href="{{ object.sheet_row.Source }}">{% trans" Source" %}</a></cite>
                         </small>
 
                     </td>
