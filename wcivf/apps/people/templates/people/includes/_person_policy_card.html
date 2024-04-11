@@ -22,7 +22,7 @@
             <blockquote>{{ object.statement_to_voters|linebreaks }}</blockquote>
         {% endif %}
         {% if object.statement_to_voters_last_updated %}
-            <p>{% blocktrans with date=object.statement_to_voters_last_updated|naturalday %}This statement was last updated on {{ date }}{% endblocktrans %}</p>
+            <p>{% blocktrans with date=object.statement_to_voters_last_updated|naturalday %}This statement was last updated on {{ date }}.{% endblocktrans %}</p>
         {% endif %}
         <p class="small">
             {% blocktrans trimmed with person_name=object.name %}

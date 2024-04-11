@@ -141,9 +141,9 @@
         {% endif %}
 
         {% if postelection.election.election_booklet %}
-            <b>
+            <p><b>
                 <a href="{% static postelection.election.election_booklet %}">{% trans "Read the official candidate booklet for this election." %}</a>
-            </b>
+            </b></p>
         {% endif %}
 
         {% if postelection.election.in_past and postelection.has_results %}
