@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-11 16:04+0100\n"
+"POT-Creation-Date: 2024-04-17 13:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: env/lib/python3.10/site-packages/dc_utils/forms.py:148
 #: wcivf/apps/core/forms.py:7
 msgid "Enter your postcode"
 msgstr ""
@@ -50,20 +51,19 @@ msgstr ""
 msgid "Building digital infrastructure for a 21st century democracy."
 msgstr ""
 
-
-#: wcivf/apps/elections/models.py:689
+#: wcivf/apps/elections/models.py:692
 msgid "First-past-the-post"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:691
+#: wcivf/apps/elections/models.py:694
 msgid "Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:693
+#: wcivf/apps/elections/models.py:696
 msgid "Supplementary Vote"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:695
+#: wcivf/apps/elections/models.py:698
 msgid "Single Transferable Vote"
 msgstr ""
 
@@ -627,17 +627,13 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:40
 #, python-format
-msgid "This election will be held <strong> %(election_date)s</strong>."
+msgid "This election will be held <strong>%(election_date)s</strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:55
 msgid "About this position"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:59
-#, python-format
-msgid " %(description)s"
-msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:66
 #, python-format
@@ -792,9 +788,9 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_voter_id.html:15
 msgid ""
-"You do not need your poll card to vote. You must vote at your assigned "
-"polling station.\n"
-"                Read more about <a href=\"https://www.gov.uk/voting-in-the-"
+"You do not need your poll card to vote."
+"You must vote at your assigned polling station.\n"
+"Read more about <a href=\"https://www.gov.uk/voting-in-the-"
 "uk/polling-stations\">voting in Great Britain</a>."
 msgstr ""
 
@@ -830,6 +826,10 @@ msgid ""
 "Learn more about elections in the UK <a href=\"https://www."
 "electoralcommission.org.uk/i-am-a/voter/types-elections\">on the Electoral "
 "Commission website</a>."
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:11
+msgid "Select your address"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:13
@@ -1134,6 +1134,11 @@ msgstr ""
 msgid ""
 "This political party was deregistered on %(dereg_date)s, and can no longer "
 "field candidates. "
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/party_detail.html:56
+#, python-format
+msgid " %(description)s"
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:69
@@ -1575,7 +1580,7 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_policy_card.html:25
 #, python-format
-msgid "This statement was last updated on %(date)s"
+msgid "This statement was last updated on %(date)s."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_policy_card.html:28
@@ -1651,6 +1656,10 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:16
 msgid "Position"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:42
+msgid "Position not available"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_constituency.html:5
@@ -2032,6 +2041,11 @@ msgstr ""
 
 #: wcivf/templates/base.html:113
 msgid "GitHub"
+msgstr ""
+
+#: wcivf/templates/base.html:114
+msgid ""
+"Browse the list of people and parties standing in the next general election"
 msgstr ""
 
 #: wcivf/templates/home.html:5 wcivf/templates/home.html:6

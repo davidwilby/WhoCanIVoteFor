@@ -38,7 +38,7 @@
                         {% endblocktrans %}
                     {% else %}
                         {% blocktrans trimmed with election_date=postelection.election.election_date|naturalday:"\o\n l j F Y" %}
-                            This election will be held <strong> {{ election_date }}</strong>.
+                            This election will be held <strong>{{ election_date }}</strong>.
                         {% endblocktrans %}
                     {% endif %}
                 {% endif %}

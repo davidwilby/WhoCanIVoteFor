@@ -53,7 +53,7 @@
                 <h2>{{ object.format_name }}</h2>
                 <p>{% blocktrans trimmed with num_candidates=object.personpost_set.all.count|intcomma pluralize_candidates=object.personpost_set.all.count|pluralize %}{{ num_candidates }} candidate{{ pluralize_candidates }} in our database.{% endblocktrans %}</p>
                 {% if object.description %}
-                    {{ object.description|markdown }}
+                    {% blocktrans trimmed with description=object.description|markdown %}{{ description }}{% endblocktrans %}
                 {% endif %}
                 {% if object.wikipedia_url %}
                     <p><a href="{{ object.wikipedia_url }}">{% trans "Read more on wikipedia" %}</a></p>
