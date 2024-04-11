@@ -217,6 +217,8 @@ class Election(models.Model):
             "mayor.lewisham.2024-03-07": "booklets/2024-03-07/mayoral/lewisham.mayor.2024-03-07.pdf",
             "mayor.london.2024-05-02": "booklets/2024-05-02/mayoral/mayor.london.2024-05-02.pdf",
             "mayor.tees-valley.2024-05-02": "booklets/2024-05-02/mayoral/mayor.tees-valley.2024-05-02.pdf",
+            "mayor.west-yorkshire.2024-05-02": "booklets/2024-05-02/mayoral/mayor.west-yorkshire.2024-05-02.pdf",
+            "mayor.york-and-north-yorkshire-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.york-and-north-yorkshire-ca.2024-05-02.pdf",
         }
 
         return election_to_booklet.get(self.slug)
