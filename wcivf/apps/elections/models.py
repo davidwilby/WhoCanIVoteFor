@@ -219,6 +219,8 @@ class Election(models.Model):
             "mayor.tees-valley.2024-05-02": "booklets/2024-05-02/mayoral/mayor.tees-valley.2024-05-02.pdf",
             "mayor.west-yorkshire.2024-05-02": "booklets/2024-05-02/mayoral/mayor.west-yorkshire.2024-05-02.pdf",
             "mayor.york-and-north-yorkshire-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.york-and-north-yorkshire-ca.2024-05-02.pdf",
+            "mayor.liverpool-city-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.liverpool-city-ca.2024-05-02.pdf",
+            "mayor.north-east-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.north-east-ca.2024-05-02.pdf",
         }
 
         return election_to_booklet.get(self.slug)
@@ -248,6 +250,7 @@ class Election(models.Model):
 
 
 class Post(models.Model):
+
     """
     A post has an election and candidates
     """
