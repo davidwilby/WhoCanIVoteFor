@@ -221,6 +221,8 @@ class Election(models.Model):
             "mayor.york-and-north-yorkshire-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.york-and-north-yorkshire-ca.2024-05-02.pdf",
             "mayor.liverpool-city-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.liverpool-city-ca.2024-05-02.pdf",
             "mayor.north-east-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.north-east-ca.2024-05-02.pdf",
+            "mayor.greater-manchester-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.greater-manchester-ca.2024-05-02.pdf",
+            "mayor.sheffield-city-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.sheffield-city-ca.2024-05-02.pdf",
         }
 
         return election_to_booklet.get(self.slug)
