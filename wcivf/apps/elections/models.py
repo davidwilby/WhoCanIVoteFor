@@ -224,6 +224,8 @@ class Election(models.Model):
             "mayor.greater-manchester-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.greater-manchester-ca.2024-05-02.pdf",
             "mayor.sheffield-city-ca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.sheffield-city-ca.2024-05-02.pdf",
             "mayor.salford.2024-05-02": "booklets/2024-05-02/mayoral/mayor.salford.2024-05-02.pdf",
+            "mayor.west-midlands.2024-05-02": "booklets/2024-05-02/mayoral/mayor.west-midlands.2024-05-02.pdf",
+            "mayor.east-midlands-cca.2024-05-02": "booklets/2024-05-02/mayoral/mayor.east-midlands-cca.2024-05-02.pdf",
         }
 
         return election_to_booklet.get(self.slug)
