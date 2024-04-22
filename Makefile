@@ -29,3 +29,17 @@ lambda-migrate:  ## Invoke lambda to migrate the database
 	--function-name WCIVFControllerFunction \
 	--payload '{ "command": "migrate" }' \
 	/dev/stdout
+
+
+lib/dc_utils:
+	mkdir -p lib
+	ln -s `python -c 'import dc_utils; print(dc_utils.__path__[0])'` lib/dc_utils
+
+.PHONY: makemessages
+makemessages: lib/dc_utils
+	${VIRTUAL_ENV}/bin/python manage.py makemessages -l cy --ignore='env*'
+
+.PHONY: compilemessages
+compilemessages:
+	${VIRTUAL_ENV}/bin/python manage.py compilemessages --ignore='env*'
+
