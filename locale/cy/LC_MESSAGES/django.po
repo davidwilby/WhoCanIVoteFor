@@ -1129,7 +1129,7 @@ msgid "Tweets by"
 msgstr "Trydariadau gan"
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:71
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:62
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:61
 msgid "Candidates"
 msgstr "Ymgeiswyr"
 
@@ -1969,7 +1969,7 @@ msgid "Election"
 msgstr "Etholiad"
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:44
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:47
 msgid "Party"
 msgstr "Plaid"
 
@@ -2195,143 +2195,196 @@ msgstr "Rydych chi yma:"
 msgid "Back to candidates in"
 msgstr "Dychwelyd at ymgeiswyr yn"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:4
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:10
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:5
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:4
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:13
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:12
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:5
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:14
 msgid "UK Prospective Parliamentary Candidates"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:7
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:8
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:9
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:17
 msgid ""
 "The next UK parliamentary general election is due to occur no later than "
 "January 2025, and political parties are currently selecting their candidates "
 "for each House of Commons constituency"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:14
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:15
 msgid "UK Prospective Parliamentary&nbsp;Candidates"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:23
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:19
+msgid ""
+"Democracy Club's volunteers are collecting information on each candidate as "
+"they are announced. The live tables below display all the candidates we are "
+"aware of. Where a candidate has a recent electoral history, this is "
+"displayed on their Democracy Club profile."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:22
 msgid "Spotted an error? Think we’ve missed a candidate? Get in touch:"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:26
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:25
 msgid "More information about the general election"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:32
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:27
+msgid ""
+"There are 650 constituencies in the House of Commons, and each constituency "
+"elects one Member of Parliament (MP). Following a recent redistribution, in "
+"the next election England will elect 543 MPs, Scotland will elect 57, Wales "
+"will elect 32, and Northern Ireland will elect 18.\""
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:31
 msgid "Boundary changes"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:33
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:32
 msgid ""
 "The next general election will be held on new constituency boundaries. See "
 "the"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:35
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:34
 msgid "website of the House of Commons Library"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:36
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:35
 msgid "to find out what is happening to your constituency."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:38
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:37
 msgid "MPs standing down"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:39
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:38
 msgid ""
 "Some existing Members of Parliament have announced they will not be standing "
 "at the next election."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:41
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:40
 msgid "Visit the website of the Institute for Government for a full list"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:42
+msgid "Timetable"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:43
 #, fuzzy
 #| msgid "About Democracy Club"
 msgid "Democracy Club's"
 msgstr "Ynglŷn â'r Clwb Democratiaeth"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:45
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
 msgid "general election timetable generator"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:51
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
+msgid "provides an election timetable for any given date"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:50
 msgid "The data"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
-msgid "The"
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
+msgid "The "
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
 msgid "full list of prospective parliamentary candidates"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:53
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
 #, python-format
 msgid "is available as a browsable table or a CSV{%% endblocktrans"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:59
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:61
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:60
 msgid "Region / nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:62
 msgid "Total seats in region"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:103
+msgid "Support our work"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:104
+msgid ""
+"Democracy Club is a non-profit Community Interest Company. If you've found "
+"this resource useful, please consider a donation"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:106
 msgid "Donate now"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:6
 #: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:7
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:8
 msgid ""
 "Democracy Club’s volunteers are collecting information on each candidate as "
 "they are announced"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:24
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:16
+msgid ""
+"\n"
+"            Democracy Club's volunteers are collecting information on each "
+"candidate as they are announced.\n"
+"            The live table below displays all the candidates we are aware "
+"of. Where a candidate has a\n"
+"            recent electoral history, this is displayed on their Democracy "
+"Club profile, linked to from their name.\n"
+"        "
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:27
 msgid "Filters"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:30
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:33
 #, python-format
 msgid "%(field)s"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:39
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:42
 #, python-format
 msgid ""
 "You can also <a href=\"%(csv_url)s\">download the CSV</a> of all prospective "
 "parliamentary candidates."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:43
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:46
 msgid "Name"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:48
 msgid "Constituency"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:46
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:49
 msgid "Nation / English region"
 msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:62
+#, fuzzy
+#| msgid "Source code"
+msgid "Source"
+msgstr "Cod ffynhonnell"
 
 #: wcivf/apps/referendums/templates/referendums/includes/_card.html:9
 #, python-format
