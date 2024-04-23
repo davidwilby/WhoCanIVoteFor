@@ -96,6 +96,8 @@ class BaseCandidatesAndElectionsViewSet(
                 "voting_system": VotingSystemSerializer(
                     postelection.voting_system
                 ).data,
+                "voter_id_requirements": postelection.get_voter_id_requirements,
+                "postal_voting_requirements": postelection.get_postal_voting_requirements,
                 "seats_contested": postelection.winner_count,
                 "organisation_type": postelection.post.organization_type,
                 "hustings": self.add_hustings(postelection),

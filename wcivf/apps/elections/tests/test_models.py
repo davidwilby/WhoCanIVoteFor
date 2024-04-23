@@ -436,3 +436,13 @@ class TestPostElectionModel:
             post_election.short_cancelled_message_html
             == "<strong> ❌ This election has been cancelled due to the death of a candidate.</strong>"
         )
+
+    def test_metadata_tools(self, db):
+        old_ballot = PostElectionFactory()
+        assert old_ballot.get_voter_id_requirements is None
+        assert old_ballot.get_postal_voting_requirements == "RPA2000"
+
+        newer_ballot = PostElectionFactory()
+        newer_ballot.ballot_paper_id = "parl.place.2025-01-01"
+        assert newer_ballot.get_voter_id_requirements == "EA-2022"
+        assert newer_ballot.get_postal_voting_requirements == "EA-2022"
