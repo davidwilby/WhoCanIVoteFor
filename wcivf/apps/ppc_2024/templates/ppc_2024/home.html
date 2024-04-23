@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block page_title %}
     {% trans "UK Prospective Parliamentary Candidates" %}
@@ -40,9 +41,9 @@
             <a href="https://www.instituteforgovernment.org.uk/explainer/mps-standing-down-next-election">
                 {% trans "Visit the website of the Institute for Government for a full list" %}</a>.</p>
 
-        <h2 class="ds-h4">{% "Timetable" %}</h2>
+        <h2 class="ds-h4">{% trans "Timetable" %}</h2>
         <p>{% trans "Democracy Club's" %} <a href="https://election-timetable.democracyclub.org.uk/">
-            {% trans "general election timetable generator"%}</a> {% tans "provides an election timetable for any given date" %}.</p>
+            {% trans "general election timetable generator"%}</a> {% trans "provides an election timetable for any given date" %}.</p>
 
 
     </details>
@@ -101,9 +102,8 @@
     {% endif %}
 
 
-    <h2>{% trans "Support our work"}</h2>
-    <p>{% trans "Democracy Club is a non-profit Community Interest Company. If you've found this resource useful, please consider
-        a donation" %}.</p>
+    <h2>{% trans "Support our work" %}</h2>
+    <p>{% trans "Democracy Club is a non-profit Community Interest Company. If you've found this resource useful, please consider a donation" %}.</p>
 
     <p><a href="https://www.paypal.com/biz/fund?id=EX33MCYQ9UUDJ" class="ds-cta">{% trans "Donate now" %}</a></p>
 

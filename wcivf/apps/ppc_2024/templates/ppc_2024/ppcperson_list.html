@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block page_title %}
     {% trans "UK Prospective Parliamentary Candidates" %}
@@ -12,9 +13,11 @@
 
     <h1>{% trans "UK Prospective Parliamentary Candidates" %}</h1>
     <p>
-        {% trans "Democracy Club's volunteers are collecting information on each candidate as they are announced.
-        The live table below displays all the candidates we are aware of. Where a candidate has a
-        recent electoral history, this is displayed on their Democracy Club profile, linked to from their name." %}
+        {% blocktrans %}
+            Democracy Club's volunteers are collecting information on each candidate as they are announced.
+            The live table below displays all the candidates we are aware of. Where a candidate has a
+            recent electoral history, this is displayed on their Democracy Club profile, linked to from their name.
+        {% endblocktrans %}
     </p>
 
     <aside class="ds-filter" aria-labelledby="filter-label">
@@ -56,7 +59,7 @@
                         {% endif %}
                         <br>
                         <small>
-                            <cite><a href="{{ object.sheet_row.Source }}">{% trans" Source" %}</a></cite>
+                            <cite><a href="{{ object.sheet_row.Source }}">{% trans "Source" %}</a></cite>
                         </small>
 
                     </td>
