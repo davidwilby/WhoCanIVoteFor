@@ -16,7 +16,9 @@ class TranslatedTemplateView(TemplateView):
         base_template_name, ext = self.template_name.rsplit(".", 1)
         current_language = translation.get_language()
         if current_language != "en":
-            templates.insert(0, f"{base_template_name}_{current_language}.{ext}")
+            templates.insert(
+                0, f"{base_template_name}_{current_language}.{ext}"
+            )
         return templates
 
 
@@ -24,7 +26,10 @@ class PostcodeFormView(FormView):
     form_class = PostcodeLookupForm
 
     def get(self, request, *args, **kwargs):
-        if request.GET.get("postcode") and "invalid_postcode" not in self.request.GET:
+        if (
+            request.GET.get("postcode")
+            and "invalid_postcode" not in self.request.GET
+        ):
             redirect_url = reverse(
                 "postcode_view", kwargs={"postcode": request.GET["postcode"]}
             )
@@ -50,7 +55,9 @@ class PostcodeFormView(FormView):
 
     def form_valid(self, form):
         postcode = form.cleaned_data["postcode"]
-        self.success_url = reverse("postcode_view", kwargs={"postcode": postcode})
+        self.success_url = reverse(
+            "postcode_view", kwargs={"postcode": postcode}
+        )
         return super().form_valid(form)
 
 
@@ -93,7 +100,9 @@ class HomePageView(PostcodeFormView):
         context["show_gb_id_messaging"] = getattr(
             settings, "SHOW_GB_ID_MESSAGING", False
         )
-        context["show_results_chart"] = getattr(settings, "SHOW_RESULTS_CHART", False)
+        context["show_results_chart"] = getattr(
+            settings, "SHOW_RESULTS_CHART", False
+        )
 
         return context
 
@@ -113,7 +122,9 @@ class StatusCheckView(View):
     @property
     def server_is_dirty(self):
         if getattr(settings, "CHECK_HOST_DIRTY", False):
-            dirty_file_path = os.path.expanduser(getattr(settings, "DIRTY_FILE_PATH"))
+            dirty_file_path = os.path.expanduser(
+                getattr(settings, "DIRTY_FILE_PATH")
+            )
 
             if os.path.exists(dirty_file_path):
                 return True

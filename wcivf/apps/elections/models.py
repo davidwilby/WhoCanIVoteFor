@@ -15,6 +15,10 @@ from django.utils.html import mark_safe
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
+from uk_election_ids.metadata_tools import (
+    IDRequirementsMatcher,
+    PostalVotingRequirementsMatcher,
+)
 
 from .helpers import get_election_timetable
 from .managers import ElectionManager
@@ -163,7 +167,9 @@ class Election(models.Model):
 
     def _election_datetime_tz(self):
         election_date = self.election_date
-        election_datetime = datetime.datetime.fromordinal(election_date.toordinal())
+        election_datetime = datetime.datetime.fromordinal(
+            election_date.toordinal()
+        )
         election_datetime.replace(tzinfo=LOCAL_TZ)
         return election_datetime
 
@@ -178,13 +184,16 @@ class Election(models.Model):
         return utc_to_local(election_datetime.replace(hour=22))
 
     def get_absolute_url(self):
-        return reverse("election_view", args=[str(self.slug), slugify(self.name)])
+        return reverse(
+            "election_view", args=[str(self.slug), slugify(self.name)]
+        )
 
     def election_booklet(self):
         election_to_booklet = {
             "mayor.greater-manchester-ca.2017-05-04": "booklets/2017-05-04/mayoral/mayor.greater-manchester-ca.2017-05-04.pdf",
             "mayor.liverpool-city-ca.2017-05-04": "booklets/2017-05-04/mayoral/mayor.liverpool-city-ca.2017-05-04.pdf",
-            "mayor.cambridgeshire-and-peterborough.2017-05-04": "booklets/2017-05-04/mayoral/mayor.cambridgeshire-and-peterborough.2017-05-04.pdf",  # noqa
+            "mayor.cambridgeshire-and-peterborough.2017-05-04": "booklets/2017-05-04/mayoral/mayor.cambridgeshire-and-peterborough.2017-05-04.pdf",
+            # noqa
             "mayor.west-of-england.2017-05-04": "booklets/2017-05-04/mayoral/mayor.west-of-england.2017-05-04.pdf",
             "mayor.west-midlands.2017-05-04": "booklets/2017-05-04/mayoral/mayor.west-midlands.2017-05-04.pdf",
             "mayor.tees-valley.2017-05-04": "booklets/2017-05-04/mayoral/mayor.tees-valley.2017-05-04.pdf",
@@ -255,7 +264,6 @@ class Election(models.Model):
 
 
 class Post(models.Model):
-
     """
     A post has an election and candidates
     """
@@ -288,7 +296,9 @@ class Post(models.Model):
     area_name = models.CharField(blank=True, max_length=100)
     area_id = models.CharField(blank=True, max_length=100)
     territory = models.CharField(blank=True, max_length=3)
-    elections = models.ManyToManyField(Election, through="elections.PostElection")
+    elections = models.ManyToManyField(
+        Election, through="elections.PostElection"
+    )
     division_type = models.CharField(
         blank=True, max_length=3, choices=DIVISION_TYPE_CHOICES
     )
@@ -325,7 +335,9 @@ class Post(models.Model):
         """
         Return a string to describe the division.
         """
-        mapping = {choice[0]: choice[1] for choice in self.DIVISION_TYPE_CHOICES}
+        mapping = {
+            choice[0]: choice[1] for choice in self.DIVISION_TYPE_CHOICES
+        }
         return mapping.get(self.division_type, "")
 
     @property
@@ -558,16 +570,16 @@ class PostElection(TimeStampedModel):
                 url = self.metadata["cancelled_election"].get("url")
                 message = title
                 if url:
-                    message = """<strong> ❌ <a href="{}">{}</a></strong>""".format(
-                        url, title
+                    message = (
+                        """<strong> ❌ <a href="{}">{}</a></strong>""".format(
+                            url, title
+                        )
                     )
         if not message:
             if self.election.in_past:
                 message = "(The poll for this election was cancelled)"
             else:
-                message = (
-                    "<strong>(The poll for this election has been cancelled)</strong>"
-                )
+                message = "<strong>(The poll for this election has been cancelled)</strong>"
 
         return mark_safe(message)
 
@@ -622,9 +634,7 @@ class PostElection(TimeStampedModel):
                 ind_and_parties_pluralized = pluralize(ind_and_parties)
                 value = f"{ind_and_parties_apnumber} parties"
                 if ind_candidates:
-                    value = (
-                        f"{value} or independent candidate{ind_and_parties_pluralized}"
-                    )
+                    value = f"{value} or independent candidate{ind_and_parties_pluralized}"
                 return value
 
             num_candidates = people.count()
@@ -663,6 +673,20 @@ class PostElection(TimeStampedModel):
         if self.cancellation_reason in ["CANDIDATE_DEATH"]:
             return False
         return True
+
+    @property
+    def get_voter_id_requirements(self):
+        matcher = IDRequirementsMatcher(
+            self.ballot_paper_id, nation=self.post.territory
+        )
+        return matcher.get_id_requirements()
+
+    @property
+    def get_postal_voting_requirements(self):
+        matcher = PostalVotingRequirementsMatcher(
+            self.ballot_paper_id, nation=self.post.territory
+        )
+        return matcher.get_postal_voting_requirements()
 
 
 class VotingSystem(models.Model):

@@ -96,6 +96,8 @@ class BaseCandidatesAndElectionsViewSet(
                 "voting_system": VotingSystemSerializer(
                     postelection.voting_system
                 ).data,
+                "voter_id_requirements": postelection.get_voter_id_requirements,
+                "postal_voting_requirements": postelection.get_postal_voting_requirements,
                 "seats_contested": postelection.winner_count,
                 "organisation_type": postelection.post.organization_type,
                 "hustings": self.add_hustings(postelection),
@@ -104,9 +106,9 @@ class BaseCandidatesAndElectionsViewSet(
                 ),
             }
             if postelection.replaced_by:
-                election[
-                    "replaced_by"
-                ] = postelection.replaced_by.ballot_paper_id
+                election["replaced_by"] = (
+                    postelection.replaced_by.ballot_paper_id
+                )
             else:
                 election["replaced_by"] = None
 
