@@ -115,7 +115,9 @@ class TestElectionModel:
 
 
 class TestPostModel:
-    @pytest.mark.parametrize("division_type, description", Post.DIVISION_TYPE_CHOICES)
+    @pytest.mark.parametrize(
+        "division_type, description", Post.DIVISION_TYPE_CHOICES
+    )
     def test_division_description(self, division_type, description):
         """
         Test that for each division type choice, the correct description is
@@ -186,7 +188,8 @@ class TestPostElectionModel:
         post_election.ballot_paper_id = "mayor.of.london"
         post_election.post.label = "Greater London Authority"
         assert (
-            post_election.friendly_name == "Greater London Authority mayoral election"
+            post_election.friendly_name
+            == "Greater London Authority mayoral election"
         )
 
     @pytest.mark.django_db
@@ -355,7 +358,8 @@ class TestPostElectionModel:
         post_election.election.save()
         post_election.election.refresh_from_db()
         assert (
-            post_election.party_ballot_count == "six parties or independent candidates"
+            post_election.party_ballot_count
+            == "six parties or independent candidates"
         )
 
     def test_should_display_sopn_info_in_past(self, post_election):
