@@ -14,21 +14,19 @@
 {% block content %}
     <h1>{% trans "UK Prospective Parliamentary&nbsp;Candidates" %}</h1>
 
-    <p>{% trans "The next UK parliamentary general election is due to occur no later than January 2025, and political parties are
-        currently selecting their candidates for each House of Commons constituency" %}.</p>
+    <p>{% blocktrans trimmed %}The next UK parliamentary general election is due to occur no later than January 2025, and political parties are currently selecting their candidates for each House of Commons constituency{% endblocktrans %}.</p>
 
-    <p>{% trans "Democracy Club’s volunteers are collecting information on each candidate as they are announced. The live tables
-        below display all the candidates we are aware of. Where a candidate has a recent electoral history, this is
-        displayed on their Democracy Club profile." %}</p>
+    <p>{% blocktrans trimmed %}Democracy Club's volunteers are collecting information on each candidate as they are announced. The live tables below display all the candidates we are aware of. Where a candidate has a recent electoral history, this is displayed on their Democracy Club profile.{% endblocktrans %}
+    </p>
 
     <p>{% trans "Spotted an error? Think we’ve missed a candidate? Get in touch:"%} <a href="mailto:hello@democracyclub.org.uk">hello@democracyclub.org.uk</a></p>
 
     <details class="ds-details ds-stack-smaller">
         <summary>{% trans "More information about the general election" %}</summary>
 
-        <p>{% trans "There are 650 constituencies in the House of Commons, and each constituency elects one Member of Parliament
+        <p>{% blocktrans trimmed %}There are 650 constituencies in the House of Commons, and each constituency elects one Member of Parliament
             (MP). Following a recent redistribution, in the next election England will elect 543 MPs, Scotland will
-            elect 57, Wales will elect 32, and Northern Ireland will elect 18." %}</p>
+            elect 57, Wales will elect 32, and Northern Ireland will elect 18."{% endblocktrans %}</p>
 
         <h2 class="ds-h4">{% trans "Boundary changes" %}</h2>
         <p>{% trans "The next general election will be held on new constituency boundaries. See the" %}
@@ -51,7 +49,7 @@
 
     <h2>{% trans "The data" %}</h2>
 
-    <p>{% trans "The" %}<a href="{% url "ppc_2024:details" %}">{% trans "full list of prospective parliamentary candidates" %}</a> {% trans "is available as a browsable table or a CSV{% endblocktrans" %}.</p>
+    <p>{% trans "The " %}<a href="{% url "ppc_2024:details" %}">{% trans "full list of prospective parliamentary candidates" %}</a> {% trans "is available as a browsable table or a CSV{% endblocktrans" %}.</p>
 
 
     {% if by_region %}
