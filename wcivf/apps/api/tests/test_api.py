@@ -67,7 +67,7 @@ class TestAPISearchViews(APITestCase):
                 "postal_voting_requirements": "RPA2000",
                 "replaced_by": None,
                 "seats_contested": 1,
-                "voter_id_requirements": None,
+                "requires_voter_id": None,
                 "organisation_type": "local-authority",
                 "voting_system": {"name": "", "slug": ""},
                 "ballot_locked": False,
