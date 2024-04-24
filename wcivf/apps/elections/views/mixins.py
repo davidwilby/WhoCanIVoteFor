@@ -15,6 +15,9 @@ from elections.constants import (
 )
 from elections.devs_dc_client import DevsDCAPIException, DevsDCClient
 from leaflets.models import Leaflet
+from uk_election_timetables.calendars import Country
+from uk_election_timetables.election import TimetableEvent
+from uk_election_timetables.election_ids import from_election_id
 
 DEVS_DC_CLIENT = DevsDCClient()
 
@@ -82,12 +85,16 @@ class PostcodeToPostsMixin(object):
 
 class PostelectionsToPeopleMixin(object):
     def people_for_ballot(self, postelection, compact=False):
-        key = PEOPLE_FOR_BALLOT_KEY_FMT.format(postelection.ballot_paper_id, compact)
+        key = PEOPLE_FOR_BALLOT_KEY_FMT.format(
+            postelection.ballot_paper_id, compact
+        )
         people_for_post = cache.get(key)
         if people_for_post:
             return people_for_post
         people_for_post = postelection.personpost_set.all()
-        people_for_post = people_for_post.annotate(last_name=LastWord("person__name"))
+        people_for_post = people_for_post.annotate(
+            last_name=LastWord("person__name")
+        )
         people_for_post = people_for_post.annotate(
             name_for_ordering=Coalesce("person__sort_name", "last_name")
         )
@@ -114,12 +121,16 @@ class PostelectionsToPeopleMixin(object):
         people_for_post = people_for_post.prefetch_related(
             Prefetch(
                 "person__leaflet_set",
-                queryset=Leaflet.objects.order_by("date_uploaded_to_electionleaflets"),
+                queryset=Leaflet.objects.order_by(
+                    "date_uploaded_to_electionleaflets"
+                ),
                 to_attr="ordered_leaflets",
             )
         )
         if not compact:
-            people_for_post = people_for_post.prefetch_related("person__pledges")
+            people_for_post = people_for_post.prefetch_related(
+                "person__pledges"
+            )
         cache.set(key, people_for_post)
         return people_for_post
 
@@ -129,7 +140,9 @@ class PollingStationInfoMixin(object):
         return any(p.contested and not p.cancelled for p in post_elections)
 
     def get_advance_voting_station_info(self, polling_station: Optional[dict]):
-        if not polling_station or not polling_station.get("advance_voting_station"):
+        if not polling_station or not polling_station.get(
+            "advance_voting_station"
+        ):
             return None
         advance_voting_station = polling_station["advance_voting_station"]
 
@@ -144,6 +157,18 @@ class PollingStationInfoMixin(object):
         )
         advance_voting_station["open_in_future"] = open_in_future
         return advance_voting_station
+
+    def is_before_registration_deadline(self, post_elections):
+        if not post_elections:
+            return False
+        election = post_elections[0].election
+        country = post_elections[0].post.territory
+        if not country:
+            country = Country.ENGLAND
+
+        election = from_election_id(election_id=election.slug, country=country)
+        event = TimetableEvent.REGISTRATION_DEADLINE
+        return election.is_before(event)
 
 
 class LogLookUpMixin(object):
