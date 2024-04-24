@@ -15,7 +15,7 @@ class PPCFilter(django_filters.FilterSet):
     party_name = django_filters.AllValuesFilter(
         widget=DSLinkWidget,
         field_name="party__party_name",
-        lookup_expr="contains",
+        lookup_expr="exact",
         label="Party Name",
     )
 
