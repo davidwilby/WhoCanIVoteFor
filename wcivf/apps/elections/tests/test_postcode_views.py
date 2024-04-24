@@ -11,6 +11,7 @@ from elections.tests.factories import (
 )
 from elections.views.mixins import PostcodeToPostsMixin
 from elections.views.postcode_view import PostcodeView
+from freezegun import freeze_time
 from parishes.models import ParishCouncilElection
 from pytest_django import asserts
 
@@ -482,6 +483,30 @@ class TestPostcodeViewMethods:
         ]
 
         assert view_obj.show_polling_card(post_elections) is True
+
+    @freeze_time("2020-01-01")
+    @pytest.mark.django_db
+    def test_is_before_registration_deadline(self, view_obj):
+        post_elections = [
+            PostElectionFactory(
+                election__slug="local.city-of-london.2020-05-06",
+                election__election_date="2020-05-06",
+                contested=True,
+                cancelled=False,
+            ),
+            PostElectionFactory(
+                election__slug="local.city-of-london.2020-05-06",
+                election__election_date="2020-05-06",
+                contested=False,
+                cancelled=True,
+            ),
+        ]
+        assert (
+            view_obj.is_before_registration_deadline(
+                post_elections=post_elections
+            )
+            is True
+        )
 
     def test_num_ballots_no_parish_election(self, view_obj, mocker):
         future_post_election = mocker.MagicMock(spec=PostElection, past_date=0)

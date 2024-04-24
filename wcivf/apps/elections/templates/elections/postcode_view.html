@@ -51,7 +51,7 @@
                     {% include "elections/includes/_voter_id.html" %}
                 {% endif %}
 
-                {% if not postelections or not postelections.first.past_registration_deadline %}
+                {% if is_before_registration_deadline %}
                     {% include "elections/includes/_registration_details.html" with postelection=postelections.first council=polling_station.council %}
                 {% endif %}
 
