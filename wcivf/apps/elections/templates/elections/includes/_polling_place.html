@@ -72,12 +72,27 @@
                     {% trans "You don't need to take your poll card with you." %}
                 </p>
             {% endif %}
-            {% if not postcode|ni_postcode %}
-                <p>
-                    {% blocktrans %}If you have a postal vote, you can hand it in at this polling station on election day up to 10pm{% endblocktrans %}
-                </p>
-            {% endif %}
 
+            {% if not postcode|ni_postcode %}
+                {% if postelections.0.postal_vote_requires_form %}
+                    <p>
+                        {% blocktrans trimmed %}
+                            If you have a postal vote, you can hand it in at this polling
+                            station on election day up to 10pm. When handing in postal votes,
+                            you will need to complete a form, giving your name, address,
+                            how many postal votes you are handing in,
+                            and why you are handing in those postal votes.
+                        {% endblocktrans %}
+                    </p>
+                {% else %}
+                    <p>
+                        {% blocktrans trimmed %}If you have a postal vote, you can hand it in at this polling station on election day up to 10pm.{% endblocktrans %}
+                    </p>
+                {% endif %}
+            {% else %}
+                <p>{% blocktrans trimmed %}Postal votes cannot be accepted at polling stations in Northern Ireland.{% endblocktrans%}</p>
+            {% endif %}
+            <p><a href="https://www.electoralcommission.org.uk/voting-and-elections/ways-vote/how-vote-post">{% trans "Learn more about voting by post." %}</a></p>
 
         {% else %}
             {% if polling_station.custom_finder %}

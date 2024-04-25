@@ -362,6 +362,19 @@ class TestPostElectionModel:
             == "six parties or independent candidates"
         )
 
+    @pytest.mark.django_db
+    def test_postal_vote_requires_form(self):
+        election = ElectionWithPostFactory(
+            election_date="2025-01-01",
+            current=True,
+            election_type="parl",
+            slug="parl.place.2025-01-01",
+        )
+        post_election = PostElectionFactory(election=election)
+        post_election.ballot_paper_id = "parl.place.2025-01-01"
+        assert post_election.get_postal_voting_requirements == "EA-2022"
+        assert post_election.postal_vote_requires_form is True
+
     def test_should_display_sopn_info_in_past(self, post_election):
         post_election.locked = True
         post_election.election.election_date = fake.past_date()
