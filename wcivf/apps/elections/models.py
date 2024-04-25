@@ -468,6 +468,20 @@ class PostElection(TimeStampedModel):
         ).postal_vote_application_deadline
 
     @property
+    def postal_vote_requires_form(self):
+        matcher = PostalVotingRequirementsMatcher(
+            election_id=self.election.slug, nation=self.post.territory
+        )
+
+        voting_requirements_legislation = (
+            matcher.get_postal_voting_requirements()
+        )
+
+        if voting_requirements_legislation == "EA-2022":
+            return True
+        return False
+
+    @property
     def is_mayoral(self):
         """
         Return a boolean for if this is a mayoral election, determined by

@@ -15,7 +15,7 @@ interactions:
       "dates": [{
           "date": "2018-05-03",
           "polling_station": {
-              "polling_station_known": false
+              "polling_station_known": true
           },
           "ballots": [{
                   "ballot_paper_id": "local.tower-hamlets.bow-east.2018-05-03"
