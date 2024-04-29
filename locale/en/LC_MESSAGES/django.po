@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-29 14:23+0000\n"
+"POT-Creation-Date: 2024-05-01 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,355 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:428
-msgid "open('foo"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:432
-msgid "open(\"foo"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:436
-#, python-format
-msgid "%ls foo"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:591
-msgid "a[0]."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:598
-msgid "a[0].r"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:606
-msgid "a[0].from_"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:613
-msgid "assert str.star"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:620
-msgid "d['a b'].str"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1580
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1602
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1605
-msgid "do not suppress"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1581
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1593
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1596
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1599
-msgid "suppress all"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1582
-msgid "suppress all but a"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1583
-msgid "suppress all but c"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1631
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1634
-msgid "---"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/IPython/core/tests/test_completer.py:1637
-msgid "--"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/_pytest/config/argparsing.py:475
-#, python-format
-msgid "ambiguous option: %(option)s could match %(matches)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/_termui_impl.py:518
-#, python-brace-format
-msgid "{editor}: Editing failed"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/_termui_impl.py:522
-#, python-brace-format
-msgid "{editor}: Editing failed: {e}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1120
-msgid "Aborted!"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1309
-#: env/lib/python3.10/site-packages/click/decorators.py:559
-msgid "Show this message and exit."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1340
-#: env/lib/python3.10/site-packages/click/core.py:1370
-#, python-brace-format
-msgid "(Deprecated) {text}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1387
-msgid "Options"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1413
-#, python-brace-format
-msgid "Got unexpected extra argument ({args})"
-msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1429
-msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1636
-msgid "Commands"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1668
-msgid "Missing command."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:1746
-msgid "No such command {name!r}."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2310
-msgid "Value must be an iterable."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2331
-#, python-brace-format
-msgid "Takes {nargs} values but 1 was given."
-msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2778
-#, python-brace-format
-msgid "env var: {var}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2808
-msgid "(dynamic)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2821
-#, python-brace-format
-msgid "default: {default}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/core.py:2834
-msgid "required"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/decorators.py:465
-#, python-format
-msgid "%(prog)s, version %(version)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/decorators.py:528
-msgid "Show the version and exit."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:44
-#: env/lib/python3.10/site-packages/click/exceptions.py:80
-#, python-brace-format
-msgid "Error: {message}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:72
-#, python-brace-format
-msgid "Try '{command} {option}' for help."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:121
-#, python-brace-format
-msgid "Invalid value: {message}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:123
-#, python-brace-format
-msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:179
-msgid "Missing argument"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:181
-msgid "Missing option"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:183
-msgid "Missing parameter"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:185
-#, python-brace-format
-msgid "Missing {param_type}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:192
-#, python-brace-format
-msgid "Missing parameter: {param_name}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:212
-#, python-brace-format
-msgid "No such option: {name}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:224
-#, python-brace-format
-msgid "Did you mean {possibility}?"
-msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:262
-msgid "unknown error"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/exceptions.py:269
-msgid "Could not open file {filename!r}: {message}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/parser.py:231
-msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/parser.py:413
-msgid "Option {name!r} does not take a value."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/parser.py:474
-msgid "Option {name!r} requires an argument."
-msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/shell_completion.py:319
-msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/shell_completion.py:326
-msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:158
-msgid "Repeat for confirmation"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:174
-msgid "Error: The value you entered was invalid."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:176
-#, python-brace-format
-msgid "Error: {e.message}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:187
-msgid "Error: The two entered values do not match."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:243
-msgid "Error: invalid input"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/termui.py:773
-msgid "Press any key to continue..."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:266
-#, python-brace-format
-msgid ""
-"Choose from:\n"
-"\t{choices}"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:298
-msgid "{value!r} is not {choice}."
-msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/types.py:392
-msgid "{value!r} does not match the format {format}."
-msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/click/types.py:414
-msgid "{value!r} is not a valid {number_type}."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:470
-#, python-brace-format
-msgid "{value} is not in the range {range}."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:611
-msgid "{value!r} is not a valid boolean."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:635
-msgid "{value!r} is not a valid UUID."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:822
-msgid "file"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:824
-msgid "directory"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:826
-msgid "path"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:877
-msgid "{name} {filename!r} does not exist."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:886
-msgid "{name} {filename!r} is a file."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:894
-#, python-brace-format
-msgid "{name} '{filename}' is a directory."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:903
-msgid "{name} {filename!r} is not readable."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:912
-msgid "{name} {filename!r} is not writable."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:921
-msgid "{name} {filename!r} is not executable."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/click/types.py:988
-#, python-brace-format
-msgid "{len_type} values are required, but {len_value} was given."
-msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/dc_utils/forms.py:148
 #: wcivf/apps/core/forms.py:7
 msgid "Enter your postcode"
 msgstr ""
@@ -399,1233 +50,19 @@ msgstr ""
 msgid "Building digital infrastructure for a 21st century democracy."
 msgstr ""
 
-#: env/lib/python3.10/site-packages/django/contrib/messages/apps.py:15
-msgid "Messages"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/contrib/sitemaps/apps.py:8
-msgid "Site Maps"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/contrib/staticfiles/apps.py:9
-msgid "Static Files"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/contrib/syndication/apps.py:7
-msgid "Syndication"
-msgstr ""
-
-#. Translators: String used to replace omitted page numbers in elided page
-#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
-#: env/lib/python3.10/site-packages/django/core/paginator.py:30
-msgid "…"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/paginator.py:50
-msgid "That page number is not an integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/paginator.py:52
-msgid "That page number is less than 1"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/paginator.py:54
-msgid "That page contains no results"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:22
-msgid "Enter a valid value."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:104
-#: env/lib/python3.10/site-packages/django/forms/fields.py:752
-msgid "Enter a valid URL."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:165
-msgid "Enter a valid integer."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:176
-msgid "Enter a valid email address."
-msgstr ""
-
-#. Translators: "letters" means latin letters: a-z and A-Z.
-#: env/lib/python3.10/site-packages/django/core/validators.py:259
-msgid ""
-"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:267
-msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
-"hyphens."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:279
-#: env/lib/python3.10/site-packages/django/core/validators.py:287
-#: env/lib/python3.10/site-packages/django/core/validators.py:316
-msgid "Enter a valid IPv4 address."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:296
-#: env/lib/python3.10/site-packages/django/core/validators.py:317
-msgid "Enter a valid IPv6 address."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:308
-#: env/lib/python3.10/site-packages/django/core/validators.py:315
-msgid "Enter a valid IPv4 or IPv6 address."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:351
-msgid "Enter only digits separated by commas."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:357
-#, python-format
-msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:392
-#, python-format
-msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:401
-#, python-format
-msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:410
-#, python-format
-msgid "Ensure this value is a multiple of step size %(limit_value)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:420
-#, python-format
-msgid ""
-"Ensure this value has at least %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at least %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:438
-#, python-format
-msgid ""
-"Ensure this value has at most %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at most %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:461
-#: env/lib/python3.10/site-packages/django/forms/fields.py:347
-#: env/lib/python3.10/site-packages/django/forms/fields.py:386
-msgid "Enter a number."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:463
-#, python-format
-msgid "Ensure that there are no more than %(max)s digit in total."
-msgid_plural "Ensure that there are no more than %(max)s digits in total."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:468
-#, python-format
-msgid "Ensure that there are no more than %(max)s decimal place."
-msgid_plural "Ensure that there are no more than %(max)s decimal places."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:473
-#, python-format
-msgid ""
-"Ensure that there are no more than %(max)s digit before the decimal point."
-msgid_plural ""
-"Ensure that there are no more than %(max)s digits before the decimal point."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:544
-#, python-format
-msgid ""
-"File extension “%(extension)s” is not allowed. Allowed extensions are: "
-"%(allowed_extensions)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/core/validators.py:605
-msgid "Null characters are not allowed."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/base.py:1423
-#: env/lib/python3.10/site-packages/django/forms/models.py:893
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:64
-msgid "and"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/base.py:1425
-#, python-format
-msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/constraints.py:17
-#, python-format
-msgid "Constraint “%(name)s” is violated."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:128
-#, python-format
-msgid "Value %(value)r is not a valid choice."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:129
-msgid "This field cannot be null."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:130
-msgid "This field cannot be blank."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:131
-#, python-format
-msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
-
-#. Translators: The 'lookup_type' is one of 'date', 'year' or
-#. 'month'. Eg: "Title must be unique for pub_date year"
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:135
-#, python-format
-msgid ""
-"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:173
-#, python-format
-msgid "Field of type: %(field_type)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1094
-#, python-format
-msgid "“%(value)s” value must be either True or False."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1095
-#, python-format
-msgid "“%(value)s” value must be either True, False, or None."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1097
-msgid "Boolean (Either True or False)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1147
-#, python-format
-msgid "String (up to %(max_length)s)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1149
-msgid "String (unlimited)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1253
-msgid "Comma-separated integers"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1354
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
-"format."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1358
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1493
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
-"date."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1362
-msgid "Date (without time)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1489
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
-"uuuuuu]][TZ] format."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1497
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1502
-msgid "Date (with time)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1626
-#, python-format
-msgid "“%(value)s” value must be a decimal number."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1628
-msgid "Decimal number"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1789
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
-"uuuuuu] format."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1793
-msgid "Duration"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1845
-msgid "Email address"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1870
-msgid "File path"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1948
-#, python-format
-msgid "“%(value)s” value must be a float."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1950
-msgid "Floating point number"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1990
-#, python-format
-msgid "“%(value)s” value must be an integer."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1992
-msgid "Integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2088
-msgid "Big (8 byte) integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2105
-msgid "Small integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2113
-msgid "IPv4 address"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2144
-msgid "IP address"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2237
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2238
-#, python-format
-msgid "“%(value)s” value must be either None, True or False."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2240
-msgid "Boolean (Either True, False or None)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2291
-msgid "Positive big integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2306
-msgid "Positive integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2321
-msgid "Positive small integer"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2337
-#, python-format
-msgid "Slug (up to %(max_length)s)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2373
-msgid "Text"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2448
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
-"format."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2452
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
-"invalid time."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2456
-msgid "Time"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2564
-msgid "URL"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2588
-msgid "Raw binary data"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2653
-#, python-format
-msgid "“%(value)s” is not a valid UUID."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2655
-msgid "Universally unique identifier"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/files.py:232
-msgid "File"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/files.py:393
-msgid "Image"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/json.py:26
-msgid "A JSON object"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/json.py:28
-msgid "Value must be valid JSON."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:919
-#, python-format
-msgid "%(model)s instance with %(field)s %(value)r does not exist."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:921
-msgid "Foreign Key (type determined by related field)"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:1212
-msgid "One-to-one relationship"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:1269
-#, python-format
-msgid "%(from)s-%(to)s relationship"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:1271
-#, python-format
-msgid "%(from)s-%(to)s relationships"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/db/models/fields/related.py:1319
-msgid "Many-to-many relationship"
-msgstr ""
-
-#. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the label
-#: env/lib/python3.10/site-packages/django/forms/boundfield.py:184
-msgid ":?.!"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:91
-msgid "This field is required."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:298
-msgid "Enter a whole number."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:467
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1241
-msgid "Enter a valid date."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:490
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1242
-msgid "Enter a valid time."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:517
-msgid "Enter a valid date/time."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:551
-msgid "Enter a valid duration."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:552
-#, python-brace-format
-msgid "The number of days must be between {min_days} and {max_days}."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:621
-msgid "No file was submitted. Check the encoding type on the form."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:622
-msgid "No file was submitted."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:623
-msgid "The submitted file is empty."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:625
-#, python-format
-msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
-msgid_plural ""
-"Ensure this filename has at most %(max)d characters (it has %(length)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:630
-msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:694
-msgid ""
-"Upload a valid image. The file you uploaded was either not an image or a "
-"corrupted image."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:857
-#: env/lib/python3.10/site-packages/django/forms/fields.py:949
-#: env/lib/python3.10/site-packages/django/forms/models.py:1566
-#, python-format
-msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:951
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1070
-#: env/lib/python3.10/site-packages/django/forms/models.py:1564
-msgid "Enter a list of values."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1071
-msgid "Enter a complete value."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1310
-msgid "Enter a valid UUID."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/fields.py:1340
-msgid "Enter a valid JSON."
-msgstr ""
-
-#. Translators: This is the default suffix added to form field labels
-#: env/lib/python3.10/site-packages/django/forms/forms.py:98
-msgid ":"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/forms.py:244
-#: env/lib/python3.10/site-packages/django/forms/forms.py:328
-#, python-format
-msgid "(Hidden field %(name)s) %(error)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:63
-#, python-format
-msgid ""
-"ManagementForm data is missing or has been tampered with. Missing fields: "
-"%(field_names)s. You may need to file a bug report if the issue persists."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:67
-#, python-format
-msgid "Please submit at most %(num)d form."
-msgid_plural "Please submit at most %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:72
-#, python-format
-msgid "Please submit at least %(num)d form."
-msgid_plural "Please submit at least %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:484
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:491
-msgid "Order"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/formsets.py:499
-msgid "Delete"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:886
-#, python-format
-msgid "Please correct the duplicate data for %(field)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:891
-#, python-format
-msgid "Please correct the duplicate data for %(field)s, which must be unique."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:898
-#, python-format
-msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique "
-"for the %(lookup)s in %(date_field)s."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:907
-msgid "Please correct the duplicate values below."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:1338
-msgid "The inline value did not match the parent instance."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:1429
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/models.py:1568
-#, python-format
-msgid "“%(pk)s” is not a valid value."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/utils.py:226
-#, python-format
-msgid ""
-"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
-"may be ambiguous or it may not exist."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:463
-msgid "Clear"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:464
-msgid "Currently"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:465
-msgid "Change"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:794
-msgid "Unknown"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:795
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
-msgid "Yes"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/forms/widgets.py:796
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
-msgid "No"
-msgstr ""
-
-#. Translators: Please do not add spaces around commas.
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:861
-msgid "yes,no,maybe"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:891
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:908
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:910
-#, python-format
-msgid "%s KB"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:912
-#, python-format
-msgid "%s MB"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:914
-#, python-format
-msgid "%s GB"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:916
-#, python-format
-msgid "%s TB"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/template/defaultfilters.py:918
-#, python-format
-msgid "%s PB"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:73
-msgid "p.m."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:74
-msgid "a.m."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:79
-msgid "PM"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:80
-msgid "AM"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:152
-msgid "midnight"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dateformat.py:154
-msgid "noon"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:7
-msgid "Monday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:8
-msgid "Tuesday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:9
-msgid "Wednesday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:10
-msgid "Thursday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:11
-msgid "Friday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:12
-msgid "Saturday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:13
-msgid "Sunday"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:16
-msgid "Mon"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:17
-msgid "Tue"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:18
-msgid "Wed"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:19
-msgid "Thu"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:20
-msgid "Fri"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:21
-msgid "Sat"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:22
-msgid "Sun"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:25
-msgid "January"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:26
-msgid "February"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:27
-msgid "March"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:28
-msgid "April"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:29
-msgid "May"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:30
-msgid "June"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:31
-msgid "July"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:32
-msgid "August"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:33
-msgid "September"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:34
-msgid "October"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:35
-msgid "November"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:36
-msgid "December"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:39
-msgid "jan"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:40
-msgid "feb"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:41
-msgid "mar"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:42
-msgid "apr"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:43
-msgid "may"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:44
-msgid "jun"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:45
-msgid "jul"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:46
-msgid "aug"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:47
-msgid "sep"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:48
-msgid "oct"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:49
-msgid "nov"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:50
-msgid "dec"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:53
-msgctxt "abbrev. month"
-msgid "Jan."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:54
-msgctxt "abbrev. month"
-msgid "Feb."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:55
-msgctxt "abbrev. month"
-msgid "March"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:56
-msgctxt "abbrev. month"
-msgid "April"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:57
-msgctxt "abbrev. month"
-msgid "May"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:58
-msgctxt "abbrev. month"
-msgid "June"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:59
-msgctxt "abbrev. month"
-msgid "July"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:60
-msgctxt "abbrev. month"
-msgid "Aug."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:61
-msgctxt "abbrev. month"
-msgid "Sept."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:62
-msgctxt "abbrev. month"
-msgid "Oct."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:63
-msgctxt "abbrev. month"
-msgid "Nov."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:64
-msgctxt "abbrev. month"
-msgid "Dec."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:67
-msgctxt "alt. month"
-msgid "January"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:68
-msgctxt "alt. month"
-msgid "February"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:69
-msgctxt "alt. month"
-msgid "March"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:70
-msgctxt "alt. month"
-msgid "April"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:71
-msgctxt "alt. month"
-msgid "May"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:72
-msgctxt "alt. month"
-msgid "June"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:73
-msgctxt "alt. month"
-msgid "July"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:74
-msgctxt "alt. month"
-msgid "August"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:75
-msgctxt "alt. month"
-msgid "September"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:76
-msgctxt "alt. month"
-msgid "October"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:77
-msgctxt "alt. month"
-msgid "November"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/dates.py:78
-msgctxt "alt. month"
-msgid "December"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/ipv6.py:8
-msgid "This is not a valid IPv6 address."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/text.py:84
-#, python-format
-msgctxt "String to return when truncating text"
-msgid "%(truncated_text)s…"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/text.py:269
-msgid "or"
-msgstr ""
-
-#. Translators: This string is used as a separator between list elements
-#: env/lib/python3.10/site-packages/django/utils/text.py:288
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:135
-msgid ", "
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:8
-#, python-format
-msgid "%(num)d year"
-msgid_plural "%(num)d years"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:9
-#, python-format
-msgid "%(num)d month"
-msgid_plural "%(num)d months"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:10
-#, python-format
-msgid "%(num)d week"
-msgid_plural "%(num)d weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:11
-#, python-format
-msgid "%(num)d day"
-msgid_plural "%(num)d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:12
-#, python-format
-msgid "%(num)d hour"
-msgid_plural "%(num)d hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/utils/timesince.py:13
-#, python-format
-msgid "%(num)d minute"
-msgid_plural "%(num)d minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:111
-msgid "Forbidden"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:112
-msgid "CSRF verification failed. Request aborted."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:116
-msgid ""
-"You are seeing this message because this HTTPS site requires a “Referer "
-"header” to be sent by your web browser, but none was sent. This header is "
-"required for security reasons, to ensure that your browser is not being "
-"hijacked by third parties."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:122
-msgid ""
-"If you have configured your browser to disable “Referer” headers, please re-"
-"enable them, at least for this site, or for HTTPS connections, or for “same-"
-"origin” requests."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:127
-msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
-"including the “Referrer-Policy: no-referrer” header, please remove them. The "
-"CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a "
-"rel=\"noreferrer\" …> for links to third-party sites."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:136
-msgid ""
-"You are seeing this message because this site requires a CSRF cookie when "
-"submitting forms. This cookie is required for security reasons, to ensure "
-"that your browser is not being hijacked by third parties."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:142
-msgid ""
-"If you have configured your browser to disable cookies, please re-enable "
-"them, at least for this site, or for “same-origin” requests."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/csrf.py:148
-msgid "More information is available with DEBUG=True."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:44
-msgid "No year specified"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:64
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:115
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:214
-msgid "Date out of range"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:94
-msgid "No month specified"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:147
-msgid "No day specified"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:194
-msgid "No week specified"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:349
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:380
-#, python-format
-msgid "No %(verbose_name_plural)s available"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:652
-#, python-format
-msgid ""
-"Future %(verbose_name_plural)s not available because %(class_name)s."
-"allow_future is False."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/dates.py:692
-#, python-format
-msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/detail.py:56
-#, python-format
-msgid "No %(verbose_name)s found matching the query"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/list.py:70
-msgid "Page is not “last”, nor can it be converted to an int."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/list.py:77
-#, python-format
-msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/generic/list.py:169
-#, python-format
-msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/static.py:38
-msgid "Directory indexes are not allowed here."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/static.py:40
-#, python-format
-msgid "“%(path)s” does not exist"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/static.py:79
-#, python-format
-msgid "Index of %(directory)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:7
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:220
-msgid "The install worked successfully! Congratulations!"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:206
-#, python-format
-msgid ""
-"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
-"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:221
-#, python-format
-msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
-"configured any URLs."
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:229
-msgid "Django Documentation"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:230
-msgid "Topics, references, &amp; how-to’s"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:238
-msgid "Tutorial: A Polling App"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:239
-msgid "Get started with Django"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:247
-msgid "Django Community"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:248
-msgid "Connect, get help, or contribute"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/isort/main.py:158
-msgid "show this help message and exit"
-msgstr ""
-
-#: wcivf/apps/elections/models.py:721
+#: wcivf/apps/elections/models.py:735
 msgid "First-past-the-post"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:723
+#: wcivf/apps/elections/models.py:737
 msgid "Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:725
+#: wcivf/apps/elections/models.py:739
 msgid "Supplementary Vote"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:727
+#: wcivf/apps/elections/models.py:741
 msgid "Single Transferable Vote"
 msgstr ""
 
@@ -1992,22 +429,28 @@ msgstr ""
 msgid "Vote on polling day"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:50
-#, python-format
-msgid ""
-"<p> Your polling station is: </p> <address>%(polling_station_address)s</"
-"address>"
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:51
+msgid "Your polling station is"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:58
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:53
+#, python-format
+msgid "<address>%(polling_station_address)s</address>"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:57
 msgid "It will be open from <strong>7am to 10pm</strong>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:72
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:63
+msgid "and"
+msgstr ""
+
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:71
 msgid "You don't need to take your poll card with you."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:79
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:78
 msgid ""
 "If you have a postal vote, you can hand it in at this polling station on "
 "election day up to 10pm. When handing in postal votes, you will need to "
@@ -2015,36 +458,36 @@ msgid ""
 "handing in, and why you are handing in those postal votes."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:89
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:88
 msgid ""
 "If you have a postal vote, you can hand it in at this polling station on "
 "election day up to 10pm."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:93
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:92
 msgid ""
 "Postal votes cannot be accepted at polling stations in Northern Ireland."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:95
-msgid "Learn more about voting by post."
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:94
+msgid "Learn more about voting by post"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:99
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:98
 #, python-format
 msgid ""
 "<p>You can find your polling station by <a href=\"%(custom_finder)s\"> "
 "following this link</a>. </p>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:107
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:106
 #, python-format
 msgid ""
 "<strong>Polling stations are open from %(open_time)s till %(close_time)s "
 "today.</strong>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:112
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:111
 #, python-format
 msgid ""
 "<p>Your polling station in %(postcode)s depends on your address. <a "
@@ -2052,48 +495,48 @@ msgid ""
 "polling station for your address &raquo;</a></p>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:117
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:116
 msgid ""
 "You should get a \"poll card\" through the post telling you where to vote."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:120
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:119
 #, python-format
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call the "
 "Electoral Office on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:125
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:124
 #, python-format
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call "
 "%(council_name)s on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:130
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:129
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call your "
 "local council"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:139
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:138
 msgid "You will need photographic identification."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:145
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:144
 msgid "Read more about how to vote in Northern Ireland"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:149
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:148
 msgid "Read more about how to vote"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:158
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:157
 msgid "Get directions"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:162
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:161
 msgid "Get directions from"
 msgstr ""
 
@@ -2322,45 +765,39 @@ msgstr ""
 msgid "Turnout"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:198
-#, python-format
-msgid ""
-"The <a href=\"%(sopn_url)s\">official candidate list</a> has been published."
-msgstr ""
-
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:203
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:199
 msgid "The official candidate list should have been published on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:205
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:201
 msgid "The official candidate list should be published on"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:216
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:212
 msgid "Can you vote in this election?"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:217
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:213
 msgid "Age"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:219
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:215
 #, python-format
 msgid ""
 "You need to be over %(voter_age)s on the %(voter_age_date)s of "
 "%(election_date)s in order to vote in this election."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:224
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:220
 msgid "Citizenship"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:241
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:237
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:7
 msgid "Wikipedia"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:243
+#: wcivf/apps/elections/templates/elections/includes/_single_ballot.html:239
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:9
 msgid "Read more on Wikipedia"
 msgstr ""
@@ -2373,8 +810,7 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_voter_id.html:15
 msgid ""
 "You do not need your poll card to vote. You must vote at your assigned "
-"polling station.\n"
-"                Read more about <a href=\"https://www.gov.uk/voting-in-the-"
+"polling station. Read more about <a href=\"https://www.gov.uk/voting-in-the-"
 "uk/polling-stations\">voting in Great Britain</a>."
 msgstr ""
 
@@ -2500,7 +936,8 @@ msgid "Tweets by"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:71
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:61
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
 msgid "Candidates"
 msgstr ""
 
@@ -2521,6 +958,14 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/post_view.html:35
 msgid "due to take place on"
+msgstr "i ddigwydd ar"
+
+#: wcivf/apps/feedback/models.py:9
+msgid "Yes"
+msgstr ""
+
+#: wcivf/apps/feedback/models.py:10
+msgid "No"
 msgstr ""
 
 #: wcivf/apps/feedback/models.py:11
@@ -2709,20 +1154,45 @@ msgstr ""
 
 #: wcivf/apps/parties/templates/parties/parties_view.html:21
 msgid ""
-"<p>The following is a list of all political parties represented by "
-"candidates in Democracy Club's UK election database (est. 2015). This list "
-"includes registered and deregistered parties.</p> <p>There are two party "
-"registers in the UK: a combined Great Britain register for England, Wales "
-"and Scotland, and a separate register for Northern Ireland. Parties in Great "
-"Britain can only field candidates in the nations they have specified in "
-"their entry.</p> <p>A registered party may field candidates in elections.</"
-"p> <p>A deregistered party may no longer field candidates in elections. A "
-"party can become deregistered through choice, or becuase it failed to renew "
-"its annual registration status. In some cases, parties have been "
-"deregistered and then subsequently reregistered; in these cases, the party "
-"will have an entry for each registration.</p> <p>Party names and emblems are "
-"taken from the <a href=\"http://www.electoralcommission.org.uk/\">Electoral "
-"Commission's register of political parties.</a></p>"
+"The following is a list of all political parties represented by candidates "
+"in Democracy Club's UK election database (est. 2015). This list includes "
+"registered and deregistered parties."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:23
+msgid ""
+"There are two party registers in the UK: a combined Great Britain register "
+"for England, Wales and Scotland, and a separate register for Northern "
+"Ireland. Parties in Great Britain can only field candidates in the nations "
+"they have specified in their entry."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:24
+msgid "A registered party may field candidates in elections."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:25
+msgid "A deregistered party may no longer field candidates in elections."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:26
+msgid ""
+"A party can become deregistered through choice, or because it failed to "
+"renew its annual registration status."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:27
+msgid ""
+"In some cases, parties have been deregistered and then subsequently "
+"reregistered; in these cases, the party will have an entry for each "
+"registration."
+msgstr ""
+
+#: wcivf/apps/parties/templates/parties/parties_view.html:28
+msgid ""
+"Party names and emblems are taken from the <a href=\"http://www."
+"electoralcommission.org.uk/\">Electoral Commission's register of political "
+"parties."
 msgstr ""
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:36
@@ -2858,12 +1328,16 @@ msgid ""
 "The Speaker of the House of Commons stands in general elections under the "
 "banner"
 msgstr ""
+"Mae Llefarydd Tŷ'r Cyffredin yn sefyll mewn etholiadau cyffredinol o dan y "
+"faner"
 
 #: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:37
 msgid ""
 "They are not affiliated with any political party, nor do they campaign on "
 "any political issues."
 msgstr ""
+"Nid ydynt yn gysylltiedig ag unrhyw blaid wleidyddol, nac yn ymgyrchu ar "
+"unrhyw faterion gwleidyddol."
 
 #: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:38
 msgid "The Speaker generally runs unopposed by the major parties."
@@ -2877,10 +1351,15 @@ msgid ""
 "parliamentwork/offices-and-ceremonies/overview/the-speaker/elections/"
 "\">their role in elections</a> on the parliament.uk website."
 msgstr ""
+"Dysgwch fwy am <a href=\"https://www.parliament.uk/mps-lords-and-offices/"
+"offices/commons/speakers-office/\">Y Llefarydd</a> a'i <a href=\"https://www."
+"parliament.uk/about/living-heritage/evolutionofparliament/parliamentwork/"
+"offices-and-ceremonies/overview/the-speaker/elections/\">rôl mewn "
+"etholiadau</a> ar wefan parliament.uk."
 
 #: wcivf/apps/people/models.py:78
 msgid "Elected unopposed"
-msgstr ""
+msgstr "Etholwyd yn ddiwrthwynebiad"
 
 #: wcivf/apps/people/models.py:79
 msgid "(election cancelled)"
@@ -2896,36 +1375,36 @@ msgstr ""
 msgid "%(num_votes)s votes (elected)"
 msgstr ""
 
-#: wcivf/apps/people/models.py:103
+#: wcivf/apps/people/models.py:105
 msgid "Elected (vote count not available)"
-msgstr ""
+msgstr "Wedi'i ethol (cyfrif pleidleisiau ddim ar gael)"
 
-#: wcivf/apps/people/models.py:109
+#: wcivf/apps/people/models.py:111
 #, python-format
 msgid "%(num_votes)s votes (not elected)"
 msgstr ""
 
-#: wcivf/apps/people/models.py:110
+#: wcivf/apps/people/models.py:114
 msgid "Not elected (vote count not available)"
-msgstr ""
+msgstr "Heb ei ethol (dim nifer y pleidleisiau ar gael)"
 
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:4
 #, python-format
 msgid "About %(name)s"
-msgstr ""
+msgstr "Am %(name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:12
 #, python-format
 msgid "<h4>Favourite Biscuit</h4> <p>%(biscuit)s</p>"
-msgstr ""
+msgstr "<h4>Hoff Fisgedi</h4> <p>%(biscuit)s</p>"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:4
 msgid "online"
-msgstr ""
+msgstr "ar-lein"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:11
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:15
 #, python-format
@@ -2935,69 +1414,69 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:22
 #, python-format
 msgid "%(person_name)s's Facebook page"
-msgstr ""
+msgstr "Tudalen gartref %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
 #: wcivf/templates/base.html:115
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:35
 #, python-format
 msgid "%(person_name)s's Twitter profile"
-msgstr ""
+msgstr "Proffil Twitter %(person_name)s's "
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:44
 msgid "Mastodon"
-msgstr ""
+msgstr "Mastodon"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:46
 #, python-format
 msgid "%(person_name)s's Mastodon profile"
-msgstr ""
+msgstr "Proffil Mastodon %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:55
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:57
 #, python-format
 msgid "%(person_name)s's LinkedIn profile"
-msgstr ""
+msgstr "Proffil LinkedIn %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:68
 #, python-format
 msgid "%(person_name)s's home page"
-msgstr ""
+msgstr "Tudalen gartref %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:77
 #: wcivf/templates/base.html:114
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:79
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:80
 #, python-format
 msgid "%(person_name)s's blog"
-msgstr ""
+msgstr "Blog %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:88
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:90
 #, python-format
 msgid "%(person_name)s's Instagram"
-msgstr ""
+msgstr "Instagram %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:99
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:101
 #, python-format
 msgid "%(person_name)s's YouTube"
-msgstr ""
+msgstr "YouTube %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:110
 msgid "The party's candidate page for this person"
@@ -3241,15 +1720,17 @@ msgid "their speeches, voting history and more"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:6
-msgid "elections"
-msgstr ""
+#, python-format
+msgid "%(person_name)s's elections"
+msgstr "Etholiadau %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:10
 msgid "Election"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:47
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:90
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
 msgid "Party"
 msgstr ""
 
@@ -3390,13 +1871,14 @@ msgid ""
 msgstr ""
 
 #: wcivf/apps/people/templates/people/not_current_person_detail.html:25
-#, python-format
-msgid ""
-"\n"
-"                            <p>%(person_name)s stood for election twice.</"
-"p>\n"
-"                        "
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "<p>%(person_name)s stood for election twice.</p>\n"
+msgid "<p>%(person_name)s stood for election twice.</p>"
 msgstr ""
+"\n"
+"<p>Safodd %(person_name)s mewn etholiad ddwywaith.</p>\n"
 
 #: wcivf/apps/people/templates/people/not_current_person_detail.html:29
 #, python-format
@@ -3516,42 +1998,47 @@ msgstr ""
 msgid "The data"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:54
+#, python-format
 msgid ""
-"The full list of prospective parliamentary candidates is available as a "
+"The full list of prospective parliamentary candidates is available as a <a "
+"href=\"%(details_url)s\">browsable table</a> or a <a href=\"https://docs."
+"google.com/spreadsheets/d/"
+"e/2PACX-1vRhZbBrU2AdJDYyBZViMs6irvH7zVUiZm2rDoADw5B18drp6hILJBr-"
+"duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv\">CSV</a>."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "browsable table"
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "or a "
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:60
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:65
 msgid "Region / nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:62
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
 msgid "Total seats in region"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:103
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:88
+msgid "Candidate selections by political party"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:100
+msgid "Total"
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
 msgid "Support our work"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:104
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
 msgid ""
 "Democracy Club is a non-profit Community Interest Company. If you've found "
 "this resource useful, please consider a donation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:106
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:111
 msgid "Donate now"
 msgstr ""
 
@@ -3564,45 +2051,49 @@ msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:16
 msgid ""
-"\n"
-"            Democracy Club's volunteers are collecting information on each "
-"candidate as they are announced.\n"
-"            The live table below displays all the candidates we are aware "
-"of. Where a candidate has a\n"
-"            recent electoral history, this is displayed on their Democracy "
-"Club profile, linked to from their name.\n"
-"        "
+"Democracy Club's volunteers are collecting information on each candidate as "
+"they are announced."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:27
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:17
+msgid "The live table below displays all the candidates we are aware of."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:18
+msgid ""
+"Where a candidate has a recent electoral history, this is displayed on their "
+"Democracy Club profile, linked to from their name."
+msgstr ""
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:25
 msgid "Filters"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:33
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:31
 #, python-format
 msgid "%(field)s"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:42
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:40
 #, python-format
 msgid ""
 "You can also <a href=\"%(csv_url)s\">download the CSV</a> of all prospective "
 "parliamentary candidates."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:46
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:44
 msgid "Name"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:48
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:46
 msgid "Constituency"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:49
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:47
 msgid "Nation / English region"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:62
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:60
 msgid "Source"
 msgstr ""
 

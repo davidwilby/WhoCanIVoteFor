@@ -47,13 +47,12 @@
                 <hr>
                 <h3>{% trans "Vote on polling day" %}</h3>
             {% endif %}
+            <p>
+                {% trans "Your polling station is" %}:
+            </p>
             {% blocktrans trimmed with polling_station_address=polling_station.station.properties.address|linebreaksbr %}
-                <p>
-                    Your polling station is:
-                </p>
                 <address>{{ polling_station_address }}</address>
             {% endblocktrans %}
-
             <p>
                 {% blocktrans trimmed %}It will be open from <strong>7am to 10pm</strong>{% endblocktrans %}
 
@@ -92,7 +91,7 @@
             {% else %}
                 <p>{% blocktrans trimmed %}Postal votes cannot be accepted at polling stations in Northern Ireland.{% endblocktrans%}</p>
             {% endif %}
-            <p><a href="https://www.electoralcommission.org.uk/voting-and-elections/ways-vote/how-vote-post">{% trans "Learn more about voting by post." %}</a></p>
+            <p><a href="https://www.electoralcommission.org.uk/voting-and-elections/ways-vote/how-vote-post">{% trans "Learn more about voting by post" %}</a>.</p>
 
         {% else %}
             {% if polling_station.custom_finder %}

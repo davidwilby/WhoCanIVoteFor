@@ -22,7 +22,7 @@
                         {{ object.name }}
                     </h2>
                     {% if object.past_not_current_candidacies.count == 2 %}
-                        {% blocktrans %}
+                        {% blocktrans trimmed %}
                             <p>{{ person_name }} stood for election twice.</p>
                         {% endblocktrans %}
                     {% else %}

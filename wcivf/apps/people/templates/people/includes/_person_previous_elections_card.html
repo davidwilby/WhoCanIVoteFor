@@ -3,7 +3,7 @@
 
 {% if object.personpost_set.exists %}
     <div class="ds-table ds-stack">
-        <h2 class="ds-h3">{{ object.name }}'s {% trans "elections" %}</h2>
+        <h2 class="ds-h3">{% blocktrans trimmed with person_name=object.name %}{{ person_name }}'s elections{% endblocktrans %}</h2>
         <table>
             <tr>
                 <th>{% trans "Date" %}</th>
