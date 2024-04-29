@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 17:32+0100\n"
+"POT-Creation-Date: 2024-04-29 12:04+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -1182,27 +1182,62 @@ msgstr "heddiw"
 msgid "due to take place on"
 msgstr "Mae disgwyl iddo gael ei gynnal ar"
 
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
+#: wcivf/apps/feedback/models.py:9
 msgid "Yes"
 msgstr ""
 
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
+#: wcivf/apps/feedback/models.py:10
 msgid "No"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:20
+#: wcivf/apps/feedback/models.py:11
+msgid "Report a problem with this page"
+msgstr "Rhoi gwybod am broblem gyda'r dudalen hon"
+
+#: wcivf/apps/feedback/models.py:14
+msgid "More likely"
+msgstr "Yn fwy tebygol"
+
+#: wcivf/apps/feedback/models.py:15
+msgid "Less likely"
+msgstr "Llai tebygol"
+
+#: wcivf/apps/feedback/models.py:16
+msgid "I always vote (no change)"
+msgstr "Dwi bob amser yn pleidleisio (dim newid)"
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:23
 msgid "Did you find what you were looking for?"
 msgstr "A wnaethoch chi ddod o hyd i'r hyn roeddech chi'n chwilio amdano?"
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:29
-msgid "Has this information made you more likely to vote?"
-msgstr "A yw'r wybodaeth hon wedi eich gwneud chi'n fwy tebygol o bleidleisio?"
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:34
+msgid ""
+"Has this service changed your likelihood of voting?"
+msgstr ""
+"A yw'r gwasanaeth hwn wedi newid eich tebygolrwydd o bleidleisio?"
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:37
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:46
+msgid "Please describe the problem you encountered"
+msgstr "Disgrifiwch y broblem y daethoch ar ei thraws"
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:47
 msgid "Can you tell us anything more?"
 msgstr "A allwch chi ddweud unrhyw beth arall i ni?"
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:40
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:55
+msgid "(Optional) Email address"
+msgstr "(Dewisol) Cyfeiriad e-bost"
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:65
+msgid ""
+"If you provide an email address, we may contact you to request more "
+"information or notify you of improvements related to this report. It will "
+"not be used for email marketing purposes."
+msgstr "Os ydych yn darparu cyfeiriad e-bost, efallai y byddwn yn cysylltu â chi i ofyn am fwy"
+" gwybodaeth neu i roi gwybod i chi am welliannau sy'n gysylltiedig â'r adroddiad hwn. Bydd yn "
+"ddim i'w ddefnyddio at ddibenion marchnata e-bost."
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:70
 msgid "Send feedback"
 msgstr "Anfonwch adborth"
 
@@ -1426,7 +1461,9 @@ msgstr ""
 "gynnig ymgeiswyr mwyach."
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:56
-msgid " %(description)s"
+#, fuzzy, python-format
+#| msgid " %(description)s"
+msgid "%(description)s"
 msgstr " %(description)s "
 
 #: wcivf/apps/parties/templates/parties/party_detail.html:69
@@ -1650,7 +1687,7 @@ msgid "%(person_name)s's Facebook page"
 msgstr "Tudalen Facebook %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
-#: wcivf/templates/base.html:112
+#: wcivf/templates/base.html:115
 msgid "Twitter"
 msgstr "Trydar"
 
@@ -1685,7 +1722,7 @@ msgid "%(person_name)s's home page"
 msgstr "Hafan %(person_name)s"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:77
-#: wcivf/templates/base.html:111
+#: wcivf/templates/base.html:114
 msgid "Blog"
 msgstr "Blog"
 
@@ -2330,11 +2367,6 @@ msgstr ""
 msgid "full list of prospective parliamentary candidates"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-#, python-format
-msgid "is available as a browsable table or a CSV{%% endblocktrans"
-msgstr ""
-
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
@@ -2483,40 +2515,40 @@ msgstr "%(short_cancelled_message)s"
 msgid "Language:"
 msgstr "Iaith:"
 
-#: wcivf/templates/base.html:104
+#: wcivf/templates/base.html:107
 msgid "All Parties"
 msgstr "Pob plaid"
 
-#: wcivf/templates/base.html:105
+#: wcivf/templates/base.html:108
 msgid "Standing as a candidate?"
 msgstr "Sefyll fel ymgeisydd?"
 
-#: wcivf/templates/base.html:106
+#: wcivf/templates/base.html:109
 #, python-format
 msgid "About %(SITE_TITLE)s"
 msgstr "Ynglŷn %(SITE_TITLE)s"
 
-#: wcivf/templates/base.html:107
+#: wcivf/templates/base.html:110
 msgid "Privacy"
 msgstr "Preifatrwydd"
 
-#: wcivf/templates/base.html:108
+#: wcivf/templates/base.html:111
 msgid "Source code"
 msgstr "Cod ffynhonnell"
 
-#: wcivf/templates/base.html:109
+#: wcivf/templates/base.html:112
 msgid "About Democracy Club"
 msgstr "Ynglŷn â'r Clwb Democratiaeth"
 
-#: wcivf/templates/base.html:110
+#: wcivf/templates/base.html:113
 msgid "Contact Us"
 msgstr "Cysylltwch â Ni"
 
-#: wcivf/templates/base.html:113
+#: wcivf/templates/base.html:116
 msgid "GitHub"
 msgstr "GitHub"
 
-#: wcivf/templates/base.html:114
+#: wcivf/templates/base.html:117
 msgid ""
 "Browse the list of people and parties standing in the next general election"
 msgstr ""

@@ -2527,27 +2527,58 @@ msgstr ""
 msgid "due to take place on"
 msgstr ""
 
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
+#: wcivf/apps/feedback/models.py:9
 msgid "Yes"
 msgstr ""
 
-#: wcivf/apps/feedback/models.py:7 wcivf/apps/feedback/models.py:8
+#: wcivf/apps/feedback/models.py:10
 msgid "No"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:20
+#: wcivf/apps/feedback/models.py:11
+msgid "Report a problem with this page"
+msgstr ""
+
+#: wcivf/apps/feedback/models.py:14
+msgid "More likely"
+msgstr ""
+
+#: wcivf/apps/feedback/models.py:15
+msgid "Less likely"
+msgstr ""
+
+#: wcivf/apps/feedback/models.py:16
+msgid "I always vote (no change)"
+msgstr ""
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:23
 msgid "Did you find what you were looking for?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:29
-msgid "Has this information made you more likely to vote?"
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:34
+msgid "Has this service changed your likelihood of voting?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:37
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:46
+msgid "Please describe the problem you encountered"
+msgstr ""
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:47
 msgid "Can you tell us anything more?"
 msgstr ""
 
-#: wcivf/apps/feedback/templates/feedback/feedback_form.html:40
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:55
+msgid "(Optional) Email address"
+msgstr ""
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:65
+msgid ""
+"If you provide an email address, we may contact you to request more "
+"information or notify you of improvements related to this report. It will "
+"not be used for email marketing purposes."
+msgstr ""
+
+#: wcivf/apps/feedback/templates/feedback/feedback_form.html:70
 msgid "Send feedback"
 msgstr ""
 
