@@ -2003,10 +2003,6 @@ msgstr ""
 msgid "It will be open from <strong>7am to 10pm</strong>"
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:64
-msgid "and"
-msgstr ""
-
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:72
 msgid "You don't need to take your poll card with you."
 msgstr ""
@@ -2525,14 +2521,6 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/post_view.html:35
 msgid "due to take place on"
-msgstr ""
-
-#: wcivf/apps/feedback/models.py:9
-msgid "Yes"
-msgstr ""
-
-#: wcivf/apps/feedback/models.py:10
-msgid "No"
 msgstr ""
 
 #: wcivf/apps/feedback/models.py:11
