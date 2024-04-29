@@ -41,7 +41,7 @@
 
         <h2 class="ds-h4">{% trans "Timetable" %}</h2>
         <p>{% trans "Democracy Club's" %} <a href="https://election-timetable.democracyclub.org.uk/">
-            {% trans "general election timetable generator"%}</a> {% trans "provides an election timetable for any given date" %}.</p>
+            {% trans "general election timetable generator" %}</a> {% trans "provides an election timetable for any given date" %}.</p>
 
 
     </details>
@@ -85,10 +85,10 @@
     {% if by_party %}
         <div class="ds-table">
             <table>
-                <caption>Candidate selections by political party</caption>
+                <caption>{% trans "Candidate selections by political party" %}</caption>
                 <tr>
-                    <th>Party</th>
-                    <th>Candidates</th>
+                    <th>{% trans "Party" %}</th>
+                    <th>{% trans "Candidates" %}</th>
                 </tr>
                 {% for party in by_party %}
                     <tr>
@@ -97,7 +97,7 @@
                     </tr>
                 {% endfor %}
                 <tr>
-                    <td>Total</td>
+                    <td>{% trans "Total" %}</td>
                     <td>{{ person_count }}</td>
                 </tr>
             </table>
