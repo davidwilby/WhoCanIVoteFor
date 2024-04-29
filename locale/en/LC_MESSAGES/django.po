@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-25 13:12+0000\n"
+"POT-Creation-Date: 2024-04-29 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3517,16 +3517,16 @@ msgid "The data"
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "The "
+msgid ""
+"The full list of prospective parliamentary candidates is available as a "
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "full list of prospective parliamentary candidates"
+msgid "browsable table"
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-#, python-format
-msgid "is available as a browsable table or a CSV{%% endblocktrans"
+msgid "or a "
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58

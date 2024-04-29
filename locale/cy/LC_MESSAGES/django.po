@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-29 12:04+0000\n"
+"POT-Creation-Date: 2024-04-29 14:24+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -2360,12 +2360,17 @@ msgid "The data"
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "The "
-msgstr ""
+msgid ""
+"The full list of prospective parliamentary candidates is available as a "
+msgstr "Mae rhestr lawn o ddarpar ymgeiswyr seneddol ar gael fel"
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
-msgid "full list of prospective parliamentary candidates"
-msgstr ""
+msgid "browsable table"
+msgstr "bwrdd i bori"
+
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:52
+msgid "or a "
+msgstr "neu"
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
 msgid "Number of candidates announced per UK region or nation"
