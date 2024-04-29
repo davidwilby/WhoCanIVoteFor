@@ -86,8 +86,8 @@
             updateFormState();
 
             // Add event listeners to feedback option labels
-            feedbackLabels.forEach(label => {
-                label.addEventListener('click', function () {
+            allInputs.forEach(input => {
+                input.addEventListener('click', function () {
                     // Refresh form state whenever a new choice is made
                     updateFormState();
                 });
