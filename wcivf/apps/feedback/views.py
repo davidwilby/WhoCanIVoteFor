@@ -20,7 +20,9 @@ class FeedbackFormView(UpdateView):
         if not settings.AKISMET_API_KEY:
             return False
 
-        akismet = Akismet(settings.AKISMET_API_KEY, blog=settings.AKISMET_BLOG_URL)
+        akismet = Akismet(
+            settings.AKISMET_API_KEY, blog=settings.AKISMET_BLOG_URL
+        )
         return akismet.check(
             self.request.META["REMOTE_ADDR"],
             comment_content=self.request.POST.get("comments"),
@@ -49,7 +51,9 @@ class FeedbackFormView(UpdateView):
             extra_tags="template",
         )
 
-        if url_has_allowed_host_and_scheme(self.object.source_url, allowed_hosts=None):
+        if url_has_allowed_host_and_scheme(
+            self.object.source_url, allowed_hosts=None
+        ):
             return self.object.source_url
 
         return "/"

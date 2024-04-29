@@ -1,6 +1,7 @@
 """
 Importer for all our important Hustings data
 """
+
 import datetime
 
 from django.core.management.base import BaseCommand
@@ -94,9 +95,13 @@ class Command(BaseCommand):
 
         ends = None
         if row["Start time (00:00)"]:
-            starts = set_time_string_on_datetime(starts, row["Start time (00:00)"])
+            starts = set_time_string_on_datetime(
+                starts, row["Start time (00:00)"]
+            )
         if row["End time (if known)"]:
-            ends = set_time_string_on_datetime(starts, row["End time (if known)"])
+            ends = set_time_string_on_datetime(
+                starts, row["End time (if known)"]
+            )
 
         # Get the post_election
         pes = PostElection.objects.filter(ballot_paper_id=row["Election ID"])
@@ -111,7 +116,9 @@ class Command(BaseCommand):
                 url=row["Link to event information"],
                 starts=starts,
                 ends=ends,
-                location=row.get("Location (if online only please leave blank)", ""),
+                location=row.get(
+                    "Location (if online only please leave blank)", ""
+                ),
                 postevent_url=row[
                     "Link to post-event information (e.g. blog post, video)"
                 ],

@@ -46,7 +46,9 @@ class ElectionViewTests(TestCase):
             self.assertContains(response, self.election.nice_election_name)
 
     def test_election_detail_view(self):
-        response = self.client.get(self.election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/election_view.html")
         self.assertContains(response, self.election.nice_election_name)
@@ -67,9 +69,13 @@ class ElectionViewTests(TestCase):
             (not_city_of_london, "Polls are open from 7a.m. till 10p.m."),
         ]:
             with self.subTest(election=election):
-                response = self.client.get(election[0].get_absolute_url(), follow=True)
+                response = self.client.get(
+                    election[0].get_absolute_url(), follow=True
+                )
                 self.assertEqual(response.status_code, 200)
-                self.assertTemplateUsed(response, "elections/election_view.html")
+                self.assertTemplateUsed(
+                    response, "elections/election_view.html"
+                )
                 self.assertContains(response, election[0].nice_election_name)
                 self.assertContains(response, election[1])
 
@@ -85,8 +91,12 @@ class ElectionViewTests(TestCase):
                 ballot__post__division_type=division_type[0]
             )
             with self.subTest(election=election):
-                response = self.client.get(election.get_absolute_url(), follow=True)
-                self.assertContains(response, election.pluralized_division_name.title())
+                response = self.client.get(
+                    election.get_absolute_url(), follow=True
+                )
+                self.assertContains(
+                    response, election.pluralized_division_name.title()
+                )
 
     def test_election_type_filters(self):
         """
@@ -152,7 +162,9 @@ class ElectionPostViewTests(TestCase):
             slug="local.adur.churchill.2021-05-06",
         )
         self.post = PostFactory(label="Adur local election")
-        self.post_election = PostElectionFactory(election=self.election, post=self.post)
+        self.post_election = PostElectionFactory(
+            election=self.election, post=self.post
+        )
 
     def test_pre_sopn_text_with_candidates(self):
         future_election = ElectionFactory(
@@ -175,7 +187,9 @@ class ElectionPostViewTests(TestCase):
             post=future_post,
             person=person,
         )
-        response = self.client.get(future_post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            future_post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertFalse(future_post_election.locked)
         self.assertEqual(len(future_post_election.personpost_set.all()), 1)
@@ -194,10 +208,14 @@ class ElectionPostViewTests(TestCase):
         )
 
     def test_zero_candidates(self):
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
@@ -213,28 +231,40 @@ class ElectionPostViewTests(TestCase):
                 person=person,
             )
 
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
         self.assertContains(response, f"The 5 candidates in {self.post.label}")
-        self.assertContains(response, f"See all 5 candidates in the {self.post.label}")
+        self.assertContains(
+            response, f"See all 5 candidates in the {self.post.label}"
+        )
 
     def test_cancellation_reason_candidate_death(self):
         self.post_election.cancelled = True
         self.post_election.cancellation_reason = "CANDIDATE_DEATH"
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
-        self.assertTemplateUsed(response, "elections/includes/_cancelled_election.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
         self.assertNotContains(response, "No candidates known yet.")
         self.assertContains(
             response,
@@ -245,14 +275,20 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = True
         self.post_election.cancellation_reason = "NO_CANDIDATES"
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
-        self.assertTemplateUsed(response, "elections/includes/_cancelled_election.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
         self.assertNotContains(response, "No candidates known yet.")
         self.assertContains(
             response,
@@ -263,14 +299,20 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = True
         self.post_election.cancellation_reason = "EQUAL_CANDIDATES"
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
-        self.assertTemplateUsed(response, "elections/includes/_cancelled_election.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
         self.assertNotContains(response, "No candidates known yet.")
         self.assertContains(
             response,
@@ -281,14 +323,20 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = True
         self.post_election.cancellation_reason = "UNDER_CONTESTED"
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
-        self.assertTemplateUsed(response, "elections/includes/_cancelled_election.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
         self.assertNotContains(response, "No candidates known yet.")
         self.assertContains(
             response,
@@ -309,14 +357,20 @@ class ElectionPostViewTests(TestCase):
             )
         self.post_election.cancelled = True
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "elections/post_view.html")
-        self.assertTemplateUsed(response, "elections/includes/_post_meta_title.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_post_meta_title.html"
+        )
         self.assertTemplateUsed(
             response, "elections/includes/_post_meta_description.html"
         )
-        self.assertTemplateUsed(response, "elections/includes/_cancelled_election.html")
+        self.assertTemplateUsed(
+            response, "elections/includes/_cancelled_election.html"
+        )
         self.assertNotContains(response, "No candidates known yet.")
         self.assertContains(
             response,
@@ -425,7 +479,9 @@ class ElectionPostViewTests(TestCase):
             deselected=True,
             deselected_source="www.google.com",
         )
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertContains(
             response,
             "This candidate has been deselected by their party",
@@ -595,7 +651,9 @@ class TestPostViewTemplateName:
 
 class TestPostElectionView(TestCase):
     def setUp(self):
-        self.post_election = PostElectionFactory(election__election_date="2017-03-23")
+        self.post_election = PostElectionFactory(
+            election__election_date="2017-03-23"
+        )
 
     def test_results_table(self):
         """check that the table containing the electorate,
@@ -605,7 +663,9 @@ class TestPostElectionView(TestCase):
         self.post_election.electorate = 100
         self.post_election.spoilt_ballots = 5
         self.post_election.save()
-        response = self.client.get(self.post_election.get_absolute_url(), follow=True)
+        response = self.client.get(
+            self.post_election.get_absolute_url(), follow=True
+        )
         self.assertEqual(response.status_code, 200)
 
         self.assertTrue(self.post_election.has_results)
@@ -632,7 +692,9 @@ class TestPostElectionsToPeopleMixin(TestCase):
                 person__name=person["name"],
                 person__sort_name=person["sort_name"],
             )
-        candidates = list(PostelectionsToPeopleMixin().people_for_ballot(post_election))
+        candidates = list(
+            PostelectionsToPeopleMixin().people_for_ballot(post_election)
+        )
         self.assertEqual(candidates[0].person.name, "Jane Adams")
         self.assertEqual(candidates[1].person.name, "John Middle")
         self.assertEqual(candidates[2].person.name, "Jane Smith")
@@ -692,7 +754,9 @@ class TestPostelectionsToPeopleMixin(TestCase):
         all_queries_without_pledge = self.ALL_QUERIES.copy()
         all_queries_without_pledge.remove(self.PLEDGE_QUERY)
         with self.assertNumQueries(sum(all_queries_without_pledge)):
-            queryset = self.mixin.people_for_ballot(self.post_election, compact=True)
+            queryset = self.mixin.people_for_ballot(
+                self.post_election, compact=True
+            )
             # resolve queryset to execute the queries
             candidates = list(queryset)
             self.assertEqual(len(candidates), 10)

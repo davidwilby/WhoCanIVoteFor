@@ -141,9 +141,9 @@ class PersonManager(models.Manager):
 
             if value_type in VALUE_TYPES_TO_IMPORT:
                 if value_type == "theyworkforyou":
-                    defaults["twfy_id"] = identifier["internal_identifier"].replace(
-                        "uk.org.publicwhip/person/", ""
-                    )
+                    defaults["twfy_id"] = identifier[
+                        "internal_identifier"
+                    ].replace("uk.org.publicwhip/person/", "")
                 else:
                     defaults[value_type] = identifier["value"]
 
@@ -153,7 +153,9 @@ class PersonManager(models.Manager):
             defaults["photo_url"] = person["thumbnail"]
 
         person_id = person["id"]
-        person_obj, _ = self.update_or_create(ynr_id=person_id, defaults=defaults)
+        person_obj, _ = self.update_or_create(
+            ynr_id=person_id, defaults=defaults
+        )
 
         # Update any related ballots modified field
         # to indicate that the ballot has changes

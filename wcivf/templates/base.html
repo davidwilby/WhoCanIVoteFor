@@ -16,7 +16,7 @@
                     "use strict";
                     var n = function(n, t, o) {
                         var l, r = e.document,
-                        i = r.createElement("link");
+                            i = r.createElement("link");
                         if (t) l = t;
                         else {
                             var a = (r.body || r.getElementsByTagName("head")[0]).childNodes;
@@ -26,7 +26,7 @@
                         i.rel = "stylesheet", i.href = n, i.media = "only x", l.parentNode.insertBefore(i, t ? l : l.nextSibling);
                         var f = function(e) {
                             for (var n = i.href, t = d.length; t--;)
-                            if (d[t].href === n) return e();
+                                if (d[t].href === n) return e();
                             setTimeout(function() {
                                 f(e)
                             })
@@ -136,6 +136,6 @@
         </script>
 
         <script data-goatcounter="https://democracyclub.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+                async src="//gc.zgo.at/count.js"></script>
     {% endblock extra_javascript %}
 {% endblock extra_site_js %}

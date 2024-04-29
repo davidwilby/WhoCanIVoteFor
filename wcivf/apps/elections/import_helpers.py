@@ -62,11 +62,15 @@ class YNRElectionImporter:
         ballot_paper_id = ballot_dict["ballot_paper_id"]
 
         # Look up the dict of possible weights for this election type
-        weights = charisma_map.get(ballot_paper_id.split(".")[0], {"default": 30})
+        weights = charisma_map.get(
+            ballot_paper_id.split(".")[0], {"default": 30}
+        )
 
         organisation_type = ballot_paper_id.split(".")[0]
         default_weight_for_election_type = weights.get("default")
-        base_charisma = weights.get(organisation_type, default_weight_for_election_type)
+        base_charisma = weights.get(
+            organisation_type, default_weight_for_election_type
+        )
 
         # Look up `r` and `a` subtypes
         subtype = re.match(r"^[^.]+\.([ar])\.", ballot_paper_id)
@@ -262,8 +266,12 @@ class YNRBallotImporter:
         """
         Use cached data if a full import, unless base_url is using locahost
         """
-        if self.is_full_import and not self.base_url.startswith("http://localhost"):
-            return f"{self.base_url}/media/cached-api/latest/ballots-000001.json"
+        if self.is_full_import and not self.base_url.startswith(
+            "http://localhost"
+        ):
+            return (
+                f"{self.base_url}/media/cached-api/latest/ballots-000001.json"
+            )
 
         querystring = urlencode(self.params)
         return f"{self.base_url}/api/next/ballots/?{querystring}"
@@ -334,7 +342,9 @@ class YNRBallotImporter:
                 ballot_dict
             )
 
-            post = self.post_importer.update_or_create_from_ballot_dict(ballot_dict)
+            post = self.post_importer.update_or_create_from_ballot_dict(
+                ballot_dict
+            )
             if not post:
                 # cant create a ballot without a post so skip to the next one
                 continue
@@ -365,7 +375,9 @@ class YNRBallotImporter:
                     ],
                     "electorate": ballot_dict["results"]["total_electorate"],
                     "turnout": ballot_dict["results"]["turnout_percentage"],
-                    "spoilt_ballots": ballot_dict["results"]["num_spoilt_ballots"],
+                    "spoilt_ballots": ballot_dict["results"][
+                        "num_spoilt_ballots"
+                    ],
                 }
 
                 defaults = {**defaults, **results_defaults}
@@ -407,7 +419,9 @@ class YNRBallotImporter:
                         person=person,
                         party_id=candidate["party"]["legacy_slug"],
                         party_name=candidate["party_name"],
-                        party_description_text=candidate["party_description_text"],
+                        party_description_text=candidate[
+                            "party_description_text"
+                        ],
                         list_position=candidate["party_list_position"],
                         deselected=candidate["deselected"],
                         deselected_source=candidate["deselected_source"],
@@ -416,7 +430,9 @@ class YNRBallotImporter:
                         post=ballot.post,
                         election=ballot.election,
                     )
-                    for party in candidate.get("previous_party_affiliations", []):
+                    for party in candidate.get(
+                        "previous_party_affiliations", []
+                    ):
                         # if the previous party affiliation is the
                         # same as the party on the candidacy skip it
                         party_id = party["legacy_slug"]
@@ -506,7 +522,9 @@ class YNRBallotImporter:
             return
         ee_data = self.ee_helper.get_data(ballot.ballot_paper_id)
         if ee_data:
-            ballot.post.organization_type = ee_data["organisation"]["organisation_type"]
+            ballot.post.organization_type = ee_data["organisation"][
+                "organisation_type"
+            ]
             ballot.post.save()
 
     def set_division_type(self, ballot):
@@ -561,9 +579,14 @@ class YNRBallotImporter:
             print(election_id)
             if self.ee_helper.ee_cache[election_id]["group_type"]:
                 # Only the ones with group_type == "organisation" match Election objects in WCIVF directly
-                if self.ee_helper.ee_cache[election_id]["group_type"] == "organisation":
+                if (
+                    self.ee_helper.ee_cache[election_id]["group_type"]
+                    == "organisation"
+                ):
                     election = Election.objects.get(slug=election_id)
-                    print(f"importing metadata from EE for Election: {election}")
+                    print(
+                        f"importing metadata from EE for Election: {election}"
+                    )
                     self.election_importer.import_metadata_from_ee(election)
                 # for those that any other group_type, we need to get the children and try to match an Election
                 else:
@@ -578,7 +601,9 @@ class YNRBallotImporter:
                 self.import_metadata_from_ee(ballot)
                 try:
                     election = Election.objects.get(slug=election_id)
-                    print(f"importing metadata from EE for Election: {election}")
+                    print(
+                        f"importing metadata from EE for Election: {election}"
+                    )
                     self.election_importer.import_metadata_from_ee(election)
                 except Election.DoesNotExist:
                     print(f"Election {election_id} not found in WCIVF")
@@ -586,7 +611,9 @@ class YNRBallotImporter:
             for election_id in elections_with_children:
                 try:
                     election = Election.objects.get(slug=election_id)
-                    print(f"importing metadata from EE for Election: {election}")
+                    print(
+                        f"importing metadata from EE for Election: {election}"
+                    )
                     self.election_importer.import_metadata_from_ee(election)
                 except Election.DoesNotExist:
                     print(f"Election {election_id} not found in WCIVF")

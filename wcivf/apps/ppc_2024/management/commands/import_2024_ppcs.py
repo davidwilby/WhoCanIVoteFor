@@ -1,6 +1,7 @@
 """
 Importer for all the corporate overlords
 """
+
 import contextlib
 import csv
 from dataclasses import dataclass
@@ -16,8 +17,7 @@ from people.models import Person
 from ppc_2024.models import PPCPerson
 
 
-class BlankRowException(ValueError):
-    ...
+class BlankRowException(ValueError): ...
 
 
 def clean_party_id(party_id):
@@ -78,7 +78,9 @@ class Command(BaseCommand):
             # if this person doesn't exist in WCIVF
             # this could be due to a merge.
             # See if we can get an alternative person id from YNR
-            url = urljoin(settings.YNR_BASE, f"/api/next/person_redirects/{person_id}")
+            url = urljoin(
+                settings.YNR_BASE, f"/api/next/person_redirects/{person_id}"
+            )
             req = requests.get(url)
             if req.status_code != 200:
                 raise
@@ -119,7 +121,9 @@ class Command(BaseCommand):
         self.delete_all_ppcs()
         counter = 0
         req = requests.get(PPCPerson.CSV_URL)
-        reader: List[Dict] = csv.DictReader(req.content.decode("utf8").splitlines())
+        reader: List[Dict] = csv.DictReader(
+            req.content.decode("utf8").splitlines()
+        )
         for row in reader:
             try:
                 data = CSVRow.from_csv_row(row)
