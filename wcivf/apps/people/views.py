@@ -3,7 +3,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.views.generic import DetailView, RedirectView
 from elections.dummy_models import DummyPostElection
-from parties.models import Manifesto
+from parties.models import LocalParty, Manifesto
 
 from .models import Person, PersonPost
 
@@ -73,7 +73,6 @@ class PersonView(DetailView, PersonMixin):
         obj = self.get_person(queryset)
         obj.title = self.get_title(obj)
         obj.post_country = self.get_post_country(obj)
-
         if obj.featured_candidacy:
             # We can't show manifestos if they've never stood for a party
             obj.manifestos = Manifesto.objects.filter(
@@ -87,12 +86,13 @@ class PersonView(DetailView, PersonMixin):
             obj.manifestos = sorted(
                 obj.manifestos, key=lambda n: n.country != "UK"
             )
-
-            obj.local_party = (
-                obj.featured_candidacy.post_election.localparty_set.filter(
-                    parent=obj.featured_candidacy.party
-                ).first()
+            local_party_qs = LocalParty.objects.filter(
+                post_election__in=obj.current_or_future_candidacies.all().values(
+                    "post_election"
+                )
             )
+            if local_party_qs.exists():
+                obj.local_party = local_party_qs.first()
 
         return obj
 
