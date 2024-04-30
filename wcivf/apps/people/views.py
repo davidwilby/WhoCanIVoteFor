@@ -90,7 +90,12 @@ class PersonView(DetailView, PersonMixin):
                 post_election__in=obj.current_or_future_candidacies.all().values(
                     "post_election"
                 )
+            ).filter(
+                parent__in=obj.current_or_future_candidacies.all().values(
+                    "party"
+                )
             )
+
             if local_party_qs.exists():
                 obj.local_party = local_party_qs.first()
 
