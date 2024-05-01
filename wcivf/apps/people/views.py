@@ -77,7 +77,9 @@ class PersonView(DetailView, PersonMixin):
             # We can't show manifestos if they've never stood for a party
             obj.manifestos = Manifesto.objects.filter(
                 party=obj.featured_candidacy.party,
-                election=obj.featured_candidacy.election,
+                election__in=obj.current_or_future_candidacies.values(
+                    "election"
+                ),
             ).filter(
                 Q(country="Local")
                 | Q(country="UK")
