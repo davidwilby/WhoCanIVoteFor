@@ -690,10 +690,13 @@ class PostElection(TimeStampedModel):
 
     @property
     def get_voter_id_requirements(self):
-        matcher = IDRequirementsMatcher(
-            self.ballot_paper_id, nation=self.post.territory
-        )
-        return matcher.get_id_requirements()
+        try:
+            matcher = IDRequirementsMatcher(
+                self.ballot_paper_id, nation=self.post.territory
+            )
+            return matcher.get_id_requirements()
+        except Exception:
+            return None
 
     @property
     def get_postal_voting_requirements(self):
