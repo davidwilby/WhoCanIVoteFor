@@ -958,7 +958,7 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/post_view.html:35
 msgid "due to take place on"
-msgstr "i ddigwydd ar"
+msgstr ""
 
 #: wcivf/apps/feedback/models.py:9
 msgid "Yes"
@@ -1351,11 +1351,7 @@ msgid ""
 "parliamentwork/offices-and-ceremonies/overview/the-speaker/elections/"
 "\">their role in elections</a> on the parliament.uk website."
 msgstr ""
-"Dysgwch fwy am <a href=\"https://www.parliament.uk/mps-lords-and-offices/"
-"offices/commons/speakers-office/\">Y Llefarydd</a> a'i <a href=\"https://www."
-"parliament.uk/about/living-heritage/evolutionofparliament/parliamentwork/"
-"offices-and-ceremonies/overview/the-speaker/elections/\">rôl mewn "
-"etholiadau</a> ar wefan parliament.uk."
+
 
 #: wcivf/apps/people/models.py:78
 msgid "Elected unopposed"
@@ -1377,7 +1373,7 @@ msgstr ""
 
 #: wcivf/apps/people/models.py:105
 msgid "Elected (vote count not available)"
-msgstr "Wedi'i ethol (cyfrif pleidleisiau ddim ar gael)"
+msgstr ""
 
 #: wcivf/apps/people/models.py:111
 #, python-format
@@ -1386,17 +1382,17 @@ msgstr ""
 
 #: wcivf/apps/people/models.py:114
 msgid "Not elected (vote count not available)"
-msgstr "Heb ei ethol (dim nifer y pleidleisiau ar gael)"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:4
 #, python-format
 msgid "About %(name)s"
-msgstr "Am %(name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_about_card.html:12
 #, python-format
 msgid "<h4>Favourite Biscuit</h4> <p>%(biscuit)s</p>"
-msgstr "<h4>Hoff Fisgedi</h4> <p>%(biscuit)s</p>"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:4
 msgid "online"
@@ -1404,7 +1400,7 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:11
 msgid "Facebook"
-msgstr "Facebook"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:15
 #, python-format
@@ -1419,7 +1415,7 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
 #: wcivf/templates/base.html:115
 msgid "Twitter"
-msgstr "Twitter"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:35
 #, python-format
@@ -1428,7 +1424,7 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:44
 msgid "Mastodon"
-msgstr "Mastodon"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:46
 #, python-format
@@ -1437,7 +1433,7 @@ msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:55
 msgid "LinkedIn"
-msgstr "LinkedIn"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:57
 #, python-format
