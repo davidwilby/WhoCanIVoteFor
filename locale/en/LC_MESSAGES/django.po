@@ -1400,7 +1400,7 @@ msgstr "<h4>Hoff Fisgedi</h4> <p>%(biscuit)s</p>"
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:4
 msgid "online"
-msgstr "ar-lein"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:11
 msgid "Facebook"
@@ -1414,7 +1414,7 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:22
 #, python-format
 msgid "%(person_name)s's Facebook page"
-msgstr "Tudalen gartref %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
 #: wcivf/templates/base.html:115
@@ -1424,7 +1424,7 @@ msgstr "Twitter"
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:35
 #, python-format
 msgid "%(person_name)s's Twitter profile"
-msgstr "Proffil Twitter %(person_name)s's "
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:44
 msgid "Mastodon"
@@ -1433,7 +1433,7 @@ msgstr "Mastodon"
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:46
 #, python-format
 msgid "%(person_name)s's Mastodon profile"
-msgstr "Proffil Mastodon %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:55
 msgid "LinkedIn"
@@ -1442,41 +1442,41 @@ msgstr "LinkedIn"
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:57
 #, python-format
 msgid "%(person_name)s's LinkedIn profile"
-msgstr "Proffil LinkedIn %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:68
 #, python-format
 msgid "%(person_name)s's home page"
-msgstr "Tudalen gartref %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:77
 #: wcivf/templates/base.html:114
 msgid "Blog"
-msgstr "Blog"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:79
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:80
 #, python-format
 msgid "%(person_name)s's blog"
-msgstr "Blog %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:88
 msgid "Instagram"
-msgstr "Instagram"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:90
 #, python-format
 msgid "%(person_name)s's Instagram"
-msgstr "Instagram %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:99
 msgid "YouTube"
-msgstr "YouTube"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:101
 #, python-format
 msgid "%(person_name)s's YouTube"
-msgstr "YouTube %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:110
 msgid "The party's candidate page for this person"
@@ -1722,7 +1722,7 @@ msgstr ""
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:6
 #, python-format
 msgid "%(person_name)s's elections"
-msgstr "Etholiadau %(person_name)s"
+msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:10
 msgid "Election"
