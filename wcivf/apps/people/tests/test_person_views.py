@@ -681,7 +681,7 @@ class PersonViewTests(TestCase):
         response = self.client.get(self.person_url, follow=True)
         self.assertContains(
             response,
-            "This candidate has been deselected by their party, but will remain on the ballot paper.",
+            "This candidate has been deselected by their party, but their original party description will remain on the ballot paper.",
         )
         self.assertContains(response, "www.candidate-party-page.co.uk")
 
@@ -690,7 +690,7 @@ class PersonViewTests(TestCase):
         )
         self.assertContains(
             response,
-            "This candidate has been deselected by their party, but will remain on the ballot paper.",
+            "This candidate has been deselected by their party, but their original party description will remain on the ballot paper.",
         )
         self.assertContains(response, "www.candidate-party-page.co.uk")
 

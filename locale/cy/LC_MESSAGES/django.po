@@ -445,9 +445,11 @@ msgstr "Etholwyd"
 #: wcivf/apps/elections/templates/elections/includes/_person_card.html:23
 #: wcivf/apps/people/templates/people/includes/_person_intro_card.html:42
 msgid ""
-"This candidate has been deselected by their party, but will remain on the "
-"ballot paper."
+"This candidate has been deselected by their party, but their original party "
+"description will remain on the ballot paper."
 msgstr ""
+"Mae’r ymgeisydd hwn wedi’i ddad-ddewis gan ei blaid, ond ei blaid wreiddiol "
+"bydd y disgrifiad yn aros ar y papur pleidleisio."
 
 #: wcivf/apps/elections/templates/elections/includes/_person_card.html:24
 #: wcivf/apps/people/templates/people/includes/_person_intro_card.html:43
