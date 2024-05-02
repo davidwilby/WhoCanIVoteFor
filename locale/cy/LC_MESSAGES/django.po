@@ -29,19 +29,46 @@ msgstr ""
 msgid "Enter your postcode"
 msgstr "Rhowch eich cod post"
 
-#: wcivf/apps/elections/models.py:735
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:53
+msgid "Join our mailing list"
+msgstr "Ymunwch â'n rhestr bostio"
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:64
+msgid "democracy"
+msgstr "democratiaeth"
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:64
+msgid "club"
+msgstr "clwb"
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:69
+msgid "Copyright"
+msgstr "Hawlfraint"
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:70
+msgid "Democracy Club Community Interest Company"
+msgstr "Cwmni Buddiannau Cymunedol y Clwb Democratiaeth"
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:71
+msgid "Company No: "
+msgstr "Rhif y Cwmni: "
+
+#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:73
+msgid "Building digital infrastructure for a 21st century democracy."
+msgstr "Adeiladu seilwaith digidol ar gyfer democratiaeth yn yr 21ain ganrif."
+
 msgid "First-past-the-post"
 msgstr "Y Cyntaf i’r Felin"
 
-#: wcivf/apps/elections/models.py:737
+#: wcivf/apps/elections/models.py:743
 msgid "Additional Member System"
 msgstr "Y System Aelodau Ychwanegol"
 
-#: wcivf/apps/elections/models.py:739
+#: wcivf/apps/elections/models.py:745
 msgid "Supplementary Vote"
 msgstr "Pleidlais Atodol"
 
-#: wcivf/apps/elections/models.py:741
+#: wcivf/apps/elections/models.py:747
 msgid "Single Transferable Vote"
 msgstr "Pleidlais Sengl Drosglwyddadwy"
 
@@ -511,7 +538,7 @@ msgid "<address>%(polling_station_address)s</address>"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:57
-msgid "It will be open from <strong>7am to 10pm</strong>"
+msgid "It will be open from <strong>7am to 10pm</strong>."
 msgstr "Bydd ar agor o <strong>7am tan 10pm</strong>."
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:63
@@ -1116,8 +1143,8 @@ msgid "Tweets by"
 msgstr "Trydariadau gan"
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:71
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:92
 msgid "Candidates"
 msgstr "Ymgeiswyr"
 
@@ -2035,7 +2062,7 @@ msgid "Election"
 msgstr "Etholiad"
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:90
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
 #: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
 msgid "Party"
 msgstr "Plaid"
@@ -2350,24 +2377,19 @@ msgid "Timetable"
 msgstr "Amserlen"
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:43
-#, fuzzy
-#| msgid "About Democracy Club"
-msgid "Democracy Club's"
-msgstr "Ynglŷn â'r Clwb Democratiaeth"
+msgid ""
+"Democracy Club's <a href=\"%(election_timetable_url)s\">general election "
+"timetable generator</a> provides an election timetable for any given date"
+msgstr ""
+"<a href=\"%(election_timetable_url)s\">Etholiad cyffredinol Clwb "
+"Democratiaeth Mae cynhyrchydd amserlen</a> yn darparu amserlen etholiad ar "
+"gyfer unrhyw ddyddiad penodol"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "general election timetable generator"
-msgstr "cynhyrchydd amserlen etholiad cyffredinol"
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "provides an election timetable for any given date"
-msgstr "yn darparu amserlen etholiad ar gyfer unrhyw ddyddiad penodol"
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:50
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:51
 msgid "The data"
 msgstr "Y data"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:54
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:55
 #, python-format
 msgid ""
 "The full list of prospective parliamentary candidates is available as a <a "
@@ -2399,27 +2421,27 @@ msgstr ""
 msgid "Number of candidates announced per UK region or nation"
 msgstr "Nifer yr ymgeiswyr a gyhoeddwyd fesul rhanbarth neu wlad yn y DU"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:65
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
 msgid "Region / nation"
 msgstr "Rhanbarth / cenedl"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:68
 msgid "Total seats in region"
 msgstr "Cyfanswm y seddi yn y rhanbarth"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:88
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:89
 msgid "Candidate selections by political party"
 msgstr "Dethol ymgeiswyr yn ôl plaid wleidyddol"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:100
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:101
 msgid "Total"
 msgstr "Cyfanswm"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
 msgid "Support our work"
 msgstr "Cefnogwch ein gwaith"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:110
 msgid ""
 "Democracy Club is a non-profit Community Interest Company. If you've found "
 "this resource useful, please consider a donation"
@@ -2428,7 +2450,7 @@ msgstr ""
 "wedi darganfod mae'r adnodd hwn yn ddefnyddiol, ystyriwch rodd os gwelwch yn "
 "dda"
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:111
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:112
 msgid "Donate now"
 msgstr "Cyfrannwch nawr"
 

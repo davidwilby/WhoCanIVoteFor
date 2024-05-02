@@ -54,15 +54,15 @@ msgstr ""
 msgid "First-past-the-post"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:737
+#: wcivf/apps/elections/models.py:743
 msgid "Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:739
+#: wcivf/apps/elections/models.py:745
 msgid "Supplementary Vote"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:741
+#: wcivf/apps/elections/models.py:747
 msgid "Single Transferable Vote"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgid "<address>%(polling_station_address)s</address>"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:57
-msgid "It will be open from <strong>7am to 10pm</strong>"
+msgid "It will be open from <strong>7am to 10pm</strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:63
@@ -936,8 +936,8 @@ msgid "Tweets by"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:71
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:92
 msgid "Candidates"
 msgstr ""
 
@@ -1352,7 +1352,6 @@ msgid ""
 "\">their role in elections</a> on the parliament.uk website."
 msgstr ""
 
-
 #: wcivf/apps/people/models.py:78
 msgid "Elected unopposed"
 msgstr "Etholwyd yn ddiwrthwynebiad"
@@ -1725,7 +1724,7 @@ msgid "Election"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:90
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
 #: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
 msgid "Party"
 msgstr ""
@@ -1979,22 +1978,17 @@ msgid "Timetable"
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:43
-msgid "Democracy Club's"
+#, python-format
+msgid ""
+"Democracy Club's <a href=\"%(election_timetable_url)s\">general election "
+"timetable generator</a> provides an election timetable for any given date"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "general election timetable generator"
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "provides an election timetable for any given date"
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:50
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:51
 msgid "The data"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:54
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:55
 #, python-format
 msgid ""
 "The full list of prospective parliamentary candidates is available as a <a "
@@ -2017,33 +2011,33 @@ msgstr ""
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:65
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
 msgid "Region / nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:68
 msgid "Total seats in region"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:88
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:89
 msgid "Candidate selections by political party"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:100
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:101
 msgid "Total"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
 msgid "Support our work"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:110
 msgid ""
 "Democracy Club is a non-profit Community Interest Company. If you've found "
 "this resource useful, please consider a donation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:111
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:112
 msgid "Donate now"
 msgstr ""
 

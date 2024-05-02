@@ -40,10 +40,11 @@
                 {% trans "Visit the website of the Institute for Government for a full list" %}</a>.</p>
 
         <h2 class="ds-h4">{% trans "Timetable" %}</h2>
-        <p>{% trans "Democracy Club's" %} <a href="https://election-timetable.democracyclub.org.uk/">
-            {% trans "general election timetable generator" %}</a> {% trans "provides an election timetable for any given date" %}.</p>
-
-
+        <p>{% blocktrans trimmed with election_timetable_url="https://election-timetable.democracyclub.org.uk/" %}
+            Democracy Club's <a href="{{election_timetable_url}}">general election timetable generator</a>
+            provides an election timetable for any given date
+        {% endblocktrans %}
+        </p>
     </details>
 
 
