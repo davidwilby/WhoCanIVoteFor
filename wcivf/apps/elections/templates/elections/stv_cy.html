@@ -3,8 +3,14 @@
 {% load humanize %}
 {% load i18n %}
 
+{% block page_title %}Pleidlais Sengl Drosglwyddadwy (PSD){% endblock page_title %}
+{% block og_title_content %}Pleidlais Sengl Drosglwyddadwy (PSD){% endblock og_title_content  %}
+{% block og_description_content %}Pleidlais Sengl Drosglwyddadwy (PSD){% endblock og_description_content %}
+{% block twitter_title_content %}Pleidlais Sengl Drosglwyddadwy (PSD){% endblock twitter_title_content %}
+{% block twitter_description_content %}Pleidlais Sengl Drosglwyddadwy (PSD){% endblock twitter_description_content %}
+
 {% block content %}
-    {% include "elections/includes/_voting_system_breadcrumbs.html" %}
+    {% include "elections/includes/_voting_system_breadcrumbs.html" with voting_system="Pleidlais Sengl Drosglwyddadwy (PSD)"%}
 
     <div class="ds-page">
         <div class="ds-stack">
