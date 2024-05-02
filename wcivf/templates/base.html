@@ -82,15 +82,11 @@
 {% endblock language_code %}
 
 {% block messages %}
-    {% if messages %}
-        <aside class="ds-status messages" aria-label="Status">
-            <ul class="ds-stack">
-                {% for message in messages %}
-                    <li {% if message.tags %}class=" {{ message.tags }} ds-status-message " {% endif %}> {{ message }} </li>
-                {% endfor %}
-            </ul>
-        </aside>
-    {% endif %}
+    <aside class="ds-status" aria-label="Status">
+        <ul class="ds-stack">
+            <li class="ds-status-message">{% trans "We're collecting results as they are published. Please check back later." %}</li>
+        </ul>
+    </aside>
 {% endblock messages %}
 
 {% block content %}
