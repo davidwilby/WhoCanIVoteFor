@@ -1,8 +1,10 @@
 {% load i18n %}
+
 {% regroup elections by election_date as elections_by_type %}
 {% for election_group in elections_by_type %}
     <h3 class="grouper-date">
-        {{ election_group.grouper }}
+        {{ election_group.grouper|date:"j F Y" }}
+    </h3>
     </h3>
     <div id="election-urls" >
         {% for election in election_group.list %}
