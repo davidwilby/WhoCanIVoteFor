@@ -21,7 +21,7 @@
                     <td>{{ person_post.election.election_date|date:"Y" }}</td>
                     <td>
                         <a href="{{ person_post.post_election.get_absolute_url }}">
-                            {{ person_post.post.label }}: {{ person_post.election }}
+                            {{ person_post.post.label }}: {{ person_post.election.nice_election_name }}
                         </a>
                     </td>
                     <td>{{ person_post.party_name }}</td>
