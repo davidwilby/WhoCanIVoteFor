@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 13:42+0000\n"
+"POT-Creation-Date: 2024-05-02 07:51+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -2552,7 +2552,12 @@ msgstr "%(short_cancelled_message)s"
 msgid "Language:"
 msgstr "Iaith:"
 
-#: wcivf/templates/base.html:107
+#: wcivf/templates/base.html:87
+msgid ""
+"We're collecting results as they are published. Please check back later."
+msgstr ""
+"Rydym yn casglu canlyniadau wrth iddynt gael eu cyhoeddi. Gwiriwch yn ôl yn nes ymlaen."
+
 msgid "All Parties"
 msgstr "Pob plaid"
 
