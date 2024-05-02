@@ -999,13 +999,16 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_voter_id.html:15
 msgid ""
 "You do not need your poll card to vote. You must vote at your assigned "
-"polling station. Read more about <a href=\"https://www.gov.uk/voting-in-the-"
-"uk/polling-stations\">voting in Great Britain</a>."
+"polling station. <ul> <li>Read more about <a href=\"https://www.gov.uk/"
+"voting-in-the-uk/polling-stations\">voting in Great Britain</a>.</li> "
+"<li>Read more about <a href=\"https://www.gov.uk/how-to-vote/photo-id-youll-"
+"need\">photo ID</a>.</li> </ul>"
 msgstr ""
 "Nid oes angen eich cerdyn pleidleisio arnoch i bleidleisio. Rhaid i chi "
 "bleidleisio yn yr un a neilltuwyd i chiorsaf bleidleisio. Darllenwch fwy am "
 "<a href=\" https://www.gov.uk/voting-in-the-uk/polling-"
-"stations\">pleidleisio ym Mhrydain Fawr</a>."
+"stations\">pleidleisio ym Mhrydain Fawr</a>.<li>Darllenwch fwy am <a href=\" "
+"https://www.gov.uk/how-to-vote/photo-id-youll-angen \">ID llun</a>.</li></ul>"
 
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:7
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:15
