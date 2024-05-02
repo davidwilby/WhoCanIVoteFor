@@ -26,7 +26,13 @@
                     </td>
                     <td>{{ person_post.party_name }}</td>
                     <td>
-                        {{ person_post.get_results_text }}
+                        {% if person_post.election.voting_system.slug == "sv" %}
+                            {% trans "We do not collect voting data for Supplementary Vote elections." %}
+                        {% elif person_post.election.voting_system.slug == "STV" %}
+                            {% trans "We do not collect voting data for Single Transferable Vote elections." %}
+                        {% else  %}
+                            {{ person_post.get_results_text }}
+                        {% endif %}
                     </td>
                     {% if object.previous_party_count %}
                         <td>

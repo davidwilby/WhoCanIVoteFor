@@ -1715,15 +1715,15 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:43
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:30
 msgid "We do not collect voting data for Supplementary Vote elections."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:45
-msgid "We do not collect voting data for Single Transferable Vote election"
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:32
+msgid "We do not collect voting data for Single Transferable Vote elections."
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:47
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:48
 msgid "Position not available"
 msgstr ""
 

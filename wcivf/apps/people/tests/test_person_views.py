@@ -4,9 +4,9 @@ import pytest
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils.html import strip_tags
+from elections.models import VotingSystem
 from elections.tests.factories import (
     ElectionFactory,
-    ElectionFactoryLazySlug,
     ElectionWithPostFactory,
     PostElectionFactory,
     PostFactory,
@@ -319,6 +319,114 @@ class PersonViewTests(TestCase):
             "has declared their affiliation with the following parties in the past 12 months",
         )
 
+    def test_previous_elections_card(self):
+        """Test that the postcode search results have a
+        table of previous elections. In that table, the
+        election name, date and slug should be displayed
+        as well as vote count, position and party for each
+        ballot for the candidate
+        """
+        past_election = ElectionFactory(
+            name="Welsh Assembly Election",
+            current=False,
+            election_date="2021-05-01",
+            slug="local.welsh.assembly.2021-05-01",
+        )
+        past_post_election = PostElectionFactory(
+            election=past_election,
+            post=PostFactory(label="Welsh Assembly", territory="WLS"),
+            ballot_paper_id="local.welsh.assembly.2021-05-01",
+            voting_system=VotingSystem(slug="FPTP"),
+        )
+        party = PartyFactory(
+            party_name="Conservative and Unionist Party",
+            party_id="party:52",
+        )
+        PersonPostFactory(
+            person=self.person,
+            post_election=past_post_election,
+            election=past_election,
+            party=party,
+            votes_cast=1000,
+        )
+        response = self.client.get(self.person_url, follow=True)
+        self.assertTemplateUsed(
+            "people/includes/_person_previous_elections_card.html"
+        )
+        self.assertContains(response, "2021")
+        self.assertContains(response, "Welsh Assembly: Welsh Assembly Election")
+        self.assertContains(response, "1,000 votes (not elected)")
+        self.assertContains(response, """1st / 1 candidate""")
+
+    def test_previous_elections_card_for_STV(self):
+        """Test that the postcode search results have a
+        table of previous elections with the text:
+        'We do not collect voting data for
+        Single Transferable Vote election.'"""
+        past_election = ElectionFactory(
+            name="Welsh Assembly Election",
+            current=False,
+            election_date="2021-05-01",
+            slug="local.welsh.assembly.2021-05-01",
+            voting_system=VotingSystem(slug="STV"),
+        )
+
+        past_post_election = PostElectionFactory(
+            election=past_election,
+            post=PostFactory(label="Welsh Assembly", territory="WLS"),
+            ballot_paper_id="local.welsh.assembly.2021-05-01",
+        )
+        party = PartyFactory(party_name="Liberal Democrat", party_id="foo")
+        PersonPostFactory(
+            person=self.person,
+            post_election=past_post_election,
+            election=past_election,
+            party=party,
+        )
+        response = self.client.get(self.person_url, follow=True)
+        self.assertTemplateUsed(
+            "people/includes/_person_previous_elections_card.html"
+        )
+        self.assertContains(
+            response,
+            """We do not collect voting data for Single Transferable Vote elections.""",
+            html=True,
+        )
+
+    def test_previous_elections_card_for_sv(self):
+        """Test that the postcode search results have a
+        table of previous elections with the text:
+        "We do not collect voting data for Supplementary Vote elections."
+        """
+        past_election = ElectionFactory(
+            name="Welsh Assembly Election",
+            current=False,
+            election_date="2021-05-01",
+            slug="local.welsh.assembly.2021-05-01",
+            voting_system=VotingSystem(slug="sv"),
+        )
+        past_post_election = PostElectionFactory(
+            election=past_election,
+            post=PostFactory(label="Welsh Assembly", territory="WLS"),
+            ballot_paper_id="local.welsh.assembly.2021-05-01",
+        )
+        party = PartyFactory(party_name="Liberal Democrat", party_id="foo")
+        PersonPostFactory(
+            person=self.person,
+            post_election=past_post_election,
+            election=past_election,
+            party=party,
+        )
+        response = self.client.get(self.person_url, follow=True)
+        self.assertTemplateUsed(
+            "people/includes/_person_previous_elections_card.html"
+        )
+        self.assertContains(
+            response,
+            """We do not collect voting data for Supplementary Vote elections.""",
+            html=True,
+        )
+
     def test_previous_party_affiliations_in_past_elections_table(self):
         """This is a test for current previous party affiliations in the
         previous elections table"""
@@ -361,21 +469,6 @@ class PersonViewTests(TestCase):
             html=True,
         )
         self.assertContains(response, "Conservative, Labour", html=True)
-
-    def test_previous_elections(self):
-        past_election = ElectionFactoryLazySlug(
-            election_date="2019-05-02", current=False
-        )
-        party = PartyFactory(party_name="Liberal Democrat", party_id="foo")
-        PersonPostFactory(
-            person=self.person,
-            post_election__election=past_election,
-            election=past_election,
-            party=party,
-            votes_cast=1000,
-        )
-        response = self.client.get(self.person_url, follow=True)
-        self.assertContains(response, f"{self.person.name}'s elections")
 
     def test_no_statement_to_voters(self):
         PersonPostWithPartyFactory(
