@@ -315,8 +315,8 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:84
 msgid ""
 "For more information, visit <a href=\"https://www.electoralcommission.org.uk/"
-"i-am-a/voter\">The Electoral Commission's website</a> or ask an official at "
-"your polling station."
+"i-am-a/voter/\">The Electoral Commission's website</a> or "
+"ask an official at your polling station."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_people_list_with_lists.html:15

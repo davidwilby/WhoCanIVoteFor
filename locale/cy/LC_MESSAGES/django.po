@@ -1021,18 +1021,14 @@ msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:7
 #, fuzzy
-#| msgid ""
-#| "For more information, visit <a href=\"https://www.electoralcommission.org."
-#| "uk/i-am-a/voter/how-cast-your-vote\">The Electoral Commission's website</"
-#| "a> or ask an official at your polling station."
 msgid ""
 "Learn more about elections in the UK <a href=\"https://www."
-"electoralcommission.org.uk/i-am-a/voter/types-elections\">on the Electoral "
+"electoralcommission.org.uk/i-am-a/voter/\">on the Electoral "
 "Commission website</a>."
 msgstr ""
 "Am fwy o wybodaeth, ewch i <href=\"https://www.electoralcommission.org.uk/i-"
-"am-a/voter/\">Wefan y Comisiwn Etholiadol</a> neu gofynnwch i swyddog yn "
-"eich gorsaf bleidleisio."
+"am-a/voter/\">Wefan y Comisiwn Etholiadol</a> neu "
+"gofynnwch i swyddog yn eich gorsaf bleidleisio."
 
 #: wcivf/apps/elections/templates/elections/includes/inline_elections_nav_list.html:11
 msgid "Select your address"
