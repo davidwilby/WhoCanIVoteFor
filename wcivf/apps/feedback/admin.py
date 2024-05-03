@@ -11,11 +11,11 @@ from .models import Feedback
 class FeedbackAdmin(admin.ModelAdmin):
     change_list_template = "feedback/admin/change_list.html"
 
-    list_filter = ("found_useful",)
+    list_filter = ("found_useful", "vote")
     list_display = (
         "id",
         "found_useful",
-        "sources",
+        "vote",
         "comments",
         "flagged_as_spam",
         "created",
@@ -57,7 +57,12 @@ class FeedbackAdmin(admin.ModelAdmin):
             Feedback.objects.all()
             .exclude(comments="")
             .order_by(
-                "found_useful", "sources", "flagged_as_spam", "-created", "id"
+                "found_useful",
+                "vote",
+                "sources",
+                "flagged_as_spam",
+                "-created",
+                "id",
             )
         )
 
@@ -73,6 +78,7 @@ class FeedbackAdmin(admin.ModelAdmin):
             "flagged_as_spam",
             "comments",
             "found_useful",
+            "vote",
             "sources",
             "source_url",
         ]
