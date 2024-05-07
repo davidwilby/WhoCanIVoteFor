@@ -166,6 +166,7 @@ class ElectionPostViewTests(TestCase):
             election=self.election, post=self.post
         )
 
+    @pytest.mark.freeze_time("2024-04-10")
     def test_pre_sopn_text_with_candidates(self):
         future_election = ElectionFactory(
             name="Adur local election",
