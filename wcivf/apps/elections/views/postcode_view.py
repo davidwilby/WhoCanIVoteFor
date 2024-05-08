@@ -319,6 +319,7 @@ class PostcodeiCalView(
 
 class DummyPostcodeView(PostcodeView):
     postcode = None
+    uprn = None
 
     def get(self, request, *args, **kwargs):
         kwargs["postcode"] = self.postcode
@@ -329,12 +330,40 @@ class DummyPostcodeView(PostcodeView):
         context = kwargs
         self.postcode = clean_postcode(kwargs["postcode"])
         context["postcode"] = self.postcode
+        self.uprn = self.kwargs.get("uprn")
+        context["uprn"] = self.uprn
+
         context["postelections"] = self.get_ballot_dict()
         context["show_polling_card"] = True
-        context["polling_station"] = {}
+        context["polling_station"] = self.get_polling_station()
+        context["requires_voter_id"] = "EA-2022"
         context["num_ballots"] = 1
-
         return context
 
     def get_ballot_dict(self):
         return [DummyPostElection()]
+
+    def get_polling_station(self):
+        return {
+            "polling_station_known": True,
+            "custom_finder": False,
+            "report_problem_url": "http://wheredoivote.co.uk/report_problem/?source=testing&source_url=testing",
+            "station": {
+                "id": "w06000015.QK",
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-3.119229, 51.510885],
+                },
+                "properties": {
+                    "address": "1 Made Up Street\nMade Up Town\nMade Up County",
+                    "postcode": "MA1 1AA",
+                },
+            },
+            "geometry": {
+                "coordinates": [-0.127758, 51.507351],
+            },
+            "properties": {
+                "address": "1 Made Up Street\nMade Up Town\nMade Up County",
+            },
+        }
