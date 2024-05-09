@@ -5,8 +5,8 @@
             {% if has_add_permission %}
                 {{ block.super }}
             {% endif %}
-            <li><a href='{% url "admin:feedback_export_comments" %}' class="import_link">Export All</a></li>
-            <li><a href='{% url "admin:feedback_export_all" %}' class="import_link">Export with comments</a></li>
+            <li><a href='{% url "admin:feedback_export_all" %}' class="import_link">Export All</a></li>
+            <li><a href='{% url "admin:feedback_export_comments" %}' class="import_link">Export with comments</a></li>
         {% endblock %}
     </ul>
 {% endblock %}
