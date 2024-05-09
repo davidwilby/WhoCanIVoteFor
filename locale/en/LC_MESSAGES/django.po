@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-02 07:48+0000\n"
+"POT-Creation-Date: 2024-05-09 10:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2157,45 +2157,40 @@ msgstr ""
 
 #: wcivf/templates/base.html:87
 msgid ""
-"We're collecting results as they are published. Please check back later."
+"Browse the list of people and parties standing in the next general election"
 msgstr ""
 
-#: wcivf/templates/base.html:107
+#: wcivf/templates/base.html:103
 msgid "All Parties"
 msgstr ""
 
-#: wcivf/templates/base.html:108
+#: wcivf/templates/base.html:104
 msgid "Standing as a candidate?"
 msgstr ""
 
-#: wcivf/templates/base.html:109
+#: wcivf/templates/base.html:105
 #, python-format
 msgid "About %(SITE_TITLE)s"
 msgstr ""
 
-#: wcivf/templates/base.html:110
+#: wcivf/templates/base.html:106
 msgid "Privacy"
 msgstr ""
 
-#: wcivf/templates/base.html:111
+#: wcivf/templates/base.html:107
 msgid "Source code"
 msgstr ""
 
-#: wcivf/templates/base.html:112
+#: wcivf/templates/base.html:108
 msgid "About Democracy Club"
 msgstr ""
 
-#: wcivf/templates/base.html:113
+#: wcivf/templates/base.html:109
 msgid "Contact Us"
 msgstr ""
 
-#: wcivf/templates/base.html:116
+#: wcivf/templates/base.html:112
 msgid "GitHub"
-msgstr ""
-
-#: wcivf/templates/base.html:117
-msgid ""
-"Browse the list of people and parties standing in the next general election"
 msgstr ""
 
 #: wcivf/templates/home.html:5 wcivf/templates/home.html:6
