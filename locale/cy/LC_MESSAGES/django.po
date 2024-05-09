@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-02 07:51+0000\n"
+"POT-Creation-Date: 2024-05-09 10:18+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -2554,48 +2554,43 @@ msgstr "Iaith:"
 
 #: wcivf/templates/base.html:87
 msgid ""
-"We're collecting results as they are published. Please check back later."
-msgstr ""
-"Rydym yn casglu canlyniadau wrth iddynt gael eu cyhoeddi. Gwiriwch yn ôl yn nes ymlaen."
-
-msgid "All Parties"
-msgstr "Pob plaid"
-
-#: wcivf/templates/base.html:108
-msgid "Standing as a candidate?"
-msgstr "Sefyll fel ymgeisydd?"
-
-#: wcivf/templates/base.html:109
-#, python-format
-msgid "About %(SITE_TITLE)s"
-msgstr "Ynglŷn %(SITE_TITLE)s"
-
-#: wcivf/templates/base.html:110
-msgid "Privacy"
-msgstr "Preifatrwydd"
-
-#: wcivf/templates/base.html:111
-msgid "Source code"
-msgstr "Cod ffynhonnell"
-
-#: wcivf/templates/base.html:112
-msgid "About Democracy Club"
-msgstr "Ynglŷn â'r Clwb Democratiaeth"
-
-#: wcivf/templates/base.html:113
-msgid "Contact Us"
-msgstr "Cysylltwch â Ni"
-
-#: wcivf/templates/base.html:116
-msgid "GitHub"
-msgstr "GitHub"
-
-#: wcivf/templates/base.html:117
-msgid ""
 "Browse the list of people and parties standing in the next general election"
 msgstr ""
 "Porwch y rhestr o bobl a phleidiau sy'n sefyll yn yr etholiad cyffredinol "
 "nesaf"
+
+#: wcivf/templates/base.html:103
+msgid "All Parties"
+msgstr "Pob plaid"
+
+#: wcivf/templates/base.html:104
+msgid "Standing as a candidate?"
+msgstr "Sefyll fel ymgeisydd?"
+
+#: wcivf/templates/base.html:105
+#, python-format
+msgid "About %(SITE_TITLE)s"
+msgstr "Ynglŷn %(SITE_TITLE)s"
+
+#: wcivf/templates/base.html:106
+msgid "Privacy"
+msgstr "Preifatrwydd"
+
+#: wcivf/templates/base.html:107
+msgid "Source code"
+msgstr "Cod ffynhonnell"
+
+#: wcivf/templates/base.html:108
+msgid "About Democracy Club"
+msgstr "Ynglŷn â'r Clwb Democratiaeth"
+
+#: wcivf/templates/base.html:109
+msgid "Contact Us"
+msgstr "Cysylltwch â Ni"
+
+#: wcivf/templates/base.html:112
+msgid "GitHub"
+msgstr "GitHub"
 
 #: wcivf/templates/home.html:5 wcivf/templates/home.html:6
 msgid "Who Can I Vote For?"

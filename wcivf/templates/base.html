@@ -84,7 +84,7 @@
 {% block messages %}
     <aside class="ds-status" aria-label="Status">
         <ul class="ds-stack">
-            <li class="ds-status-message">{% trans "We're collecting results as they are published. Please check back later." %}</li>
+            <li class="ds-status-message"><a href="{% url 'ppc_2024:details' %}" >{% trans "Browse the list of people and parties standing in the next general election" %}</a></li>
         </ul>
     </aside>
 {% endblock messages %}
@@ -110,7 +110,6 @@
             <li><a href="https://democracyclub.org.uk/blog/">{% trans "Blog" %}</a></li>
             <li><a href="https://twitter.com/democlub">{% trans "Twitter" %}</a></li>
             <li><a href="https://github.com/DemocracyClub">{% trans "GitHub" %}</a></li>
-            <li><a href="{% url 'ppc_2024:details' %}" >{% trans "Browse the list of people and parties standing in the next general election" %}</a></li>
         </ul>
     </div>
 {% endblock footer_menu %}
