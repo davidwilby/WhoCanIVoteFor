@@ -29,6 +29,8 @@ def clean_party_id(party_id):
         return party_id
 
     if "-" in party_id:
+        if party_id.startswith("joint-party:"):
+            return party_id
         return f"joint-party:{party_id}"
 
     return f"PP{party_id}"
