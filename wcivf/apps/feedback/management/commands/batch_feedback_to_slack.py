@@ -100,7 +100,7 @@ class Command(BaseCommand):
     def handle(self, **options):
         past_time = datetime.now() - timedelta(hours=int(options["hours"]))
 
-        msg_fmt = """Feedback time!\nIn the last {hour_string}:\n\t{found} people felt {random_happy}\n\t{not_found} people felt {random_sad}\n\t{more_likely} people were more likely to vote {random_happy}\n\t{less_likely} people were less likely to vote {random_sad}\n\t{no_difference} people were less likely to vote {random_indifferent}\n"""
+        msg_fmt = """Feedback time!\nIn the last {hour_string}:\n\t{found} people felt {random_happy}\n\t{not_found} people felt {random_sad}\n\t{more_likely} people were more likely to vote {random_happy}\n\t{less_likely} people were less likely to vote {random_sad}\n\t{no_difference} people expressed no difference {random_indifferent}\n"""
 
         recent_feedback = Feedback.objects.filter(created__gte=past_time)
 
@@ -114,7 +114,7 @@ class Command(BaseCommand):
 
         more_likely = recent_feedback.filter(vote="YES")
         less_likely = recent_feedback.filter(vote="NO")
-        no_difference = recent_feedback.filter(vote="NO_CHANGE")
+        no_difference = recent_feedback.filter(vote="NO_DIFFERENCE")
 
         hour_string = "hour"
         if options["hours"] > 1:
@@ -129,6 +129,7 @@ class Command(BaseCommand):
             no_difference=no_difference.count(),
             random_happy=self.random_happy,
             random_sad=self.random_sad,
+            random_indifferent=self.random_indifferent,
         )
 
         payload = {"text": message}
