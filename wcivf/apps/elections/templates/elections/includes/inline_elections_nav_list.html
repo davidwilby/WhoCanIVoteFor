@@ -26,13 +26,13 @@
         {% endif %}
         {% for election_group in header_elections_by_date %}
 
-            {% if election_group.list.0.past_date %}
-                {% ifchanged election_group.list.0.past_date %}
+            {% if election_group.list.0.election.in_past %}
+                {% ifchanged election_group.list.0.election.past_date %}
                     <h3>{% trans "Recently past elections" %}</h3>
                 {% endifchanged %}
             {% endif %}
 
-            {% if election_group.list.0.past_date %}
+            {% if election_group.list.0.election.in_past %}
                 <h4>
                     {{ election_group.grouper|naturalday:"l j F Y"|title }}
                 </h4>
@@ -74,22 +74,23 @@
                     </li>
                 {% endif %}
             </ul>
+            {% if postelections_with_future_dates %}
+                {% if show_polling_card or requires_voter_id %}
+                    <p>{% trans "Get ready to vote" %}:</p>
+                    <ul>
+                        {% if show_polling_card %}
+                            <li><a href="#where">{% trans "Where to vote" %}</a></li>
+                        {% endif %}
 
-            {% if show_polling_card or requires_voter_id %}
-                <p>{% trans "Get ready to vote" %}:</p>
-                <ul>
-                    {% if show_polling_card %}
-                        <li><a href="#where">{% trans "Where to vote" %}</a></li>
-                    {% endif %}
+                        {% if requires_voter_id %}
+                            <li><a href="#requirements">{% trans "Voter ID requirements" %}</a></li>
+                        {% endif %}
 
-                    {% if requires_voter_id %}
-                        <li><a href="#requirements">{% trans "Voter ID requirements" %}</a></li>
-                    {% endif %}
-
-                    {% if is_before_registration_deadline %}
-                        <li><a href="#register">{% trans "Register to vote" %}</a></li>
-                    {% endif %}
-                </ul>
+                        {% if is_before_registration_deadline %}
+                            <li><a href="#register">{% trans "Register to vote" %}</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             {% endif %}
 
         {% endfor %}

@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% load i18n %}
+{% load postcode_tags %}
 
 {% block page_title %}{% include "elections/includes/_postcode_meta_title.html" %}{% endblock page_title %}
 {% block page_description %}{% include "elections/includes/_postcode_meta_description.html" %}{% endblock page_description %}
@@ -40,26 +41,26 @@
                 {% include "parishes/includes/_card.html" with parish_council_election=parish_council_election %}
             {% endif %}
 
+            {% if postelections_with_future_dates %}
+                <ul class="ds-details">
+                    {# Add this at the top of the page if it's known, or at the bottom if it's not #}
+                    {% if show_polling_card %}
+                        {% include "elections/includes/_polling_place.html" with postelections=postelections elections_by_date=elections_by_date %}
+                    {% endif %}
 
-            <ul class="ds-details">
-                {# Add this at the top of the page if it's known, or at the bottom if it's not #}
-                {% if show_polling_card %}
-                    {% include "elections/includes/_polling_place.html" with postelections=postelections elections_by_date=elections_by_date %}
-                {% endif %}
+                    {% if requires_voter_id %}
+                        {% include "elections/includes/_voter_id.html" %}
+                    {% endif %}
 
-                {% if requires_voter_id %}
-                    {% include "elections/includes/_voter_id.html" %}
-                {% endif %}
+                    {% if is_before_registration_deadline %}
+                        {% include "elections/includes/_registration_details.html" with postelection=postelections.first council=polling_station.council %}
+                    {% endif %}
 
-                {% if is_before_registration_deadline %}
-                    {% include "elections/includes/_registration_details.html" with postelection=postelections.first council=polling_station.council %}
-                {% endif %}
-
-                {% if not messages %}
-                    {% include "elections/includes/_calendar.html" %}
-                {% endif %}
-            </ul>
-
+                    {% if not messages %}
+                        {% include "elections/includes/_calendar.html" %}
+                    {% endif %}
+                </ul>
+            {% endif %}
             {% if postelections %}
                 {% include "feedback/feedback_form.html" %}
             {% endif %}
