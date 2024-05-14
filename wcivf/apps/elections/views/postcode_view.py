@@ -329,19 +329,50 @@ class DummyPostcodeView(PostcodeView):
     def get_context_data(self, **kwargs):
         context = kwargs
         self.postcode = clean_postcode(kwargs["postcode"])
+        self.uprn = self.kwargs.get("uprn")
+        context["uprn"] = self.uprn
         context["postcode"] = self.postcode
         self.uprn = self.kwargs.get("uprn")
         context["uprn"] = self.uprn
 
         context["postelections"] = self.get_ballot_dict()
+        context["future_postelections"] = PostcodeView().future_postelections(
+            context["postelections"]
+        )
         context["show_polling_card"] = True
         context["polling_station"] = self.get_polling_station()
+        context["is_before_registration_deadline"] = (
+            PostcodeView().is_before_registration_deadline(context["postelections"])
+        )
+        context["electoral_services"] = self.get_registration()
+        context["council"] = self.get_electoral_services()
         context["requires_voter_id"] = "EA-2022"
         context["num_ballots"] = 1
         return context
 
     def get_ballot_dict(self):
         return [DummyPostElection()]
+
+    def get_electoral_services(self):
+        return {
+            "council_id": "W06000015",
+            "name": "Cardiff Council",
+            "nation": "Wales",
+            "address": "Electoral Registration Officer\nCity of Cardiff Council\nCounty Hall Atlantic Wharf",
+            "postcode": "CF10 4UW",
+            "email": "electoralservices@cardiff.gov.uk",
+            "phone": "029 2087 2034",
+            "website": "http://www.cardiff.gov.uk/",
+        }
+
+    def get_registration(self):
+        return {
+            "address": "Electoral Registration Officer\nCity of Cardiff Council\nCounty Hall Atlantic Wharf",
+            "postcode": "CF10 4UW",
+            "email": "electoralservices@cardiff.gov.uk",
+            "phone": "029 2087 2034",
+            "website": "http://www.cardiff.gov.uk/",
+        }
 
     def get_polling_station(self):
         return {
