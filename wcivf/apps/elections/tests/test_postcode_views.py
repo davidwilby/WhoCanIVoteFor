@@ -349,6 +349,37 @@ class TestPostcodeViewPolls:
             response, "elections/includes/_single_ballot.html"
         )
 
+    @freeze_time("2021-04-04")
+    @pytest.mark.django_db
+    def test_no_polling_station_shows_council_details(
+        self, mock_response, client
+    ):
+        """When polling station is not known,
+        assert the council contact details are shown."""
+        local = PostElectionFactory(
+            ballot_paper_id="local.sheffield.ecclesall.2021-05-06",
+            election__slug="local.sheffield.2021-05-06",
+            election__election_date="2021-05-06",
+        )
+        mock_response.json.return_value["dates"].extend(
+            [
+                {
+                    "date": local.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [{"ballot_paper_id": local.ballot_paper_id}],
+                },
+            ]
+        )
+
+        response = client.get(
+            reverse("postcode_view", kwargs={"postcode": "TE11ST"}), follow=True
+        )
+        assert response.status_code == 200
+        asserts.assertContains(
+            response,
+            """You should get a "poll card" through the post telling you where to vote.""",
+        )
+
 
 class TestPostcodeViewMethods:
     @pytest.fixture
