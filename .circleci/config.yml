@@ -4,7 +4,7 @@
 #
 version: 2.1
 orbs:
-  slack: circleci/slack@4.12.5
+  slack: circleci/slack@4.13.2
 
 executors:
   py310:
@@ -13,7 +13,7 @@ executors:
         environment:
           CIRCLECI: true
           PGHOST: 127.0.0.1
-      - image: circleci/postgres:11.2-alpine-postgis-ram
+      - image: cimg/postgres:14.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: test
@@ -252,7 +252,7 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-          channel: $SLACK_DEFAULT_CHANNEL
+            
             
       
 workflows:
