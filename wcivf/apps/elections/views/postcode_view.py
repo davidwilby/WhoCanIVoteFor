@@ -86,7 +86,7 @@ class PostcodeView(
         for postelection in context["postelections"]:
             postelection.people = self.people_for_ballot(postelection)
         context["polling_station"] = self.ballot_dict.get("polling_station")
-
+        context["council"] = self.ballot_dict.get("electoral_services")
         context["advance_voting_station"] = (
             self.get_advance_voting_station_info(context["polling_station"])
         )
