@@ -472,24 +472,26 @@ msgid ""
 "You should get a \"poll card\" through the post telling you where to vote."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:119
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:118
 #, python-format
 msgid ""
-"If you haven't got one, or aren't sure where to vote, you should call the "
-"Electoral Office on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
+"If you haven't got one, or for questions about your poll card, polling "
+"place, or about returning your postal voting ballot, contact the Electoral "
+"Office for Northern Ireland <a href=\"tel:"
+"%(council_phone)s\">%(council_phone)s</a>."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:124
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:133
 #, python-format
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call "
-"%(council_name)s on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>"
+"%(council_name)s on <a href=\"tel:%(council_phone)s\">%(council_phone)s</a>."
 msgstr ""
 
-#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:129
+#: wcivf/apps/elections/templates/elections/includes/_polling_place.html:148
 msgid ""
 "If you haven't got one, or aren't sure where to vote, you should call your "
-"local council"
+"local council."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:138
