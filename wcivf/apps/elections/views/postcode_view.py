@@ -76,8 +76,8 @@ class PostcodeView(
             return context
 
         context["postelections"] = ballot_dict.get("ballots")
-        context["postelections_with_future_dates"] = (
-            self.check_any_future_dates(context["postelections"])
+        context["future_postelections"] = self.future_postelections(
+            context["postelections"]
         )
         context["show_polling_card"] = self.show_polling_card(
             context["postelections"]
@@ -87,6 +87,7 @@ class PostcodeView(
             postelection.people = self.people_for_ballot(postelection)
         context["polling_station"] = self.ballot_dict.get("polling_station")
         context["council"] = self.ballot_dict.get("electoral_services")
+        context["registration"] = self.ballot_dict.get("registration")
         context["advance_voting_station"] = (
             self.get_advance_voting_station_info(context["polling_station"])
         )
@@ -102,11 +103,16 @@ class PostcodeView(
 
         return context
 
-    def check_any_future_dates(self, postelections):
+    def future_postelections(self, postelections):
         """
-        Check if there are any future dates in the list of postelections
+        Given a list of postelections, check if any of them are in the future
+        and return a list of those that are
         """
-        return any(not postelection.past_date for postelection in postelections)
+        return any(
+            postelection
+            for postelection in postelections
+            if not postelection.election.in_past
+        )
 
     def get_todays_ballots(self):
         """

@@ -129,7 +129,7 @@
                                     {{ council.email }}<br>
                                 </address>
                             </p>
-                            {% if council != registration %}
+                            {% if council.address != registration.address %}
                                 <address>
                                     {{ registration.name }}<br>
                                     {{ registration.address|linebreaksbr }}<br>
@@ -153,7 +153,7 @@
                                     {{ council.email }}<br>
                                 </address>
                             </p>
-                            {% if council != registration %}
+                            {% if council.address != registration.address %}
                                 <address>
                                     {{ registration.name }}<br>
                                     {{ registration.address|linebreaksbr }}<br>
