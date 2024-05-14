@@ -41,11 +41,11 @@
                 {% include "parishes/includes/_card.html" with parish_council_election=parish_council_election %}
             {% endif %}
 
-            {% if postelections_with_future_dates %}
+            {% if future_postelections %}
                 <ul class="ds-details">
                     {# Add this at the top of the page if it's known, or at the bottom if it's not #}
                     {% if show_polling_card %}
-                        {% include "elections/includes/_polling_place.html" with postelections=postelections elections_by_date=elections_by_date %}
+                        {% include "elections/includes/_polling_place.html" with postelections=postelections elections_by_date=elections_by_date future_elections=future_elections %}
                     {% endif %}
 
                     {% if requires_voter_id %}
