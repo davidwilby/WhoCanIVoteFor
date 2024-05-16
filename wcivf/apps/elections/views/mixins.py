@@ -43,7 +43,9 @@ class PostcodeToPostsMixin(object):
         ret = {
             "address_picker": results_json["address_picker"],
             "polling_station": {},
+            "electoral_services": results_json["electoral_services"],
         }
+
         if ret["address_picker"]:
             ret["addresses"] = results_json["addresses"]
             return ret
@@ -163,9 +165,16 @@ class PollingStationInfoMixin(object):
             return False
         election = post_elections[0].election
         country = post_elections[0].post.territory
+
         if not country:
             country = Country.ENGLAND
-
+        else:
+            country = {
+                "ENG": Country.ENGLAND,
+                "SCT": Country.SCOTLAND,
+                "WLS": Country.WALES,
+                "NIR": Country.NORTHERN_IRELAND,
+            }.get(country)
         election = from_election_id(election_id=election.slug, country=country)
         event = TimetableEvent.REGISTRATION_DEADLINE
         return election.is_before(event)
