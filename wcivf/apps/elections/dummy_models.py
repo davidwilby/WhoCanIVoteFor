@@ -15,6 +15,7 @@ class DummyPostElection(PostElection):
     show_polling_card = True
     contested = True
     requires_voter_id = "EA-2022"
+    registration_deadline = date(2024, 6, 13)
 
     election = Election(
         name="Llantalbot local election",

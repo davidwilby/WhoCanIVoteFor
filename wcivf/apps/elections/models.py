@@ -453,13 +453,18 @@ class PostElection(TimeStampedModel):
 
     @property
     def registration_deadline(self):
-        return get_election_timetable(
+        date = get_election_timetable(
             self.ballot_paper_id, self.post.territory
         ).registration_deadline
 
+        return date.strftime("%d %B %Y")
+
     @property
     def past_registration_deadline(self):
-        return self.registration_deadline < datetime.date.today()
+        registration_deadline = get_election_timetable(
+            self.ballot_paper_id, self.post.territory
+        ).registration_deadline
+        return registration_deadline < datetime.date.today()
 
     @property
     def postal_vote_application_deadline(self):
