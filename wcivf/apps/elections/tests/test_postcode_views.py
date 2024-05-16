@@ -151,7 +151,12 @@ class TestPostcodeViewPolls:
         individual tests can then add json data to
         """
         response = mocker.MagicMock(status_code=200)
-        response.json.return_value = {"address_picker": False, "dates": []}
+        response.json.return_value = {
+            "address_picker": False,
+            "dates": [],
+            "electoral_services": {},
+            "registration": {},
+        }
         mocker.patch(
             "requests.get",
             return_value=response,
@@ -164,6 +169,7 @@ class TestPostcodeViewPolls:
             ballot_paper_id="local.city-of-london.aldgate.2021-05-06",
             election__slug="local.city-of-london.2021-05-06",
             election__election_date="2021-05-06",
+            post__territory="ENG",
         )
 
         mock_response.json.return_value["dates"].append(
@@ -227,6 +233,8 @@ class TestPostcodeViewPolls:
             response, "Polling stations are open from 8a.m. till 8p.m. today"
         )
 
+    @pytest.mark.django_db
+    @freeze_time("2024-05-23")
     def test_multiple_elections_london(self, mock_response, client):
         """This test is for the case where there are multiple elections in
         London on the same day and we want to make sure that the correct
@@ -234,17 +242,20 @@ class TestPostcodeViewPolls:
         as well as the correct anchor links to the election pages
         """
         local_london = PostElectionFactory(
-            ballot_paper_id="local.city-of-london.aldgate.2021-05-06",
+            ballot_paper_id="local.city-of-london.aldgate.2024-05-06",
             election__slug="local.city-of-london.2024-05-06",
             election__election_date="2024-05-06",
             election__name="City of London Corporation local election",
         )
+
         parl_london = PostElectionFactory(
-            ballot_paper_id="parl.cities-of-london-and-westminster.by.2021-05-06",
+            ballot_paper_id="parl.cities-of-london-and-westminster.by.2024-05-06",
             election__slug="parl.2024-05-06",
             election__election_date="2024-05-06",
             election__name="Cities of London and Westminster by-election",
         )
+        parl_london.is_before_registration_deadline = True
+        local_london.is_before_registration_deadline = True
 
         mock_response.json.return_value["dates"].extend(
             [
@@ -360,7 +371,11 @@ class TestPostcodeViewPolls:
             ballot_paper_id="local.sheffield.ecclesall.2021-05-06",
             election__slug="local.sheffield.2021-05-06",
             election__election_date="2021-05-06",
+            post__territory="ENG",
         )
+
+        local.is_before_registration_deadline = True
+
         mock_response.json.return_value["dates"].extend(
             [
                 {
@@ -371,14 +386,100 @@ class TestPostcodeViewPolls:
             ]
         )
 
-        response = client.get(
-            reverse("postcode_view", kwargs={"postcode": "TE11ST"}), follow=True
+        mock_response.json.return_value["electoral_services"].update(
+            {
+                "council_id": "W06000015",
+                "name": "Cardiff Council",
+                "nation": "Wales",
+                "address": "Electoral Registration Officer\\nCity of Cardiff Council\\nCounty Hall Atlantic Wharf",
+                "postcode": "CF10 4UW",
+                "email": "info@test.com",
+                "phone": "029 2087 2034",
+                "website": "http://www.cardiff.gov.uk/",
+            }
         )
+
+        response = client.get(
+            reverse(
+                "postcode_view",
+                kwargs={
+                    "postcode": "TE11ST",
+                },
+            ),
+            follow=True,
+        )
+
         assert response.status_code == 200
+        assert response.context["council"] is not None
+
         asserts.assertContains(
             response,
-            """You should get a "poll card" through the post telling you where to vote.""",
+            "Cardiff Council",
         )
+
+    def council_and_registration_details_differ(self, mock_response, client):
+        """When council contact details are different from
+        the registration details, show both."""
+        local = PostElectionFactory(
+            ballot_paper_id="local.sheffield.ecclesall.2021-05-06",
+            election__slug="local.sheffield.2021-05-06",
+            election__election_date="2021-05-06",
+            post__territory="ENG",
+        )
+
+        local.is_before_registration_deadline = True
+
+        mock_response.json.return_value["dates"].extend(
+            [
+                {
+                    "date": local.election.election_date,
+                    "polling_station": {"polling_station_known": False},
+                    "ballots": [{"ballot_paper_id": local.ballot_paper_id}],
+                },
+            ]
+        )
+
+        mock_response.json.return_value["electoral_services"].update(
+            {
+                "council_id": "W06000015",
+                "name": "Cardiff Council",
+                "nation": "Wales",
+                "address": "City of Cardiff Council\\nCounty Hall Atlantic Wharf",
+                "postcode": "CF10 4UW",
+                "email": "info@council.com",
+                "phone": "029 2087 2034",
+                "website": "http://www.cardiff.gov.uk/",
+            }
+        )
+
+        mock_response.json.return_value["registration"].update(
+            {
+                "address": "Electoral Registration Officer\\nCity of Cardiff Council\\nCounty Hall Atlantic Wharf",
+                "postcode": "CF10 4UW",
+                "email": "info@registration.com",
+                "phone": "029 2087 2034",
+                "website": "http://www.cardiff.gov.uk/",
+            }
+        )
+        response = client.get(
+            reverse(
+                "postcode_view",
+                kwargs={
+                    "postcode": "TE11ST",
+                },
+            ),
+            follow=True,
+        )
+
+        assert response.status_code == 200
+        assert response.context["registration"] is not None
+
+        asserts.assertContains(
+            response,
+            "Electoral Registration Officer",
+        )
+        asserts.assertContains(response, "info@registration.com")
+        asserts.assertContains(response, "info@council.com")
 
 
 class TestPostcodeViewMethods:

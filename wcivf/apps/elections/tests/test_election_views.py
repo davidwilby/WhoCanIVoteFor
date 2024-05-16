@@ -393,7 +393,6 @@ class ElectionPostViewTests(TestCase):
         self.post_election.cancelled = True
         self.post_election.save()
         response = self.client.get(self.person.get_absolute_url(), follow=True)
-        # import pdb; pdb.set_trace()
         self.assertContains(response, "{}'s elections".format(self.person.name))
         self.assertContains(response, "(election cancelled")
 

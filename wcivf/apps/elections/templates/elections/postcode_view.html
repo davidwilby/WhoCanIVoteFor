@@ -53,7 +53,7 @@
                     {% endif %}
 
                     {% if is_before_registration_deadline %}
-                        {% include "elections/includes/_registration_details.html" with postelection=postelections.first council=polling_station.council %}
+                        {% include "elections/includes/_registration_details.html" with postelection=postelections.0 council=council %}
                     {% endif %}
 
                     {% if not messages %}

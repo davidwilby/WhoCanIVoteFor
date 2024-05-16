@@ -22,43 +22,22 @@
         </p>
         {% if postelection %}
             <p>
-                {% blocktrans trimmed with registration_deadline=postelection.registration_deadline election_date=postelection.election.election_date|date:"j M Y" %}
+                {% blocktrans trimmed with registration_deadline=postelection.registration_deadline|naturalday:"j F Y" election_date=postelection.election.election_date|naturalday:"j F Y" %}
                     Register before midnight on {{ registration_deadline }} to vote on {{ election_date }}.
                 {% endblocktrans %}
             </p>
-            <p>
-                {% if council %}
-                    {% if council.registration_contacts %}
-                        {% blocktrans trimmed %}To register by post, contact your Valuation Joint Board.{% endblocktrans %}
-                    {% else %}
-                        {% blocktrans trimmed with council_name=council.name%}To register by post, contact {{ council_name }}.{% endblocktrans %}
-                    {% endif %}
-                {% else %}
-                    {% if postelection.post.territory == "SCT" %}
-                        {% blocktrans trimmed %}To register by post, contact your Valuation Joint Board.{% endblocktrans %}
-                    {% else %}
-                        {% blocktrans trimmed%}To register by post, contact your local council.{% endblocktrans %}
-                    {% endif %}
-                {% endif %}
-
-            </p>
         {% endif %}
         {% if council.council_id %}
-            <!-- valid only for Scottish postcodes -->
-            {% if council.registration_contacts %}
-                {% include "elections/includes/_council_contact_details.html" with contact_details=council.registration_contacts %}
-
-                <p>
-                    {% blocktrans trimmed %}
-                        For questions about your poll card, polling place, or about returning your postal voting ballot, contact your council.
-                    {% endblocktrans %}
-                </p>
-
+            <p>
+                {% blocktrans trimmed %}
+                    For questions about your poll card, polling place, or about returning your postal voting ballot, contact your council.
+                {% endblocktrans %}
+            </p>
+            {% if registration %}
+                {% include "elections/includes/_council_contact_details.html" with contact_details=registration %}
             {% endif %}
 
-            {% include "elections/includes/_council_contact_details.html" with contact_details=council.electoral_services_contacts %}
-
-
+            {% include "elections/includes/_council_contact_details.html" with contact_details=council %}
         {% endif %}
 
     </details>

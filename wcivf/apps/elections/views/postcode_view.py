@@ -82,12 +82,16 @@ class PostcodeView(
         context["show_polling_card"] = self.show_polling_card(
             context["postelections"]
         )
+        context["is_before_registration_deadline"] = (
+            self.is_before_registration_deadline(context["postelections"])
+        )
         context["people_for_post"] = {}
         for postelection in context["postelections"]:
             postelection.people = self.people_for_ballot(postelection)
         context["polling_station"] = self.ballot_dict.get("polling_station")
         context["council"] = self.ballot_dict.get("electoral_services")
         context["registration"] = self.ballot_dict.get("registration")
+
         context["advance_voting_station"] = (
             self.get_advance_voting_station_info(context["polling_station"])
         )
@@ -106,7 +110,7 @@ class PostcodeView(
     def future_postelections(self, postelections):
         """
         Given a list of postelections, check if any of them are in the future
-        and return a list of those that are
+        and return True if so.
         """
         return any(
             postelection
@@ -350,7 +354,7 @@ class DummyPostcodeView(PostcodeView):
         context["is_before_registration_deadline"] = (
             PostcodeView().is_before_registration_deadline(context["postelections"])
         )
-        context["electoral_services"] = self.get_registration()
+        context["registration"] = self.get_registration()
         context["council"] = self.get_electoral_services()
         context["requires_voter_id"] = "EA-2022"
         context["num_ballots"] = 1
