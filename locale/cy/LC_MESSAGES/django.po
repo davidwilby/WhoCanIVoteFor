@@ -2589,14 +2589,6 @@ msgstr ""
 "Rydym yn casglu canlyniadau wrth iddynt gael eu cyhoeddi. Gwiriwch yn ôl yn "
 "nes ymlaen."
 
-#: wcivf/templates/base.html:103
-msgid "All Parties"
-msgstr "Pob plaid"
-
-#: wcivf/templates/base.html:104
-msgid "Standing as a candidate?"
-msgstr "Sefyll fel ymgeisydd?"
-
 #: wcivf/templates/base.html:105
 #, python-format
 msgid "About %(SITE_TITLE)s"
@@ -2636,31 +2628,6 @@ msgstr "Pob plaid"
 #: wcivf/templates/base.html:104
 msgid "Standing as a candidate?"
 msgstr "Sefyll fel ymgeisydd?"
-
-#: wcivf/templates/base.html:105
-#, python-format
-msgid "About %(SITE_TITLE)s"
-msgstr "Ynglŷn %(SITE_TITLE)s"
-
-#: wcivf/templates/base.html:106
-msgid "Privacy"
-msgstr "Preifatrwydd"
-
-#: wcivf/templates/base.html:107
-msgid "Source code"
-msgstr "Cod ffynhonnell"
-
-#: wcivf/templates/base.html:108
-msgid "About Democracy Club"
-msgstr "Ynglŷn â'r Clwb Democratiaeth"
-
-#: wcivf/templates/base.html:109
-msgid "Contact Us"
-msgstr "Cysylltwch â Ni"
-
-#: wcivf/templates/base.html:112
-msgid "GitHub"
-msgstr "GitHub"
 
 #: wcivf/templates/home.html:5 wcivf/templates/home.html:6
 msgid "Who Can I Vote For?"
