@@ -2182,11 +2182,6 @@ msgstr ""
 msgid "GitHub"
 msgstr ""
 
-#: wcivf/templates/base.html:113
-msgid ""
-"Browse the list of people and parties standing in the next general election"
-msgstr ""
-
 #: wcivf/templates/home.html:5 wcivf/templates/home.html:6
 msgid "Who Can I Vote For?"
 msgstr ""
