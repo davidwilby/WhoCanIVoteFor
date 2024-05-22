@@ -19,7 +19,7 @@ urlpatterns = [
         name="person_view",
     ),
     path(
-        "<int:pk>",
+        "<int:pk>/",
         PersonView.as_view(),
         name="person_view",
     ),
