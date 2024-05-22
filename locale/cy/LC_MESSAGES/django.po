@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 10:18+0000\n"
+"POT-Creation-Date: 2024-05-22 17:56+0000\n"
 "PO-Revision-Date: 2022-03-24 09:04+0000\n"
 "Last-Translator: Sym Roe <sym@talusdesign.co.uk>, 2022\n"
 "Language-Team: Welsh (https://www.transifex.com/democracy-club/teams/61326/"
@@ -2382,7 +2382,20 @@ msgstr ""
 "e/2PACX-1vRhZbBrU2AdJDYyBZViMs6irvH7zVUiZm2rDoADw5B18drp6hILJBr-"
 "duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv\">CSV</a>."
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:41
+msgid ""
+"Please note this data is now archived. For the latest data, please "
+"refer to the\n"
+" <a href=\"https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-"
+"parliament-elections/\">2024 General Election page</a>.\n"
+msgstr ""
+"Sylwer bod y data hwn bellach wedi'i archifo. Am y data diweddaraf, os gwelwch yn dda."
+"cyfeiriwch at y\n"
+" <a href=\"https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-"
+"Senedd-etholiadau/\">tudalen Etholiad Cyffredinol 2024</a>.\n"
+
+
 msgid "Number of candidates announced per UK region or nation"
 msgstr "Nifer yr ymgeiswyr a gyhoeddwyd fesul rhanbarth neu wlad yn y DU"
 

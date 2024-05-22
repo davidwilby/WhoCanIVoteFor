@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 10:13+0000\n"
+"POT-Creation-Date: 2024-05-22 17:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2004,7 +2004,16 @@ msgid ""
 "duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv\">CSV</a>."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:41
+#, python-format
+msgid ""
+"Please note this data is now archived. For the latest data, please "
+"refer to the\n"
+" <a href=\"https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-"
+"parliament-elections/\">2024 General Election page</a>.\n"
+msgstr ""
+
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
 
