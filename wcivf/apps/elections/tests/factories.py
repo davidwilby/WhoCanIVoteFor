@@ -9,7 +9,7 @@ class ElectionFactory(factory.django.DjangoModelFactory):
         model = Election
         django_get_or_create = ("slug",)
 
-    slug = "parl.2015"
+    slug = "parl.2015-05-07"
     election_date = timezone.datetime(2015, 5, 7).date()
     current = True
     name = "UK General Election 2015"
