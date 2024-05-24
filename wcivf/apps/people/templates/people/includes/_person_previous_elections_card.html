@@ -3,8 +3,8 @@
 
 {% if object.personpost_set.exists %}
     <div class="ds-table ds-stack">
-        <h2 class="ds-h3">{% blocktrans trimmed with person_name=object.name %}{{ person_name }}'s elections{% endblocktrans %}</h2>
         <table>
+            <caption><h2>{% blocktrans trimmed with person_name=object.name %}{{ person_name }}'s elections{% endblocktrans %}</h2></caption>
             <tr>
                 <th>{% trans "Date" %}</th>
                 <th>{% trans "Election" %}</th>
@@ -21,12 +21,18 @@
                     <td>{{ person_post.election.election_date|date:"Y" }}</td>
                     <td>
                         <a href="{{ person_post.post_election.get_absolute_url }}">
-                            {{ person_post.post.label }}: {{ person_post.election }}
+                            {{ person_post.post.label }}: {{ person_post.election.nice_election_name }}
                         </a>
                     </td>
                     <td>{{ person_post.party_name }}</td>
                     <td>
-                        {{ person_post.get_results_text }}
+                        {% if person_post.election.voting_system.slug == "sv" %}
+                            {% trans "We do not collect voting data for Supplementary Vote elections." %}
+                        {% elif person_post.election.voting_system.slug == "STV" %}
+                            {% trans "We do not collect voting data for Single Transferable Vote elections." %}
+                        {% else  %}
+                            {{ person_post.get_results_text }}
+                        {% endif %}
                     </td>
                     {% if object.previous_party_count %}
                         <td>
@@ -45,5 +51,6 @@
                 </tr>
             {% endfor %}
         </table>
+        <small>{% trans "Please note our local elections database only goes back to 2016." %}</small>
     </div>
 {% endif %}

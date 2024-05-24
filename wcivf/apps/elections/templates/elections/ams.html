@@ -2,10 +2,16 @@
 {% load markdown_filter %}
 {% load humanize %}
 {% load i18n %}
+{% block page_title %}The Additional Member System{% endblock page_title %}
+{% block og_title_content  %}The Additional Member System{% endblock og_title_content  %}
+{% block og_description_content %}
+    The Additional Member System{% endblock og_description_content %}
+{% block twitter_title_content %}The Additional Member System{% endblock twitter_title_content %}
+{% block twitter_description_content %}The Additional Member System{% endblock twitter_description_content %}
 
 {% block content %}
 
-    {% include "elections/includes/_voting_system_breadcrumbs.html" %}
+    {% include "elections/includes/_voting_system_breadcrumbs.html" with voting_system="The Additional Member System" %}
 
     <div class="ds-page">
         <div class="ds-stack">
@@ -30,7 +36,8 @@
                     want them elected, and voters get no choice over this order
                     (this is known as a 'closed list').
                 </p>
-
+            </div>
+            <div class="ds-padded">
                 <h3>Seat allocation</h3>
                 <p>The overall number of constituency seats that a party wins will have
                     an effect on how many regional representatives it is allocated.
@@ -49,6 +56,8 @@
                         after the above formula has been applied.
                     </p>
                 </p>
+            </div>
+            <div class="ds-padded">
                 <h3>Example election</h3>
                 <p>
                     In the 2016 West Scotland region, the result for the major parties was
@@ -171,7 +180,6 @@
                     15,091.
                 </p>
             </div>
-
         </div>
 
 {% endblock content %}

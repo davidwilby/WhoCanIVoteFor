@@ -40,10 +40,11 @@
                 {% trans "Visit the website of the Institute for Government for a full list" %}</a>.</p>
 
         <h2 class="ds-h4">{% trans "Timetable" %}</h2>
-        <p>{% trans "Democracy Club's" %} <a href="https://election-timetable.democracyclub.org.uk/">
-            {% trans "general election timetable generator" %}</a> {% trans "provides an election timetable for any given date" %}.</p>
-
-
+        <p>{% blocktrans trimmed with election_timetable_url="https://election-timetable.democracyclub.org.uk/" %}
+            Democracy Club's <a href="{{election_timetable_url}}">general election timetable generator</a>
+            provides an election timetable for any given date
+        {% endblocktrans %}
+        </p>
     </details>
 
 
@@ -55,6 +56,12 @@
             The full list of prospective parliamentary candidates is available as a <a href="{{ details_url }}">browsable table</a> or a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRhZbBrU2AdJDYyBZViMs6irvH7zVUiZm2rDoADw5B18drp6hILJBr-duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv">CSV</a>.
         {% endblocktrans %}
     </p>
+    <p><b>
+        {% blocktrans %}
+            Please note this data is now archived. For the latest data, please refer to the
+            <a href="https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-parliament-elections/">2024 General Election page</a>.
+        {% endblocktrans %}
+    </b></p>
 
 
     {% if by_region %}

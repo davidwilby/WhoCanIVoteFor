@@ -37,7 +37,7 @@
         {% for candidacy in object.future_candidacies %}
             {% if candidacy.deselected %}
                 <p>
-                    {% trans "This candidate has been deselected by their party, but will remain on the ballot paper." %}
+                    {% trans "This candidate has been deselected by their party, but their original party description will remain on the ballot paper." %}
                     <a href="{{ candidacy.deselected_source }}" target="_blank">{% trans "Learn more" %}.</a>
                 </p>
             {% endif %}

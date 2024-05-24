@@ -54,7 +54,7 @@
                 <address>{{ polling_station_address }}</address>
             {% endblocktrans %}
             <p>
-                {% blocktrans trimmed %}It will be open from <strong>7am to 10pm</strong>{% endblocktrans %}
+                {% blocktrans trimmed %}It will be open from <strong>7am to 10pm</strong>.{% endblocktrans %}
 
                 {% for election in elections_by_date %}
                     {{ election.grouper|naturalday:"\o\n l j F Y" }}

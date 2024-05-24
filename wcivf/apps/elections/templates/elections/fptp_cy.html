@@ -1,4 +1,16 @@
-{% extends "base.html" %}{% load markdown_filter %}{% load humanize %}{% load i18n %}{% block content %}    {% include "elections/includes/_voting_system_breadcrumbs.html" %}
+{% extends "base.html" %}
+{% load markdown_filter %}
+{% load humanize %}
+{% load i18n %}
+
+{% block page_title %}Cyntaf i'r felin (FPTP){% endblock page_title %}
+{% block og_title_content  %}Cyntaf i'r felin (FPTP){% endblock og_title_content  %}
+{% block og_description_content %}Cyntaf i'r felin (FPTP){% endblock og_description_content %}
+{% block twitter_title_content %}Cyntaf i'r felin (FPTP){% endblock twitter_title_content %}
+{% block twitter_description_content %}Cyntaf i'r felin (FPTP){% endblock twitter_description_content %}
+
+{% block content %}
+    {% include "elections/includes/_voting_system_breadcrumbs.html" with voting_system="Cyntaf i'r felin (FPTP)"%}
 
     <div class="ds-page">
         <div class="ds-stack">

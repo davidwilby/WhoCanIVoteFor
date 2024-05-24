@@ -138,9 +138,10 @@ class PersonPost(models.Model):
                     ].votes_cast
                 ):
                     return f"Joint {ordinal(candidate.rank)} / {candidate_count} candidates"
-
+                if candidate_count > 1:
+                    return f"{ordinal(candidate.rank)} / {candidate_count} candidates"
                 return (
-                    f"{ordinal(candidate.rank)} / {candidate_count} candidates"
+                    f"{ordinal(candidate.rank)} / {candidate_count} candidate"
                 )
         return None
 

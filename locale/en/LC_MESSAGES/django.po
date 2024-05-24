@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 10:13+0000\n"
+"POT-Creation-Date: 2024-05-22 17:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,47 +22,19 @@ msgstr ""
 msgid "Enter your postcode"
 msgstr ""
 
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:53
-msgid "Join our mailing list"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:64
-msgid "democracy"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:64
-msgid "club"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:69
-msgid "Copyright"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:70
-msgid "Democracy Club Community Interest Company"
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:71
-msgid "Company No: "
-msgstr ""
-
-#: env/lib/python3.10/site-packages/dc_utils/templates/dc_base.html:73
-msgid "Building digital infrastructure for a 21st century democracy."
-msgstr ""
-
-#: wcivf/apps/elections/models.py:735
+#: wcivf/apps/elections/models.py:741
 msgid "First-past-the-post"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:737
+#: wcivf/apps/elections/models.py:743
 msgid "Additional Member System"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:739
+#: wcivf/apps/elections/models.py:745
 msgid "Supplementary Vote"
 msgstr ""
 
-#: wcivf/apps/elections/models.py:741
+#: wcivf/apps/elections/models.py:747
 msgid "Single Transferable Vote"
 msgstr ""
 
@@ -131,7 +103,7 @@ msgid "All Elections in the UK"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/elections_view.html:16
-#: wcivf/templates/base.html:106
+#: wcivf/templates/base.html:102
 msgid "All Elections"
 msgstr ""
 
@@ -280,7 +252,7 @@ msgstr ""
 #: wcivf/apps/parties/templates/parties/party_detail.html:17
 #: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:17
 #: wcivf/apps/people/templates/people/person_detail.html:31
-#: wcivf/templates/base.html:105
+#: wcivf/templates/base.html:101
 msgid "Home"
 msgstr ""
 
@@ -343,7 +315,7 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_how-to-vote.html:84
 msgid ""
 "For more information, visit <a href=\"https://www.electoralcommission.org.uk/"
-"i-am-a/voter/how-cast-your-vote\">The Electoral Commission's website</a> or "
+"i-am-a/voter/\">The Electoral Commission's website</a> or "
 "ask an official at your polling station."
 msgstr ""
 
@@ -372,8 +344,8 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_person_card.html:23
 #: wcivf/apps/people/templates/people/includes/_person_intro_card.html:42
 msgid ""
-"This candidate has been deselected by their party, but will remain on the "
-"ballot paper."
+"This candidate has been deselected by their party, but their original party "
+"description will remain on the ballot paper."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_person_card.html:24
@@ -439,7 +411,7 @@ msgid "<address>%(polling_station_address)s</address>"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:57
-msgid "It will be open from <strong>7am to 10pm</strong>"
+msgid "It will be open from <strong>7am to 10pm</strong>."
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/_polling_place.html:63
@@ -810,8 +782,10 @@ msgstr ""
 #: wcivf/apps/elections/templates/elections/includes/_voter_id.html:15
 msgid ""
 "You do not need your poll card to vote. You must vote at your assigned "
-"polling station. Read more about <a href=\"https://www.gov.uk/voting-in-the-"
-"uk/polling-stations\">voting in Great Britain</a>."
+"polling station. <ul> <li>Read more about <a href=\"https://www.gov.uk/"
+"voting-in-the-uk/polling-stations\">voting in Great Britain</a>.</li> "
+"<li>Read more about <a href=\"https://www.gov.uk/how-to-vote/photo-id-youll-"
+"need\">photo ID</a>.</li> </ul>"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/includes/eu_results.html:7
@@ -936,8 +910,8 @@ msgid "Tweets by"
 msgstr ""
 
 #: wcivf/apps/elections/templates/elections/party_list_view.html:71
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:92
 msgid "Candidates"
 msgstr ""
 
@@ -1352,7 +1326,6 @@ msgid ""
 "\">their role in elections</a> on the parliament.uk website."
 msgstr ""
 
-
 #: wcivf/apps/people/models.py:78
 msgid "Elected unopposed"
 msgstr "Etholwyd yn ddiwrthwynebiad"
@@ -1413,7 +1386,7 @@ msgid "%(person_name)s's Facebook page"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:33
-#: wcivf/templates/base.html:115
+#: wcivf/templates/base.html:111
 msgid "Twitter"
 msgstr ""
 
@@ -1446,7 +1419,7 @@ msgid "%(person_name)s's home page"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_contact_card.html:77
-#: wcivf/templates/base.html:114
+#: wcivf/templates/base.html:110
 msgid "Blog"
 msgstr ""
 
@@ -1715,7 +1688,7 @@ msgstr ""
 msgid "their speeches, voting history and more"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:6
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:7
 #, python-format
 msgid "%(person_name)s's elections"
 msgstr ""
@@ -1725,7 +1698,7 @@ msgid "Election"
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:11
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:90
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:91
 #: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:45
 msgid "Party"
 msgstr ""
@@ -1742,8 +1715,20 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:42
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:30
+msgid "We do not collect voting data for Supplementary Vote elections."
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:32
+msgid "We do not collect voting data for Single Transferable Vote elections."
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:48
 msgid "Position not available"
+msgstr ""
+
+#: wcivf/apps/people/templates/people/includes/_person_previous_elections_card.html:54
+msgid "Please note our local elections database only goes back to 2016."
 msgstr ""
 
 #: wcivf/apps/people/templates/people/includes/intros/_constituency.html:5
@@ -1979,22 +1964,17 @@ msgid "Timetable"
 msgstr ""
 
 #: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:43
-msgid "Democracy Club's"
+#, python-format
+msgid ""
+"Democracy Club's <a href=\"%(election_timetable_url)s\">general election "
+"timetable generator</a> provides an election timetable for any given date"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "general election timetable generator"
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:44
-msgid "provides an election timetable for any given date"
-msgstr ""
-
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:50
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:51
 msgid "The data"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:54
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:55
 #, python-format
 msgid ""
 "The full list of prospective parliamentary candidates is available as a <a "
@@ -2004,37 +1984,46 @@ msgid ""
 "duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv\">CSV</a>."
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:63
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:58
+#: wcivf/apps/ppc_2024/templates/ppc_2024/ppcperson_list.html:41
+#, python-format
+msgid ""
+"Please note this data is now archived. For the latest data, please "
+"refer to the\n"
+" <a href=\"https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-"
+"parliament-elections/\">2024 General Election page</a>.\n"
+msgstr ""
+
 msgid "Number of candidates announced per UK region or nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:65
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:66
 msgid "Region / nation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:67
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:68
 msgid "Total seats in region"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:88
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:89
 msgid "Candidate selections by political party"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:100
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:101
 msgid "Total"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:108
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
 msgid "Support our work"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:109
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:110
 msgid ""
 "Democracy Club is a non-profit Community Interest Company. If you've found "
 "this resource useful, please consider a donation"
 msgstr ""
 
-#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:111
+#: wcivf/apps/ppc_2024/templates/ppc_2024/home.html:112
 msgid "Donate now"
 msgstr ""
 
