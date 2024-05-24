@@ -7,8 +7,8 @@ from parties.models import Manifesto, Party
 
 class Command(BaseCommand):
     """
-    The 2017 party manifesto list is at:
-    https://docs.google.com/spreadsheets/d/1ag0FuUqUOJlP8nvVVxjxFh_2HDNH6WJ9srZSJh9KG_c/edit#gid=816418254
+    The 2024 party manifesto list is at:
+    https://docs.google.com/spreadsheets/d/e/2PACX-1vS0GJ6wED4d87K1AMXTxxfYl1L-RwjuH-DY1lcwAH9Wj8MChrxPRVDXqc1dzMW8sVdGDLXcBi0usnDl/pub?gid=0&single=true&output=csv
     Download and store it locally, then run this command with:
     manage.py import_manifestos /path/to/csv
     """
