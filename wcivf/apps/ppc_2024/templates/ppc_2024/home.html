@@ -56,13 +56,7 @@
             The full list of prospective parliamentary candidates is available as a <a href="{{ details_url }}">browsable table</a> or a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRhZbBrU2AdJDYyBZViMs6irvH7zVUiZm2rDoADw5B18drp6hILJBr-duSXCmHJ18SmYWm3iq0bbfoR/pub?gid=0&single=true&output=csv">CSV</a>.
         {% endblocktrans %}
     </p>
-    <p><b>
-        {% blocktrans %}
-            Please note this data is now archived. For the latest data, please refer to the
-            <a href="https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-parliament-elections/">2024 General Election page</a>.
-        {% endblocktrans %}
-    </b></p>
-
+    <p><b>{% blocktrans with ge_2024_election_url="https://whocanivotefor.co.uk/elections/parl.2024-07-04/uk-parliament-elections/" %}Please note this data is now archived. For the latest data, please refer to the <a href={{ge_2024_election_url}}>2024 General Election page</a>.{% endblocktrans %}</b></p>
 
     {% if by_region %}
         <div class="ds-table">

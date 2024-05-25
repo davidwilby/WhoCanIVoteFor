@@ -39,24 +39,10 @@
         </p>
     {% elif object.cancellation_reason == "NO_CANDIDATES" %}
         <h4>{% trans "Uncontested and Rescheduled Election" %}</h4>
-        <p>
-            {% blocktrans %}
-                This election was cancelled because no candidates stood for the available seats.
-
-                A new election to fill the unclaimed seat{{ plural }}
-                will be held within 35 working days of the original election date.
-            {% endblocktrans %}
-        </p>
+        <p>{% blocktrans %}This election was cancelled because no candidates stood for the available seats. A new election to fill the unclaimed seat{{ plural }} will be held within 35 working days of the original election date.{% endblocktrans %}</p>
     {% elif object.cancellation_reason == "CANDIDATE_DEATH" %}
         <h4>{% trans "Cancelled and Rescheduled Election" %}</h4>
-        <p>
-            {% blocktrans %}
-                This election was cancelled due to the death of a candidate.
-
-                A new election to fill the unclaimed seat{{ plural }}
-                will be held within 35 working days of the original election date.
-            {% endblocktrans %}
-        </p>
+        <p>{% blocktrans %}This election was cancelled due to the death of a candidate. A new election to fill the unclaimed seat{{ plural }} will be held within 35 working days of the original election date.{% endblocktrans %}</p>
     {% endif %}
 {% else %}
     {% if object.metadata.cancelled_election %}

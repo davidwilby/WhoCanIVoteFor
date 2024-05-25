@@ -50,29 +50,17 @@ PR-CL: Closed List
             {% endif %}
 
             {% if voting_system.slug == "STV" %}
-                <p>
-                    {% blocktrans trimmed %}
-                        Rank the candidates by your preference: 1, 2, 3…
-                        You don't have to rank all the candidates, but you must at least mark your first choice.
-                    {% endblocktrans %}
-                </p>
+                <p>{% blocktrans trimmed %}Rank the candidates by your preference: 1, 2, 3… You don't have to rank all the candidates, but you must at least mark your first choice.{% endblocktrans %}</p>
             {% endif %}
 
             {% if voting_system.slug == "sv" %}
-                <p>
-                    {% blocktrans trimmed %}
-                        Mark an X in the first column for your first choice.
-                        Mark an X in the second column for your second choice.
-                        You do not have to mark a second choice.
-                    {% endblocktrans %}
+                <p>{% blocktrans trimmed %}Mark an X in the first column for your first choice. Mark an X in the second column for your second choice. You do not have to mark a second choice.{% endblocktrans %}
                 </p>
             {% endif %}
 
             {% if voting_system.slug == "AMS" or voting_system.slug == "PR-CL"%}
                 <p>
-                    {% blocktrans trimmed %}
-                        Mark an X in the box for one party or independent candidate.
-                    {% endblocktrans %}
+                    {% blocktrans trimmed %}Mark an X in the box for one party or independent candidate.{% endblocktrans %}
                 </p>
             {% endif %}
 
@@ -81,7 +69,7 @@ PR-CL: Closed List
             {% endif %}
 
             <p>{% blocktrans trimmed %}Read the instructions at the top of your ballot paper carefully.{% endblocktrans %}</p>
-            <p>{% blocktrans trimmed %}For more information, visit <a href="https://www.electoralcommission.org.uk/i-am-a/voter">The Electoral Commission's website</a> or ask an official at your polling station.{% endblocktrans %}</p>
+            <p>{% blocktrans trimmed with ec_url="https://www.electoralcommission.org.uk/i-am-a/voter" %}For more information, visit <a href={{ec_url}}>The Electoral Commission's website</a> or ask an official at your polling station.{% endblocktrans %}</p>
         </details>
     </li>
 </ul>

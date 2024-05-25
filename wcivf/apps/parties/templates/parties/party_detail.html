@@ -85,9 +85,7 @@
                             {% trans "Joint description" %}
                         </h3>
                         <p>
-                            {% blocktrans with joint_name=object.party_name first_name=sub_parties.0.party_name second_name=sub_parties.1.party_name %}
-                                "{{ joint_name }}" is a joint description of {{ first_name }} and {{ second_name }}.
-                            {% endblocktrans %}
+                            {% blocktrans with joint_name=object.party_name first_name=sub_parties.0.party_name second_name=sub_parties.1.party_name %}"{{ joint_name }}" is a joint description of {{ first_name }} and {{ second_name }}.{% endblocktrans %}
                         </p>
                     </div>
                 </div>
