@@ -58,7 +58,9 @@ def set_time_string_on_datetime(dt, time_string):
 class Command(BaseCommand):
     URLS = [
         # 2024 GE
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEi9pd5eT9OSkfmK-Nmhaozd_mi09wHUtHCG9RXwIZBhLW0Wnw5MkALotZlAtJHD-pU-kxxdCtfY7o/pub?gid=0&single=true&output=csv"
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRQ2M-Kwm8LVvT-eu89wP5bt-ffE0bClfdB0iegFSnoHep_k8bdYk1Ndl5XlwvzMKleynlDOXhYXET8/pub?gid=0&single=true&output=csv",
+        # 2024 Locals
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRQ2M-Kwm8LVvT-eu89wP5bt-ffE0bClfdB0iegFSnoHep_k8bdYk1Ndl5XlwvzMKleynlDOXhYXET8/pub?gid=0&single=true&output=csv",
     ]
 
     def add_arguments(self, parser):
