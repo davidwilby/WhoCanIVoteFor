@@ -148,6 +148,15 @@ Resources:
             Input: '{"command": "import_parties"}'
             RetryPolicy:
               MaximumRetryAttempts: 0
+        ImportGeneralElectionParties:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 day)
+            Name: import-general-election-parties
+            Description: Import general election parties
+            Input: '{"command": "import_general_election_parties"}'
+            RetryPolicy:
+              MaximumRetryAttempts: 0
         BatchFeedbackToSlack:
           Type: Schedule
           Properties:
