@@ -1284,16 +1284,14 @@ msgid ""
 "The Speaker of the House of Commons stands in general elections under the "
 "banner"
 msgstr ""
-"Mae Llefarydd Tŷ'r Cyffredin yn sefyll mewn etholiadau cyffredinol o dan y "
-"faner"
+
 
 #: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:37
 msgid ""
 "They are not affiliated with any political party, nor do they campaign on "
 "any political issues."
 msgstr ""
-"Nid ydynt yn gysylltiedig ag unrhyw blaid wleidyddol, nac yn ymgyrchu ar "
-"unrhyw faterion gwleidyddol."
+
 
 #: wcivf/apps/parties/templates/parties/speaker_seeking_reelection.html:38
 msgid "The Speaker generally runs unopposed by the major parties."
@@ -1310,7 +1308,7 @@ msgstr ""
 
 #: wcivf/apps/people/models.py:78
 msgid "Elected unopposed"
-msgstr "Etholwyd yn ddiwrthwynebiad"
+msgstr ""
 
 #: wcivf/apps/people/models.py:79
 msgid "(election cancelled)"
