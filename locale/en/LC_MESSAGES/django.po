@@ -2171,7 +2171,7 @@ msgstr ""
 
 #: wcivf/templates/home.html:23
 msgid ""
-"A parliamentary general election has been called for 4 July.Enter your "
+"A parliamentary general election has been called for 4 July. Enter your "
 "postcode to find your constituency and candidates."
 msgstr ""
 
