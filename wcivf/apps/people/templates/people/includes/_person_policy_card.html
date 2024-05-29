@@ -19,7 +19,7 @@
                 </blockquote>
             </div>
         {% else %}
-            <blockquote>{{ object.statement_to_voters|linebreaks }}</blockquote>
+            <blockquote>{{ object.statement_to_voters|markdown }}</blockquote>
         {% endif %}
         {% if object.statement_to_voters_last_updated %}
             <p>{% blocktrans with date=object.statement_to_voters_last_updated|naturalday %}This statement was last updated on {{ date }}.{% endblocktrans %}</p>
@@ -44,7 +44,7 @@
                     {% if leaflet.thumb_url %}
                         <a href="https://electionleaflets.org/leaflets/{{ leaflet.leaflet_id }}">
                             <img src="{{ leaflet.thumb_url }}"
-                                alt="{% blocktrans with person_name=object.name %}Thumbnail of leaflet from {{ person_name }}{% endblocktrans %}"/>
+                                 alt="{% blocktrans with person_name=object.name %}Thumbnail of leaflet from {{ person_name }}{% endblocktrans %}"/>
                         </a>
                     {% endif %}
                     <p>
