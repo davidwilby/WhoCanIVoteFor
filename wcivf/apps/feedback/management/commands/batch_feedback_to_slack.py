@@ -112,8 +112,8 @@ class Command(BaseCommand):
         found = recent_feedback.filter(found_useful="YES")
         not_found = recent_feedback.exclude(found_useful="YES")
 
-        more_likely = recent_feedback.filter(vote="YES")
-        less_likely = recent_feedback.filter(vote="NO")
+        more_likely = recent_feedback.filter(vote="MORE_LIKELY")
+        less_likely = recent_feedback.filter(vote="LESS_LIKELY")
         no_difference = recent_feedback.filter(vote="NO_DIFFERENCE")
 
         hour_string = "hour"
