@@ -13,7 +13,7 @@ from django.db import transaction
 from elections.import_helpers import YNRBallotImporter
 from elections.models import PostElection
 from parties.models import Party
-from people.models import Person
+from people.models import Person, PersonRedirect
 
 from wcivf.apps.elections.import_helpers import time_function_length
 from wcivf.apps.people.import_helpers import YNRPersonImporter
@@ -254,6 +254,10 @@ class Command(BaseCommand):
             page = req.json()
             for result in page["results"]:
                 merged_ids.append(result["old_person_id"])
+                PersonRedirect.objects.get_or_create(
+                    old_person_id=result["old_person_id"],
+                    new_person_id=result["new_person_id"],
+                )
             url = page.get("next")
         Person.objects.filter(ynr_id__in=merged_ids).delete()
 
