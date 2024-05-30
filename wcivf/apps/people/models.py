@@ -456,6 +456,11 @@ class Person(models.Model):
         return " ".join(intro.split())
 
 
+class PersonRedirect(models.Model):
+    old_person_id = models.IntegerField()
+    new_person_id = models.IntegerField()
+
+
 class AssociatedCompany(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=255)

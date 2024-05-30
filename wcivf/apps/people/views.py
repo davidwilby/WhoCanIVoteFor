@@ -1,11 +1,11 @@
 from django.db.models import Count, Prefetch, Q
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, RedirectView
 from elections.dummy_models import DummyPostElection
 from parties.models import LocalParty, Manifesto
 
-from .models import Person, PersonPost
+from .models import Person, PersonPost, PersonRedirect
 
 
 class PersonMixin(object):
@@ -39,25 +39,33 @@ class PersonMixin(object):
                 "personpost__previous_party_affiliations"
             )
         )
-        try:
-            # Get the single item from the filtered queryset
-            obj = queryset.get()
-        except queryset.model.DoesNotExist:
-            raise Http404(
-                "No %(verbose_name)s found matching the query"
-                % {"verbose_name": queryset.model._meta.verbose_name}
-            )
+        # Get the single item from the filtered queryset
+        return queryset.get()
 
         # TODO check if this can be deleted or may be needed in future?
         # obj.leaflets = Leaflet.objects.filter(person=obj).order_by(
         #     "-date_uploaded_to_electionleaflets"
         # )[:3]
 
-        return obj
-
 
 class PersonView(DetailView, PersonMixin):
     model = Person
+
+    def get(self, request, *args, **kwargs):
+        try:
+            return super().get(request, *args, **kwargs)
+        except Person.DoesNotExist:
+            try:
+                redirect = PersonRedirect.objects.get(
+                    old_person_id=self.kwargs["pk"]
+                )
+                return HttpResponseRedirect(
+                    reverse(
+                        "person_view", kwargs={"pk": redirect.new_person_id}
+                    )
+                )
+            except PersonRedirect.DoesNotExist:
+                raise Http404()
 
     def get_template_names(self):
         """
